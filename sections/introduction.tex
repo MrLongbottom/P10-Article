@@ -1,6 +1,17 @@
-\section{Introduction}\label{sec:intro}
-\Gls{lda} is used to predict underlying topics within a corpus of text documents.
-Previous extensions of \gls{lda} have included various other information such as authors, into the model, to generate better topics.
+\section{Introduction}\label{sec:introduction}
+
+Within the field of topic modelling \Gls{lda} proven successful in finding underlying topics within a corpus of text documents.
+However, many extension to the \gls{lda} algorithm have been proposed to improve the original model.
+What if the underlying topics, within a corpus could found with the help of features already present in the data.
+This investigation has been proposed by \citet{author_topic}, where they let authors influence the underlying topics of the documents.
+They show that the author topic combination yields better and more coherent topics, which begs the question whether any other metadata can be applied in a similar fashion.
+
+Datasets are sometimes not used to their full potential, regarding the amount of information available within some datasets.
+There exist many feature engineering method, which capture different aspects of a dataset, and these might aid in solving a specific task.
+Labelled or labelling data entries is used within supervised learning, since the \gls{ML} algorithm needs to know what is right and wrong in a given context.
+
+The feature that \gls{lda} creates is the underlying topics within a corpus of text.
+These topics are based on the document that resides within the corpus, but other extensions of \gls{lda} have included various other information such as authors, into the model, to generate better topics.
 In this paper, we will research the effect that including various combinations of metadata information about documents will have on \gls{lda}.
 These metadata include authors as well as higher level categorical information.
 We will conduct \gls{lda} models using various combinations of these metadata and observe the effect of the topic generated.
