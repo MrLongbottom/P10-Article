@@ -6,14 +6,26 @@ Meta-data is describes field within a data entry which and is usually used with 
 These meta-data fields within a data entry can be used for many purposes eg. to predict new samples within a certain scenario.
 
 Within the field of topic modelling, \Gls{lda} proven successful in finding underlying topics within a corpus of text documents.
-Many extension of the \gls{lda} algorithm have been proposed to improve the original model.
+These topics are based on the document that resides in the corpus and words within these documents, but other extensions of \gls{lda} have included various other information such as authors, into the model, to generate better topics.
 One of the well known extensions is the Author-Topic model by \citet{author_topic} which combines the \gls{lda} model which models the relationship between authors and the documents, which they have written.
 The reason for modelling this relationship is to figure out which subjects certain authors write about and how much each author use specific words. 
 They also show that the Author-Topic combination yields better and more coherent topics, which begs the question whether any other metadata can be applied in a similar fashion.
 What if the underlying topics, within a corpus could found with the help of features already present in the data.
 
-These topics are based on the document that resides in the corpus and words within these documents, but other extensions of \gls{lda} have included various other information such as authors, into the model, to generate better topics.
-In this paper, we will research the effect that including various combinations of metadata information about documents will have on \gls{lda}.
-These metadata include authors as well as higher level categorical information.
-We will conduct \gls{lda} models using various combinations of these metadata and observe the effect of the topic generated.
-We use a dataset of danish newspaper articles, and construct models that account for the specific metadata available for this dataset.
+Nordjyske is a Danish news agency who maintain multiple newspapers throughout north Jutland, a region in Denmark.
+They store their news articles within a database where they save multiple meta-data about each article.
+One of the metadata fields is the Category field, which both describes where the article is supposed to be located(within a newspaper) and also which subject the article is about. 
+These meta-data are very interesting in that they detail the data in certain ways which might be useful in some way.
+
+In this paper, we will investigate the effect that including various combinations of metadata information about documents will have on the \gls{lda} model.
+This metadata includes authors as well as higher level categorical information.
+We will be testing different \gls{lda} models using various combinations of metadata and observe the impact it has on the topic generated.
+We will be using the Nordjyske dataset, and construct models that account for the specific metadata available in the dataset.
+
+\textbf{Problem statement}
+\begin{itemize}
+	\item \textit{Including meta-data within the \gls{lda} model, does that impact the resulting topics?}
+	\item \textit{How can multiple meta-data fields be integrated within a topic model?}
+\end{itemize}
+	
+The paper is organized as follows: 
