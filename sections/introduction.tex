@@ -1,6 +1,6 @@
 \section{Introduction}\label{sec:introduction}
 Datasets consist of entries where each entry contains a certain amount of meta-data fields which describes the data.
-Datasets are sometimes not used to their full potential, regarding the amount of information available within some datasets.
+Datasets not always used to their full potential, as many projects only make use of some of the full data available.
 There exist many feature engineering methods, which captures different aspects of a dataset, and these might aid in solving a specific task.
 Meta-data is describes field within a data entry which and is usually used with supervised learning as labels for the algorithm used.
 These meta-data fields within a data entry can be used for many purposes eg. to predict new samples within a certain scenario.
@@ -13,6 +13,7 @@ The reason for modelling this relationship is to figure out which subjects certa
 They also show that the Author-Topic combination yields better and more coherent topics, which begs the question whether any other metadata can be applied in a similar fashion.
 What if the underlying topics, within a corpus could found with the help of features already present in the data.
 
+In this paper, we will be taking a closer look at a specific dataset from Nordjyske and include various metadata within our topic models, to see if they can improve the quality of the topics or the efficiency of the model.
 Nordjyske is a Danish news agency who maintain multiple newspapers throughout north Jutland, a region in Denmark.
 They store their news articles within a database where they save multiple meta-data about each article.
 One of the metadata fields is the Category field, which both describes where the article is supposed to be located (within a newspaper) and also which subject the article is about.
