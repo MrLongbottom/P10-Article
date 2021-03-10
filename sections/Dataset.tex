@@ -1,22 +1,22 @@
 \section{Dataset}
 Nordjyske is a Danish news agency that maintains multiple newspapers, radios, and other news sources throughout north Jutland, a region in Denmark.
 They store their news articles in a non-public database, where each article contains multiple meta-data fields which describes some aspect of the data eg. author.
-The dataset is from 2017 to 2019 and contains 139261 articles that use a vocabulary of 69192 unique words.
-One of the metadata fields is the Category field, which both describes where the article is supposed to be located(within a newspaper) and also which subject the article is about.
-This meta-data is very interesting in that they detail the data in certain ways which might be useful in some way.
+The dataset, we use, ranges from 2017 to 2019 and contains 139261 articles that use a vocabulary of 69192 unique words after preprocessing.
+One of the meta-data fields is the Category field, which both describes where the article is supposed to be located(within a newspaper) and also which subject the article is about.
 
 In the following section, we describe each of the meta-data fields which are analyzed.
 
 \subsection{Author}
-This field mentions the author, who has written the article.
-Each article only has a single author, so we do not account for multiple authors in this paper.
-This field is fully observed within the dataset, which means that every article has an author.
-There are $227$ different authors within the dataset and they are almost evenly distributed in the number of articles they have written.
+This field is for the author, who has written the article.
+Each article only has a single author, so we do not account for multiple authors.
+This field is fully observed within the dataset, which means that every article has one author.
+There are $227$ different authors within the dataset.
+%and they are almost evenly distributed in the number of articles they have written.
 
 \subsection{Category}
 The category field describes a variety of different aspects. 
 This field is fully observed within the dataset and there are $58$ different categories.
-A proportion of the articles contains which specific newspaper, they belong to, eg. Aalborg-Newspaper.
+A proportion of the categories contains which specific newspaper, they belong to, eg. Aalborg-Newspaper.
 Another proportion of the category fields describes the overall theme, such as Culture and Sports-newspaper.
 
 \subsection{Taxonomy}
@@ -32,3 +32,5 @@ Examples of this field are:
 	\item PLACES/Danmark/Nordjylland/Aalborg/Lillevorde
 	\item TOPICS/Religion/Christianity
 \end{itemize}
+About $80\%$ of the observed variables contain the Places variable and $20\%$ is using the topics variable. 
+
