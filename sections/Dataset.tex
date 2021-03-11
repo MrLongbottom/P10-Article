@@ -9,7 +9,7 @@ In the following section, we describe each of the meta-data fields which are ana
 \subsection{Author}
 This field is for the author, who has written the article.
 Each article only has a single author, so we do not account for multiple authors.
-This field is fully observed within the dataset, which means that every article has one author.
+This field is fully observed within the dataset, meaning that every article has an author.
 There are $227$ different authors within the dataset.
 %and they are almost evenly distributed in the number of articles they have written.
 
@@ -21,7 +21,6 @@ Another proportion of the category fields describes the overall subject of the d
 % stats
 This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
 However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
-
 Filtering away all categories covering less than $140$ documents ($0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.
 \autoref{fig:category_box} shows an overview of the size of the categories.\langballe[inline]{consider showing name of categories and relvative dataset size.}
 
@@ -35,7 +34,8 @@ Filtering away all categories covering less than $140$ documents ($0.01\%$ of th
 \subsection{Taxonomy}
 The taxonomy field describes a hierarchical structure of the topical or geographical subject of the articles.
 This field is only partially observed within the dataset, which means that roughly $50\%$ of the articles contain this field.
-We observe a general pattern when traversing this field which is:
+Each article can also contain multiple taxonomies.
+We observe some general patterns when traversing this field which is:
 \begin{itemize}
 	\item Places/Country/Region/Town
 	\item Topics/Sub-Topic/Subsub-topic
@@ -45,5 +45,5 @@ Examples of this field are:
 	\item PLACES/Danmark/Nordjylland/Aalborg/Lillevorde
 	\item TOPICS/Religion/Christianity
 \end{itemize}
-About $80\%$ of the observed variables contain the Places variable and $20\%$ is using the topics variable. 
+About $80\%$ of the observed variables contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable. 
 
