@@ -14,10 +14,23 @@ There are $227$ different authors within the dataset.
 %and they are almost evenly distributed in the number of articles they have written.
 
 \subsection{Category}
-The category field describes a variety of different aspects. 
-This field is fully observed within the dataset and there are $58$ different categories.
-A proportion of the categories contains which specific newspaper, they belong to, eg. Aalborg-Newspaper.
-Another proportion of the category fields describes the overall theme, such as Culture and Sports-newspaper.
+% what it is?
+The category field describes a variety of different aspects.
+A proportion of the categories contains which specific newspaper, they belong to, eg. 'Aalborg-Newspaper'.
+Another proportion of the category fields describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
+% stats
+This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
+However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
+
+Filtering away all categories covering less than $140$ documents ($0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.
+\autoref{fig:category_box} shows an overview of the size of the categories.\langballe[inline]{consider showing name of categories and relvative dataset size.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1 \linewidth]{figures/category_box.png}
+	\caption{Boxplot over the size of the categories. Size meaning the amount of documents with the same category.}
+	\label{fig:category_box}
+\end{figure}
 
 \subsection{Taxonomy}
 The taxonomy field describes a hierarchical structure of the topical or geographical subject of the articles.
