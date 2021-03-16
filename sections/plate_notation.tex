@@ -1,12 +1,26 @@
 \section{Plate Notation}
-As with \todo{ref author-topic model}, there is no document-topic distributions $\theta$, rather each author and category has their topic distribution.
+As with \citet{author_topic_2012}, there is no document-topic distributions $\theta$, rather each author and category has their topic distribution.
 This is based on the assumption that authors prefer to write about specific topics, and that categories of the articles were chosen based on the content of the finished article or that local newspapers have their own unique topic preferences.
 
 Our model is an \gls{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than a \gls{dm} where topics are fitted to have influence on both word distributions and other metadata.
-The original \gls{lda} plate notation can be seen in \autoref{fig:standard_lda}, where 
+
+Our standard \gls{lda} model use a similar notation to \cite{blei2003latent}, where a document $d$ is a vector of $N$ id's, where the id represents the given word in the original document. $Z_{d,n}$ is the topic assign to a word $n$ within $d$.
+$\theta_d$ denotes the document-topic distribution for a specific document $d$ and the $\beta_k$ denotes the topic-word distribution for a specific topic $k$.
+
+\citet{author_topic_2012} describes the author-topic model where each $d$, we assign a specific author $a_d$ from a set of authors $A$.
+
+In our category-topic model, we do the same as author-topic model, where each document $d$ is associated with a category $c$ from a set of categories $C$.
 
 \input{figures/lda_plate}
 
-\input{figures/category_plate}
-
-\input{figures/author_plate}
+\begin{figure*}[ht]
+	\centering
+	\resizebox{0.7\columnwidth}{!}{%
+		\input{figures/category_plate}
+	}
+	\resizebox{0.7\columnwidth}{!}{%
+		\input{figures/author_plate}
+	}
+	\caption{Plate Diagram for Category LDA}
+	\label{fig:cat_lda}
+\end{figure*}
