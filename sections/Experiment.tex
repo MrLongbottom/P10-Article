@@ -1,0 +1,75 @@
+\section{Experiment}\label{sec:experiment}
+In this section the details of the experiment will be given.
+This covers what models will be evaluated, the evaluation metrics, and how the hyperparameters for the models were chosen.
+Lastly, the results of the evaluations are also shown.
+
+\subsection{Models}\label{sec:experiment_models}
+In this experiment, a list of different topic models are evaluated, each using a different metadata from the dataset.
+The main difference between the models is how they draw a specific topic for a word.
+As detailed in \autoref{sec:lda} and \autoref{sec:metadata}, the main models used in this experiment are:
+\begin{description}
+	\item[\Acrlong{lda}] Standard \gls{lda}, which uses document-topic distributions.
+	\item[Author-Topic Model] An \gls{lda} based model, which uses author-topic distributions.
+	\item[Category-Topic Model] An \gls{lda} based model, which uses category-topic distributions.
+	\item[Taxonomy-Topic Model] A pachinko allocation model which uses hierarchical taxonomy information.
+\end{description}
+
+By extension of these models, combinations of the models are also evaluated.
+As detailed in \autoref{sec:combinations}, these combinations are:
+\begin{itemize}
+	\item Author-Category
+	\item Author-Taxonomy
+	\item Category-Taxonomy
+	\item Author-Category-Taxonomy
+\end{itemize}
+These model combinations should give insight into what a model learns when multiple metadata have influence on the topics chosen.
+
+\subsection{Evaluation Metrics}\label{sec:experiment_metrics}
+All models mentioned previously are evaluated on the following evaluation metrics.
+The main metric used, in this experiment, is the topic coherence metric.
+This metric gives an indication of how coherent topics are, and will be an indication of the quality of the topics a topic model generates.\todo{Source}
+Topic coherence is calculated as follows:
+\begin{equation}
+	TopicCoherence = 
+\end{equation}
+\todo[inline]{Find and insert math}
+\noindent where ...
+
+The other metric used in the experiment is perplexity.
+Perplexity is used as a metric, to show how well a model can predict new test samples.
+But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation.
+Perplexity is calculated as follows:
+\begin{equation}
+	Perplexity = 
+\end{equation}
+\todo[inline]{Find and insert math}
+\noindent where ...
+
+Finally, we also perform human evaluation of the topics generated.
+\todo[inline]{How/if we do this is still to be discussed}
+
+\subsection{Grid Search}\label{sec:experiment_gridsearch}
+To find the optimal hyperparameter values for the models, we run a grid search.
+In the grid search, different values of K, $\alpha$, and $\eta$ are tested to find the best performing model.
+We only run the grid search on the standard \gls{lda} model, with the assumption that the number of topics that performs well for this model, also performs well for the metadata models, when the same dataset is used.
+The hyperparameter values that are tested, are shown in \autoref{tab:gridsearch}.
+To evaluate the \gls{lda} model, we measure the topic coherence of the model after training it on the dataset\todo{all data or training dataset?} for ?? epochs.
+
+Based on the topic coherence\todo{and possible human evaluation} of the model, we choose $K = ??$, $\alpha = ??$, and $\eta = ??$ as the hyperparameters for all models in the experiment.
+
+\begin{table}[h]
+	\centering
+	\caption{Tested hyperparameter values. $K_1$ is the $K$ values used for the first hyperparameter test, while $K_2$ is the $K$ values used for the second hyperparameter test.}
+	\begin{tabular}{c|c}
+		Parameter & Tested Values\\
+		\midrule
+		$K_1$ & 10, 50, 100, 200, 300\\
+		$K_2$ & 5, 10, 15, 20, 25, 30, 35, 40, 45, 50\\
+		$\alpha$ & 0.5, 0.1, 0.01, 0.001\\
+		$\eta$ & 0.1, 0.01, 0.001, 0.0001\\
+	\end{tabular}
+	\label{tab:gridsearch}
+\end{table}
+\todo[inline]{Table is from our previous paper. When we know specifically how we do the grid search, and what parameters to test, it can easily be changed.}
+
+\subsection{Results}\label{sec:results}
