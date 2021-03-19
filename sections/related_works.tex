@@ -2,11 +2,10 @@
 
 \citet{author_topic_2012} have developed a \gls{lda} model called the Author-Topic model, which incorporates authorship information in the \gls{lda} model.
 Specifically, each document has a vector of authors, where for each word an author is drawn from this vector.
-This author is then used in combination with an author-topic distribution to draw a specific topic that this author writes about.
-Then the words from the topic-word distribution can be generated based on this topic.
+The author is then used in combination with an author-topic distribution to draw a specific topic that this author writes about.
+The words from the topic-word distribution can be generated based on this topic.
 The purpose of using authorship information in this way, is to show patterns in which topics an author usually writes about, and be able to explore how related authors are in what they write about.
 \citeauthor{author_topic_2012} also show that the combination of authorship and \gls{lda} yield more coherent topics.
-
 
 \citet{blei2010supervised} developed a supervised \gls{lda} model which incorporates observed variables within an \gls{lda} model.
 \todo{needs to understand this better}
@@ -20,5 +19,10 @@ Here each topic has a distribution over words, as well as a distribution over me
 In the upstream pattern, the topic model is conditioned on metadata elements by representing document-topic distributions as element specific distributions.
 This way the model learns assignments of the words in each document to the metadata.
 \todo[inline]{If we want to mention that the author-topic model is upstream, we can either move this paragraph to the top of the section, or simply mention it here.}
+
+\citet{li2006pachinko} presents a \gls{dag} structured topic model where topics are in a hierarchical structure, which allows it to find two types of topics, namely super-topics and sub-topics. 
+
+
+\citet{card2017neural} describe how to incorporate metadata information within a neural network to find topics using variational inference methods.
 
 \todo[inline]{Maybe some text that leads to the next section. What concepts do we use from the related work.}
