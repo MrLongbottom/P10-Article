@@ -28,8 +28,11 @@ They compare
 
 \citet{tea_leaves} is a well-known paper within the topic modelling community, which present different methods for evaluating probabilistic topic models. 
 The important aspect they show is that a good held-out likelihood, normally called perplexity, score infers less semantically meaningful topics.
-They also show different human judgement methods, which can be used to evaluate topic model but they do require emense amount of time to evaluate if a large corpus is used.
-\citet{topic_coherence_2015} introduce a new measures for evaluating topic models where some of them use the co-occurrence of words within topic to measure how coherent the topics are.  
+They also show different human judgement methods, which can be used to evaluate topic model but they do require a large amount of time to evaluate if a large corpus is used.
+\citet{topic_coherence_2015} introduce a new measures for evaluating topic models where some of them use the co-occurrence of words within topic to measure how coherent the topics are. 
+They use different metrics for comparing the coherence of a topic, like co-occurrence of words and condition probabilities of words.
+In order to verify that these metrics work, they conduct a large user study in conjunction with these metric evaluation.
+They find that the $C_v$ metric scores the best across they experiments. 
 
 
 \todo[inline]{Maybe some text that leads to the next section. What concepts do we use from the related work.}
