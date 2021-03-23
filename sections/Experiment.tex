@@ -1,10 +1,10 @@
 \section{Experiment}\label{sec:experiment}
-In this section the details of the experiment will be given.
+In this section, the details of the experiment will be given.
 This covers what models will be evaluated, the evaluation metrics, and how the hyperparameters for the models were chosen.
 Lastly, the results of the evaluations are also shown.
 
 \subsection{Models}\label{sec:experiment_models}
-In this experiment, a list of different topic models are evaluated, each using a different metadata from the dataset.
+A list of different topic models is evaluated, each using different metadata from the dataset.
 The main difference between the models is how they draw a specific topic for a word.
 As detailed in \autoref{sec:lda} and \autoref{sec:metadata}, the main models used in this experiment are:
 \begin{description}
@@ -25,7 +25,7 @@ As detailed in \autoref{sec:combinations}, these combinations are:
 These model combinations should give insight into what a model learns when multiple metadata have influence on the topics chosen.
 
 \subsection{Evaluation Metrics}\label{sec:experiment_metrics}
-All models mentioned previously are evaluated on the following evaluation metrics.
+All models previously mentioned are evaluated on the following evaluation metrics.
 The main metric used, in this experiment, is the topic coherence metric.
 This metric gives an indication of how coherent topics are, and will be an indication of the quality of the topics a topic model generates.\todo{Source}
 Topic coherence is calculated as follows:
