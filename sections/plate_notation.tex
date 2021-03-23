@@ -5,7 +5,9 @@ This is based on the assumption that authors prefer to write about specific topi
 
 Our topic models are \glspl{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than \glspl{dm} where topics are fitted to have influence on both word distributions and other metadata.
 
-Our standard \gls{lda} model uses a similar notation to \citet{blei2003latent}, where a document $d$ is a vector of $N$ ID's, where the ID represents the given word in the original document. $Z_{d,n}$ is the topic assigned to a word $n$ within $d$.\todo[inline]{In the original LDA paper, a document is actually a sequence of N words, where each word is a one-hot vector encoding. Might not be important to change, since we just say the notation is 'similar'.}
+Our standard \gls{lda} model uses a similar notation to \citet{blei2003latent}, where $W_{d,n}$ is the $n$'th word in document $d$.
+$Z_{d,n}$ is the topic assigned the $n$'th within document $d$.
+\todo[inline]{In the original LDA paper, a document is actually a sequence of N words, where each word is a one-hot vector encoding. Might not be important to change, since we just say the notation is 'similar'.}
 $\theta_d$ denotes the document-topic distribution for a specific document $d$ and the $\beta_k$ denotes the topic-word distribution for a specific topic $k$.
 The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
 \todo[inline]{Some of this text about our use of standard LDA can maybe be cut down, if we have a specific LDA section and simply ref to that.}
