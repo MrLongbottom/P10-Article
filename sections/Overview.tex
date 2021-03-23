@@ -5,12 +5,12 @@ The method takes a corpus as an input and produces evaluation results as output.
 Each step of the method is described in later sections in more detail.
 
 \subsection*{Step 1: Preprocessing Phase}
-In this step we apply different preprocessing methods to simplify the dataset and remove redundant information.
+In this step, we apply different preprocessing methods to simplify the dataset and remove redundant information.
 Details of this phase are given in \autoref{sec:prepro}.
 After finishing this phase, we are left with $\sim$?? documents and $\sim$?? words to form the corpus, which will be used in future steps.
 
 \subsection*{Step 2: \Gls{lda} Models}
-In this step we train the standard \gls{lda} model, the category, author, and taxonomy metadata models as well as the combinations of these models on the corpus.
+In this step, we train the standard \gls{lda} model, the category, author, and taxonomy metadata models as well as the combinations of these models on the corpus.
 The standard \gls{lda} model, the metadata models, and the combination models are described further in \autoref{sec:lda}, \autoref{sec:metadata}, and \autoref{sec:combinations}, respectively.
 The models are trained based on topic coherence, and after the training process the models are evaluated further.
 
