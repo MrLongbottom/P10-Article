@@ -15,10 +15,11 @@ The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
 
 \input{figures/lda_plate}
 
-\subsection{Author-Topic \gls{lda}}
+\subsection{Author-Topic \gls{lda} and Category-Topic \gls{lda}}
 \citet{author_topic_2012} describes the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
+In our category-topic model and our own author-topic model, we use a similar approach to the author-topic model from \citeauthor{author_topic_2012}, where each document $d$ is associated with one category $c_d$ from a set of categories $C$ or an author $a_d$ from a set of authors $A$.
 
-In our category-topic model and our own author-topic model, we use a similar approach to the author-topic model from \citeauthor{author_topic_2012}, where each document $d$ is associated with a category $c_d$ from a set of categories $C$ or an author $a_d$ from a set of authors $A$.
+Unless otherwise states, future references are to our implementation of this model, rather than the model by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
 \begin{figure*}[ht]
@@ -42,8 +43,6 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 
 \subsection{Pachinko}
 \todo[inline]{Description and plate notation}
-
-\todo[inline]{We might need to figure out a way to easily differentiate in text between our own author lda model and the author-topic model from Rozen-Zvi.}
 
 \todo[inline]{consider the plate notation of combination models}
 
