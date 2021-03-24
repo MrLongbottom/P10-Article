@@ -1,0 +1,42 @@
+\section{Introduction}\label{sec:introduction}
+% LDA / Topic Modeling Intro
+Within the field of topic modeling, \gls{lda} has proven successful in finding underlying topics within a corpus of text documents.
+These topics are constructed based on the documents in the corpus and words within these documents. 
+However, other extensions of \gls{lda} have also modeled various other information, such as authors, to generate better topics and/or topics with different focuses and potential uses.
+
+% Author-Topic
+One of the well-known extensions is the Author-Topic model by \citet{author_topic_2012} that combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
+This is based on the assumption that most authors usually write about only a few different topics.
+By modeling this relationship, they find connections between authors and topics, and between different authors, giving more underlying information to the topics.
+They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
+
+% Topic Modeling dataset
+In \gls{lda}, the data used is a corpus of documents, with each document containing a sequence of words.
+However, the dataset that will form this corpus also often comes with various other data than just the text within the documents.
+% Metadata definition
+We define this other data as metadata, that is data related to the documents in the corpus, but not directly a part of the text.
+In most models, metadata is not used.
+However, there is some previous work that attempts to make full use of the dataset available by incorporating various metadata into topic models.
+
+% In this paper
+In this paper, we will be taking a closer look at a specific dataset and construct different topic models that incorporate various metadata.
+We do this in order to see if they can improve the quality of the topics or the efficiency of the model.
+We will also investigate the differences between the produced topics for various models, and evaluate their potential uses.
+
+We will be using a dataset from Nordjyske, a danish news agency that maintains multiple local newspapers throughout the North Jutland region.
+We will construct topic models that account for the specific metadata available within this dataset.
+This metadata includes author information, as well as higher-level categorical information, which will be described in \todo{ref}.
+
+% Problem Statement
+With these areas of focus, we can define the problem we investigate:
+
+\begin{itemize}
+	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
+	\item \textit{How can multiple metadata fields be integrated within a topic model?}
+\end{itemize}
+\todo[inline]{contributions}
+\todo[inline]{Possibilities for adding more to the section: write more about our specific approach, still on overview/abstract level. Write a little after the problem statement about what the questions cover/will give.}
+
+% Paper Structure
+The paper is organized as follows: 
+\todo[inline]{describe paper structure}
