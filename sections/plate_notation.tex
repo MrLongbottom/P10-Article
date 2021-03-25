@@ -6,6 +6,7 @@ This is based on the assumption that authors prefer to write about specific topi
 Our topic models are \glspl{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than \glspl{dm} where topics are fitted to have influence on both word distributions and other metadata.
 
 \subsection{Standard \gls{lda}}
+\todo[inline]{Expand this. Also include description of the assumed generative process that made the documents (which should probably also be expanded with the other models).}
 Our standard \gls{lda} model uses a similar notation to \citet{blei2003latent}, where $W_{d,n}$ is the $n$'th word in document $d$.
 $Z_{d,n}$ is the topic assigned the $n$'th word within document $d$.
 \todo[inline]{In the original LDA paper, a document is actually a sequence of N words, where each word is a one-hot vector encoding. Might not be important to change, since we just say the notation is 'similar'.}
