@@ -3,9 +3,10 @@
 
 \subsection{Standard \gls{lda}}
 The \gls{lda} by \citet{blei2003latent} imagines the following generative process:
+$M$ is the number of documents in the corpus, and $N_d$ is number of words in document $d$.
 Documents are represented as distributions of topics and topics are distributions over words.
-For each document $d$ a document-topic distribution $\theta_d$ is sampled from a dirichlet distribution parameterized by $\alpha$, likewise for each topic $k$ a topic-word distributions $\beta_k$ is sampled from a dirichlet distribution parameterized by $\eta$.
-For each word position $i$ in each document $j$, a topic $z_{i,j}$ is sampled from $\theta_j$ and then a word $w_{i,j}$ is sampled from $\beta_k$.
+For each document $d \in \{1,\dots, M\}$ a document-topic distribution $\theta_d$ is sampled from a dirichlet distribution parameterized by $\alpha$, likewise for each topic $k$ a topic-word distributions $\beta_k$ is sampled from a dirichlet distribution parameterized by $\eta$.
+For each word position $n \in \{1, \dots, N_d\}$ in each document $d$, a topic $z_{d,n}$ is sampled from $\theta_d$ and then a word $w_{d,n}$ is sampled from $\beta_{z_{d,n}}$.
 The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
 
 \input{figures/lda_plate}
