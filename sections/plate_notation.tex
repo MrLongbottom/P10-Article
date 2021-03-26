@@ -1,26 +1,27 @@
 \section{Plate Notation}
-As with \citet{author_topic_2012}, there are no document-topic distributions $\theta$ in our metadata models.
+\Gls{lda} infers latent structures in a document set. To do this it imagines a generative process that was used to create the document set based on topics, and then reverse-engineer this process to infer the topics.
+
+\subsection{Standard \gls{lda}}
+The \gls{lda} by \citet{blei2003latent} imagines the following generative process:
+Documents are represented as distributions of topics and topics are distributions over words.
+For each document $d$ a document-topic distribution $\theta_d$ is sampled from a dirichlet distribution parameterized by $\alpha$, likewise for each topic $k$ a topic-word distributions $\beta_k$ is sampled from a dirichlet distribution parameterized by $\eta$.
+For each word position $i$ in each document $j$, a topic $z_{i,j}$ is sampled from $\theta_j$ and then a word $w_{i,j}$ is sampled from $\beta_k$.
+The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
+
+\input{figures/lda_plate}
+
+\subsection{Author-Topic \gls{lda} and Category-Topic \gls{lda}}
+We model both of the meta-data fields 'Author' and 'Category' similarly to the model presented by \citet{author_topic_2012}.
+In this model there are no document-topic distributions $\theta$.
 Instead, each author and category has their own topic distribution.
 This is based on the assumption that authors prefer to write about specific topics, and that categories of the articles were chosen based on the content of the finished article or that local newspapers have their own unique topic preferences.
 
 Our topic models are \glspl{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than \glspl{dm} where topics are fitted to have influence on both word distributions and other metadata.
 
-\subsection{Standard \gls{lda}}
-\todo[inline]{Expand this. Also include description of the assumed generative process that made the documents (which should probably also be expanded with the other models).}
-Our standard \gls{lda} model uses a similar notation to \citet{blei2003latent}, where $W_{d,n}$ is the $n$'th word in document $d$.
-$Z_{d,n}$ is the topic assigned the $n$'th word within document $d$.
-\todo[inline]{In the original LDA paper, a document is actually a sequence of N words, where each word is a one-hot vector encoding. Might not be important to change, since we just say the notation is 'similar'.}
-$\theta_d$ denotes the document-topic distribution for a specific document $d$ and the $\beta_k$ denotes the topic-word distribution for a specific topic $k$.
-The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
-\todo[inline]{Some of this text about our use of standard LDA can maybe be cut down, if we have a specific LDA section and simply ref to that.}
-
-\input{figures/lda_plate}
-
-\subsection{Author-Topic \gls{lda} and Category-Topic \gls{lda}}
 \citet{author_topic_2012} describes the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
-In our category-topic model and our own author-topic model, we use a similar approach to the author-topic model from \citeauthor{author_topic_2012}, where each document $d$ is associated with one category $c_d$ from a set of categories $C$ or an author $a_d$ from a set of authors $A$.
-
-Unless otherwise states, future references are to our implementation of this model, rather than the model by \citet{author_topic_2012}.
+However, for our category-topic model and our own author-topic model, each document $d$ is associated with one category $c_d$ from a set of categories $C$ and one author $a_d$ from a set of authors $A$, rather than a vector.
+This is due to our dataset never having more than one author or category for each document.
+Unless otherwise states, future references are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
 \begin{figure*}[ht]
