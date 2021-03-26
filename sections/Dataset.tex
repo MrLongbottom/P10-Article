@@ -1,4 +1,4 @@
-\section{Dataset}
+\section{Dataset}\label{sec:dataset}
 Nordjyske is a Danish news agency that maintains multiple newspapers, radios, and other news sources throughout north Jutland, a region in Denmark.
 They store their news articles in a non-public database, where each article contains multiple metadata fields which describe some aspect of the data e.g. the author.
 The dataset we use ranges from 2017 to 2019 and contains 139261 articles that use a vocabulary of 69192 unique words after preprocessing.
@@ -20,11 +20,13 @@ Another proportion of the category field describes the overall subject of the do
 % stats
 This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
 However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
-Filtering away all categories covering less than $140$ documents ($0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.
+Filtering away all categories covering less than $140$ documents ($0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.\todo[inline]{What is the size of the misc category?}
 \autoref{fig:category_box} shows an overview of the size of the categories after filtering.
+It can be seen here that the smallest category now has 188 documents, and for all categories the median category size is 3022.
+The categories from the 3rd quartile and up do become much larger compared to the median, and there is an outlier with 20241 documents.
+These larger categories seem to be about topics that are written about often or categories that cover a specific newspaper.
 All of the category labels can be seen in \autoref{tab:category_table} in \autoref{sec:appendix_meta_data}.
 \todo[inline]{Keep up to date on whether we filter or not.}
-\todo[inline]{Maybe shortly describe some observations in the boxplot. Mention outlier.}
 
 \begin{figure}
 	\centering
