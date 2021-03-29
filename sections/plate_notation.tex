@@ -24,7 +24,7 @@ Our topic models are \glspl{um}, meaning that topics are only word distributions
 \citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
 However, for our category-topic model and our own author-topic model, each document $d$ is associated with one category $c_d$ from a set of categories $C$ and one author $a_d$ from a set of authors $A$, rather than a vector.
 This is due to our dataset never having more than one author or category for each document.
-Unless otherwise states, future references are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
+Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
 \begin{figure*}[ht]
