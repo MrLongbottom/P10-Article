@@ -4,7 +4,7 @@ To do this it imagines a generative process that was used to create the document
 
 \subsection{Standard \gls{lda}}
 The \gls{lda} by \citet{blei2003latent} imagines the following generative process:
-$M$ is the number of documents in the corpus, $N_d$ is number of words in document $d$, and $K$ is the number of topics.
+$M$ is the number of documents in the corpus, $N_d$ is the number of words in document $d$, and $K$ is the number of topics.
 Documents are represented as distributions of topics and topics are distributions over words.
 For each document $d \in \{1,\dots, M\}$ a document-topic distribution $\theta_d$ is sampled from a dirichlet distribution parameterized by $\alpha$.
 Likewise for each topic $k \in \{1,\dots, K\}$ a topic-word distribution $\beta_k$ is sampled from a dirichlet distribution parameterized by $\eta$.
