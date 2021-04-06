@@ -3,13 +3,18 @@ Nordjyske is a Danish news agency that maintains multiple newspapers, radios, an
 They store their news articles in a non-public database, where each article contains multiple metadata fields which describe some aspect of the data e.g. the author.
 The dataset we use ranges from 2017 to 2019 and contains 139261 articles that use a vocabulary of 69192 unique words after preprocessing.
 
+The metadata fields that we will be working with do have some problems that can be mitigated to a degree by preprocessing.
+These problems are all related to some metadata values having only a few documents.
+Since the metadata values will be used to group documents together and find common topics and words within grouped documents, metadata values that group too few documents are not very relevant and will therefore be removed.
+
 In the following section, we describe each of the metadata fields which are analyzed.
 
 \subsection{Author}
 This field is for the author, who has written the article.
 Each article only has a single author, so we do not account for multiple authors.
 This field is fully observed within the dataset, meaning that every article has an author.
-There are $227$ different authors within the dataset.
+There were originally $227$ different authors within the dataset.
+After filtering away authors that have written less that $14$ documents ($\tilde0.001\%$ of the total document set), 184 remain.
 %and they are almost evenly distributed in the number of articles they have written.
 
 \subsection{Category}
@@ -17,13 +22,13 @@ There are $227$ different authors within the dataset.
 The category field describes a variety of different aspects.
 A proportion of the categories contains which specific newspaper they belong to, e.g. 'Aalborg-Newspaper'.
 Another proportion of the category field describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
+However there are also nonsensical categories such as '53. Frederik', that do not seem to describe the subject of the document.
 % stats
 This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
 However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
-Filtering away all categories covering less than $140$ documents ($0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.
+Filtering away all categories covering less than $140$ documents ($\approx 0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.
 \autoref{fig:category_box} shows an overview of the size of the categories after filtering.
 All of the category labels can be seen in \autoref{tab:category_table} in \autoref{sec:appendix_meta_data}.
-\todo[inline]{Keep up to date on whether we filter or not.}
 \todo[inline]{Maybe shortly describe some observations in the boxplot. Mention outlier.}
 
 \begin{figure}
@@ -35,8 +40,8 @@ All of the category labels can be seen in \autoref{tab:category_table} in \autor
 
 \subsection{Taxonomy}
 The taxonomy field describes a hierarchical structure of the topical or geographical subject of the articles.
-This field is only partially observed within the dataset, which means that roughly $50\%$ of the articles contain this field.
-Each article can also contain multiple taxonomies.
+This field is only partially observed within the dataset, which means that $\tilde 25\%$ of the articles contain this field.
+Each article can contain multiple taxonomies.
 We observe some general patterns when traversing this field, which are:
 \begin{itemize}
 	\item PLACES/Country/Region/Town
@@ -47,4 +52,6 @@ Examples of this field are:
 	\item PLACES/Danmark/Nordjylland/Aalborg/Lillevorde
 	\item TOPICS/Religion/Christianity
 \end{itemize}
-About $80\%$ of the observed fields contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable. 
+About $80\%$ of the observed fields contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable.
+There are also a few other top-level taxonomies, however they are not as informative and very rarely used.
+Originally there were $1135$ different taxonomies, however after removing taxonomies used by less tham $4$ documents ($\tilde 0.01\%$ of the amount of documents with taxonomies), $613$ remain.
