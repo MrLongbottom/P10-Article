@@ -61,14 +61,18 @@ It is calculated by the cosine similarity of all context vectors $\phi_{S_i}(\ov
 $\epsilon$ is used to avoid $log(0)$ and $\gamma$ is used to further weigh high NPMI values higher.
 
 The second metric used in the experiment is perplexity.
-Perplexity is used as a metric, to show how well a model can predict new test samples.
+Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
 But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation~\cite{tea_leaves}.
-Perplexity is calculated as follows:
-\begin{equation}
-	Perplexity = 
+To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in \autoref{eq:likelihood}.
+\begin{equation}\label{eq:likelihood}
+	\mathcal{L}(w) = \log p(w|\Phi) = \sum_{d} \log p(w_d|\Phi)
 \end{equation}
-\todo[inline]{Find and insert math}
-\noindent where ...
+\noindent where $\Phi$ is the topic-word matrix.
+The perplexity measure is then calculated as follows:
+\begin{equation}
+	Perplexity(w_d) = exp \{-\frac{\mathcal{L}(w)}{W}\}
+\end{equation}
+\noindent where W is the number of words \cite{de2008evaluating}.
 
 Topic difference is another metric that is used to check the quality of the topic model.
 It is based on the assumption that a good topic model will have little overlap between topics.
