@@ -1,6 +1,9 @@
 \subsection{Metadata labels}\label{sec:appendix_meta_data}
+
+\subsubsection{Category}\label{subsec:appendix_category}
+
 Here are the $58$ different categories, which make up all the category labels present within the dataset.
-Categories with fewer than 139 documents ($0.01$ of number of documents), are removed as part of preprocessing, and replaced with a single misc category 'misc'.
+Categories with fewer than 139 documents ($0.1$ of number of documents), are removed as part of preprocessing, and replaced with a single misc category 'misc'.
 This reduces the amount of categories to $34$, while only replacing 292 document's categories to 'misc'.
 This preprocessing also makes the size of the remaining categories much more evenly distributed, as can be seen in \autoref{fig:category_hist}.
 
@@ -18,7 +21,7 @@ This preprocessing also makes the size of the remaining categories much more eve
 		\caption{After preprocessing}
 		\label{fig:category_hist_after}
 	\end{subfigure}
-	\caption{Histogram over amount of categories different number of documents, before and after preprocessing. Categories in the x-axis are grouped into 100 buckets.}
+	\caption{Histogram over amount of categories different number of documents, before and after preprocessing. Categories in the x-axis are grouped into 50 buckets.}
 	\label{fig:category_hist}
 \end{figure*}
 
@@ -45,6 +48,69 @@ This preprocessing also makes the size of the remaining categories much more eve
 		Plus Publicering* & 3 & Nordjyske Plus* & 6 & & & & \\
 		\bottomrule
 	\end{tabular}
-	\caption{Amount of documents with each category within the Nordjyske dataset from 2017 to 2019. Categories marked with * are removed as part of metadata preprocessing as explained in \autoref{subsec:meta_prepro}}
+	\caption{Amount of documents with each category within the Nordjyske dataset from 2017 to 2019. Categories marked with * are removed as part of metadata preprocessing.}
 	\label{tab:category_table}
 \end{table*}
+
+
+\subsubsection{Author}\label{subsec:appendix_author}
+Unlike with Categories, the Author metadata field does not a have a natural cut off points, with a good amount of values in a specific lower range, followed by more evenly distributed numbers.
+Instead a vast majority of the values fall in a lower range, meaning that setting too high a cut off point, will result in removing a large portion of the data.
+Instead we choose a lower cut off point, keeping most of the authors, except the ones that contained so few documents, that finding common topics would be inefficient.
+Authors who have written less that $14$ documents ($0.01\%$ of the number of documents) are removed as part of preprocessing.
+This removes $43$ out of $227$ authors, combining them into a single 'misc' author.
+A total of $204$ documents are assigned to the 'misc' author.
+\todo[inline]{figure out whether to use boxplots or histograms, and ref them.}
+
+\begin{figure*}[ht]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/author_hist2_before.png}
+		\caption{Before preprocessing}
+		\label{fig:author_hist_before}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/author_hist2_14.png}
+		\caption{After preprocessing}
+		\label{fig:auhtor_hist_after}
+	\end{subfigure}
+	\caption{Histogram over amount authors who have written certain number of documents, before and after preprocessing. Authors in the x-axis are grouped into 50 buckets.}
+	\label{fig:author_hist}
+\end{figure*}
+
+\begin{figure*}[ht]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/author_box_before.png}
+		\caption{Before preprocessing}
+		\label{fig:author_box_before}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{figures/author_box_14.png}
+		\caption{After preprocessing}
+		\label{fig:auhtor_box_after}
+	\end{subfigure}
+	\caption{Boxplot over the amount of documents written by authors.}
+	\label{fig:author_box}
+\end{figure*}
+
+\subsubsection{Taxonomy}\label{subsec:appendix_taxonomy}
+
+\begin{table}
+	\begin{tabular}{l | c | c | c | c | c}
+		Metadata & Min & Max & Mean & Median & Std. \\
+		\hline
+		Author & 1 & 9893 & 612.6 & 191 & 1219.7 \\
+		Author (preprocessed) & 15 & 9893 & 751.7 & 323 & 1311.9 \\
+		Category & 1 & 20204 & 2397.6 & 548 & 3812.1 \\
+		Category (preprocessed) & 188 & 20204 & 4090.0 & 2681 & 4227.3 \\
+		Taxonomy & 1 & 29535 & 123.0 & 6 & 1385.9 \\
+		Taxonomy (preprocessed) & 5 & 29535 & 227.6 & 17 & 1879.2 \\
+	\end{tabular}
+	\caption{Statistics over documents associated with metadata values, before and after preprocessing}
+	\label{tab:meta_prepro_stats}
+\end{table}
