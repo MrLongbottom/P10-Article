@@ -93,10 +93,9 @@ We only run the grid search on the standard \gls{lda} model, with the assumption
 The hyperparameter values that are tested, are shown in \autoref{tab:gridsearch}.
 To evaluate the \gls{lda} model, we measure the topic coherence of the model after training it on the dataset for ?? epochs.
 
-Based on the topic coherence\todo{and possible human evaluation} of the model, we choose $K = ??$, $\alpha = ??$, and $\eta = ??$ as the hyperparameters for all models in the experiment.
+Based on the topic coherence of the model, we choose $K = 90$, $\alpha = 0.01$, and $\eta = 0.1$ as the hyperparameters for all models in the experiment.
 
 \input{tables/grid_search.tex}
-\todo[inline]{Table is from our previous paper. When we know specifically how we do the grid search, and what parameters to test, it can easily be changed.}
 
 \subsection{Results}\label{sec:results}
 
