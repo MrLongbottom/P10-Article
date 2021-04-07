@@ -99,6 +99,13 @@ A total of $204$ documents are assigned to the 'misc' author.
 \end{figure*}
 
 \subsubsection{Taxonomy}\label{subsec:appendix_taxonomy}
+Taxonomy is fundamentally different from the other metadata fields, in this paper.
+It is not fully observed with only roughly $25\%$ of documents having a taxonomy field.
+It is hierarchical, with each taxonomy containing a sequence of sub-taxonomies, such as: 'STEDER/Danmark/Nordjylland/Aalborg'.
+It is also possible for each document to have multiple taxonomy sequences.
+For preprocessing we remove any sub-taxonomy that is used in less that $4$ taxonomy sequences.
+Out of $1135$ sub-taxonomies, $522$ are removed during this preprocessing.
+\todo[inline]{describe layer sizes of taxonomy tree}
 
 \begin{table}
 	\begin{tabular}{l | c | c | c | c | c}
