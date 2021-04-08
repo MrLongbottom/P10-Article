@@ -13,8 +13,8 @@ In the following section, we describe each of the metadata fields which are anal
 This field is for the author, who has written the article.
 Each article only has a single author, so we do not account for multiple authors.
 This field is fully observed within the dataset, meaning that every article has an author.
-There were originally $227$ different authors within the dataset.
-After filtering away authors that have written less that $14$ documents ($\tilde0.001\%$ of the total document set), 184 remain.
+Originally there were $227$ different authors within the dataset.
+After filtering away authors that have written less than $14$ documents ($\tilde0.001\%$ of the total document set), 184 remain.
 %and they are almost evenly distributed in the number of articles they have written.
 
 \subsection{Category}
@@ -22,7 +22,7 @@ After filtering away authors that have written less that $14$ documents ($\tilde
 The category field describes a variety of different aspects.
 A proportion of the categories contains which specific newspaper they belong to, e.g. 'Aalborg-Newspaper'.
 Another proportion of the category field describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
-However there are also nonsensical categories such as '53. Frederik', that do not seem to describe the subject of the document.
+However, there are also nonsensical categories such as '53. Frederik', that does not seem to describe the subject of the document.
 % stats
 This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
 However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
@@ -53,5 +53,5 @@ Examples of this field are:
 	\item TOPICS/Religion/Christianity
 \end{itemize}
 About $80\%$ of the observed fields contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable.
-There are also a few other top-level taxonomies, however they are not as informative and very rarely used.
-Originally there were $1135$ different taxonomies, however after removing taxonomies used by less tham $4$ documents ($\tilde 0.01\%$ of the amount of documents with taxonomies), $613$ remain.
+There are also a few other top-level taxonomies however they are not as informative and very rarely used.
+Originally there were $1135$ different taxonomies however after removing taxonomies used by less than $4$ documents ($\tilde 0.01\%$ of the number of documents with taxonomies), $613$ remain.
