@@ -58,7 +58,7 @@ This preprocessing also makes the size of the remaining categories much more eve
 Unlike with Categories, the Author metadata field does not have a natural cut-off point, with a good amount of values in a specific lower range, followed by more evenly distributed numbers.
 Instead, the vast majority of the values fall in a lower range, meaning that setting too high a cut-off point, will result in removing a large portion of the data.
 We instead choose a lower cut-off point, keeping most of the authors, except the ones that contained so few documents, that finding common topics would be inefficient.
-Authors who have written less that $14$ documents ($0.01\%$ of the number of documents) are removed as part of preprocessing.
+Authors, who have written less than $14$ documents ($0.01\%$ of the number of documents), are removed as part of preprocessing.
 This removes $43$ out of $227$ authors, combining them into a single 'misc' author.
 A total of $204$ documents are assigned to the 'misc' author.
 \todo[inline]{figure out whether to use boxplots or histograms, and ref them.}
