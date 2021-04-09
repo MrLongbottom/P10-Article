@@ -91,7 +91,7 @@ To find the optimal hyperparameter values for the models, we run a grid search.
 In the grid search, different values of K, $\alpha$, and $\eta$ are tested to find the best performing model.
 We only run the grid search on the standard \gls{lda} model, with the assumption that the number of topics that performs well for this model, also performs well for the metadata models, when the same dataset is used.
 The hyperparameter values that are tested, are shown in \autoref{tab:gridsearch}.
-To evaluate the \gls{lda} model, we measure the topic coherence of the model after training it on the dataset for ?? epochs.
+To evaluate the \gls{lda} model, we measure the topic coherence of the model after training it on the dataset for 50 epochs.
 
 Based on the topic coherence of the model, we choose $K = 90$, $\alpha = 0.01$, and $\eta = 0.1$ as the hyperparameters for all models in the experiment.
 
