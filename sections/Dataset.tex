@@ -1,7 +1,15 @@
 \section{Dataset}\label{sec:dataset}
 Nordjyske is a Danish news agency that maintains multiple newspapers, radios, and other news sources throughout north Jutland, a region in Denmark.
 They store their news articles in a non-public database, where each article contains multiple metadata fields which describe some aspect of the data e.g. the author.
-The dataset we use ranges from 2017 to 2019 and contains 139261 articles that use a vocabulary of 69192 unique words after preprocessing.
+The dataset we use ranges from 2017 to 2019 and contains $248,385$ articles.
+
+Some basic preprocessing is done to the dataset, to make it more applicable for topic models.
+Firstly, because this dataset includes articles from multiple cities and regions, there appear duplicates in the dataset.
+These duplicates are removed, so only unique articles are kept.
+After this, we filter out words that appear in less than 10 articles and words that appear more than 10$\%$ of articles.
+This is done both to only keep words that are used enough to find patterns in topics and to remove words that are similar to stop words.
+Finally, after words are filtered out, the documents that end up empty are removed.
+After preprocessing, the dataset contains $139,261$ articles that use a vocabulary of $69,192$ unique words.
 
 In the following section, we describe each of the metadata fields which are analyzed.
 
