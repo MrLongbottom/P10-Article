@@ -36,11 +36,11 @@ With these areas of focus, we can define the problem we investigate:
 \end{itemize}
 
 Our work is similar to that of \citet{MetaLDA2017}, since we working with the meta information and combining it into an \gls{lda} model.
-However, \citet{MetaLDA2017} learn a specific Dirichlet prior over the topics based on the meta information given in their dataset, which gives a specific topic distribution for each meta information field and in turn affect the document topic distribution used with the \gls{lda}.
+However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the topics based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document topic distribution used with the \gls{lda}.
 Instead of using the document topic distribution for drawing topic, we want to create a new meta-topic distribution which influences the drawn topics.
 An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
-We would like to see what happens when you create a meta-topic distribution for any specific meta information, like author, and see how it affect the resulting topics.
-The intuition behind this is to create new topic models, which describe the data in a different way using topics like meta data describe something about locations we can find location specific topics.
+We would like to see what happens when you create a meta-topic distribution for any specific meta-information, like the author information, and see how it affects the resulting topics.
+The intuition behind this is to create new topic models, which describe the data in a different way using topics like metadata describe something about locations we can find location-specific topics.
 
 \todo[inline]{Possibilities for adding more to the section: write more about our specific approach, still on overview/abstract level. Write a little after the problem statement about what the questions cover/will give.}
 
