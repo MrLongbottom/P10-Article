@@ -93,13 +93,8 @@ More specifically, for each topic starting with the root topic, we sample a topi
 	\label{fig:pachinko_dag}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width= 0.9 \linewidth]{figures/five_layer_pachinko.png}
-	\caption{Plate notation for five-level PAM}
-	\label{fig:pachinko_plate}
-\end{figure}
-\todo[inline]{make pretty picture for pachinko plate notation}
+\input{figures/pachinko}
+\todo[inline]{make illustrations of dag structur pretty}
 
 \subsubsection{Modification to Pachinko Allocation}
 Since only $25\%$ of the documents have an observed taxonomy, we can then lock the words in the observed documents to be in the corresponding topics within the pachinko DAG instead of conteniously sampling them using gibbs sampling.
