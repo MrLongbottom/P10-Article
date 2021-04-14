@@ -97,7 +97,7 @@ More specifically, for each topic starting with the root topic, we sample a topi
 \todo[inline]{make illustrations of dag structur pretty}
 
 \subsubsection{Modification to Pachinko Allocation}
-Since only $25\%$ of the documents have an observed taxonomy, we can then lock the words in the observed documents to be in the corresponding topics within the pachinko DAG instead of conteniously sampling them using gibbs sampling.
+Since only $25\%$ of the documents have an observed taxonomy, we can then lock the words in the observed documents to be in the corresponding topics within the pachinko DAG instead of continuously sampling them using Gibbs sampling.
 This creates some constant context for the topics, which the documents with unobserved taxonomy will be fitted around.
 
 Some of the observed documents have multiple taxonomies. For these documents, one of the taxonomies is chosen randomly for each word in the document.
