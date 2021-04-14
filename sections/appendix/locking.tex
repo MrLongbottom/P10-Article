@@ -1,0 +1,6 @@
+\subsection{Locking the gibbs sampler}\label{sec:appendix/locking}
+The pachinko model normally samples, like the gibbs sampler, each taxonomy level and estimates the different topics for each document.
+However, in our case, we have a partially observed variable and we want to use the existing meta-information to estimate the topics quicker and more accurately.
+When we sample the pachinko, we only sample the unobserved variables and let the observed variable be. 
+This has the effect of letting the unobserved variable fit the existing topics within the model and making the process of sampling faster.
+However, when locking these variables into places also hinders further improvement to the observed variables, since they do not change during training.   
