@@ -74,7 +74,7 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we will be using a hierarchical topic model, namely pachinko \citet{li2006pachinko}.
-Pachinko allocation generalizes \gls{lda}, to be able to operate on any DAG-structure.
+Pachinko allocation generalizes \gls{lda}, to be able to operate on any DAG structure.
 
 The DAG structure represents topics which in pachinko are distributions over words and/or other topics.
 It is set up in a tree structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words. 
