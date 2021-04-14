@@ -79,7 +79,7 @@ Pachinko allocation generalizes \gls{lda}, to be able to operate on any DAG-stru
 The DAG structure represents topics which in pachinko are distributions over words and/or other topics.
 It is set up in a tree structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words. 
 
-For simplicity we will be using five-level pachinko tree structure, with each node in a layer having an edge to each node in the next layer.
+For simplicity, we will be using a five-level pachinko tree structure, with each node in a layer having an edge to each node in the next layer.
 We also therefore limit the taxonomy chain to the first $3$ taxonomy entries, in order to fit with our DAG-structure.
 This DAG-structure is visualizated in \autoref{fig:pachinko_dag}
 
