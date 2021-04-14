@@ -83,7 +83,7 @@ For simplicity, we will be using a five-level pachinko tree structure, with each
 We therefore also limit the taxonomy chain to the first $3$ taxonomy entries, to fit with our DAG structure.
 This DAG-structure is visualizated in \autoref{fig:pachinko_dag}
 
-For each word a chain of topics is sample by sampling one topic from each layer of the structure, and finally a word is chosen based on the last topic.
+For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
 More specifically, for each topic starting with the root topic, we sample a topic from the next layer $Z_{wl}$ from that node's topic distribution $\theta_l^(d)$ based on observed data from that document.
 
 \begin{figure}
