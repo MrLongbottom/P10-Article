@@ -1,22 +1,24 @@
 \subsection{Applications of our framework}\label{sec:appendix_applications}
-There are a variety of different applications, which topic modeling can be used for. 
+There are a variety of different applications that topic modeling could be used for. 
+
 \citet{Probabilistic_Topic_Models} describes many different purposes for topic modeling, like exploring the history of news articles over time.
-The \gls{lda} model, created by \citet{blei2003latent}, has seen many extension over the years to try an improve the generality of the model.
-Normally \gls{lda} works by inferring hidden topic structure, which is based on two topic distribution, namely document-topic and topic-word distributions. 
+The \gls{lda} model, created by \citet{blei2003latent}, has seen many extensions over the years to try and improve the generality of the model.
+Normally \gls{lda} works by inferring hidden topic structure, which is based on two distributions, namely the document-topic and topic-word distributions.
 An extension to the \gls{lda} is the Author-Topic model, created by \citet{author_topic_2012}, which creates a relationship between the author meta-information and the corpus.
-This idea of taking meta-information into account seems to be overlooked, even though a few papers have touched upon this area, the application possibilities for these kind of meta-information integration are endless.
+This idea of taking meta-information into account seems to be overlooked, even though a few papers have touched upon this area, the application possibilities for these kind of meta-information integrations are endless.
 
-News media groups, like Nordjyske, are trying to find new ways of integrating smarter and more intelligent methods for keeping their customers and using topic modeling can be help improve their processes in different ways.
-One case could be that they want to search better through their articles.
-This problem could be alleviated by using the topic distributions created by our LDA, to specifically target certain types of topics and group articles together with very similar topic distributions, like sports articles.
+News media groups, like Nordjyske, are trying to find new ways of integrating smarter and more intelligent methods for keeping their customers, and using topic modeling can help improve their processes in different ways.
+One case could be that they want better search functionality for their articles.
+This problem could be alleviated by using the topics created by our \gls{lda} model, to specifically target certain types of topics and group articles together with very similar topic distributions, like sports articles.
 
-One very important problem, within news agencies, are recommendation of articles.
-Many algorithms have already been develop for solving the recommendation problem but incorporating topic within these model could improve the recommendation if scoring of the articles was possible.
-Then, scoring of the articles could be used in recommendation for a wide variety of different users, who might take a like to that specific article.     
+One very important problem, within news agencies, is recommendation of articles.
 
-One of the very important points of our goal is to emphasize the importance of meta-data and how it can affect the applications of the future.
+Many algorithms have already been developed for solving the recommendation problem but incorporating topics within these models could improve the recommendation if scoring of the articles was possible.
+Then, scoring of the articles could be used in recommendation for a wide variety of different users, who might take a liking to that specific article.
+
+One important goal of ours is to emphasize the importance of metadata and how it can affect future applications.
 As \citet{author_topic_2012} described, they investigate how authors can have an influence on the topics created by the \gls{lda}.
 We want to see how any meta-information can impact the topics created by the \gls{lda}. 
-How can meta-information describing location specific information, like Category or Taxonomy, influence the topics created.
+How can meta-information, such as geographic locations from the Category or Taxonomy fields, influence the topics created.
 Are we able to figure out which types of articles do well in certain regions of a country based on this information? 
-Can the time information be used to figure out whether a certain article gets better performance on another date?
+Can time information be used to figure out whether a certain article gets better performance on another date?
