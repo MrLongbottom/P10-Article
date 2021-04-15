@@ -11,7 +11,7 @@ As detailed in \autoref{sec:plate_notation}, the main models used in this experi
 	\item[\Acrlong{lda}] Standard \gls{lda}, which uses document-topic distributions.
 	\item[Author-Topic Model] An \gls{lda} based model, which uses author-topic distributions.
 	\item[Category-Topic Model] An \gls{lda} based model, which uses category-topic distributions.
-	\item[Taxonomy-Topic Model] A pachinko allocation model which uses hierarchical taxonomy information.
+	\item[Taxonomy-Topic Model] A \acrlong{pam} which uses hierarchical taxonomy information.
 \end{description}
 
 By extension of these models, combinations of the models are also evaluated.
@@ -27,47 +27,80 @@ These model combinations should give insight into what a model learns when multi
 \subsection{Evaluation Metrics}\label{sec:experiment_metrics}
 All models previously mentioned are evaluated on the following evaluation metrics.
 The main metric used, in this experiment, is the topic coherence metric.
-This metric indicates how coherent topics are and will be an indication of the quality of the topics a topic model generates~\cite{topic_coherence_2015}.
-Topic coherence is calculated as follows:
+This metric indicates how semantically similar the top words within each topic are, and will be an indication of the quality of the topics a topic model generates~\cite{topic_coherence_2015}.
+There are many different equations for calculating topic coherence, but for this paper we will be using $C_v$ coherence.
+$C_v$ is calculated using the following steps, as presented by~\citet{Syed2017coherence}:
+\begin{enumerate}
+	\item Topic-word segmentation into word set pairs
+	\item Word and word pair probability calculation
+	\item Word set confirmation measure
+	\item Aggregation of confirmation measures
+\end{enumerate}
 \begin{equation}
-	TopicCoherence = 
+	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^\gamma \right\}_{j=1,\dots,|W|}
 \end{equation}
-\todo[inline]{Find and insert math}
-\noindent where ...
+\begin{equation}
+	\text{NPMI}(w_i,w_j)^\gamma = \left( \frac
+	{log\frac{P(w_i,w_j) + \epsilon}{P(w_i)\cdot P(w_j)}}
+	{-log(P(w_i,w_j) + \epsilon)} \right)
+\end{equation}
+\begin{equation}
+	\phi_{S_i}(\overrightarrow{u}, \overrightarrow{w}) = \frac
+	{\sum_{i = 1}^{|W|} u_i \cdot w_i}
+	{\|\overrightarrow{u}\|_2 \cdot \|\overrightarrow{w}\|_2}
+\end{equation}
+\begin{equation}
+	C_v = \frac{1}{|S|}\sum_{|S|}^{i=1}\phi_{S_i}
+\end{equation}
+\noindent where $W$ is a set of the top-N words in a topic, and $S$ is a set of all possible pairs $(W',W*)$ where $W'\in W$ and $W* = W$.
+This is the segmentation.
+NPMI is the normalized pointwise mutual information.
+$\overrightarrow{v}(W')$ is the context vector for $W'$ which is made by pairing them to all words in $W$.
+$\phi_{S_i}$ is the confirmation measure for a segmentation pair $S_i = (W',W*)$, that describes how much $W*$ supports $W'$.
+It is calculated by the cosine similarity of all context vectors $\phi_{S_i}(\overrightarrow{u},\overrightarrow{w})$ in $S_i$, with $\overrightarrow{v}(W') \in \overrightarrow{u}$ and $\overrightarrow{v}(W*) \in \overrightarrow{w}$.
+$\epsilon$ is used to avoid $log(0)$ and $\gamma$ is used to further weigh high NPMI values higher.
 
 The second metric used in the experiment is perplexity.
-Perplexity is used as a metric, to show how well a model can predict new test samples.
+Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
 But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation~\cite{tea_leaves}.
-Perplexity is calculated as follows:
-\begin{equation}
-	Perplexity = 
+To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in \autoref{eq:likelihood}.
+\begin{equation}\label{eq:likelihood}
+	\mathcal{L}(w) = \log p(w|\Phi) = \sum_{d} \log p(w_d|\Phi)
 \end{equation}
-\todo[inline]{Find and insert math}
-\noindent where ...
+\noindent where $\Phi$ is the topic-word matrix.
+The perplexity measure is then calculated as follows:
+\begin{equation}
+	Perplexity(w_d) = exp \{-\frac{\mathcal{L}(w)}{W}\}
+\end{equation}
+\noindent where W is the number of words \cite{de2008evaluating}.
 
 Topic difference is another metric that is used to check the quality of the topic model.
 It is based on the assumption that a good topic model will have little overlap between topics.
-It is therefore not necessarily the best measure of the final quality of a topic model, but it will show if a topic model is very bad.
+It is therefore not necessarily the best measure of the final quality of a topic model, but it can show potential problems with a model.
 \begin{equation}
-	TopicDifference = 
+	TopicDifference = \frac{1}{K \cdot K} \sum_{i=1}^{K} \sum_{j=1}^{K} JS(\beta_{i},\beta_{j})
 \end{equation}
-\todo[inline]{Find and insert math}
-\noindent where ...
+\noindent where $JS$ is Jensen-Shannon distance, $K$ is the number of topics, and $\beta_{k}$ is the topic-word distribution for topic $k$.
+If the total sum is not averaged out, this measure can also be used to indicate convergence of the model.
 
 Finally, we also perform human evaluation of the topics generated.
 \todo[inline]{How/if we do this is still to be discussed}
 
 \subsection{Grid Search}\label{sec:experiment_gridsearch}
 To find the optimal hyperparameter values for the models, we run a grid search.
-In the grid search, different values of K, $\alpha$, and $\eta$ are tested to find the best performing model.
-We only run the grid search on the standard \gls{lda} model, with the assumption that the number of topics that performs well for this model, also performs well for the metadata models, when the same dataset is used.
+In the grid search, different values of $K$, $\alpha$, and $\eta$ are tested to find the best performing model.
+Specifically, we run two rounds of grid search.
+In the first round, the number of topics $K$ we test are the values of $K_1$, as seen in \autoref{tab:gridsearch}, with randomly chosen $\alpha$ and $\eta$ values for each $K$ value.
+This creates much fewer runs of the grid search to start with, and eliminates hyperparameter values that give clearly worse models.
+In the second round, the number of topics $K$ we test are the values of $K_2$, with all combinations of $\alpha$ and $\eta$, except for those with values of $0.001$, since these models gave much worse scores.
 The hyperparameter values that are tested, are shown in \autoref{tab:gridsearch}.
-To evaluate the \gls{lda} model, we measure the topic coherence of the model after training it on the dataset for ?? epochs.
 
-Based on the topic coherence\todo{and possible human evaluation} of the model, we choose $K = ??$, $\alpha = ??$, and $\eta = ??$ as the hyperparameters for all models in the experiment.
+We only run the grid search on the standard \gls{lda} model, with the assumption that the number of topics that performs well for this model, also performs well for the metadata models, when the same dataset is used.
+To evaluate the \gls{lda} models, we measure the topic coherence of a model after training it on the dataset for 50 epochs, and the hyperparameters of the model with the highest score are then used for the models in the rest of the experiment.
+
+Based on the topic coherence of the model, we choose $K = 90$, $\alpha = 0.01$, and $\eta = 0.1$ as the hyperparameters for all models in the experiment.
 
 \input{tables/grid_search.tex}
-\todo[inline]{Table is from our previous paper. When we know specifically how we do the grid search, and what parameters to test, it can easily be changed.}
 
 \subsection{Results}\label{sec:results}
 
