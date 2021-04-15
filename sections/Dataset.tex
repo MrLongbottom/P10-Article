@@ -22,7 +22,7 @@ This field is for the author, who has written the article.
 Each article only has a single author, so we do not account for multiple authors.
 This field is fully observed within the dataset, meaning that every article has an author.
 Originally there were $227$ different authors within the dataset.
-After filtering away authors that have written less than $14$ documents ($\tilde0.001\%$ of the total document set), 184 remain.
+After filtering away authors that have written less than $14$ documents (${\sim}0.001\%$ of the total document set), 184 remain.
 %and they are almost evenly distributed in the number of articles they have written.
 
 \subsection{Category}
@@ -40,8 +40,6 @@ It can be seen here that the smallest category now has 188 documents, and for al
 The categories from the 3rd quartile and up do become much larger compared to the median, and there is an outlier with 20241 documents.
 These larger categories seem to be about topics that are written about often or categories that cover a specific newspaper.
 All of the category labels can be seen in \autoref{tab:category_table} in \autoref{sec:appendix_meta_data}.
-\todo[inline]{Maybe shortly describe some observations in the boxplot. Mention outlier.}
-\todo[inline]{Keep up to date on whether we filter or not.}
 
 \begin{figure}
 	\centering
@@ -52,7 +50,7 @@ All of the category labels can be seen in \autoref{tab:category_table} in \autor
 
 \subsection{Taxonomy}
 The taxonomy field describes a hierarchical structure of the topical or geographical subject of the articles.
-This field is only partially observed within the dataset, which means that $\tilde 25\%$ of the articles contain this field.
+This field is only partially observed within the dataset, which means that ${\sim}25\%$ of the articles contain this field.
 Each article can contain multiple taxonomies.
 We observe some general patterns when traversing this field, which are:
 \begin{itemize}
@@ -66,4 +64,4 @@ Examples of this field are:
 \end{itemize}
 About $80\%$ of the observed fields contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable.
 There are also a few other top-level taxonomies; however, they are not as informative and very rarely used.
-Originally there were $1135$ different taxonomies; however, after removing taxonomies used by less than $14$ documents ($\tilde 0.001\%$ of the total document set), $345$ remain.
+Originally there were $1135$ different taxonomies; however, after removing taxonomies used by less than $14$ documents (${\sim}0.001\%$ of the total document set), $345$ remain.
