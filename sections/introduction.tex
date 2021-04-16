@@ -35,7 +35,7 @@ With these areas of focus, we can define the problem we investigate:
 	\item \textit{How can multiple metadata fields be integrated within a topic model?}
 \end{itemize}
 
-Our work is similar to that of \citet{MetaLDA2017}, since we working with the meta information and combining it into an \gls{lda} model.
+Our work is similar to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
 However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document-topic distribution used with the \gls{lda}.
 Instead of using the document-topic distribution for drawing word topics, we want to create a new meta-topic distribution which influences the drawn topics.
 An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
