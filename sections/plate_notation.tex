@@ -76,11 +76,12 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 In order to handle the hierarchical structure of the taxonomy metadata field, we will be using a hierarchical topic model, namely the \acrlong{pam} from \citet{li2006pachinko}.
 Pachinko allocation generalizes \gls{lda}, to be able to operate on any \gls{dag} structure.
 
-The \gls{dag} structure represents topics which in pachinko are distributions over words and/or other topics.
-It is set up in a tree structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words. 
+The \gls{dag} structure represents topics which in pachinko allocation are distributions over words and/or other topics further down in the \gls{dag} structure, rather than distribution only over words as with \gls{lda}.
+It is set up in a tree structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words.
+The middle layers will represent the taxonomy entries in our dataset.
 
 For simplicity, we will be using a five-level pachinko tree structure, with each node in a layer having an edge to each node in the next layer.
-We therefore also limit the taxonomy chain to the first $3$ taxonomy entries, to fit with our \gls{dag} structure.
+We therefore also limit the taxonomy dataset to the only first $3$ taxonomy entries for each document, to fit with our \gls{dag} structure.
 This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
 
 For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
@@ -98,8 +99,9 @@ The plate notation for the \gls{pam} can be seen in \autoref{fig:pachinko}.
 \todo[inline]{make illustrations of dag structur pretty}
 
 \subsubsection{Modification to Pachinko Allocation}
-Since only $25\%$ of the documents have an observed taxonomy, we can then lock the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
-This creates some constant context for the topics, which the documents with unobserved taxonomies will be fitted around.
+Without modification, \gls{PAM} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
+Since only $25\%$ of the documents have an observed taxonomy, we lock the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
+This creates some constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
 Some of the observed documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
