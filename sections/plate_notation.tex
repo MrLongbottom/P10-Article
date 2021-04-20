@@ -99,7 +99,7 @@ The plate notation for the \gls{pam} can be seen in \autoref{fig:pachinko}.
 \todo[inline]{make illustrations of dag structur pretty}
 
 \subsubsection{Modification to Pachinko Allocation}
-Without modification, \gls{PAM} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
 Since only $25\%$ of the documents have an observed taxonomy, we lock the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates some constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
