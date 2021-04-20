@@ -9,7 +9,7 @@ However, there is usually a lot of data, that is not used, either because it is 
 % LDA / Topic Modeling Intro
 Within the field of topic modeling, the goal is to find underlying topics within a certain dataset.
 These topics are constructed based on the text documents in the dataset and words within these documents. 
-\Gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents.
+\Gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}.
 Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
 
 % Author-Topic
@@ -24,7 +24,7 @@ However, the dataset that will form this corpus also often includes various othe
 % Metadata definition
 We define this other data as metadata, that is data related to the documents in the corpus, but not directly a part of the text.
 In most models, metadata is not used.
-However, there is some previous work that attempts to make full use of the dataset available by incorporating various metadata into topic models.
+However, there is some previous work that attempts to make full use of the dataset available by incorporating various metadata into topic models.\todo[inline]{Giving a few paper sources here would be good to give the sentence more context.}
 
 % In this paper
 In this paper, we will be taking a closer look at a specific dataset and construct different topic models that incorporate various metadata.
@@ -32,6 +32,7 @@ We do this in order to see if they can improve the quality of the topics or the 
 We will also investigate the differences between the produced topics for various models, and evaluate their potential uses.
 
 We will be using a dataset from Nordjyske, a danish news agency that maintains multiple local newspapers throughout the North Jutland region.
+This dataset includes many types of metadata, with a few of these being especially interesting when considering the effect they can have on topic models.
 We will construct topic models that account for the specific metadata available within this dataset.
 This metadata includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
 
