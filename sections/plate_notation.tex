@@ -7,11 +7,10 @@ The purpose of \gls{lda}, and topic models in general, is to create a tool for e
 Topic models do this by uncovering the underlying semantic structure of a text collection by using hierarchical Bayesian models.
 \Gls{lda} uncovers this semantic structure by discovering patterns of word use in documents and finding topics based on these~\cite{blei2009topic}.
 
-The standard \gls{lda} by \citet{blei2003latent} imagines the following generative process:
+The standard \gls{lda} by \citet{blei2003latent} can be described by the following generative process, which is the way the model assumes the documents arose:
 $D$ is the number of documents in the corpus, $N_d$ is the number of words in document $d$, $V$ is the size of the vocabulary, and $K$ is the number of topics.
 Topics are represented as distributions over words and documents are represented as distributions of topics.
 \Gls{lda} assumes that the topics are shared across the corpus, while the document-topic distributions are unique for each document.
-
 For each topic $k \in \{1,\dots, K\}$ a topic-word distribution $\beta_k$ is sampled from a V-dimensional Dirichlet distribution parameterized by $\eta$.
 That is, K topics $\beta_{1:k}$ are sampled, each being a distribution over the vocabulary, written as: $\beta_k \sim Dirichlet(\eta)$.
 Likewise, for each document $d \in \{1,\dots, D\}$ a document-topic distribution $\theta_d$ is sampled from a K-dimensional Dirichlet distribution parameterized by $\alpha$.
