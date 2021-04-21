@@ -87,18 +87,13 @@ For each word, a chain of topics is sampled by sampling one topic from each laye
 More specifically, for each topic starting with the root topic, we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
 The plate notation for the \gls{pam} can be seen in \autoref{fig:pachinko}.
 \todo[inline]{add example (steder -> denmark -> aalborg)}
-\begin{figure}
-	\centering
-	\includegraphics[width= 0.5 \linewidth]{figures/pachinko_dag.png}
-	\caption{Illustration of the \gls{dag} structure for the five-level \gls{pam}.}
-	\label{fig:pachinko_dag}
-\end{figure}
+
+\input{figures/dag_structure}
 
 \input{figures/pachinko}
-\todo[inline]{make illustrations of dag structur pretty}
 
 \subsubsection{Modification to Pachinko Allocation}
-Without modification, \gls{PAM} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
 Since only $25\%$ of the documents have an observed taxonomy, we lock the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates some constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
