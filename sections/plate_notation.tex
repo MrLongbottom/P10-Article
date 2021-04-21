@@ -85,14 +85,20 @@ This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
 
 For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
 More specifically, for each topic starting with the root topic $Z_{w1}$, we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
+In \autoref{eq:pachinko_gibbs}, the joint probability for our model is shown.
+This calculation done in \autoref{eq:pachinko_gibbs} corresponds to the generative process in \autoref{fig:pachinko}
 
-\begin{align*}
-	P(Z_{w2} = t_r, Z_{w3} = t_k, Z_{w4} = t_b | \textbf{D}, z_{-w}, \alpha, \beta) \propto \\
-	\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}} \times
-	\frac{n_{ab}^d + \alpha_{ab}}{n_r^d + \sum_{b'} \alpha_{ab'}}  \times 
-	\frac{n_{bc}^d + \alpha_{bc}}{n_{k}^d + \sum_{c'} \alpha_{bc'}} \\ \times 
-	\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
-\end{align*}
+\begin{equation}\label{eq:pachinko_gibbs}
+	\begin{split}
+		P(Z_{w2} = t_r, Z_{w3} = t_k, Z_{w4} = t_b | \textbf{D}, z_{-w}, \alpha, \beta) \propto \\
+		\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}} \times
+		\frac{n_{ab}^d + \alpha_{ab}}{n_r^d + \sum_{b'} \alpha_{ab'}}  \times 
+		\frac{n_{bc}^d + \alpha_{bc}}{n_{k}^d + \sum_{c'} \alpha_{bc'}} \\ \times 
+		\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
+	\end{split}
+\end{equation}
+
+
 
 The plate notation for the \gls{pam} can be seen in \autoref{fig:pachinko}.
 \todo[inline]{add example (steder -> denmark -> aalborg)}
