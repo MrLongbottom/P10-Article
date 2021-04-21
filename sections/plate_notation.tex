@@ -7,11 +7,10 @@ The purpose of \gls{lda}, and topic models in general, is to create a tool for e
 Topic models do this by uncovering the underlying semantic structure of a text collection by using hierarchical Bayesian models.
 \Gls{lda} uncovers this semantic structure by discovering patterns of word use in documents and finding topics based on these~\cite{blei2009topic}.
 
-The standard \gls{lda} by \citet{blei2003latent} imagines the following generative process:
+The standard \gls{lda} by \citet{blei2003latent} can be described by the following generative process, which is the way the model assumes the documents arose:
 $D$ is the number of documents in the corpus, $N_d$ is the number of words in document $d$, $V$ is the size of the vocabulary, and $K$ is the number of topics.
 Topics are represented as distributions over words and documents are represented as distributions of topics.
 \Gls{lda} assumes that the topics are shared across the corpus, while the document-topic distributions are unique for each document.
-
 For each topic $k \in \{1,\dots, K\}$ a topic-word distribution $\beta_k$ is sampled from a V-dimensional Dirichlet distribution parameterized by $\eta$.
 That is, K topics $\beta_{1:k}$ are sampled, each being a distribution over the vocabulary, written as: $\beta_k \sim Dirichlet(\eta)$.
 Likewise, for each document $d \in \{1,\dots, D\}$ a document-topic distribution $\theta_d$ is sampled from a K-dimensional Dirichlet distribution parameterized by $\alpha$.
@@ -72,7 +71,34 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 	\label{fig:metadata_lda}
 \end{figure*}
 
-\subsection{Pachinko}
-\todo[inline]{Description and plate notation}
+\subsection{Pachinko Allocation}
+In order to handle the hierarchical structure of the taxonomy metadata field, we will be using a hierarchical topic model, namely the \acrlong{pam} from \citet{li2006pachinko}.
+Pachinko allocation generalizes \gls{lda}, to be able to operate on any \gls{dag} structure.
 
+The \gls{dag} structure represents topics which in pachinko allocation are distributions over words and/or other topics further down in the \gls{dag} structure, rather than a distribution only over words as with \gls{lda}.
+It is set up in a tree structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words.
+The middle layers will represent the taxonomy entries in our dataset.
+
+For simplicity, we will be using a five-level pachinko tree structure, with each node in a layer having an edge to each node in the next layer.
+We therefore also limit the taxonomy dataset to only the first $3$ taxonomy entries for each document, to fit with our \gls{dag} structure.
+This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
+
+For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
+More specifically, for each topic starting with the root topic, we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
+The plate notation for the \gls{pam} can be seen in \autoref{fig:pachinko}.
+\todo[inline]{add example (steder -> denmark -> aalborg)}
+
+\input{figures/dag_structure}
+
+\input{figures/pachinko}
+
+\subsubsection{Modification to Pachinko Allocation}
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
+Since only $25\%$ of the documents have an observed taxonomy, we lock the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
+This creates some constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
+
+Some of the observed documents have multiple taxonomies.
+For these documents, one of the taxonomies is chosen randomly for each word in the document.
+
+\subsection{Combinations}
 \todo[inline]{consider the plate notation of combination models}

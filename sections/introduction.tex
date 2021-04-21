@@ -1,8 +1,16 @@
 \section{Introduction}\label{sec:introduction}
+% Intro to meta data
+Data is everywhere and it is used in many different scenarios and use cases. 
+When referring to a dataset, we talk about a dataset including metadata information, which are non-essential data features.
+One example of this could be the publication date of a text document. 
+In most contexts, it is not needed to use and understand the document; however, it provides more context to the main content of the document: the text.
+However, there is usually a lot of data, that is not used, either because it is not useful or we do not know how to use it properly.
+
 % LDA / Topic Modeling Intro
-Within the field of topic modeling, \gls{lda} has proven successful in finding underlying topics within a corpus of text documents.
-These topics are constructed based on the documents in the corpus and words within these documents. 
-However, other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
+Within the field of topic modeling, the goal is to find underlying topics within a certain dataset.
+These topics are constructed based on the text documents in the dataset and words within these documents. 
+\Gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}.
+Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
 
 % Author-Topic
 One of the well-known extensions is the Author-Topic model by \citet{author_topic_2012} that combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
@@ -16,7 +24,7 @@ However, the dataset that will form this corpus also often includes various othe
 % Metadata definition
 We define this other data as metadata, that is data related to the documents in the corpus, but not directly a part of the text.
 In most models, metadata is not used.
-However, there is some previous work that attempts to make full use of the dataset available by incorporating various metadata into topic models.
+However, there is some previous work that attempts to make full use of the dataset available by incorporating various metadata into topic models, such as the Author-Topic model by \citet{author_topic_2012} and the MetaLDA model by \citet{MetaLDA2017}.
 
 % In this paper
 In this paper, we will be taking a closer look at a specific dataset and construct different topic models that incorporate various metadata.
@@ -24,6 +32,7 @@ We do this in order to see if they can improve the quality of the topics or the 
 We will also investigate the differences between the produced topics for various models, and evaluate their potential uses.
 
 We will be using a dataset from Nordjyske, a danish news agency that maintains multiple local newspapers throughout the North Jutland region.
+This dataset includes many types of metadata, with a few of these being especially interesting when considering the effect they can have on topic models.
 We will construct topic models that account for the specific metadata available within this dataset.
 This metadata includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
 
@@ -34,7 +43,15 @@ With these areas of focus, we can define the problem we investigate:
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
 	\item \textit{How can multiple metadata fields be integrated within a topic model?}
 \end{itemize}
-\todo[inline]{contributions}
+
+Our work is similar to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
+However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document-topic distribution used with the \gls{lda}.
+Instead of using the document-topic distribution for drawing word topics, we want to create a new meta-topic distribution which influences the drawn topics.
+An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
+We would like to see what happens when you create a meta-topic distribution for any specific meta-information, such as the author information, and see how it affects the resulting topics.
+The intuition behind this is to create new topic models, which describe the data in a different way using topics that are influenced by metadata.
+For example, if the metadata describes something about geographic locations, location-specific topics will be generated.
+
 \todo[inline]{Possibilities for adding more to the section: write more about our specific approach, still on overview/abstract level. Write a little after the problem statement about what the questions cover/will give.}
 
 % Paper Structure
