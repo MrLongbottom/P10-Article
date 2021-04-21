@@ -14,16 +14,16 @@
 		\node (z-2) [unobserved, left of= z-3, node distance=1.5cm] {$Z_{w2}$};
 		\node (z-1) [unobserved, left of= z-2, node distance=1.5cm] {$Z_{w1}$};
 		
-		\node (theta_r) [unobserved, above of= z-2, node distance=2cm] {$\theta_r^d$};
-		\node (alpha_r) [unobserved, above of= theta_r , node distance=2cm] {$\alpha_r$};
+		\node (theta_a) [unobserved, above of= z-2, node distance=2cm] {$\theta_a^d$};
+		\node (alpha_a) [unobserved, above of= theta_a , node distance=2cm] {$\alpha_a$};
 		
-		\node (theta_k) [unobserved, above of= z-3, node distance=2cm] {$\theta_k^d$};
-		\node (alpha_k) [unobserved, above of= theta_k , node distance=2cm] {$\alpha_k$};
-		
-		\node (theta_b) [unobserved, above of= z-4, node distance=2cm] {$\theta_b^d$};
+		\node (theta_b) [unobserved, above of= z-3, node distance=2cm] {$\theta_b^d$};
 		\node (alpha_b) [unobserved, above of= theta_b , node distance=2cm] {$\alpha_b$};
 		
-		\node (theta_s2) [unobserved, left of=w-j , node distance=8cm] {$\theta_b$};
+		\node (theta_c) [unobserved, above of= z-4, node distance=2cm] {$\theta_c^d$};
+		\node (alpha_c) [unobserved, above of= theta_c , node distance=2cm] {$\alpha_c$};
+		
+		\node (theta_s2) [unobserved, left of=w-j , node distance=8cm] {$\theta_c$};
 		\node (beta) [unobserved, above of=theta_s2 , node distance=2.5cm] {$\beta$};
 		
 		\path
@@ -32,20 +32,20 @@
 		(z-2) edge [post] (z-3)
 		(z-1) edge [post] (z-2)
 		
-		(theta_r) edge [post] (z-2)
-		(alpha_r) edge [post] (theta_r)
+		(theta_a) edge [post] (z-2)
+		(alpha_a) edge [post] (theta_a)
 		
-		(theta_k) edge [post] (z-3)
-		(alpha_k) edge [post] (theta_k)
-		
-		(theta_b) edge [post] (z-4)
+		(theta_b) edge [post] (z-3)
 		(alpha_b) edge [post] (theta_b)
+		
+		(theta_c) edge [post] (z-4)
+		(alpha_c) edge [post] (theta_c)
 		
 		(theta_s2) edge [post] (w-j)
 		(beta) edge [post] (theta_s2)
 		;
 		
-		\node [draw,fit=(w-j) (theta_r) (z-1), inner sep=25pt] (plate-context) {};
+		\node [draw,fit=(w-j) (theta_a) (z-1), inner sep=25pt] (plate-context) {};
 		\node [above left] at (plate-context.south east) {$N$};
 		
 		\node [draw,fit=(w-j) (z-1), inner sep=12.5pt] (plate-token) {};
@@ -54,10 +54,10 @@
 		\node [draw,fit=(theta_s2), inner sep=10pt] (plate-token) {};
 		\node [above left] at (plate-token.south east) {$S_3$};
 		
-		\node [draw,fit=(theta_b) (alpha_b), inner sep=10pt] (plate-token) {};
+		\node [draw,fit=(theta_c) (alpha_c), inner sep=10pt] (plate-token) {};
 		\node [above left] at (plate-token.south east) {$S_2$};
 		
-		\node [draw,fit=(theta_k) (alpha_k), inner sep=10pt] (plate-token) {};
+		\node [draw,fit=(theta_b) (alpha_b), inner sep=10pt] (plate-token) {};
 		\node [above left] at (plate-token.south east) {$S_1$};
 		
 	\end{tikzpicture}}
