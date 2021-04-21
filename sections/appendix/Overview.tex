@@ -1,20 +1,20 @@
-\section{Overview}\label{sec:overview}
+\subsection{Overview}\label{sec:overview}
 This section describes the steps of our method on an abstract level.
 \autoref{fig:process_figure} visualizes these steps as a flowchart.
 The method takes a corpus as an input and produces evaluation results as output.
 Each step of the method is described in later sections in more detail.
 
-\subsection*{Step 1: Preprocessing Phase}
+\subsubsection*{Step 1: Preprocessing Phase}
 In this step, we apply different preprocessing methods to simplify the dataset and remove redundant information.
 Details of this phase are given in \autoref{sec:dataset}.
 After finishing this phase, we are left with $139,060$ articles and $69,192$ unique words to form the corpus, which will be used in the following steps.
 
-\subsection*{Step 2: \Gls{lda} Models}
+\subsubsection*{Step 2: \Gls{lda} Models}
 In this step, we train the standard \gls{lda} model, the category, author, and taxonomy metadata models as well as the combinations of these models on the corpus.
 The standard \gls{lda} model, the metadata models, and the combination models are described further in \autoref{sec:plate_notation}.
 The models are trained based on topic coherence, and after the training process the models are evaluated further.
 
-\subsection*{Step 3: Evaluation of \gls{lda} Models}
+\subsubsection*{Step 3: Evaluation of \gls{lda} Models}
 In this step, we setup an experiment to evaluate the topic models trained in the previous step.
 The evaluation metrics chosen for the experiment are perplexity and topic coherence.
 Along with these evaluation metrics, human evaluation of the topics generated is also done to get a deeper understanding of what the models learn.
