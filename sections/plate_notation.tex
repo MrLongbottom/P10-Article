@@ -86,7 +86,7 @@ This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
 For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
 More specifically, for each topic starting with the root topic $Z_{w1}$, we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
 In \autoref{eq:pachinko_gibbs}, the joint probability for our model is shown.
-This calculation done in \autoref{eq:pachinko_gibbs} corresponds to the generative process in \autoref{fig:pachinko}
+This calculation done in \autoref{eq:pachinko_gibbs} corresponds to the generative process in \autoref{fig:pachinko}, where each level of the Pachinko is sampled and 
 
 \begin{equation}\label{eq:pachinko_gibbs}
 	\begin{split}
@@ -97,7 +97,8 @@ This calculation done in \autoref{eq:pachinko_gibbs} corresponds to the generati
 		\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
 	\end{split}
 \end{equation}
-
+As in \citet{li2006pachinko} $t_1$ is the root topic and $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are the three levels of topics in our 5-layer pachinko model. 
+$Z_{-w}$ is the word topic assignment, for all other words than the one we are working on.
 
 
 The plate notation for the \gls{pam} can be seen in \autoref{fig:pachinko}.
