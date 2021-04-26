@@ -32,6 +32,8 @@ In this paper, we will be taking a closer look at a specific dataset and constru
 We do this in order to see if they can improve the quality of the topics or the efficiency of the model.
 We will also investigate the differences between the produced topics for various models, and evaluate their potential uses
 
+\vejleder[inline]{skriv introduktionen frem til dette punkt mere sammen}
+
 % Problem Statement
 We define the following problem to investigate in this paper:
 
@@ -41,7 +43,7 @@ We define the following problem to investigate in this paper:
 \end{itemize}
 \vejleder[inline]{it sound like the related work already does this}
 
-Our work is similar to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
+Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
 However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document-topic distribution used with the \gls{lda}.
 Instead of using the document-topic distribution for drawing word topics, we want to create a new meta-topic distribution which influences the drawn topics.
 An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
