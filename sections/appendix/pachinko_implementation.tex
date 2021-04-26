@@ -3,16 +3,6 @@ We have implemented a pachinko algorithm able to support any \gls{dag} structure
 It can therefore support any number of layers using this structure.
 In order to do this we must generalize the process of gibbs sampling for pachinko using 'level' \gls{dag} structures.
 
-\begin{equation}\label{eq:pachinko_gibbs}
-	\begin{split}
-		P(Z_{w2} = t_a, Z_{w3} = t_b, Z_{w4} = t_c | \textbf{D}, z_{-w}, \alpha, \beta) \propto \\
-		\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}} \times
-		\frac{n_{ab}^d + \alpha_{ab}}{n_a^d + \sum_{b'} \alpha_{ab'}}  \times 
-		\frac{n_{bc}^d + \alpha_{bc}}{n_{b}^d + \sum_{c'} \alpha_{bc'}} \\ \times 
-		\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
-	\end{split}
-\end{equation}
-
 Firstly, before the gibbs sampling begins a one time random initilization is made, where each word in each document is randomly assigned to a chain of topics (one for each layer).
 
 In our pachinko model some topuic layers represent taxonomy layers, there are some documents in the dataset that already have a topic entry.
