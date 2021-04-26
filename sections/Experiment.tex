@@ -1,6 +1,6 @@
-\section{Experiment}\label{sec:experiment}
-In this section, the details of the experiment will be given.
-This covers what models will be evaluated, the evaluation metrics, and how the hyperparameters for the models were chosen.
+\section{Evaluation}\label{sec:experiment}
+In this section, we evaluate the topic models previously defined.
+We also define the evaluation metrics, and how the hyperparameters for the models were chosen.
 Lastly, the results of the evaluations are also shown.
 
 \subsection{Models}\label{sec:experiment_models}
@@ -9,7 +9,7 @@ The main difference between the models is how they draw a specific topic for a w
 As detailed in \autoref{sec:plate_notation}, the main models used in this experiment are:
 \begin{description}
 	\item[\Acrlong{lda}] Standard \gls{lda}, which uses document-topic distributions.
-	\item[Author-Topic Model] An \gls{lda} based model, which uses author-topic distributions.
+	\item[Author-Topic Model]\cite{author_topic_2012} An \gls{lda} based model, which uses author-topic distributions.
 	\item[Category-Topic Model] An \gls{lda} based model, which uses category-topic distributions.
 	\item[Taxonomy-Topic Model] A \acrlong{pam} which uses hierarchical taxonomy information.
 \end{description}

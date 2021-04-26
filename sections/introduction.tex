@@ -12,12 +12,6 @@ These topics are constructed based on the text documents in the dataset and word
 \Gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}.
 Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
 
-% Author-Topic
-One of the well-known extensions is the Author-Topic model by \citet{author_topic_2012} that combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
-This is based on the assumption that most authors usually write about only a few different topics.
-By modeling this relationship, they find connections between authors and topics, and between different authors, giving more underlying information to the topics.
-They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
-
 % Topic Modeling dataset
 In \gls{lda}, the data used is a corpus of documents, with each document containing a sequence of words.
 However, the dataset that will form this corpus also often includes various other data than just the text within the documents, such as authors, time of publishing, tags, etc.
@@ -26,40 +20,46 @@ We define this other data as metadata, that is data related to the documents in 
 In most models, metadata is not used.
 However, there is some previous work that attempts to make full use of the dataset available by incorporating various metadata into topic models, such as the Author-Topic model by \citet{author_topic_2012} and the MetaLDA model by \citet{MetaLDA2017}.
 
+% Author-Topic
+One of the well-known extensions is the Author-Topic model by \citet{author_topic_2012} that combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
+This is based on the assumption that most authors usually write about only a few different topics.
+By modeling this relationship, they find connections between authors and topics, and between different authors, giving more underlying information to the topics.
+They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
+\vejleder[inline]{what cant they do? what are the weaknesses? this will sharpen the part about our work.}
+
 % In this paper
 In this paper, we will be taking a closer look at a specific dataset and construct different topic models that incorporate various metadata.
 We do this in order to see if they can improve the quality of the topics or the efficiency of the model.
-We will also investigate the differences between the produced topics for various models, and evaluate their potential uses.
-
-We will be using a dataset from Nordjyske, a danish news agency that maintains multiple local newspapers throughout the North Jutland region.
-This dataset includes many types of metadata, with a few of these being especially interesting when considering the effect they can have on topic models.
-We will construct topic models that account for the specific metadata available within this dataset.
-This metadata includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
+We will also investigate the differences between the produced topics for various models, and evaluate their potential uses
 
 % Problem Statement
-With these areas of focus, we can define the problem we investigate:
+We define the following problem to investigate in this paper:
 
 \begin{itemize}
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
 	\item \textit{How can multiple metadata fields be integrated within a topic model?}
 \end{itemize}
+\vejleder[inline]{it sound like the related work already does this}
 
 Our work is similar to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
 However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document-topic distribution used with the \gls{lda}.
 Instead of using the document-topic distribution for drawing word topics, we want to create a new meta-topic distribution which influences the drawn topics.
 An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
-We would like to see what happens when you create a meta-topic distribution for any specific meta-information, such as the author information, and see how it affects the resulting topics.
+We instigate the effect that creating a meta-topic distribution for any specific meta-information, such as the author information, has on the resulting topics.
 The intuition behind this is to create new topic models, which describe the data in a different way using topics that are influenced by metadata.
 For example, if the metadata describes something about geographic locations, location-specific topics will be generated.
 
-\todo[inline]{Possibilities for adding more to the section: write more about our specific approach, still on overview/abstract level. Write a little after the problem statement about what the questions cover/will give.}
+We use a dataset from Nordjyske, a Danish news agency that maintains multiple local newspapers throughout the North Jutland region.
+This dataset includes many types of metadata, with a few of these being especially interesting when considering the effect they can have on topic models.
+We construct topic models that account for the specific metadata available within this dataset.
+This metadata includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
 
 % Paper Structure
 The paper is organized as follows:
-In \autoref{sec:related_work}, we explore articles related to topic modeling and topic models using metadata.
+In \autoref{sec:related_work}, we explore related work within topic modeling using metadata.
 \autoref{sec:overview} gives an overview of our method by separating the process into steps.
 \autoref{sec:dataset} describes the dataset used in the experiments.
-In \autoref{sec:plate_notation}, \gls{lda}, the metadata topic models, and the model combinations are described, and their plate notation is shown.
+In \autoref{sec:plate_notation}, \gls{lda}, the metadata topic models, and the model combinations are described, and their plate notation is shown.\vejleder{why not not have this section after overview?}
 In \autoref{sec:experiment}, we set up an experiment to test the performance of the different metadata topic models along with their combinations and present the results.
 In \autoref{sec:discussion}, we analyze and discuss the results of our experiment.
 Finally, in \autoref{sec:conclusion}, conclusions and future work are given.
