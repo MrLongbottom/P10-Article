@@ -1,1 +1,30 @@
 \section{Discussion}\label{sec:discussion}
+In this section, we investigate the different models to see how each meta-information fields impacts the resulting topics.
+Firstly, we want to investigate the top words within each model.
+We have taken a random article, fromt the dataset and displayed how each model occurs within the document. 
+Before investigating the article below, we need to know a specific color scheme for each model.
+In the article, we have highlighted the highest probable words within the three most occurring topics in the article.
+The article is about agriculture and how farmers are letting their cows out onto grass fields in September. 
+It also mentions a few different farms in the Northen part of Jutland describes these in various ways.
+
+\begin{table}[h]
+	\centering
+	\caption{Color scheme for each model}
+	\begin{tabular}{l|c}
+		Topic Model & Color \\
+		\midrule
+		\Acrlong{lda} & \colorbox{red}{Red} \\
+		Author-Topic Model & \colorbox{blue}{Blue} \\
+		Category-Topic Model & \colorbox{green}{Green} \\
+		Taxonomy-Topic Model & \\
+		Word appearing in multiple models & \colorbox{orange}{Orange}  \\
+	\end{tabular}
+	\label{tab:disc_color}
+\end{table}
+
+\emph{
+Kig på grise, køer og kyllinger10 \colorbox{orange}{nordjyske} bedrifter åbner \colorbox{green}{søndag} for stalddørene Landbruget åbner \colorbox{green}{søndag} 16. september ladeporte og stalddøre for offentligheden. 52 danske bedrifter er med i årets ”Åbent landbrug”. I det \colorbox{orange}{nordjyske} kan man kigge forbi på 10 \colorbox{green}{forskellige} landbrug. Blandt de \colorbox{orange}{nordjyske} deltagere er der \colorbox{red}{mulighed} for at få indsigt i både kvæg- og svinebedrifter, ligesom en producent af slagtekyllinger byder velkommen. Sidstnævnte kan opleves hos Rokkedahl i Farstrup. De er tre familier med i alt seks børn, der sammen driver Rokkedahl Landbrug med slagtekyllinger og planteproduktion \colorbox{orange}{samt} Rokkedahl Energi, som laver energioptimering. Herudover har de eget slagteri, hvor ca. 35 af deres i alt 65 \colorbox{red}{medarbejdere} arbejder. Familien Rokkedahl har arbejdet med kyllinger siden 1963 og er tredje generation. I staldene og i de omkringliggende folde har de både fritgående og \colorbox{red}{økologiske} slagtekyllinger. Velfærdskyllingerne går i flokke og har adgang til store folde. På årsbasis opdrætter Rokkedahl otte \colorbox{orange}{millioner} kyllinger som \colorbox{green}{enten} slagtes på deres eget slagteri eller sælges til eksterne slagterier. På de 1350 \colorbox{red}{hektar} har de hvede, byg raps, havre, rug, ærter og hestebønner. Det anvendes primært til foder til velfærdskyllingerne. De dyrker \colorbox{red}{jorden} primært \colorbox{red}{økologisk} og anvender halmen til \colorbox{blue}{opvarmning} af staldene. De har varmevekslere på alle stalde for at minimere varmeforbruget og ammoniakudledningen til omgivelserne. Britt og Klaus Kristiansen på Solbakken Agri ved Aabybro er \colorbox{orange}{klar} til vise en stor, \colorbox{orange}{dansk} mælkeproduktion frem. Familien tæller også de fire børn, Maria på 18 år, Daniel på 16 år, Kamilla og Laura på 13 år, og de er sjette generation på gården, som de overtog i 2013. Solbakken har 600 \colorbox{red}{økologiske} malkekøer, som tilsammen \colorbox{orange}{giver} 17.000 liter mælk om dagen. Den bliver hentet og kørt til et af Arlas mejerier, hvor den bliver anvendt til \colorbox{red}{økologiske} mejeriprodukter. 575 \colorbox{red}{hektar} land tilhører gården, og her producerer familien foder til deres dyr \colorbox{orange}{samt} andre fødevarer.  I Himmerland kan man besøge Sanne og Ole Mathiasen, der driver Nørregaard på Braulstrupvej 9 i Suldrup. Her kan man se søer, smågrise og slagtesvin i staldene og høre om produktion af velfærdsgrise, se maskinerne, få smagsprøver fra Danish Crown og på \colorbox{orange}{lokale} fødevarer, og høre om biavl. For børnene er der leg i korncontainer og halm, pedaltraktorbane og ponytrækketure. Der er \colorbox{red}{kaffe} og kagebord. Åbent \colorbox{red}{landbrug} foregår \colorbox{green}{søndag} fra \colorbox{red}{klokken} 10 til 16. Det er gratis at deltage. Sidste år deltog 96.000 danskere i åbent landbrug.
+}
+
+From the coloring, it is possible to see that Author-topic model is not very present and since the author of this article has written 
+
