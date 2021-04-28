@@ -3,7 +3,7 @@ The Gibbs Sampling algorithm consists two procedures: Random Initialization and 
 In the following sections, we explain how these procedures have been implemented.
 
 \subsubsection{Random Initialization}
-Before a Gibbs sampling algorithm can run, it need to be randomly initialized with topics.
+Before a Gibbs sampling algorithm can run, word occurrences need to be randomly initialized with topics.
 To do this, we iterate over each word within each document and assign a random topic for it.
 This procedure is shown in \autoref{lst:randomInit}.
 \begin{lstlisting}[language=Python, caption=Random Initialization,label={lst:randomInit}]
