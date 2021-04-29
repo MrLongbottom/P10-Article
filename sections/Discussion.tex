@@ -1,15 +1,16 @@
 \section{Discussion}\label{sec:discussion}
-In this section, we investigate the different models to see how each meta-information fields impacts the resulting topics.
+In this section, we investigate the different models to see how each meta-information field impacts the resulting topics.
 Firstly, we want to investigate the top words within each model.
-We have taken a random article, fromt the dataset and displayed how each model occurs within the document. 
+We have taken a random article, from the dataset and displayed how each model occurs within the document. 
 Before investigating the article below, we need to know a specific color scheme for each model.
 In the article, we have highlighted the highest probable words within the three most occurring topics in the article.
 The article is about agriculture and how farmers are letting their cows out onto grass fields in September. 
-It also mentions a few different farms in the Northen part of Jutland describes these in various ways.
+It also mentions a few different farms in the Northern part of Jutland describes these in various ways.
 
-The way, we are able to compare these models, are by taking the top 200 words for each topic-word distribution within each model and marking them in the article below.
+The way, we can compare these models, is by taking the top 200 words for each topic-word distribution within each model and marking them in the article below.
 Since the Author and Category models do not have a document-topic distribution, we can not look at the specific document but we have marked the given category- and author-distribution within the document, to see what the difference in topics are.
 We are looking at the top 3 topics within each model for the specific document.
+
 
 \begin{table}[h]
 	\centering
@@ -30,16 +31,16 @@ We are looking at the top 3 topics within each model for the specific document.
 Kig på grise, køer og kyllinger10 \colorbox{orange}{nordjyske} bedrifter åbner \colorbox{green}{søndag} for stalddørene Landbruget åbner \colorbox{green}{søndag} 16. \colorbox{orange}{september} ladeporte og stalddøre for offentligheden. 52 danske bedrifter er med i årets ”Åbent landbrug”. I det \colorbox{orange}{nordjyske} kan man kigge forbi på 10 \colorbox{orange}{forskellige} landbrug. Blandt de \colorbox{orange}{nordjyske} deltagere er der \colorbox{orange}{mulighed} for at få indsigt i både kvæg- og svinebedrifter, \colorbox{orange}{ligesom} en producent af slagtekyllinger \colorbox{blue}{byder} velkommen. Sidstnævnte kan opleves hos Rokkedahl i Farstrup. De er tre familier med i alt \colorbox{orange}{seks} børn, der sammen driver Rokkedahl Landbrug med slagtekyllinger og planteproduktion \colorbox{orange}{samt} Rokkedahl Energi, som laver energioptimering. Herudover har de \colorbox{red}{eget} slagteri, hvor ca. 35 af deres i alt 65 \colorbox{orange}{medarbejdere} arbejder. Familien Rokkedahl har \colorbox{orange}{arbejdet} med kyllinger siden 1963 og er tredje generation. I staldene og i de omkringliggende folde har de både fritgående og økologiske slagtekyllinger. Velfærdskyllingerne går i flokke og har adgang til store folde. På årsbasis opdrætter Rokkedahl \colorbox{orange}{otte} \colorbox{orange}{millioner} kyllinger som enten slagtes på deres \colorbox{red}{eget} slagteri eller sælges til eksterne slagterier. På de 1350 \colorbox{red}{hektar} har de hvede, byg raps, havre, rug, ærter og hestebønner. Det anvendes primært til foder til velfærdskyllingerne. De dyrker \colorbox{orange}{jorden} primært økologisk og anvender halmen til opvarmning af staldene. De har varmevekslere på alle stalde for at minimere varmeforbruget og ammoniakudledningen til omgivelserne. Britt og Klaus Kristiansen på Solbakken Agri ved Aabybro er \colorbox{orange}{klar} til vise en stor, \colorbox{orange}{dansk} mælkeproduktion frem. Familien tæller også de fire børn, Maria på 18 år, Daniel på 16 år, Kamilla og Laura på 13 år, og de er sjette generation på gården, som de overtog i 2013. Solbakken har 600 økologiske malkekøer, som tilsammen \colorbox{orange}{giver} 17.000 liter mælk om dagen. Den bliver hentet og kørt til et af Arlas mejerier, hvor den bliver anvendt til økologiske mejeriprodukter. 575 \colorbox{red}{hektar} \colorbox{orange}{land} tilhører gården, og her producerer \colorbox{red}{familien} foder til deres \colorbox{orange}{dyr} \colorbox{orange}{samt} andre fødevarer.  I Himmerland kan man besøge Sanne og Ole Mathiasen, der driver Nørregaard på Braulstrupvej 9 i Suldrup. Her kan man se søer, smågrise og slagtesvin i staldene og \colorbox{blue}{høre} om \colorbox{red}{produktion} af velfærdsgrise, se maskinerne, få smagsprøver fra Danish Crown og på \colorbox{orange}{lokale} fødevarer, og \colorbox{blue}{høre} om biavl. For \colorbox{blue}{børnene} er der \colorbox{green}{leg} i korncontainer og halm, pedaltraktorbane og ponytrækketure. Der er kaffe og kagebord. Åbent \colorbox{red}{landbrug} foregår \colorbox{green}{søndag} fra \colorbox{green}{klokken} 10 til 16. Det er gratis at deltage. Sidste år deltog 96.000 \colorbox{green}{danskere} i åbent landbrug.
 }
 
-Overall, we see that there is a large amount of overlap between the models, which is interesting, since models use different meta-information to create the various topic distributions.
-This indicates that the models share many of the top words, and indicate a slight deviation between the models due to the meta information.
+Overall, we see that there is a large amount of overlap between the models, which is interesting since models use different meta-information to create the various topic distributions.
+This indicates that the models share many of the top words, and indicate a slight deviation between the models due to the meta-information.
 The Doc-topic model shows words, like "farming" and "production", which is what the article is mostly about.
-This behavior is to be expected, since the performance of \gls{lda} has been explored and evaluated before. 
-Author-topic specific words are not very present and is only showing three unique words: "byder", "hører" and "børnene".
-This indicates that the Author-topic model has trouble generalizing what the author of this article(Peter Tordrup Larsen) is writing about, since the he has written $5002$ articles. 
+This behavior is to be expected since the performance of \gls{lda} has been explored and evaluated before. 
+Author-topic specific words are not very present and are only showing three unique words: "byder", "hører" and "børnene".
+This indicates that the Author-topic model has trouble generalizing what the author of this article(Peter Tordrup Larsen) is writing about since then he has written $5002$ articles. 
 The Category topic model only shows four unique words: "søndag", "leg", "klokken" and "danskere".
 These words are also very abstract and can be used in many different scenarios.
 
 The very interesting part of this analysis is the words appearing in multiple models.
 Some of the words, within this category are: "arbejdet", "jorden", "dyr" and "norjyske".
 Combining the results these models might yield better topic models, but we can not conclude that based on only one article.
-These summarize the text pretty well, but it is also hard to summarize this text, since it covers a wide variety specific topics.
+These summarize the text pretty well, but it is also hard to summarize this text since it covers a wide variety of specific topics.
