@@ -1,0 +1,13 @@
+\subsection{Pyro model implementation}
+%XTried different approaches, one being probabilistic programming languages. Pyro
+%XBasics behind Pyro (uses SVI for instance)
+%Implemented a basic version first
+%Expanded their ProdLDA example with metadata information
+%Switched to Gibbs sampling to have opportunities to change things in detail
+After we decided to work with metadata in \gls{lda} models, we had to firstly get a standard model implemented.
+Here we decided to look in a few directions for the best way to implement a generative model, and we found that the probabilistic programming language Pyro could be used.
+Pyro is a probabilistic programming language that is written in Python with PyTorch as a backend.
+This makes it ideal for making quick implementations of models, with the possibility of using tensors and sampling with PyTorch distribution methods.
+Pyro also has a built-in stochastic variational inference class that simplifies the training of a model.
+These features made it an ideal programming language to look into.
+
