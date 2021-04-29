@@ -124,8 +124,8 @@ Taxonomy is fundamentally different from the other metadata fields, in this pape
 It is not fully observed with only roughly $25\%$ of documents having a taxonomy field.
 It is hierarchical, with each taxonomy containing a sequence of sub-taxonomies, such as: 'STEDER/Danmark/Nordjylland/Aalborg'.
 It is also possible for each document to have multiple taxonomy sequences.
-We remove any sub-taxonomy that is used in less than $4$ taxonomy sequences.
-Out of $1135$ sub-taxonomies, $522$ are removed during this preprocessing.
+Like with authors, we remove any sub-taxonomy that is used in less than $14$ taxonomy sequences ($0.01\%$ of the number of documents).
+Out of $1135$ sub-taxonomies, $779$ are removed during this preprocessing.
 \todo[inline]{describe layer sizes of taxonomy tree}
 
 \begin{table}
@@ -138,7 +138,7 @@ Out of $1135$ sub-taxonomies, $522$ are removed during this preprocessing.
 		Category & 1 & 20204 & 2397.6 & 548 & 3812.1 \\
 		Category (preprocessed) & 188 & 20204 & 4090.0 & 2681 & 4227.3 \\
 		Taxonomy & 1 & 29535 & 123.0 & 6 & 1385.9 \\
-		Taxonomy (preprocessed) & 5 & 29535 & 227.6 & 17 & 1879.2 \\
+		Taxonomy (preprocessed) & 14 & 29535 & 1598.9 & 118.5 & 9298.4 \\
 	\end{tabular}
 	\caption{Statistics over documents associated with metadata values, before and after preprocessing}
 	\label{tab:meta_prepro_stats}
