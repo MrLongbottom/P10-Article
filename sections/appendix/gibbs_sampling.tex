@@ -1,5 +1,5 @@
 \subsection{Gibbs Sampling}\label{sec:appendix_gibbs}
-The Gibbs Sampling algorithm consists two procedures: Random Initialization and Gibbs Sampling.
+The Gibbs Sampling algorithm consists of two procedures: Random Initialization and Gibbs Sampling.
 In the following sections, we explain how these procedures have been implemented.
 
 \subsubsection{Random Initialization}
@@ -29,7 +29,7 @@ def rand_initialize(documents: List[np.ndarray]):
 
 Various parameters are left out to simplify the code listing of our initialization method.
 The \emph{\_conditional\_distribution()} function creates a distribution of topics based on the current word.
-It is based on \autoref{eq:gibbs_eq}.
+It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
 
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
