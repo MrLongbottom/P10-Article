@@ -37,20 +37,29 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 	\item Aggregation of confirmation measures
 \end{enumerate}
 \vejleder[inline]{hvad er intuitionen? hvorfår gør man det på denne måde?}
-\begin{equation}
+\begin{equation}\label{eq:coherence_1}
 	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^\gamma \right\}_{j=1,\dots,|W|}
 \end{equation}
-\begin{equation}
-	\text{NPMI}(w_i,w_j)^\gamma = \left( \frac
-	{log\frac{P(w_i,w_j) + \epsilon}{P(w_i)\cdot P(w_j)}}
-	{-log(P(w_i,w_j) + \epsilon)} \right)
+For \autoref{eq:coherence_1}, we need to create a set of word pairs $W'$, for each word in the top-N most probable words $W$.
+This is done to check how much these words occur together and to do so we sum over the \gls{npmi} matrix.
+The \gls{npmi} matrix describes how much each word occurs alone versus together with other words. 
+\begin{equation}\label{eq:pmi}
+	\text{PMI}(w_i,w_j) = \log\frac{p(w_i,w_j) + \epsilon}{p(w_i)\cdot p(w_j)}
 \end{equation}
-\begin{equation}
+where $\epsilon$ is the number of word pairs in $W'$. 
+To calculate the $NPMI$ matrix, we need to normalize the \gls{pmi} matrix and this is done by dividing the \gls{pmi} with $-log(P(w_i,w_j) + \epsilon)$.
+This is a -1 to 1 normalization.
+\begin{equation}\label{eq:coherence_2}
+	\text{NPMI}(w_i,w_j) =  \frac{\text{PMI}(w_i, w_j)}{-log(p(w_i,w_j) + \epsilon)}
+\end{equation}
+Now that we have calculated the \gls{npmi} matrix, we sum it to create a context vector, which describes the \gls{npmi} value for each word in $W$ compare to all words in $W'$.
+From these 
+\begin{equation}\label{eq:coherence_3}
 	\phi_{S_i}(\overrightarrow{u}, \overrightarrow{w}) = \frac
 	{\sum_{i = 1}^{|W|} u_i \cdot w_i}
 	{\|\overrightarrow{u}\|_2 \cdot \|\overrightarrow{w}\|_2}
 \end{equation}
-\begin{equation}
+\begin{equation}\label{eq:coherence_4}
 	C_v = \frac{1}{|S|}\sum_{|S|}^{i=1}\phi_{S_i}
 \end{equation}
 \noindent where $W$ is a set of the top-N words in a topic, and $S$ is a set of all possible pairs $(W',W*)$ where $W'\in W$ and $W* = W$.
