@@ -1,0 +1,45 @@
+\subsection{Pachinko Implementation}
+We have implemented a pachinko algorithm able to support any \gls{dag} structure, where each layer only has edges to all the nodes in the next layer, as with the 'Four-Level \gls{pam} presented' by \citet{li2006pachinko}.
+It can therefore support any number of layers using this structure.
+In order to do this, we must generalize the process of Gibbs sampling for pachinko using 'level' \gls{dag} structures.
+
+Firstly, before the Gibbs sampling begins a one-time random initialization is made, where each word in each document is randomly assigned to a chain of topics (one for each layer).
+
+In our pachinko model, some topic layers represent taxonomy layers, since there are some documents in the dataset that already have a topic entry.
+These documents are assigned the topics corresponding to their taxonomy entries, and the rest of the taxonomy chain will then be randomly generated if it is not already complete.
+
+The Gibbs sampling for \gls{pam}, consists of the following steps for each word in each document:
+
+\begin{enumerate}
+	\item Decrease Count
+	\item Calculate Layer Combinations
+	\item Multiply Layer Combinations
+	\item Weighted Sample
+	\item Increase Count
+\end{enumerate}
+
+Firstly, the current word is removed from the counts of how many words are assigned to each topic.
+After the count has been decreased, we calculate for each combination of successive layers, the probability of each possible topic combination.
+This process will be explained further in \autoref{app:calculate_layer_combs}.
+
+Each of these calculations is combined to calculate the final probability of each possible topic combination.
+One topic combination is then sampled, using a weighted sampling based on the probabilities of all topic combinations.
+Finally, once a new topic combination has been chosen, the counts of how many words are assigned to each topic are increased accordingly.
+
+\subsubsection{Calculate Layer Combinations}\label{app:calculate_layer_combs}
+This is done based on observations in \autoref{eq:pachinko_gibbs}.
+The equation consist of several fractions equal to the number of layers - 1, with each fraction representing the relationship between two layers.
+The last fraction is a little different as it takes word topic assignments for the whole corpus into account, unlike the other fractions which only look at the word topic assignments for the current document.
+
+In order to run efficiently, we calculate all topic combinations at the same time, rather than calculating a specific one as outlined in \autoref{eq:pachinko_gibbs}.
+To do this, we operate on vectors and matrices rather than single values.
+So for the fraction $\frac{n_{ab}^d + \alpha_{ab}}{n_a^d + \sum_{b'} \alpha_{ab'}}$ from \autoref{eq:pachinko_gibbs}, $n_{ab}^d$ is a matrix which indicates the number of words in document $d$ that has been assigned to each combination of topics in layer $a$ and layer $b$, with one row for each topic in layer $a$ and one column for each topic in layer $b$.
+Similarly, $n_a^d$ is a vector showing the number of words in document $d$ assigned to each topic in layer $a$, rather than a single topic.
+If some taxonomy entries for the document are already known, the matrices and vectors are sliced to only include the relevant unknown topics.
+
+\subsubsection{Multiplying Layer Combinations}
+Once all the two-layer combinations have been calculated, they have to be combined to find the probability of all topic combinations.
+To do so, the layer combinations are multiplied across the dimensions they share.
+So for a $A\times B$ matrix and a $B\times C$ matrix, values that share the same $B$ entry are multiplied together to form a three-dimensional $A\times B\times C$ array.
+Importantly, the shared dimension is kept, unlike with matrix multiplication.
+By keeping all dimensions, the final array will have one entry for all possible topic combinations.
