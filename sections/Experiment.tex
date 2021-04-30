@@ -1,6 +1,6 @@
-\section{Experiment}\label{sec:experiment}
-In this section, the details of the experiment will be given.
-This covers what models will be evaluated, the evaluation metrics, and how the hyperparameters for the models were chosen.
+\section{Evaluation}\label{sec:experiment}
+In this section, we evaluate the topic models previously defined.
+We also define the evaluation metrics, and how the hyperparameters for the models were chosen.
 Lastly, the results of the evaluations are also shown.
 
 \subsection{Models}\label{sec:experiment_models}
@@ -9,7 +9,7 @@ The main difference between the models is how they draw a specific topic for a w
 As detailed in \autoref{sec:plate_notation}, the main models used in this experiment are:
 \begin{description}
 	\item[\Acrlong{lda}] Standard \gls{lda}, which uses document-topic distributions.
-	\item[Author-Topic Model] An \gls{lda} based model, which uses author-topic distributions.
+	\item[Author-Topic Model]\cite{author_topic_2012} An \gls{lda} based model, which uses author-topic distributions.
 	\item[Category-Topic Model] An \gls{lda} based model, which uses category-topic distributions.
 	\item[Taxonomy-Topic Model] A \acrlong{pam} which uses hierarchical taxonomy information.
 \end{description}
@@ -28,7 +28,7 @@ These model combinations should give insight into what a model learns when multi
 All models previously mentioned are evaluated on the following evaluation metrics.
 The main metric used, in this experiment, is the topic coherence metric.
 This metric indicates how semantically similar the top words within each topic are, and will be an indication of the quality of the topics a topic model generates~\cite{topic_coherence_2015}.
-There are many different equations for calculating topic coherence, but for this paper we will be using $C_v$ coherence.
+There are many different methods for calculating topic coherence, but for this paper we will be using $C_v$ coherence.
 $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017coherence}:
 \begin{enumerate}
 	\item Topic-word segmentation into word set pairs
@@ -36,6 +36,7 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 	\item Word set confirmation measure
 	\item Aggregation of confirmation measures
 \end{enumerate}
+\vejleder[inline]{hvad er intuitionen? hvorfår gør man det på denne måde?}
 \begin{equation}
 	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^\gamma \right\}_{j=1,\dots,|W|}
 \end{equation}
@@ -55,22 +56,22 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 \noindent where $W$ is a set of the top-N words in a topic, and $S$ is a set of all possible pairs $(W',W*)$ where $W'\in W$ and $W* = W$.
 This is the segmentation.
 NPMI is the normalized pointwise mutual information.
-$\overrightarrow{v}(W')$ is the context vector for $W'$ which is made by pairing them to all words in $W$.
-$\phi_{S_i}$ is the confirmation measure for a segmentation pair $S_i = (W',W*)$, that describes how much $W*$ supports $W'$.
+$\overrightarrow{v}(W')$ is the context vector for $W'$ which is made by pairing them to all words in $W$.\vejleder{skal forklares ydereligere}
+$\phi_{S_i}$ is the confirmation measure for a segmentation pair $S_i = (W',W*)$, that describes how much $W*$ supports $W'$.\vejleder{skal forklares ydereligere}
 It is calculated by the cosine similarity of all context vectors $\phi_{S_i}(\overrightarrow{u},\overrightarrow{w})$ in $S_i$, with $\overrightarrow{v}(W') \in \overrightarrow{u}$ and $\overrightarrow{v}(W*) \in \overrightarrow{w}$.
 $\epsilon$ is used to avoid $log(0)$ and $\gamma$ is used to further weigh high NPMI values higher.
 
 The second metric used in the experiment is perplexity.
 Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
 But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation~\cite{tea_leaves}.
-To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in \autoref{eq:likelihood}.
+To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in:
 \begin{equation}\label{eq:likelihood}
-	\mathcal{L}(w) = \log p(w|\Phi) = \sum_{d} \log p(w_d|\Phi)
+	\mathcal{L}(w_d) = \log p(w_d|\Phi) = \sum_{d} \log p(w_d|\Phi)
 \end{equation}
 \noindent where $\Phi$ is the topic-word matrix.
 The perplexity measure is then calculated as follows:
 \begin{equation}
-	Perplexity(w_d) = exp \{-\frac{\mathcal{L}(w)}{W}\}
+	\emph{Perplexity}(w_d) = exp \{-\frac{\mathcal{L}(w_d)}{W}\}
 \end{equation}
 \noindent where W is the number of words \cite{de2008evaluating}.
 
@@ -78,7 +79,7 @@ Topic difference is another metric that is used to check the quality of the topi
 It is based on the assumption that a good topic model will have little overlap between topics.
 It is therefore not necessarily the best measure of the final quality of a topic model, but it can show potential problems with a model.
 \begin{equation}
-	TopicDifference = \frac{1}{K \cdot K} \sum_{i=1}^{K} \sum_{j=1}^{K} JS(\beta_{i},\beta_{j})
+	\emph{TopicDifference} = \frac{1}{K \cdot K} \sum_{i=1}^{K} \sum_{j=1}^{K} JS(\beta_{i},\beta_{j})
 \end{equation}
 \noindent where $JS$ is Jensen-Shannon distance, $K$ is the number of topics, and $\beta_{k}$ is the topic-word distribution for topic $k$.
 If the total sum is not averaged out, this measure can also be used to indicate convergence of the model.
