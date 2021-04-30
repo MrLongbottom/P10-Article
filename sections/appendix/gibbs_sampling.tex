@@ -1,0 +1,81 @@
+\subsection{Gibbs Sampling}\label{sec:appendix_gibbs}
+The Gibbs Sampling algorithm consists of two procedures: Random Initialization and Gibbs Sampling.
+In the following sections, we explain how these procedures have been implemented.
+
+\subsubsection{Random Initialization}
+Before a Gibbs sampling algorithm can run, word occurrences need to be randomly initialized with topics.
+To do this, we iterate over each word within each document and assign a random topic for it.
+This procedure is shown in \autoref{lst:randomInit}.
+\begin{lstlisting}[language=Python, caption=Random Initialization,label={lst:randomInit}]
+import numpy as np
+
+def rand_initialize(documents: List[np.ndarray]):
+	wt_assignment = []
+	for doc in documents:
+		curr_doc = []
+		for word in doc:
+			# Construct the topic distribution
+			pz = _conditional_distribution()
+			
+			# Draw a new topic and assign it
+			t = np.random.multinomial(1, pz).argmax()
+			curr_doc.append(t)
+			
+			# Increase the topic counts
+			increase_count()
+		wt_assignment.append(curr_doc)
+	return wt_assignment
+\end{lstlisting}
+
+Various parameters are left out to simplify the code listing of our initialization method.
+The \emph{\_conditional\_distribution()} function creates a distribution of topics based on the current word.
+It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
+
+\begin{equation}\label{eq:gibbs_eq}
+	\begin{split}
+		P(Z_{d,n} = k |z_{-dn}, \alpha, \lambda) = \\
+		\underbrace{\frac{n_{d,k} + \alpha_{k}}{\sum_{i}^{K} n_{d,i} + \alpha_i}}_{Doc-topic} \times
+		\underbrace{\frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{\sum_{i} v_{k,i} + \lambda_i}}_{Topic-word}
+	\end{split}
+\end{equation}
+where $n_{d,k}$ is the number of times document $d$ uses topic $k$.
+$v_{k,w}$ is the number of times topic $k$ uses word $w$.
+$\alpha_k$ and $\lambda_w$ is the Dirichlet parameter for the document-topic and topic-word distribution, respectively.
+The first fraction describes how likely topic $t$ appearing in document $d$ is, and the second fraction describes which words are most probable in topic $t$.
+Following the code in \autoref{lst:randomInit}, as we initialize, the words get higher probability of clustering together, since we update the counts every time, we look at a new word in line 16.
+
+\subsubsection{Gibbs Sampling}
+Continuing the analogy from before, we can start to investigate the Gibbs sampling method itself, where we iterate over each word in every document and draw a new topic based on the given topic distribution.
+As in \autoref{lst:randomInit}, the code has been simplified.
+\begin{lstlisting}[language=Python, caption=Gibbs Sampling Method,label={lst:gibbsSampling}]
+import numpy as np
+
+def gibbs_sampling(documents: List[np.ndarray],
+	   doc_topic_dist: np.ndarray,
+	   doc_topic_count: np.ndarray,
+	   topic_word_dist: np.ndarray,
+	   topic_word_count: np.ndarray,
+	   wt_assignment: List[List[int]]):
+
+	for d_index, doc in documents:
+		for w_index, word in enumerate(doc):
+			# Get the topic of the current word
+			topic = wt_assignment[d_index][w_index]
+			
+			# Decrease the topic count
+			decrease_count()
+			
+			# Sample a new topic
+			pz = _conditional_distribution()
+			topic = np.random.multinomial(1, pz).argmax()
+			
+			# Assign topic to the current word
+			wt_assignment[d_index][w_index] = topic
+			
+			# And increase the topic count
+			increase_count()
+\end{lstlisting}
+The Gibbs sampling method is very similar to the random initialization method in \autoref{lst:randomInit}, but with a few extra additions. 
+Now we introduce the \emph{decrease\_count()} which decreases the topic count for both words and documents, as the \emph{increase\_count()} increases them.
+The sampling explained in \autoref{lst:randomInit} is the same.
+On line 13, we get the current topic for the given word and on line 23 we assign a newly drawn topic to that word.
