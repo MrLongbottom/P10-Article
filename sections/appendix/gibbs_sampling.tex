@@ -41,7 +41,7 @@ It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
 where $n_{d,k}$ is the number of times document $d$ uses topic $k$.
 $v_{k,w}$ is the number of times topic $k$ uses word $w$.
 $\alpha_k$ and $\lambda_w$ is the Dirichlet parameter for the document-topic and topic-word distribution, respectively.
-The doc-topic part of the equation describes how likely topic $t$ appearing in document $d$ and the second part describes how likely which words are most probable in $t$.
+The first fraction describes how likely topic $t$ appearing in document $d$ is, and the second fraction describes which words are most probable in topic $t$.
 Following the code in \autoref{lst:randomInit}, as we initialize, the words get higher probability of clustering together, since we update the counts every time, we look at a new word in line 16.
 
 \subsubsection{Gibbs Sampling}
