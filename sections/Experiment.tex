@@ -36,9 +36,12 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 	\item Word set confirmation measure
 	\item Aggregation of confirmation measures
 \end{enumerate}
+The intuition behind this, is to measure the co-occurrence of the top words within each topic, which is done in step 1 and 2. 
+We also want to calculate the co-occurrence from a topic to the rest of the words in the corpus, which is done in step 3 and 4. 
+
 \vejleder[inline]{hvad er intuitionen? hvorfår gør man det på denne måde?}
 \begin{equation}\label{eq:coherence_1}
-	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^\gamma \right\}_{j=1,\dots,|W|}
+	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j) \right\}_{j=1,\dots,|W|}
 \end{equation}
 For \autoref{eq:coherence_1}, we need to create a set of word pairs $W'$, for each word in the top-N most probable words $W$.
 This is done to check how much these words occur together and to do so we sum over the \gls{npmi} matrix.
@@ -52,7 +55,7 @@ This is a -1 to 1 normalization.
 \begin{equation}\label{eq:coherence_2}
 	\text{NPMI}(w_i,w_j) =  \frac{\text{PMI}(w_i, w_j)}{-log(p(w_i,w_j) + \epsilon)}
 \end{equation}
-Now that we have calculated the \gls{npmi} matrix, we sum it to create a context vector, which describes the \gls{npmi} value for each word in $W$ compare to all words in $W'$.
+Now that we have calculated the \gls{npmi} matrix, we sum it to create a context vector, which describes how much each top word co-occurs with the other words in $W'$.
 From these 
 \begin{equation}\label{eq:coherence_3}
 	\phi_{S_i}(\overrightarrow{u}, \overrightarrow{w}) = \frac
