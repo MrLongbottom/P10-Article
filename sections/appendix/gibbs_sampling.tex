@@ -33,8 +33,7 @@ It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
 
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
-		P(Z_{d,n} = k |z_{-dn}, \alpha, \lambda) = \\
-		\underbrace{\frac{n_{d,k} + \alpha_{k}}{\sum_{i}^{K} n_{d,i} + \alpha_i}}_{Doc-topic} \times
+		P(Z_{d,n} = k |z_{-dn}, \alpha, \lambda) = \underbrace{\frac{n_{d,k} + \alpha_{k}}{\sum_{i}^{K} n_{d,i} + \alpha_i}}_{Doc-topic} \times
 		\underbrace{\frac{v_{k, w_{d,n}} + \lambda_{w_{d,n}}}{\sum_{i} v_{k,i} + \lambda_i}}_{Topic-word}
 	\end{split}
 \end{equation}
