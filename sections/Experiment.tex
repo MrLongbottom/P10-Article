@@ -53,7 +53,7 @@ From this matrix, we can construct the \acrshort{npmi} matrix used in \autoref{e
 \begin{equation}\label{eq:pmi}
 	\text{PMI}(w_i,w_j) = \log\frac{p(w_i,w_j) + \epsilon}{p(w_i)\cdot p(w_j)}
 \end{equation}
-where $\epsilon$ is the number of word pairs in $W'$. 
+where $\epsilon$ is set to $10^{-12}$. 
 The \gls{npmi} matrix describes how much each word occurs alone versus together with other words. 
 To calculate the NPMI matrix, we need to normalize the \gls{pmi} matrix and this is done by dividing the \gls{pmi} with $-log(P(w_i,w_j) + \epsilon)$.
 This is a -1 to 1 normalization.
