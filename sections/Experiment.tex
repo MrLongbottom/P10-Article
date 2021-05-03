@@ -36,16 +36,20 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 	\item Word set confirmation measure
 	\item Aggregation of confirmation measures
 \end{enumerate}
-The intuition behind this, is to measure the co-occurrence of the top words within each topic, which is done in step 1 and 2.
-From step 1 and 2, vectors are created based on the co-occurrence, which we measure the cosine similarity between to see how similar these vectors are.
-We can calculate the $C_v$ measure, by summing the distances between these vectors. 
+The intuition behind this, \todo[inline]{skriv intuition}
 
-We need to create a set of word pairs $W'$, for each word in the top-N most probable words $W$, where $W = \{W_1, \dots, W_N\}$.
-We use $W'$ to create an \gls{pmi} matrix which in turn is used to construct the \acrshort{npmi} matrix used in \autoref{eq:coherence_1}.
+We need to create a set of word pairs $S$, with one pair $S_i$ for each word in the top-N most probable words $W$ in a specific topic $t$, which is defined in \autoref{eq:set_of_word_pairs}.
+\begin{equation}\label{eq:set_of_word_pairs}
+	S = \{(W', W*)|W' = \{w_i\};w_i \in W;W* = W\}
+\end{equation}
 
 To calculate the probability of words, we use a sliding window of size $s$, to create a set of sub documents $D_s$ over the document set $D$.
 $p(w_i)$, is the number of sub documents in which the word $w_i$ occurs divided by $|D_s|$.
-$p(w_i, w_j)$, it is the number of sub documents in which both words occur divided by $|D_s|$. 
+$p(w_i, w_j)$, is the number of sub documents in which both words occur divided by $|D_s|$. 
+
+We create the \gls{pmi} matrix, based on the word and word pair probabilities.
+From this matrix, we can construct the \acrshort{npmi} matrix used in \autoref{eq:coherence_1}.
+
 \begin{equation}\label{eq:pmi}
 	\text{PMI}(w_i,w_j) = \log\frac{p(w_i,w_j) + \epsilon}{p(w_i)\cdot p(w_j)}
 \end{equation}
@@ -56,7 +60,8 @@ This is a -1 to 1 normalization.
 \begin{equation}\label{eq:coherence_2}
 	\text{NPMI}(w_i,w_j) =  \frac{\text{PMI}(w_i, w_j)}{-log(p(w_i,w_j) + \epsilon)}
 \end{equation}
-Now that we have calculated the \gls{npmi} matrix, we sum it to create a context vector, which describes how much each top word co-occurs with the other words in $W'$.
+Now that we have calculated the \gls{npmi} matrix, we construct a context vector for each word-pair $S_i$, by summing the rows of the \gls{npmi} matrix.
+This summation describes how much each top word co-occurs with the other words in $W'$.
 \begin{equation}\label{eq:coherence_1}
 	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j) \right\}_{j=1,\dots,|W|}
 \end{equation}
