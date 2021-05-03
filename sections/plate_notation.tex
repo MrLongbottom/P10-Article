@@ -54,19 +54,32 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 
 \begin{figure*}[ht]
 	\centering
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.25\textwidth}
 		\centering
+		\resizebox{\textwidth}{!}{%
 		\input{figures/category_plate}
+		}
 		\caption{Category \gls{lda}.}
 		\label{fig:category_lda}
 	\end{subfigure}
-	\hspace{5em}
-	\begin{subfigure}{0.3\textwidth}
+	\hspace{2em}
+	\begin{subfigure}{0.25\textwidth}
 		\centering
-		\input{figures/author_plate}
+		\resizebox{\textwidth}{!}{%
+			\input{figures/author_plate}
+		}
 		\caption{Author \gls{lda}.}
 		\label{fig:author_lda}
 	\end{subfigure}
+	\hspace{2em}
+	\begin{subfigure}{0.25\textwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/author_category_plate}
+		}
+		\caption{Author-Category \gls{lda}.}
+		\label{fig:author_lda}
+\end{subfigure}
 	\caption{Plate notation for the metadata \gls{lda} models.}
 	\label{fig:metadata_lda}
 \end{figure*}
@@ -119,4 +132,6 @@ Some of the observed documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
 
 \subsection{Combinations}
-\todo[inline]{consider the plate notation of combination models}
+In the Author-Category combination model, we simply multiply the topic distributions $\theta_a$ and $\theta_c$ together.
+Then, when sampling for a new word topic, we normalize the product of the multiplication to sum to 1, which also makes it a distribution.
+This makes both of the learned meta distributions influence the sampled word topics.
