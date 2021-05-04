@@ -1,3 +1,19 @@
+\usepackage{cite}
+% provides various features to facilitate writing math formulas and to improve the typographical quality of their output.
+%\usepackage{amsmath}
+\usepackage[cmex10]{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{amssymb,amsfonts}
+\usepackage{algorithmic}
+%\usepackage{graphicx}
+\usepackage[dvips]{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+% formatting from IEEE conference. Needs to be fitted with our natbib
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %Article stuff
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -7,32 +23,54 @@
 \usepackage{supertabular}
 \usepackage{paralist}
 \usepackage{booktabs}
+\usepackage{listings}
+
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{white},   
+	commentstyle=\color{olive},
+	keywordstyle=\color{purple},
+	numberstyle=\tiny\color{gray},
+	stringstyle=\color{blue},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+
+% Coloring stuff
+\usepackage{xcolor}
+\usepackage[english]{babel}
+\newcommand{\thiscolor}[1]{\colorbox{#1}{\phantom{Here is text}}}
+
 
 %% to enable \thank command
 \IEEEoverridecommandlockouts 
-%% The usage of the following packages is recommended
-%% to insert graphics
-\usepackage[dvips]{graphicx}
 % to typeset algorithms
 \usepackage{algorithm}
-\usepackage{algpseudocode}
+%\usepackage{algpseudocode}
 % to typeset code fragments
 \usepackage{listings}
 % to make an accent \k be available
 \usepackage[T1]{fontenc}
-% provides various features to facilitate writing math formulas and to improve the typographical quality of their output.
-\usepackage[cmex10]{amsmath}
-\interdisplaylinepenalty=2500
 % por urls typesetting and breaking
 \usepackage{url}
 % for vertical merging table cells
 \usepackage{multirow}
 \usepackage{siunitx}
 
-
-\usepackage{xcolor}
-\usepackage[english]{babel}
-\newcommand{\thiscolor}[1]{\colorbox{#1}{\phantom{Here is text}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %Mixed packages
@@ -44,7 +82,7 @@
 \usepackage[numbers]{natbib}
 \usepackage{subcaption}
 \bibliographystyle{plainnat}
-\usepackage{amssymb}
+
 \let\labelindent\relax %Needed before enumitem to avoid error with IEEE template
 \usepackage{enumitem}
 % Encoding %
@@ -99,30 +137,3 @@
 
 \newcommand{\dir}{\text{Dirichlet}}
 \newcommand{\mult}{\text{Multinomial}}
-
-
-\usepackage{listings}
-
-
-%Code listing style named "mystyle"
-\lstdefinestyle{mystyle}{
-	backgroundcolor=\color{white},   
-	commentstyle=\color{olive},
-	keywordstyle=\color{purple},
-	numberstyle=\tiny\color{gray},
-	stringstyle=\color{blue},
-	basicstyle=\ttfamily\footnotesize,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,                 
-	numbers=left,                    
-	numbersep=5pt,                  
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2
-}
-
-%"mystyle" code listing set
-\lstset{style=mystyle}
