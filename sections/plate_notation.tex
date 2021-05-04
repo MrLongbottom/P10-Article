@@ -87,9 +87,10 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we will be using a hierarchical topic model, namely the \acrlong{pam} from \citet{li2006pachinko}.
 Pachinko allocation generalizes \gls{lda}, to be able to operate on any \gls{dag} structure.
+\vejleder[inline]{struktur over hvad?}
 
 The \gls{dag} structure represents topics which in pachinko allocation are distributions over words and/or other topics further down in the \gls{dag} structure, rather than a distribution only over words as with \gls{lda}.
-It is set up in a tree structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words.
+The Pachinko model is set up in a \gls{dag} structure with the first layer being the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are words.
 The middle layers will represent the taxonomy entries in our dataset.
 
 For simplicity, we will be using a five-level pachinko tree structure, with each node in a layer having an edge to each node in the next layer.
@@ -110,7 +111,7 @@ This calculation corresponds to the generative process in \autoref{fig:pachinko}
 		\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
 	\end{split}
 \end{equation}
-As in \citet{li2006pachinko} $t_1$ is the root topic and $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are topic assignments for the three middle layers of topics in our 5-layer Pachinko model.
+As in \citet{li2006pachinko} $t_1$ \vejleder[inline]{Hvorfor er t1 ikke i eq:1 og hvor kommer eq:1 fra} is the root topic and $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are topic assignments for the three middle layers of topics in our 5-layer Pachinko model.
 $Z_{-w}$ is the word topic assignment, for all other words except the one that is being updated.
 Without looking at the current object of iteration, $n_x^d$ is the number of times topic $t_x$ occurs in document $d$. 
 The $n_{xy}^d$ describes how many times topic $t_y$ is sampled from its parent $t_x$ within document $d$.
@@ -124,9 +125,9 @@ $n_x$ is the number of times subtopic $t_x$ occurs in the corpus and $n_{xw}$ is
 \input{figures/pachinko}
 
 \subsubsection{Modification to Pachinko Allocation}
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
-Since only $25\%$ of the documents have an observed taxonomy, we lock the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
-This creates some constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy, since only $25\%$ of the documents have an observed taxonomy.
+To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
+This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
 Some of the observed documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
