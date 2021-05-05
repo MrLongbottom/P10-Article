@@ -8,9 +8,10 @@ However, a lot of metadata is not used, either because it is not useful or we do
 
 % Intro to Nordjyske data and applications
 We have a dataset from a danish media group, called Nordjyske, with three years of article data.
-This dataset can be applied to a variety of different applications, such as topic modelling\cite{blei2003latent}\cite{MetaLDA2017}, text analysis\cite{baly2020written}, search engine optimization\cite{amjad2015topic}, and many more.
+This dataset can be applied to a variety of different applications, such as topic modeling\cite{blei2003latent}\cite{MetaLDA2017}, text analysis\cite{baly2020written}, search engine optimization\cite{amjad2015topic}, and many more.
+In this paper, the dataset will be used with a focus on topic modeling.
 
-Within the field of topic modeling, \Gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}, without the use of metadata.
+Within the field of topic modeling, \gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}, without the use of metadata.
 Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
 In most models metadata is not used.
 However, there is some previous work that attempts to make use of the metadata available, by incorporating it into topic models, such as the Author-Topic model by \citet{author_topic_2012} and the MetaLDA model by \citet{MetaLDA2017}.
@@ -20,12 +21,12 @@ One of the well-known extensions of \gls{lda} is the Author-Topic model by \cite
 This is based on the assumption that most authors usually write about only a few different topics.
 By modeling this relationship, they find connections between authors and topics, and between different authors, giving more underlying information to the topics.
 They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
-However, they only test their algorithm on scientific papers, where usually the authors write about the same subject(their research field), which might not be the case for other fields, like journalism. 
+However, they only test their algorithm on scientific papers, where usually the authors write about the same subject (their research field), which might not be the case for other fields, like journalism. 
 
 % In this paper
-In this paper, we are investigating use cases for the dataset, that has been provided by Nordjyske, within the field of topic modelling. 
-We want to construct different topic models that incorporates various metadata, to see whether incorporating this information, changes the topic quality.
-We do this to aid in solving, potential problems that Nordjyske might encounter as a media group, such as recommendation, search.
+In this paper, we are investigating use cases for the dataset, that has been provided by Nordjyske, within the field of topic modeling. 
+We want to construct different topic models that incorporate various metadata, to see whether incorporating this information changes the topic quality.
+We do this to aid in solving potential problems that Nordjyske might encounter as a media group, such as the recommendation of articles or search functionality.
 We also investigate differences between the produced topics for various models, to evaluate their potential uses.
 
 % Problem Statement
@@ -33,7 +34,7 @@ We define the following problem to investigate in this paper:
 
 \begin{itemize}
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
-	\item \textit{What possible problems these models, help alleviate at Nordjyske?}
+	\item \textit{What possible problems can these models help alleviate at Nordjyske?}
 \end{itemize}
 
 Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
