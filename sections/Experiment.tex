@@ -37,7 +37,7 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 	\item Word set confirmation measure
 	\item Aggregation of confirmation measures
 \end{enumerate}
-
+\vejleder[inline]{hvad er intuitionen? hvorfår gør man det på denne måde?}
 The equations, explanations and values of the hyperparameters in this section are based on~\citet{Syed2017coherence} and the \textit{gensim} python package\footnote{\url{https://radimrehurek.com/gensim/}}.
 
 For segmentation a set of word pairs $S$ is created, which pairs each word in the top-N most probable words $W$ in a specific topic $t$ with all the other words in $W$.
@@ -47,9 +47,9 @@ $S$ is defined by \autoref{eq:set_of_word_pairs}.
 	S = \{(W', W*)|W' = \{w_i\};w_i \in W;W* = W\}
 \end{equation}
 
-Before calculating word probabilities, a sliding window of size $s = 110$ is used to create a set of sub documents $D_s$ over the document set $D$.
+Before calculating word probabilities, a sliding window of size $s$ where $s =110$ is used to create a set of sub documents $D_s$ over the document set $D$.
 These sub documents are used rather than the normal documents to capture some degree of words proximity.
-Word probabilities are calcuated based on how many documents within the document set $D_s$ that they occour in.
+Word probabilities are calculated based on how many documents within the document set $D_s$ that they occur in.
 $p(w_i)$, is the number of sub documents in which the word $w_i$ occurs divided by $|D_s|$.
 $p(w_i, w_j)$, is the number of sub documents in which both words occur divided by $|D_s|$. 
 
@@ -61,7 +61,7 @@ We create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry word pair c
 The \gls{npmi} matrix describes how much each word occurs alone versus together with other words.
 %This is a -1 to 1 normalization.
 
-After having calculated the \gls{npmi} matrix, we construct context vectors for both element $W'$ and $W*$ in each word-pair $S_i$, by summing over the rows of the \gls{npmi} matrix.
+After having calculated the \gls{npmi} matrix, we construct context vectors for both elements $W'$ and $W*$ in each word-pair $S_i$, by summing over the rows of the \gls{npmi} matrix.
 This summation describes how much each top word co-occurs with the other words in $W$.
 \begin{equation}\label{eq:coherence_1}
 	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^{\gamma} \right\}_{j=1,\dots,|W|}
@@ -77,7 +77,7 @@ This is calculated using cosine similarity as a confirmation measure.
 
 \noindent where $\overrightarrow{u}$ is the context vector $\overrightarrow{v}(W')$, and $\overrightarrow{w}$ is the context vector $\overrightarrow{v}(W^*)$.
 
-Lastly the confirmation measures are aggregated using the arithmic mean, to achieve the coherence value of topic $t$
+Lastly, the confirmation measures are aggregated using the arithmetic mean, to achieve the coherence value of topic $t$
 
 \begin{equation}\label{eq:coherence_4}
 	C_v = \frac{1}{|S|}\sum_{|S|}^{i=1}\phi_{S_i}
