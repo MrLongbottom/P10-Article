@@ -29,7 +29,7 @@ In order to verify that these metrics work, they conduct a large user study in c
 \citet{card2017neural} describe how to incorporate metadata information within a neural network to find topics using variational inference methods.
 
 There also exist a variety of models that look at either document or word metadata.
-Of models that incorporate document-level metadata, some examples are: Supervised LDA (sLDA) by \citet{blei2010supervised}, Labelled LDA (LLDA) by \citet{llda2009}, and the Dirichlet Multinomial Regression (DMR) model by \citet{mimno2008topic}.
+Some examples of models that incorporate document-level metadata are: Supervised LDA (sLDA) by \citet{blei2010supervised}, Labelled LDA (LLDA) by \citet{llda2009}, and the Dirichlet Multinomial Regression (DMR) model by \citet{mimno2008topic}.
 SLDA learns a model given the restriction of only having one label per document, while LLDA allows multiple labels per document, though it requires the number of topics to be the same as the number of unique labels.
 DMR handles metadata similarly to MetaLDA~\cite{MetaLDA2017} by incorporating labels on the prior of the documents' topic distributions.
 Examples of models that incorporate word-level metadata are: WF-LDA by \citet{wf-lda2010} and LF-LDA by \citet{lf-lda2015}.
@@ -40,5 +40,5 @@ From these works, we mainly use the concepts from \citet{author_topic_2012} for 
 There is one main reason why we use the concepts from the author-topic model instead of the newer MetaLDA model~\cite{MetaLDA2017}.
 In MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document.
 This limits the ability to analyze a model that includes multiple metadata, while in the author-topic model other metadata can be included as their own meta-topic distributions and be analyzed further.
-Also, since MetaLDA uses the document-topic distribution as its base, we wont be able to explore other interesting connections, such as the connection between learned category-topic distributions and the topics that are most probable for specific categories.
+Also, since MetaLDA uses the document-topic distribution as its base, we would not be able to explore other interesting connections, such as the connection between learned category-topic distributions and the topics that are most probable for specific categories.
 We also explore whether adapting the \gls{pam}~\cite{li2006pachinko} to work with a specific type of metadata called 'taxonomy', described in \autoref{sec:dataset_taxonomy}, will give the model more context and increased performance.
