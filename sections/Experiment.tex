@@ -53,7 +53,7 @@ Word probabilities are calculated based on how many documents within the documen
 $p(w_i)$, is the number of sub documents in which the word $w_i$ occurs divided by $|D_s|$.
 $p(w_i, w_j)$, is the number of sub documents in which both words occur divided by $|D_s|$. 
 
-We create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry word pair combination in $W$.
+We create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry per word pair combination in $W$.
 \begin{equation}\label{eq:coherence_2}
 	\text{NPMI}(w_i,w_j) =  \frac{\log\frac{p(w_i,w_j) + \epsilon}{p(w_i)\cdot p(w_j)}}{-log(p(w_i,w_j) + \epsilon)}
 \end{equation}
