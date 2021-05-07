@@ -132,7 +132,7 @@ This creates a constant context for the taxonomy topics, which the documents wit
 Some of the observed documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
 
-\subsection{Combinations}
+\subsection{Combinations}\label{subsec:combinations}
 In the Author-Category combination model, we simply multiply the topic distributions $\theta_a$ and $\theta_c$ together.
 Then, when sampling for a new word topic, we normalize the product of the multiplication to sum to 1, which also makes it a distribution.
 This makes both of the learned meta distributions influence the sampled word topics.
