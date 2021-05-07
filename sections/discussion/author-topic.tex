@@ -37,5 +37,35 @@ The number in parenthesis next to each author is the number of articles they hav
 	\label{tab:author_similarity}
 \end{table}
 
-%In general does this make sense with sampled documents?
-%A few examples of authors this makes a lot of sense with
+In general for these pairs, there does not seem to be a correlation between a high similarity and the categories of the articles they have written.
+While one author in a pair might have written for the sports category (Sport-avis) the other author might not have written for this category at all.
+This can also be seen for categories that cover geographic locations, where one author might have written for Aalborg (Aalborg-avis) and the other author can have written for Thisted (Thisted-avis).
+
+When looking at a sample of documents for the most similar author pair (Lars Termansen \& Mikkel Færgemann Viken), it is seen that they both write a mix of regular news and sports articles.
+The reason why they become this similar, might be that the ratio between news and sports news for both authors is similar, and possibly also because of the types of news they write about.
+Another interesting observation is that, for the second most similar author pair (Morten Nis Klenø \& Anne Helene Thomsen) the difference in the number of articles written is significant.
+Here Morten Nis Klenø has written just 17 articles while Anne Helene Thomsen has written 606 articles.
+This suggests that some part of why these authors' similarity is high, simply dependents on the types of news the authors have written, no matter the amount.
+
+It is also worth noting that while authors that write scientific papers usually write in just a few subject areas, the scientific area they work in, this is not the case for news article authors.
+In our dataset, this can be seen in the fact that the authors have written for 7.86 categories on average, with 7 categories as the median.
+This can make it more difficult for the author-topic model to find patterns in what the authors write about, especially since each category can cover multiple topics.
+
+A selection of authors from the dataset and the top words from their most probable topics, can be seen in \autoref{tab:author_top_words}.
+
+\begin{table*}[h]
+	\centering
+	\caption{Selection of authors and the top 10 words from their most probable topic.}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\toprule
+		Birgitte Bové & Kirsten Østergaard & Pauline Bülow & Karen Marie Foldbjerg & Claus T. Kræmmergård & Hanne Lindblad Jensen & Ole Jensen \\
+		\midrule
+		Topic 41 & Topic 50 & Topic 3 & Topic 13 & Topic 88 & Topic 2 & Topic 50 \\
+		\midrule
+		\makecell{millioner \\ eu \\ hans \\ større \\ bedre \\ formand \\ kr \\ nordjyske \\ taget \\ skriver} & \makecell{du \\ thisted \\ unge \\ mig \\ børn \\ procent \\ hans \\ hver \\ penge \\ hjørring} & \makecell{procent \\ bag \\ rigtig \\ lave \\ dansk \\ formand \\ gode \\ klar \\ svært \\ plads} & \makecell{du \\ sine \\ formand \\ seneste \\ jensen \\ hvert \\ nyt \\ hvordan \\ finde \\ kommunen} & \makecell{du \\ procent \\ unge \\ børn \\ arige \\ hans \\ dansk \\ mig \\ thisted \\ mener} & \makecell{du \\ thisted \\ procent \\ mig \\ børn \\ hans \\ unge \\ dansk \\ mener \\ a} & \makecell{du \\ thisted \\ unge \\ mig \\ børn \\ procent \\ hans \\ hver \\ penge \\ hjørring} \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:author_top_words}
+\end{table*}
+
+As can be seen through this analysis, this knowledge about authors and their topic probabilities can be useful for making better news recommendation systems, but it will be limited since news authors usually write about multiple subjects.
