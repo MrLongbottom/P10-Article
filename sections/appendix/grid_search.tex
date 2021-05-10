@@ -1,6 +1,6 @@
 \subsection{Grid search}
 We have run a grid search based on the standard model of the \gls{lda}, which allowed us to find an approximated optimal configuration.
-During this gridsearch, we optimized for the best topic coherence measure after 50 epochs, which was the number of epochs where the gains started to diminish.
+We optimized for the best topic coherence measure during this grid search after 50 epochs, which was the number of epochs where the gains started to diminish.
 \begin{figure}
 	\includegraphics[width=\textwidth]{figures/gridsearch.png}
 	\caption{Grid search over the variables in \autoref{tab:gridsearch} $K_2$}
@@ -8,5 +8,5 @@ During this gridsearch, we optimized for the best topic coherence measure after 
 \end{figure} 
 The five lowest values in \autoref{fig:visual_grid}, are where the $\alpha$ is $0.1$ and $\beta$ is $0.01$. 
 This shows us that having the $\alpha$ high and the $\beta$ low does not yield good coherence results.
-The next five values is where the $\alpha$ and $\beta$ is $0.01$, which also shows that low value in both hyper parameters does not yield the best results either.
-There is a minor differences between the top configurations in \autoref{fig:visual_grid} but the top two configuration are $70$ and $90$ topics, where $90$ is the best.
+The next five values are where the $\alpha$ and $\beta$ is $0.01$, which also shows that low value in both hyperparameters does not yield the best results either.
+There is a minor difference between the top configurations in \autoref{fig:visual_grid} but the top two configurations are $70$ and $90$ topics, where $90$ is the best.
