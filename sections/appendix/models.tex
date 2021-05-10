@@ -1,7 +1,7 @@
-\subsection{Extenstions to our models}\label{subsec:app_exten_models}
-Looking at the results, in \autoref{tab:metric_results}, the Author-Topic and Category-Topic model does not get very high score in Topic Coherence.
-Trying to improve these results, we have run the combination model, using the same setup as the Author-Category model which is explained in \autoref{subsec:combinations}, just exchanging one feature with the document feature.
-Therefore, we create two extra model, Author-Doc and Category-Doc.
+\subsection{Extensions to our models}\label{subsec:app_exten_models}
+Looking at the results in \autoref{tab:metric_results}, the Author-Topic and Category-Topic model do not get very high scores in Topic Coherence.
+Trying to improve these results we have run the combination model using the same setup as the Author-Category model, which is explained in \autoref{subsec:combinations}, just exchanging one feature with the document feature.
+Therefore, we create two extra models: the Author-Doc and Category-Doc model.
 We run them using the same hyperparameters as all the other models and they get similar results to the standard \gls{lda} model.
 
 \begin{table}[h]
@@ -19,11 +19,12 @@ We run them using the same hyperparameters as all the other models and they get 
 	\label{tab:_extra_metric_results}
 \end{table}
 
-As \autoref{tab:_extra_metric_results} shows, the perplexity score for the two models, are extremely high, since we are multiplying three vectors instead of two.
-When looking at the topics, that the two models produce and comparing them, we can see some suttle difference which might indicate the influence of the metadata.
+As \autoref{tab:_extra_metric_results} shows, the perplexity scores for the two models are extremely high since we are multiplying three vectors instead of two.
+
+When looking at the topics that the two models produce, and comparing them, we can see some subtle differences, which might indicate the influence of the metadata.
 \begin{table}
 		\centering
-	\caption{Top 10 words for two topics within the extension models}
+	\caption{Top 10 words for similar topics within the extension models.}
 	\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
 		Model & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
 		\midrule
@@ -36,21 +37,21 @@ When looking at the topics, that the two models produce and comparing them, we c
 		Author-Doc & natur & dyr & landbrug & naturen & landmænd & skov & hektar & vand & lille & danmarks \\
 		Category-Doc & naturen & natur & du & dansk & hvordan & maske & omradet & landbrug & penge & kystsikring \\
 	\end{tabular}
-	\label{tab:_extra_metric_results}
+	\label{tab:top_word_comparison}
 \end{table}
-We have taken 3 topic pairs, which seemed to be about the same topics and compared them between the models.
-The first topic pair in \autoref{tab:_extra_metric_results}, is about tennis, since some of the words are talking about Caroline Wozniacki, who is a professional danish tennis player and "turneringen" the tournament.
+We have taken 3 topic pairs, which seem to be about the same topics, and compare them between the models.
+The first topic pair in \autoref{tab:top_word_comparison} is about tennis since some of the words are talking about Caroline Wozniacki, who is a professional Danish tennis player, and "turneringen" (the tournament).
 Specifically, "caroline" is not in the top 10 of the Category-Doc model which might indicate that the authors have written about "caroline wozniacki" before in other contexts.
 The word "slag" (hit) is also used within tennis, which might indicate that the Category metadata helps bring sport words higher up in the ranks.
 Otherwise the two topics are pretty similar in the words they use.
 
 Looking at the second pair of topics, which is about the EU and Great Britain, we can see that they are very similar.
-The 8th word for the Author-topic model, is "sagde" (said), which is not a very informative word, regarding the topic, but a author might use these kinds of words many times during an article.
-Other than that, the topics are very similar, when looking at the 10 most probable words.
+The 8th word for the Author-topic model is "sagde" (said), which is not a very informative word regarding the topic, but an author might use these kinds of words many times during an article.
+Other than that, the topics are very similar when looking at the 10 most probable words.
 
-The third pair of topics, is about nature and farming.
-These two topics are not as similar as the other two pairs, we have looked at but they have two different viewpoints on this topic.
-The Author-Doc model describes words concerning farming, since two of the words used, are "landbrug" (farming) and "landmand" (farmer). 
-It also mentions nature, where "natur" (nature), "dyr"(animals), "skov"(forest), "vand"(water).
-The Category-Doc model describes nature as well, but is more focused on areas within nature, since the words "området" (the area) and "kystsikring" (coastal protection) are used.
-The model might focus more on the debate within the nature topic, which could be about the coastal protection.    
+The third pair of topics is about nature and agriculture.
+These two topics are not as similar as the other two pairs we have looked at, but they have two different viewpoints on this topic.
+The Author-Doc model describes words concerning agriculture since two of the words used are "landbrug" (agriculture) and "landmand" (farmer). 
+It also mentions nature, with words such as: "natur" (nature), "dyr" (animals), "skov" (forest), and "vand" (water).
+The Category-Doc model describes nature as well but is more focused on areas within nature since the words "området" (the area) and "kystsikring" (coastal protection) are used.
+The model might focus more on the debate within the nature topic, which could be about coastal protection.    
