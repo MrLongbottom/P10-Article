@@ -1,6 +1,5 @@
-\documentclass[conference]{IEEEtran}
-%\IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\documentclass[conference, dvipsnames]{IEEEtran}
+
 % Usepackages
 \input{setup/preamble.tex}
 
@@ -97,16 +96,18 @@ rech16@student.aau.dk}
 % - References (10 \%)
 % 	- Acknowledgments
 %	- Bibliography
-
+\vejleder[inline]{Expand the citation list!!}
 \bibliography{paper}
 
 %Appendixes, if needed, appear before the acknowledgment.
+\glsresetall
 \onecolumn
 \appendix
 \input{sections/appendix/Overview.tex}
 \input{sections/appendix/categories.tex}
 \input{sections/appendix/authors.tex}
 \input{sections/appendix/gibbs_sampling.tex}
+\input{sections/appendix/multi_process_gibbs.tex}
 \input{sections/appendix/pachinko_implementation.tex}
 \input{sections/appendix/locking.tex}
 \input{sections/appendix/pyro.tex}

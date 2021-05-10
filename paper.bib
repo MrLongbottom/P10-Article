@@ -25,11 +25,19 @@
   publisher={JMLR. org}
 }
 
-@article{blei2010supervised,
-	title={Supervised topic models},
-	author={Blei, David M and McAuliffe, Jon D},
-	journal={arXiv preprint arXiv:1003.0783},
-	year={2010}
+@inproceedings{blei2010supervised,
+	author = {Blei, David M. and McAuliffe, Jon D.},
+	title = {Supervised Topic Models},
+	year = {2007},
+	isbn = {9781605603520},
+	publisher = {Curran Associates Inc.},
+	address = {Red Hook, NY, USA},
+	abstract = {We introduce supervised latent Dirichlet allocation (sLDA), a statistical model of labelled documents. The model accommodates a variety of response types. We derive a maximum-likelihood procedure for parameter estimation, which relies on variational approximations to handle intractable posterior expectations. Prediction problems motivate this research: we use the fitted model to predict response values for new documents. We test sLDA on two real-world problems: movie ratings predicted from reviews, and web page popularity predicted from text descriptions. We illustrate the benefits of sLDA versus modern regularized regression, as well as versus an unsupervised LDA analysis followed by a separate regression.},
+	booktitle = {Proceedings of the 20th International Conference on Neural Information Processing Systems},
+	pages = {121–128},
+	numpages = {8},
+	location = {Vancouver, British Columbia, Canada},
+	series = {NIPS'07}
 }
 
 @inproceedings{mimno2008topic,
@@ -169,4 +177,45 @@ numpages = {8}
   pages={313--334},
   year={2015},
   publisher={Springer}
+  
+@inproceedings{llda2009,
+	title = "{L}abeled {LDA}: A supervised topic model for credit attribution in multi-labeled corpora",
+	author = "Ramage, Daniel  and
+	Hall, David  and
+	Nallapati, Ramesh  and
+	Manning, Christopher D.",
+	booktitle = "Proceedings of the 2009 Conference on Empirical Methods in Natural Language Processing",
+	month = aug,
+	year = "2009",
+	address = "Singapore",
+	publisher = "Association for Computational Linguistics",
+	url = "https://www.aclweb.org/anthology/D09-1026",
+	pages = "248--256",
+}
+
+@inproceedings{wf-lda2010,
+	author = {Petterson, James and Buntine, Wray and Narayanamurthy, Shravan and Caetano, Tib\'{e}rio and Smola, Alex},
+	booktitle = {Advances in Neural Information Processing Systems},
+	editor = {J. Lafferty and C. Williams and J. Shawe-Taylor and R. Zemel and A. Culotta},
+	pages = {},
+	publisher = {Curran Associates, Inc.},
+	title = {Word Features for Latent Dirichlet Allocation},
+	url = {https://proceedings.neurips.cc/paper/2010/file/db85e2590b6109813dafa101ceb2faeb-Paper.pdf},
+	volume = {23},
+	year = {2010}
+}
+
+@article{lf-lda2015,
+	title = "Improving Topic Models with Latent Feature Word Representations",
+	author = "Nguyen, Dat Quoc  and
+	Billingsley, Richard  and
+	Du, Lan  and
+	Johnson, Mark",
+	journal = "Transactions of the Association for Computational Linguistics",
+	volume = "3",
+	year = "2015",
+	url = "https://www.aclweb.org/anthology/Q15-1022",
+	doi = "10.1162/tacl_a_00140",
+	pages = "299--313",
+	abstract = "Probabilistic topic models are widely used to discover latent topics in document collections, while latent feature vector representations of words have been used to obtain high performance in many NLP tasks. In this paper, we extend two different Dirichlet multinomial topic models by incorporating latent feature vector representations of words trained on very large corpora to improve the word-topic mapping learnt on a smaller corpus. Experimental results show that by using information from the external corpora, our new models produce significant improvements on topic coherence, document clustering and document classification tasks, especially on datasets with few or short documents.",
 }
