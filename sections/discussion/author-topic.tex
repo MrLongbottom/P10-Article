@@ -4,13 +4,13 @@ One observation that is possible, is looking at the similarity of authors.
 In this model, the author-topic distribution defines the probabilities of topics being written by a specific author.
 Then, just as \citet{author_topic_2012}, the similarity of authors can be found by calculating the symmetric Kullback-Leibler divergence:
 
-\begin{equation}
+\begin{equation} \label{eq:author_similarity}
 	sKL(i,j) = \sum_{t=1}^{T}\left[\theta_{it}\, log \frac{\theta_{it}}{\theta_{jt}} + \theta_{jt}\, log \frac{\theta_{jt}}{\theta_{it}}\right]
 \end{equation}
 \noindent where $\theta_{it}$ is the probability of author $i$ having written about topic $t$, and the same for $\theta_{jt}$ with author $j$.
 
 In the context of using these similarities to assist Nordjyske, knowing how similar authors are, gives the opportunity to recommend new authors to readers, while the articles are about similar topics.
-In \autoref{tab:author_similarity} the top 10 author pairs, based on this similarity measure, are shown.
+In \autoref{tab:author_similarity}, the top 10 author pairs, based on this similarity measure, are shown.
 A smaller KL value means the authors are more similar.
 The number in parenthesis next to each author is the number of articles they have written in our dataset.
 
