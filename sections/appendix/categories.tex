@@ -3,7 +3,7 @@
 \subsubsection{Category}\label{subsec:appendix_category}
 
 There are $58$ different category labels present within the dataset.
-Categories with fewer than 139 documents ($0.1\%$ of the number of documents) are removed as part of preprocessing and replaced with a single miscellaneous category 'misc'.
+Categories with less than 140 documents ($0.1\%$ of the number of documents) are removed as part of preprocessing and replaced with a single miscellaneous category 'misc'.
 This reduces the number of categories to $34$, while only replacing 292 documents to have the 'misc' category.
 This preprocessing also makes the size of the remaining categories more evenly distributed, as can be seen in \autoref{fig:category_hist}.
 
@@ -43,10 +43,13 @@ From the exploration of these two categories, we can not say with certainty why 
 We continue to use these categories in our experiment, for the possibility of making other observations through the topic models.
 
 \begin{table*}[h]
+	\caption{Number of documents for each of the 58 categories within the Nordjyske dataset from 2017 to 2019.
+		The highlighted categories are filtered and combined during preprocessing.}
+	\label{tab:category_table}
 	\centering
 	\begin{tabular}{l|c|l|c|l|c|l|c}
 		Category            & Number & Category        & Number & Category                       & Number & Category                    & Number \\
-		\toprule
+		\midrule
 		Fælles              & 20204  & Navne           &  3749  & Kram                           &  244   & \textbf{Østvendsyssel Avis} &   4    \\
 		Thisted-avis        & 11473  & Kultur          &  3012  & 53. Frederik                   &  203   & \textbf{DF Motor Biler}     &   3    \\
 		Sport-avis          & 10941  & Morsø Sport     &  2350  & Feature                        &  188   & \textbf{Nyhedsmotoren-net}  &   3    \\
@@ -64,9 +67,6 @@ We continue to use these categories in our experiment, for the possibility of ma
 		Jammerbugt-avis     &  3791  & 26. Frederik    &  484   & \textbf{DF Licitation Diverse} &   4    &                             &        \\
 		\bottomrule
 	\end{tabular}
-	\caption{Number of documents for each of the 58 categories within the Nordjyske dataset from 2017 to 2019.
-		The highlighted categories are filtered and combined during preprocessing.}
-	\label{tab:category_table}
 \end{table*}
 \todo[inline]{mark categories that are preprocessed away}
 
@@ -127,6 +127,8 @@ Out of $1135$ sub-taxonomies, $779$ are removed during this preprocessing.
 \todo[inline]{describe layer sizes of taxonomy tree}
 
 \begin{table}
+	\caption{Statistics over documents associated with metadata values, before and after preprocessing}
+	\label{tab:meta_prepro_stats}
 	\centering
 	\begin{tabular}{l | c | c | c | c | c}
 		Metadata & Min & Max & Mean & Median & Std. \\
@@ -138,6 +140,4 @@ Out of $1135$ sub-taxonomies, $779$ are removed during this preprocessing.
 		Taxonomy & 1 & 29535 & 123.0 & 6 & 1385.9 \\
 		Taxonomy (preprocessed) & 14 & 29535 & 1598.9 & 118.5 & 9298.4 \\
 	\end{tabular}
-	\caption{Statistics over documents associated with metadata values, before and after preprocessing}
-	\label{tab:meta_prepro_stats}
 \end{table}

@@ -35,70 +35,71 @@ The name 'AAArtikler parkeret' also indicates that these articles, at least at s
 These articles are kept in our dataset, even though we can not be certain of who wrote them.
 
 \begin{table*}[h]
+	\caption{Number of documents written by each author in the Nordjyske dataset from 2017 to 2019.
+	The highlighted authors are filtered and combined during preprocessing.}
+	\label{tab:author_table}
 	\centering
 	\scriptsize
 	\begin{tabular}{l|c|l|c|l|c|l|c}
 		Author                & Number & Author                     & Number & Author                       & Number & Author                       & Number \\
-		\toprule
-		Ove Nørhave           &  9893  & Bent Stenbakken            &  646   & Katrine Schousboe            &  189   & Sarah Sandhøj                &   35   \\
-		System Administrator  &  9038  & Lars Hofmeister            &  628   & Mathias Majlund Laursen      &  178   & Suzanne Tram                 &   34   \\
-		Ole Fink Mejlgaard    &  6518  & Anne Helene Thomsen        &  606   & Anne Brik Jensen             &  177   & Sebastian Engelberth Hansen  &   33   \\
-		Peter Tordrup Larsen  &  5002  & Max Melgaard               &  587   & Peder Pedersen               &  166   & Anna Østergaard Bjørn        &   29   \\
-		Kim Juhl Andersen     &  4506  & Karen Marie Foldbjerg      &  580   & Carl Åge Østergaard          &  152   & Michael Sand Andersen        &   27   \\
-		Jeppe Damsgaard       &  4057  & Lise Larsen                &  575   & Mette Siggaard               &  150   & HANNE Lindblad Jensen        &   27   \\
-		Jørn Larsen           &  3863  & Asbjørn Hansen             &  566   & Karen Keinicke               &  150   & Mathilde Juul Back Jensen    &   25   \\
-		Jørn Eriksen          &  3395  & Peter Witten               &  544   & Tune Kristensen              &  149   & Allan Bauer                  &   19   \\
-		Anders Kjærgaard      &  2960  & Allan Vinding Sørensen     &  534   & Morten Brændstrup            &  146   & Linse Daugaard               &   18   \\
-		Søren Beukel Bak      &  2811  & Dorrit Gap Jensen          &  530   & Emil Halkier                 &  143   & Morten Nis Klenø             &   17   \\
-		Søren Olsson          &  2558  & Hans Christensen           &  500   & Britt Kristensen             &  135   & OLE SANVIG KNUDSEN           &   16   \\
-		Jens Peter Svarrer    &  2480  & Lars Høj                   &  493   & KAREN Marie Foldbjerg        &  132   & Frederik Siiger              &   15   \\
-		Flemming Kristensen   &  2282  & Jesper Ramsing             &  469   & Claus Smidstrup              &  128   & Kim Lesanner                 &   15   \\
-		Thomas Jasper         &  2186  & Jens Hukiær                &  464   & Sarah Thun Madsen            &  127   & Pia Haugaard                 &   13   \\
-		Bente Lembo           &  2128  & Svend Ole Jensen           &  447   & Jakob Kanne Bjerregaard      &  126   & MERETE HORN                  &   12   \\
-		Helle Møller Larsen   &  1787  & Martin Frandsen            &  437   & Lars Teilmann                &  122   & Regitze Ørnstrup Christensen &   12   \\
-		Claus Jensen          &  1739  & Tobias Brandt              &  423   & Natasha Jahanshahi           &  117   & Inge Steen Sørensen          &   11   \\
-		Esben Heine Pedersen  &  1689  & Andrea Jessen Jakobsen     &  423   & Jens Ole Pedersen            &  116   & Anika Thorø Møller           &   11   \\
-		Margit Sig            &  1632  & Carsten Søgaard Jensen     &  420   & Pauline Bülow                &  116   & Tim Søgaard                  &   11   \\
-		Jens Fogh-Andersen    &  1614  & Morten Lind                &  413   & Christoffer Green Sørensen   &  115   & Flemming Haslund             &   10   \\
-		Ole Jensen            &  1611  & Esben Agerlin Olsen        &  406   & Flemming Junker              &  103   & Henrik Nordstrøm Mortensen   &   10   \\
-		David Højmark         &  1549  & Carsten Hougaard           &  406   & Niklas Grønborg              &  103   & Emil Halkær                  &   9    \\
-		Niels Hansen          &  1512  & Dorit Glintborg            &  405   & Sofie Møller                 &   99   & Katrine Hjulmann Nielsen     &   9    \\
-		Line Lykkegaard Skou  &  1504  & Karin Pedersen             &  397   & Michael Strandfelt           &   98   & John Jensen                  &   8    \\
-		Lars Bang Bertelsen   &  1443  & Kasper Ørkild              &  393   & Anders Sønderup              &   95   & Jacob Eggert Kabel           &   8    \\
-		Villy Dall            &  1408  & Marianne Isen              &  387   & Søren Kjær                   &   95   & Søren Dietrichsen            &   7    \\
-		Hans Peter Kragh      &  1403  & Jakob Gammelgaard          &  385   & Lone Beck                    &   92   & Nicolai Østergaard           &   6    \\
-		Claus T. Kræmmergård  &  1354  & Dorte Geertsen             &  383   & Torben O. Andersen           &   91   & Søren L. Hviid               &   6    \\
-		Lars Christensen      &  1293  & Torben Duch Holm           &  364   & Mikkel Færgemann Viken       &   91   & Kathrine Lykkegaard Jeppesen &   5    \\
-		Rasmus Skovbo         &  1253  & Henrik Strømgaard          &  362   & Hans Henrik Rasmussen        &   90   & Ursula Rechnagel Taylor      &   5    \\
-		Anders Abildgaard     &  1229  & Lisbeth Helleskov          &  361   & Steffen Bek                  &   89   & Jens Otto Barsøe             &   4    \\
-		Lasse Damsgaard       &  1209  & Niels Brauer               &  358   & Simon Kjær Jensen            &   86   & Maria Berg Badstue Pedersen  &   4    \\
-		Søren Østergaard      &  1207  & Jesper Poulsen             &  348   & Michael Sand                 &   85   & Jacob Andersen               &   3    \\
-		Hanne Lindblad Jensen &  1191  & Lars Termansen             &  328   & Julian Drud Sørensen         &   84   & Christian Brahe-Pedersen     &   3    \\
-		Charlotte Bøje        &  1117  & Mikkel Eklund              &  328   & Tina Larsen                  &   82   & Helle-Lise Ritzau Kaptain    &   3    \\
-		Morten Kyndby Holm    &  1102  & Susie Skov                 &  323   & Nils Rasmussen               &   79   & Jane Schmidt Klausen         &   3    \\
-		Lars Aare Jensen      &  1084  & Birgitte Sonne             &  321   & Katrine Hjulmann             &   73   & Ebbe Fischer                 &   3    \\
-		Hanne Overbye         &  1075  & Anders Andersen            &  315   & Mathias Lykke                &   72   & Stefan Buur Hansen           &   3    \\
-		Lise Stenbro          &  1029  & Gunnar Onghamar            &  309   & Caspar Birk                  &   71   & Camilla Pehrson              &   2    \\
-		Lone Lærke Krog       &  1005  & Carl Emil Nielsen          &  305   & Anna Bech Sørensen           &   69   & Danske Fagmedier master      &   2    \\
-		Carsten Tolbøll       &  1004  & Emma Toftelund Poulsen     &  299   & Fie Dømler                   &   65   & testbruger                   &   2    \\
-		Mette Møller          &  974   & Ole Sanvig Knudsen         &  287   & Poul Christoffersen          &   65   & Anders Fuglsang              &   2    \\
-		Ida Smith             &  973   & Charlotte Rørth            &  276   & Søren Skov                   &   56   & Peter Kargaard               &   2    \\
-		Merete Horn           &  929   & Morten Appel               &  273   & Nana Sofia Hansen            &   54   & Morten Munk Andersen         &   2    \\
-		Pernille K. Damsgaard &  922   & Kristian Gull Pedersen     &  266   & Tobias Reffstrup Rasmussen   &   53   & JSLbruger Nordjyske          &   2    \\
-		Lars Løcke            &  873   & Birgitte Bové              &  262   & AAArtikler parkeret          &   51   & Jan M. Jensen                &   1    \\
-		Thomas Nielsen        &  841   & Helle Madsen               &  258   & Camilla Gammelgaard Johansen &   50   & Tom Andersson                &   1    \\
-		Jakob Frey Ahrentzen  &  832   & Kasper Orkild Hansen       &  255   & Klaus Færch Gjerulff         &   49   & Jørgen la Cour-Harbo         &   1    \\
-		Lise Myrup Lassen     &  793   & Emil Abkjær Kristensen     &  253   & Ida Thorsen                  &   48   & Rene Sonne                   &   1    \\
-		Carl Chr. Madsen      &  785   & Nanna Holm Hansen          &  252   & Mathias Overgaard            &   46   & SAXoTECH Systembruger        &   1    \\
-		Inge Nørregård        &  746   & Bine Martine Gori          &  247   & Kirsten Østergaard           &   45   & Andreas K. Wielandt          &   1    \\
-		Jesper Schouenborg    &  724   & Heidi Majgaard B. Pedersen &  244   & Gerda Buhl Andersen          &   44   & Per Lyngby                   &   1    \\
-		Jens Sønderup         &  709   & Daniel Vendner             &  211   & Pia Christensen              &   44   & Michael F. Nørfelt           &   1    \\
-		Birgit Eriksen        &  700   & Ida Marie Kristensen       &  204   & Dorte Rohde                  &   42   & Simon Dinsen Hansen          &   1    \\
-		Søren Wormslev        &  681   & Kirsten Pilgaard           &  197   & Anna Grethe Jensen           &   41   & Mads Skov Aagurd             &   1    \\
-		Knud Labohn           &  653   & Marianne Dyhrberg Cornett  &  192   & Henrik Schulz                &   38   & Benita Dreyer-Andersen       &   1    \\
-		Hans Jørgen Hansen    &  646   & Susanne Justsen            &  191   & Lone Heilskov                &   37   &                              &        \\
+		\midrule
+		Ove Nørhave & 9893 & Bent Stenbakken & 646 & Katrine Schousboe & 189 & \textbf{Sarah Sandhøj} & 35 \\
+		System Administrator & 9038 & Lars Hofmeister & 628 & Mathias Majlund Laursen & 178 & \textbf{Suzanne Tram} & 34 \\
+		Ole Fink Mejlgaard & 6518 & Anne Helene Thomsen & 606 & Anne Brik Jensen & 177 & \textbf{Sebastian Engelberth Hansen} & 33 \\
+		Peter Tordrup Larsen & 5002 & Max Melgaard & 587 & Peder Pedersen & 166 & \textbf{Anna Østergaard Bjørn} & 29 \\
+		Kim Juhl Andersen & 4506 & Karen Marie Foldbjerg & 580 & Carl Åge Østergaard & 152 & \textbf{Michael Sand Andersen} & 27 \\
+		Jeppe Damsgaard & 4057 & Lise Larsen & 575 & Mette Siggaard & 150 & \textbf{HANNE Lindblad Jensen} & 27 \\
+		Jørn Larsen & 3863 & Asbjørn Hansen & 566 & Karen Keinicke & 150 & \textbf{Mathilde Juul Back Jensen} & 25 \\
+		Jørn Eriksen & 3395 & Peter Witten & 544 & Tune Kristensen & 149 & \textbf{Allan Bauer} & 19 \\
+		Anders Kjærgaard & 2960 & Allan Vinding Sørensen & 534 & Morten Brændstrup & 146 & \textbf{Linse Daugaard} & 18 \\
+		Søren Beukel Bak & 2811 & Dorrit Gap Jensen & 530 & Emil Halkier & 143 & \textbf{Morten Nis Klenø} & 17 \\
+		Søren Olsson & 2558 & Hans Christensen & 500 & \textbf{Britt Kristensen} & 135 & \textbf{OLE SANVIG KNUDSEN} & 16 \\
+		Jens Peter Svarrer & 2480 & Lars Høj & 493 & \textbf{KAREN Marie Foldbjerg} & 132 & \textbf{Frederik Siiger} & 15 \\
+		Flemming Kristensen & 2282 & Jesper Ramsing & 469 & \textbf{Claus Smidstrup} & 128 & \textbf{Kim Lesanner} & 15 \\
+		Thomas Jasper & 2186 & Jens Hukiær & 464 & \textbf{Sarah Thun Madsen} & 127 & \textbf{Pia Haugaard} & 13 \\
+		Bente Lembo & 2128 & Svend Ole Jensen & 447 & \textbf{Jakob Kanne Bjerregaard} & 126 & \textbf{MERETE HORN} & 12 \\
+		Helle Møller Larsen & 1787 & Martin Frandsen & 437 & \textbf{Lars Teilmann} & 122 & \textbf{Regitze Ørnstrup Christensen} & 12 \\
+		Claus Jensen & 1739 & Tobias Brandt & 423 & \textbf{Natasha Jahanshahi} & 117 & \textbf{Inge Steen Sørensen} & 11 \\
+		Esben Heine Pedersen & 1689 & Andrea Jessen Jakobsen & 423 & \textbf{Jens Ole Pedersen} & 116 & \textbf{Anika Thorø Møller} & 11 \\
+		Margit Sig & 1632 & Carsten Søgaard Jensen & 420 & \textbf{Pauline Bülow} & 116 & \textbf{Tim Søgaard} & 11 \\
+		Jens Fogh-Andersen & 1614 & Morten Lind & 413 & \textbf{Christoffer Green Sørensen} & 115 & \textbf{Flemming Haslund} & 10 \\
+		Ole Jensen & 1611 & Esben Agerlin Olsen & 406 & \textbf{Flemming Junker} & 103 & \textbf{Henrik Nordstrøm Mortensen} & 10 \\
+		David Højmark & 1549 & Carsten Hougaard & 406 & \textbf{Niklas Grønborg} & 103 & \textbf{Emil Halkær} & 9 \\
+		Niels Hansen & 1512 & Dorit Glintborg & 405 & \textbf{Sofie Møller} & 99 & \textbf{Katrine Hjulmann Nielsen} & 9 \\
+		Line Lykkegaard Skou & 1504 & Karin Pedersen & 397 & \textbf{Michael Strandfelt} & 98 & \textbf{John Jensen} & 8 \\
+		Lars Bang Bertelsen & 1443 & Kasper Ørkild & 393 & \textbf{Anders Sønderup} & 95 & \textbf{Jacob Eggert Kabel} & 8 \\
+		Villy Dall & 1408 & Marianne Isen & 387 & \textbf{Søren Kjær} & 95 & \textbf{Søren Dietrichsen} & 7 \\
+		Hans Peter Kragh & 1403 & Jakob Gammelgaard & 385 & \textbf{Lone Beck} & 92 & \textbf{Nicolai Østergaard} & 6 \\
+		Claus T. Kræmmergård & 1354 & Dorte Geertsen & 383 & \textbf{Torben O. Andersen} & 91 & \textbf{Søren L. Hviid} & 6 \\
+		Lars Christensen & 1293 & Torben Duch Holm & 364 & \textbf{Mikkel Færgemann Viken} & 91 & \textbf{Kathrine Lykkegaard Jeppesen} & 5 \\
+		Rasmus Skovbo & 1253 & Henrik Strømgaard & 362 & \textbf{Hans Henrik Rasmussen} & 90 & \textbf{Ursula Rechnagel Taylor} & 5 \\
+		Anders Abildgaard & 1229 & Lisbeth Helleskov & 361 & \textbf{Steffen Bek} & 89 & \textbf{Jens Otto Barsøe} & 4 \\
+		Lasse Damsgaard & 1209 & Niels Brauer & 358 & \textbf{Simon Kjær Jensen} & 86 & \textbf{Maria Berg Badstue Pedersen} & 4 \\
+		Søren Østergaard & 1207 & Jesper Poulsen & 348 & \textbf{Michael Sand} & 85 & \textbf{Jacob Andersen} & 3 \\
+		Hanne Lindblad Jensen & 1191 & Lars Termansen & 328 & \textbf{Julian Drud Sørensen} & 84 & \textbf{Christian Brahe-Pedersen} & 3 \\
+		Charlotte Bøje & 1117 & Mikkel Eklund & 328 & \textbf{Tina Larsen} & 82 & \textbf{Helle-Lise Ritzau Kaptain} & 3 \\
+		Morten Kyndby Holm & 1102 & Susie Skov & 323 & \textbf{Nils Rasmussen} & 79 & \textbf{Jane Schmidt Klausen} & 3 \\
+		Lars Aare Jensen & 1084 & Birgitte Sonne & 321 & \textbf{Katrine Hjulmann} & 73 & \textbf{Ebbe Fischer} & 3 \\
+		Hanne Overbye & 1075 & Anders Andersen & 315 & \textbf{Mathias Lykke} & 72 & \textbf{Stefan Buur Hansen} & 3 \\
+		Lise Stenbro & 1029 & Gunnar Onghamar & 309 & \textbf{Caspar Birk} & 71 & \textbf{Camilla Pehrson} & 2 \\
+		Lone Lærke Krog & 1005 & Carl Emil Nielsen & 305 & \textbf{Anna Bech Sørensen} & 69 & \textbf{Danske Fagmedier master} & 2 \\
+		Carsten Tolbøll & 1004 & Emma Toftelund Poulsen & 299 & \textbf{Fie Dømler} & 65 & \textbf{testbruger} & 2 \\
+		Mette Møller & 974 & Ole Sanvig Knudsen & 287 & \textbf{Poul Christoffersen} & 65 & \textbf{Anders Fuglsang} & 2 \\
+		Ida Smith & 973 & Charlotte Rørth & 276 & \textbf{Søren Skov} & 56 & \textbf{Peter Kargaard} & 2 \\
+		Merete Horn & 929 & Morten Appel & 273 & \textbf{Nana Sofia Hansen} & 54 & \textbf{Morten Munk Andersen} & 2 \\
+		Pernille K. Damsgaard & 922 & Kristian Gull Pedersen & 266 & \textbf{Tobias Reffstrup Rasmussen} & 53 & \textbf{JSLbruger Nordjyske} & 2 \\
+		Lars Løcke & 873 & Birgitte Bové & 262 & \textbf{AAArtikler parkeret} & 51 & \textbf{Jan M. Jensen} & 1 \\
+		Thomas Nielsen & 841 & Helle Madsen & 258 & \textbf{Camilla Gammelgaard Johansen} & 50 & \textbf{Tom Andersson} & 1 \\
+		Jakob Frey Ahrentzen & 832 & Kasper Orkild Hansen & 255 & \textbf{Klaus Færch Gjerulff} & 49 & \textbf{Jørgen la Cour-Harbo} & 1 \\
+		Lise Myrup Lassen & 793 & Emil Abkjær Kristensen & 253 & \textbf{Ida Thorsen} & 48 & \textbf{Rene Sonne} & 1 \\
+		Carl Chr. Madsen & 785 & Nanna Holm Hansen & 252 & \textbf{Mathias Overgaard} & 46 & \textbf{SAXoTECH Systembruger} & 1 \\
+		Inge Nørregård & 746 & Bine Martine Gori & 247 & \textbf{Kirsten Østergaard} & 45 & \textbf{Andreas K. Wielandt} & 1 \\
+		Jesper Schouenborg & 724 & Heidi Majgaard B. Pedersen & 244 & \textbf{Gerda Buhl Andersen} & 44 & \textbf{Per Lyngby} & 1 \\
+		Jens Sønderup & 709 & Daniel Vendner & 211 & \textbf{Pia Christensen} & 44 & \textbf{Michael F. Nørfelt} & 1 \\
+		Birgit Eriksen & 700 & Ida Marie Kristensen & 204 & \textbf{Dorte Rohde} & 42 & \textbf{Simon Dinsen Hansen} & 1 \\
+		Søren Wormslev & 681 & Kirsten Pilgaard & 197 & \textbf{Anna Grethe Jensen} & 41 & \textbf{Mads Skov Aagurd} & 1 \\
+		Knud Labohn & 653 & Marianne Dyhrberg Cornett & 192 & \textbf{Henrik Schulz} & 38 & \textbf{Benita Dreyer-Andersen} & 1 \\
+		Hans Jørgen Hansen & 646 & Susanne Justsen & 191 & \textbf{Lone Heilskov} & 37 & & \\
 		\bottomrule
 	\end{tabular}
-	\caption{Number of documents written by each author in the Nordjyske dataset from 2017 to 2019.}
-	\label{tab:author_table}
 \end{table*}
