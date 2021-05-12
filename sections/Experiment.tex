@@ -59,13 +59,14 @@ We create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry per word pa
 \end{equation}
 \noindent where $\epsilon$ is a low number ($10^{-12}$) used to avoid $log(0)$.
 The \gls{npmi} matrix describes how much each word occurs alone versus together with other words.
-%This is a -1 to 1 normalization.
+Each value is between $-1$ and $1$, with $-1$ meaning that the words never occour together and 1 meaning that they only occour together.
 
 After having calculated the \gls{npmi} matrix, we construct context vectors for both elements $W'$ and $W*$ in each word-pair $S_i$, by summing over the rows of the \gls{npmi} matrix.
 This summation describes how much each top word co-occurs with the other words in $W$.
 \begin{equation}\label{eq:coherence_1}
 	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^{\gamma} \right\}_{j=1,\dots,|W|}
 \end{equation}
+\noindent where gamma can be used to further prioritize higher values. For this paper we use $\gamma = 1$, as recommended by \citet{Syed2017coherence}.
 
 We now have a pair of context vectors for each word pair $S_i$ and we want to know how different these vectors are.
 This is calculated using cosine similarity as a confirmation measure.
