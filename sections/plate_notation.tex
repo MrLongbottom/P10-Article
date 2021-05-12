@@ -87,9 +87,10 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrlong{pam} from \citet{li2006pachinko}.
 Pachinko allocation generalizes \gls{lda}, to be able to construct topic hiearchies based on any \gls{dag} structure.
-\gls{pam} is a topic model focusing on finding topics of different abstraction level and modelling the connections between these topics. 
+\gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the connections between these topics. 
 
-Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hiarchy of the  \gls{dag} structure.
+Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
+However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the  \gls{dag} structure.
 An example of the dag structure used in this paper is shown in \autoref{fig:pachinko_dag}.
 
 In this paper we use a layered \gls{pam}, meaning that the \gls{dag} structure is divided into layers with every node in each layer having an edge going to every node in the next layer further down the hiarchy.
@@ -103,15 +104,15 @@ We use a five-level pachinko tree structure, following the format presented by \
 The first layer is the root layer, which all words are a part of.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of first two positions in our taxonomy dataset, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second postion in the taxonomy sequence.
-We only use the first two layers for this, as the these are among the most informative, and because introducing even more layers would slow down the training exponentially, as the probability of all possible combinations of topics need to be sampled for every word during training.
+We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training.
 The fourth layer consists of $K = 90$ 'blank' topics, as with the other models we present in this paper.
-This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy data.
+This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
 This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
 
 The generative process for PAM is described as follows:
-First the multinomial distributions for each node in the \gls{dag} are sampled from dirichlet distributions based on $\alpha$ values.
+First, the multinomial distributions for each node in the \gls{dag} are sampled from Dirichlet distributions based on $\alpha$ values.
 While it is possible to use different $\alpha$ values for each layer, we found through experimentation using the same $\alpha$ value for all layers still provided good results.
-Similarly for the second to last layer, the multinomial distribution over words are sampled from a dirichlet distribution based on a single $\beta$ value.
+Similarly, for the second to last layer, the multinomial distribution over words is sampled from a Dirichlet distribution based on a single $\beta$ value.
 
 After all topic distribution have been sampled, documents are created by sampling words in the following manner:
 For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
@@ -119,7 +120,7 @@ More specifically, for each topic $Z_{wl}$ starting with the root topic $Z_{w1}$
 This generative process in also illustrated in the plate notation for our \gls{pam} in \autoref{fig:pachinko}.
 
 We use Gibbs sampling for performing inference.
-For each word, a chain of topics is sampled by calculating the probability of all combination of topics and making a weighted sample.
+For each word, a chain of topics is sampled by calculating the probability of all combinations of topics and making a weighted sample.
 The probability of each topic combination is calculated using the joint probability of the topics, as presented in \autoref{eq:pachinko_gibbs}.
 
 \begin{equation}\label{eq:pachinko_gibbs}
@@ -132,7 +133,7 @@ The probability of each topic combination is calculated using the joint probabil
 	\end{split}
 \end{equation}
 As in \citet{li2006pachinko} $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are topic assignments for the three middle layers of topics in our 5-layer Pachinko model.
-The root topic is not part of this equation since all words are part of it, so the probibility does not need to be calculated.
+The root topic is not part of this equation since all words are part of it, so the probability does not need to be calculated.
 $Z_{-w}$ is the word topic assignment, for all other words except the one that is being updated.
 $n_x^d$ is the number of times topic $t_x$ occurs in document $d$ according to $Z_{-w}$. 
 The $n_{xy}^d$ describes how many times topic $t_y$ is sampled from its parent $t_x$ within document $d$ according to $Z_{-w}$.
