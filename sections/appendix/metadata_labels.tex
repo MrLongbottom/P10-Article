@@ -5,3 +5,21 @@ Here the focus will be on observations related to the labels of the metadata.
 \input{sections/appendix/categories.tex}
 \input{sections/appendix/authors.tex}
 \input{sections/appendix/taxonomies.tex}
+
+Statistics over the three metadata types, before and after preprocessing, can be seen in \autoref{tab:meta_prepro_stats}.
+
+\begin{table}
+	\caption{Statistics over documents associated with metadata values, before and after preprocessing.}
+	\label{tab:meta_prepro_stats}
+	\centering
+	\begin{tabular}{l | c | c | c | c | c}
+		Metadata & Min & Max & Mean & Median & Std. \\
+		\midrule
+		Author & 1 & 9893 & 612.6 & 191 & 1219.7 \\
+		Author (preprocessed) & 15 & 9893 & 751.7 & 323 & 1311.9 \\
+		Category & 1 & 20204 & 2397.6 & 548 & 3812.1 \\
+		Category (preprocessed) & 188 & 20204 & 4090.0 & 2681 & 4227.3 \\
+		Taxonomy & 1 & 29535 & 123.0 & 6 & 1385.9 \\
+		Taxonomy (preprocessed) & 14 & 29535 & 1598.9 & 118.5 & 9298.4 \\
+	\end{tabular}
+\end{table}

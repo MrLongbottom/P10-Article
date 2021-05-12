@@ -5,25 +5,20 @@ It is hierarchical, with each taxonomy containing a sequence of sub-taxonomies, 
 It is also possible for each document to have multiple taxonomy sequences.
 Like with authors, we remove any sub-taxonomy that is used in less than $14$ taxonomy sequences ($0.01\%$ of the number of documents).
 Out of $1135$ sub-taxonomies, $779$ are removed during this preprocessing.
+A subset of the taxonomies and the number of articles they appear in can be seen in \autoref{tab:taxonomy_table}.
 \todo[inline]{describe layer sizes of taxonomy tree}
 
-\begin{table}
-	\caption{Statistics over documents associated with metadata values, before and after preprocessing}
-	\label{tab:meta_prepro_stats}
-	\centering
-	\begin{tabular}{l | c | c | c | c | c}
-		Metadata & Min & Max & Mean & Median & Std. \\
-		\midrule
-		Author & 1 & 9893 & 612.6 & 191 & 1219.7 \\
-		Author (preprocessed) & 15 & 9893 & 751.7 & 323 & 1311.9 \\
-		Category & 1 & 20204 & 2397.6 & 548 & 3812.1 \\
-		Category (preprocessed) & 188 & 20204 & 4090.0 & 2681 & 4227.3 \\
-		Taxonomy & 1 & 29535 & 123.0 & 6 & 1385.9 \\
-		Taxonomy (preprocessed) & 14 & 29535 & 1598.9 & 118.5 & 9298.4 \\
-	\end{tabular}
-\end{table}
+For the labels in \autoref{tab:taxonomy_table}, the counts show the labels' sizes.
+It is worth mentioning that, while the counts of the labels are directly linked the amount of documents in the whole dataset, they are also connected to the size of the previous layer's taxonomy.
+For example, the label 'Danmark' is in the layer below the 'STEDER' label, where the 26145 documents of 'Danmark' is a subset of the 29535 documents of 'STEDER'.
 
+There is also a much larger number of 'STEDER' (places) documents compared to 'EMNER' (subjects) documents, respectively 29535 compared to 5449.
+In \autoref{tab:taxonomy_table}, the first label on a lower layer that comes from 'EMNER' is 'Sport' with 408 documents.
+This gives an indication that the subject taxonomies in general are much smaller in size.
+The \gls{pam} will then be mostly influenced by this location information compared to actual topical labels.
 
+The labels removed during preprocessing appear, as expected, to be places or subjects that have been written about just once or a few times.
+We could have combined them into a 'misc' taxonomy as we did for the category and author metadata, but decided against it because it would just be a large collection of mostly random documents.
 
 \begin{table*}[h]
 	\caption{Number of documents written by each taxonomy in the Nordjyske dataset from 2017 to 2019.
