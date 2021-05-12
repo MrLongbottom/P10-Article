@@ -4,11 +4,11 @@ Firstly, we want to investigate the top words within each model.
 We have taken a random article from the dataset and visualized how the topics differ between the models. 
 Before investigating the article below, we define a specific color scheme for each model.
 
-In the article, we have highlighted the highest probable words within the three most occurring topics in the article.
+In the article, we have highlighted the most probable words within the three most frequently occurring topics in the article.
 The article is about agriculture and how farmers are letting their cows out onto grass fields in September. 
 It also mentions a few different farms in the Northern part of Jutland and describes these in various ways.
 
-The way we can compare these models, is by taking the top 200 words for each topic-word distribution within each model and marking them in the article below.
+The way we can compare these models, is by taking the top 200 words for each topic-word distribution within each model and marking them in the article below. \vejleder[inline]{why 200?}
 Since the Author and Category models do not have a document-topic distribution we can not look at the specific document, but instead we have marked the words from the given category- and author-topic distribution within the document, to see what the difference in topics are.
 We are looking at the top 3 topics within each model for the specific document.
 
@@ -33,7 +33,6 @@ Kig på grise, køer og kyllinger10 \colorbox{Peach}{nordjyske} bedrifter åbner
 Overall, we see that there is a large amount of overlap between the models, which is interesting since the models use different meta-information to create the various topic distributions.
 This indicates that the models share many of the top words, while also indicating a slight deviation between the models due to the meta-information.
 The \gls{lda} model shows words like "landbrug" (agriculture) and "produktion" (production), which is what the article is mostly about.
-This behavior is to be expected since the performance of \gls{lda} has been explored and evaluated before. 
 Author-topic specific words are not very present and are only showing three unique words: "byder", "hører", and "børnene".
 This indicates that the Author-topic model has trouble generalizing what the author of this article (Peter Tordrup Larsen) is writing about, possibly because he has written $5002$ articles in our dataset.
 Another aspect of the Author-Topic model is that the authors writing these articles most likely do not write about just one subject, which explains why there is only three less important words marked here. 
@@ -43,5 +42,5 @@ These words are also very abstract and can be used in many different scenarios.
 An interesting part of this analysis is the words appearing in multiple models.
 Some of the words within this category are: "arbejdet", "jorden", "dyr", and "nordjyske".
 These words summarize the text pretty well, but it is also hard to summarize this text since it covers a wide variety of specific topics.
-Combining the results of these models might yield better topic models, but we can not conclude that based on only one article.
+Combining the results of these models might yield better topic models, but we can not conclude that based on only one article. \vejleder[inline]{why no look at more articles}
 There is also the possibility that choosing another random article would give completely different numbers of marked words per model, because this highly depends on the article's author and category.
