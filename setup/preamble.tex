@@ -52,8 +52,21 @@
 
 % Coloring stuff
 \usepackage{xcolor}
+\usepackage[most]{tcolorbox}
 \usepackage[english]{babel}
+\usepackage{wrapfig}
 \newcommand{\thiscolor}[1]{\colorbox{#1}{\phantom{Here is text}}}
+\newcommand{\mycolor}[3]{
+	\!\!\!\!\! \tcbox[sharp corners, size=small,
+	colback=#1, colframe=white, 
+	halign upper=left, valign upper=top,
+	halign lower=right, valign lower=bottom,
+	enhanced, on line, boxsep=2pt,
+	underlay = {
+		\begin{tcbclipinterior}
+			\filldraw[fill=#2, draw=tcbcolframe] (frame.south west)--++(90:1cm) to [out=5, in=185] ([yshift=-1cm]frame.north east)|-cycle;
+		\end{tcbclipinterior}
+	}]{#3}}
 
 
 %% to enable \thank command
