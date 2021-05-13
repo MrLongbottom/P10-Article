@@ -1,0 +1,7 @@
+\subsection{Parallel Gibbs Sampling}\label{sec:appendix_para_gibbs}
+We have also implemented a Gibbs sampler, which works in parallel by splitting up the dataset into $p$ parts, where $p$ is the number of processes.
+This is to create $\frac{1}{p}$ amount of progress for each process and then combine them.
+Each process gets a specific split of the dataset and the available words. 
+This is done to avoid race conditions on increasing and decreasing counts in the Gibbs sampler, which is explained in \autoref{sec:appendix_gibbs}.
+However, normally the implementation of this algorithm is run on the GPU, where we implemented it for CPU where IO was very slow.
+Because of the slow combination, due to IO, it did not give us any speed up, so the implementation was not used for this project. 
