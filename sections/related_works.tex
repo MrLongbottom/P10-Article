@@ -6,6 +6,7 @@ In the downstream pattern, metadata is incorporated in the model by having the t
 Here each topic has a distribution over words, as well as a distribution over metadata values.
 In the upstream pattern, the topic model is conditioned on metadata elements by representing document-topic distributions as element specific distributions.
 This way the model learns assignments of the words in each document to the metadata.
+The models, we create, follow the downstream pattern.
 
 \citet{author_topic_2012} have developed a \gls{lda} model called the Author-Topic model, which incorporates authorship information in the \gls{lda} model.
 Specifically, each document has a vector of authors, where for each word an author is drawn from this vector.
@@ -13,20 +14,25 @@ The author is then used in combination with an author-topic distribution to draw
 The words from the topic-word distribution can be generated based on this topic.
 The purpose of using authorship information in this way, is to show patterns in which topics an author usually writes about, and be able to explore how related authors are in what they write about.
 \citeauthor{author_topic_2012} also show that the combination of authorship and \gls{lda} yield more coherent topics.
+However, \citet{author_topic_2012} is applicable within the scientific environment, since the authors usually write about the same subject.
+But we apply the Author-Topic model within the news environment to see whether it has the same performance.
 
 \citet{MetaLDA2017} presents a recent model, called MetaLDA, which can incorporate both metadata information and word embeddings within a topic model.
 Since the field of incorporating word embeddings within generative topic models have gained popularity\cite{dieng2020topic}, \citet{MetaLDA2017} show how to use this information for a variety of different datasets.
 They also compare against a list of other models that take either metadata information or word embeddings into account when doing inference.
+We take inspiration from \citet{MetaLDA2017}, however the main reason why we use the Author-Topic model instead of the MetaLDA, is that each document has a specific Dirichlet prior for its topic distribution which makes it hard to analyze a model that includes multiple metadata fields.
 
 \citet{tea_leaves} is a well-known paper within the topic modeling community, which presents different methods for evaluating probabilistic topic models. 
 An important observation they made, is that a good held-out likelihood, normally called perplexity, infers less semantically meaningful topics.
 They also present two different human judgment methods, which can be used to evaluate topic models.
 \citet{topic_coherence_2015} introduce new measures for evaluating topic models, where some of them use the co-occurrence or conditional probability of words within topics to measure how coherent the topics are. 
 In order to verify that these metrics work, they conduct a large user study in conjunction with these metric evaluations.
+We use the evaluation metrics presented in \citet{topic_coherence_2015}, to evaluate the topic quality for each of our models.
 
 \citet{li2006pachinko} present a \gls{dag} structured topic model, called the \gls{pam}, where topics are in a hierarchical structure, which allows it to find two types of topics, namely super-topics and sub-topics. 
-
-\citet{card2017neural} describe how to incorporate metadata information within a neural network to find topics using variational inference methods.
+\gls{pam} is a generalization of the \gls{lda} model, where super and sup-topics are used to correlate topics within the model, like football is a part of the sports topic.
+We have a metadata field within our dataset, which is hierarchical structured.
+We create a modified \gls{pam} to account for this metadata field and investigate whether this type of information can improve the topic quality.
 
 There also exist a variety of models that look at either document or word metadata.
 Some examples of models that incorporate document-level metadata are: Supervised LDA (sLDA) by \citet{blei2010supervised}, Labelled LDA (LLDA) by \citet{llda2009}, and the Dirichlet Multinomial Regression (DMR) model by \citet{mimno2008topic}.
