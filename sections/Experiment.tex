@@ -26,8 +26,9 @@ These model combinations should give insight into what a model learns when multi
 
 \subsection{Evaluation Metrics}\label{sec:experiment_metrics}
 All models previously mentioned are evaluated on the following evaluation metrics.
+
 The main metric used, in this experiment, is the topic coherence metric.
-This metric indicates how semantically similar the top words within each topic are, and will be an indication of the quality of the topics a topic model generates~\cite{topic_coherence_2015}.
+This metric indicates how semantically similar the top words within each topic are, and will be an indication of the quality of the topics of a topic model~\cite{topic_coherence_2015}.
 There are many different methods for calculating topic coherence, but for this paper we will be using $C_v$ coherence.
 $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017coherence}:
 \begin{enumerate}
@@ -37,29 +38,52 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 	\item Aggregation of confirmation measures
 \end{enumerate}
 \vejleder[inline]{hvad er intuitionen? hvorfår gør man det på denne måde?}
-\begin{equation}
-	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^\gamma \right\}_{j=1,\dots,|W|}
+The equations, explanations, and values of the hyperparameters in this section are based on~\citet{Syed2017coherence} and the \textit{gensim} python package\footnote{\url{https://radimrehurek.com/gensim/}}.
+
+For segmentation, a set of word pairs $S$ is created, which pairs each word in the top-N most probable words $W$ in a specific topic $t$ with all other words in $W$.
+$S$ is defined by \autoref{eq:set_of_word_pairs}.
+
+\begin{equation}\label{eq:set_of_word_pairs}
+	S = \{(W', W*)|W' = \{w_i\};w_i \in W;W* = W\}
 \end{equation}
-\begin{equation}
-	\text{NPMI}(w_i,w_j)^\gamma = \left( \frac
-	{log\frac{P(w_i,w_j) + \epsilon}{P(w_i)\cdot P(w_j)}}
-	{-log(P(w_i,w_j) + \epsilon)} \right)
+
+Before calculating word probabilities, a sliding window of size $s$ where $s =110$ is used to create a set of subdocuments $D_s$ over the document set $D$.
+These subdocuments are used rather than the normal documents to capture some degree of word proximity.
+Word probabilities are calculated based on how many documents, within the document set $D_s$, they occur in.
+$p(w_i)$ is the number of subdocuments in which the word $w_i$ occurs divided by $|D_s|$.
+$p(w_i, w_j)$ is the number of subdocuments in which both words occur divided by $|D_s|$. 
+
+We create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry per word pair combination in $W$.
+\begin{equation}\label{eq:coherence_2}
+	\text{NPMI}(w_i,w_j) =  \frac{\log\frac{p(w_i,w_j) + \epsilon}{p(w_i)\cdot p(w_j)}}{-log(p(w_i,w_j) + \epsilon)}
 \end{equation}
-\begin{equation}
+\noindent where $\epsilon$ is a low number ($10^{-12}$) used to avoid $log(0)$.
+The \gls{npmi} matrix describes how much each word occurs alone versus together with other words.
+Each value is between $-1$ and $1$, with $-1$ meaning that the words never occur together and 1 meaning that they only occur together.
+
+After having calculated the \gls{npmi} matrix, we construct context vectors for both elements $W'$ and $W*$ in each word-pair $S_i$, by summing over the rows of the \gls{npmi} matrix.
+This summation describes how much each top word co-occurs with the other words in $W$.
+\begin{equation}\label{eq:coherence_1}
+	\overrightarrow{v}(W') = \left\{ \sum_{w_i \in W'} \text{NPMI}(w_i, w_j)^{\gamma} \right\}_{j=1,\dots,|W|}
+\end{equation}
+\noindent where $\gamma$ can be used to further prioritize higher values.
+For this paper we use $\gamma = 1$, as recommended by \citet{Syed2017coherence}.
+
+We now have a pair of context vectors for each word pair $S_i$ and we want to know how different these vectors are.
+This is calculated using cosine similarity as a confirmation measure.
+\begin{equation}\label{eq:coherence_3}
 	\phi_{S_i}(\overrightarrow{u}, \overrightarrow{w}) = \frac
 	{\sum_{i = 1}^{|W|} u_i \cdot w_i}
 	{\|\overrightarrow{u}\|_2 \cdot \|\overrightarrow{w}\|_2}
 \end{equation}
-\begin{equation}
-	C_v = \frac{1}{|S|}\sum_{|S|}^{i=1}\phi_{S_i}
+
+\noindent where $\overrightarrow{u}$ is the context vector $\overrightarrow{v}(W')$, and $\overrightarrow{w}$ is the context vector $\overrightarrow{v}(W^*)$.
+
+Lastly, the confirmation measures are aggregated using the arithmetic mean, to achieve the coherence value of topic $t$.
+
+\begin{equation}\label{eq:coherence_4}
+	C_v = \frac{1}{|S|}\sum_{i=1}^{|S|}\phi_{S_i}
 \end{equation}
-\noindent where $W$ is a set of the top-N words in a topic, and $S$ is a set of all possible pairs $(W',W*)$ where $W'\in W$ and $W* = W$.
-This is the segmentation.
-NPMI is the normalized pointwise mutual information.
-$\overrightarrow{v}(W')$ is the context vector for $W'$ which is made by pairing them to all words in $W$.\vejleder{skal forklares ydereligere}
-$\phi_{S_i}$ is the confirmation measure for a segmentation pair $S_i = (W',W*)$, that describes how much $W*$ supports $W'$.\vejleder{skal forklares ydereligere}
-It is calculated by the cosine similarity of all context vectors $\phi_{S_i}(\overrightarrow{u},\overrightarrow{w})$ in $S_i$, with $\overrightarrow{v}(W') \in \overrightarrow{u}$ and $\overrightarrow{v}(W*) \in \overrightarrow{w}$.
-$\epsilon$ is used to avoid $log(0)$ and $\gamma$ is used to further weigh high NPMI values higher.
 
 The second metric used in the experiment is perplexity.
 Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
