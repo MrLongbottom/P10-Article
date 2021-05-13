@@ -1,7 +1,8 @@
 \subsection{\gls{lda} standard deviation}\label{sec:std_dev}
 Since the \gls{lda} model uses a generative process, we see how confident the standard model is, in the resulting topic coherence.
 We have run 10 models using the hyper parameters $K=90$, $\alpha=0.01$ and $\beta=0.1$.
-Measuring the confidence of our Gibbs sampler, can be calculated by the standard deviation by using the results from the 10 models' topic coherence.
+Measuring the confidence of our Gibbs sampler can be calculated by the standard deviation by using the results from the 10 models' topic coherence.
+
 We calculate the standard deviation by:
 \begin{equation}
 	SD = \sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}
