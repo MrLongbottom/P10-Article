@@ -20,7 +20,8 @@ We apply the Author-Topic model on a news article dataset to see whether similar
 Since the field of incorporating word embeddings within generative topic models have gained popularity\cite{dieng2020topic}, \citet{MetaLDA2017} show how to use this information for a variety of different datasets.
 They also compare against a list of other models that take either metadata information or word embeddings into account when doing inference.
 We take inspiration from \citet{MetaLDA2017} but we do not employ the model they present.
-We use the Author-Topic, presented by \citet{author_topic_2012}, and the main reason why we use this model instead of the MetaLDA, is that each document has a specific Dirichlet prior for its topic distribution which makes it hard to analyze a model that includes multiple metadata fields.
+We use the Author-Topic, presented by \citet{author_topic_2012}. 
+We use this model instead of the MetaLDA because each document has a specific Dirichlet prior for its topic distribution, which makes it hard to analyze a model that includes multiple metadata fields.
 
 \citet{tea_leaves} is a well-cited paper within the topic modeling community, which presents different methods for evaluating probabilistic topic models. 
 An important observation they made is that a good held-out likelihood, normally called perplexity, infers less semantically meaningful topics.
