@@ -152,8 +152,11 @@ This creates a constant context for the taxonomy topics, which the documents wit
 Some of the observed documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
 
-\subsection{Combinations}\label{subsec:combinations}
-In the Author-Category combination model, we simply multiply the topic distributions $\theta_a$ and $\theta_c$ together.
-Then, when sampling for a new word topic, we normalize the product of the multiplication to sum to 1, which also makes it a distribution.
+\subsection{Combinations}
+\vejleder[inline]{hvorfor og formål?}
+We have created a combination model to see whether using multiple metadata fields at the same time to draw topics, would affect the performance of the topic model.
+The first model we have created is the Author-Category combination model.
+To combine the Author and Category metadata, we multiply the topic distributions $\theta_a$ and $\theta_c$ when sampling a new word topic.
+Though, before sampling the word topic, we normalize the product of the multiplication to sum to 1, which also makes it a distribution. \vejleder[inline]{mathify this}
 This makes both of the learned meta distributions influence the sampled word topics.
 The plate notation for the Author-Category model can be seen in \autoref{fig:author_category_lda}.
