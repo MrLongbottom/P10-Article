@@ -85,36 +85,36 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 \end{figure*}
 
 \subsection{Pachinko Allocation}
-In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrlong{pam} from \citet{li2006pachinko}.
-Pachinko allocation generalizes \gls{lda}, to be able to construct topic hiearchies based on any \gls{dag} structure.
+In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
+Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
 \gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the connections between these topics. 
 
 Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
-However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the  \gls{dag} structure.
-An example of the dag structure used in this paper is shown in \autoref{fig:pachinko_dag}.
+However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
+An example of the \gls{dag} structure used in this paper is shown in \autoref{fig:pachinko_dag}.
 
-In this paper we use a layered \gls{pam}, meaning that the \gls{dag} structure is divided into layers with every node in each layer having an edge going to every node in the next layer further down the hiarchy.
-The first layer consists of only the root node, a topic which all documents are part of, and the bottom layer consisting of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
+In this paper, we use a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in each layer fully connected to every node in the next layer of the hierarchy.
+The first layer consists of only the root node, a topic which all documents are part of, and the bottom layer consists of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
 
-We replicate some layers of the structure from our taxonomy dataset in our \gls{dag} structure, having some nodes represent a topic based on this specific taxonomy.
-To make the algorithm construct the topics to be based on our taxonomies we will be introducing a novel locking mechanism to the gibbs sampler that will be used to run \gls{pam}.
+We replicate some layers in our \gls{dag} structure based on the structure from the taxonomy field within our dataset, having some nodes represent a topic based on a specific taxonomy.
+To make the algorithm construct the topics to be based on our taxonomies, we introduce a novel locking mechanism for the Gibbs sampler which we use to run \gls{pam}.
 This mechanism is discussed further in \autoref{subsec:mod_pachinko}.
 
-We use a five-level pachinko tree structure, following the format presented by \cite{li2006pachinko}.
-The first layer is the root layer, which all words are a part of.
+We use a five-level pachinko tree structure, following the format presented by \citet{li2006pachinko}.
+The first layer is the root layer.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
-The second and third layers will be constructed based on the entries of first two positions in our taxonomy dataset, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second postion in the taxonomy sequence.
+The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g. "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
 We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training.
 The fourth layer consists of $K = 90$ 'blank' topics, as with the other models we present in this paper.
 This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
 This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
 
-The generative process for PAM is described as follows:
+The generative process for \gls{pam} is described as follows:
 First, the multinomial distributions for each node in the \gls{dag} are sampled from Dirichlet distributions based on $\alpha$ values.
-While it is possible to use different $\alpha$ values for each layer, we found through experimentation using the same $\alpha$ value for all layers still provided good results.
+While it is possible to use different $\alpha$ values for each layer, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
 Similarly, for the second to last layer, the multinomial distribution over words is sampled from a Dirichlet distribution based on a single $\beta$ value.
 
-After all topic distribution have been sampled, documents are created by sampling words in the following manner:
+After all topic distributions have been sampled, documents are created by sampling words in the following manner:
 For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
 More specifically, for each topic $Z_{wl}$ starting with the root topic $Z_{w1}$, we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
 This generative process in also illustrated in the plate notation for our \gls{pam} in \autoref{fig:pachinko}.
@@ -132,12 +132,12 @@ The probability of each topic combination is calculated using the joint probabil
 		\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
 	\end{split}
 \end{equation}
-As in \citet{li2006pachinko} $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are topic assignments for the three middle layers of topics in our 5-layer Pachinko model.
+As in \citet{li2006pachinko}, $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are topic assignments for the three middle layers of topics in our 5-layer Pachinko model.
 The root topic is not part of this equation since all words are part of it, so the probability does not need to be calculated.
 $Z_{-w}$ is the word topic assignment, for all other words except the one that is being updated.
 $n_x^d$ is the number of times topic $t_x$ occurs in document $d$ according to $Z_{-w}$. 
 The $n_{xy}^d$ describes how many times topic $t_y$ is sampled from its parent $t_x$ within document $d$ according to $Z_{-w}$.
-$n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-w}$ and $n_{xw}$ is the number of times a word $w$ is in $t_x$ according to $Z_{-w}$.
+$n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-w}$, and $n_{xw}$ is the number of times a word $w$ is in $t_x$ according to $Z_{-w}$.
 
 \input{figures/dag_structure}
 
@@ -145,7 +145,7 @@ $n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
 Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
-However, for our dataset only $25\%$ of the documents have an observed taxonomy.
+However, only $25\%$ of the documents in our dataset have an observed taxonomy.
 To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
