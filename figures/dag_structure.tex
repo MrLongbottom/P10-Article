@@ -1,6 +1,6 @@
 \begin{figure}[h]
 	\centering
-	\resizebox{0.8\columnwidth}{!}{%
+	\resizebox{0.7\columnwidth}{!}{%
 	\begin{tikzpicture}
 		[
 		observed/.style={minimum size=15pt,circle,draw=blue!50,fill=blue!20},
@@ -9,29 +9,34 @@
 		]
 		% Layer 0
 		\node (top) [unobserved] at (0,0) {};
+		\node (topname) [right of = top, node distance=1.5cm] {Root Layer};
 		
 		% Layer 1
 		\node (l11) [unobserved] at ([shift=({245:2 cm})]top) {};
 		\node (l12) [unobserved] at ([shift=({295:2 cm})]top) {};
 		\node (l1_dots) [right of = l11, node distance=0.85cm] {\scalebox{0.75}{$\bullet\bullet\bullet$}};
+		\node (1name) [right of = l12, node distance=2cm] {Taxonomy Layer 1};
 		
 		% Layer 2
 		\node (l21) [unobserved] at ([shift=({245:2 cm})]l11) {};
 		\node (l22) [unobserved] at ([shift=({295:2 cm})]l11) {};
 		\node (l23) [unobserved] at ([shift=({295:2 cm})]l12) {};
 		\node (l2_dots) [right of = l22, node distance=0.85cm] {\scalebox{0.75}{$\bullet\bullet\bullet$}};
+		\node (2name) [right of = l23, node distance=2cm] {Taxonomy Layer 2};
 		
 		% Layer 3
 		\node (l31) [unobserved] at ([shift=({245:2 cm})]l21) {};
 		\node (l32) [unobserved] at ([shift=({295:2 cm})]l21) {};
 		\node (l33) [unobserved] at ([shift=({295:2 cm})]l23) {};
 		\node (l2_dots) [right of = l32, node distance=1.75cm] {\scalebox{0.75}{$\bullet\bullet\bullet$}};
+		\node (3name) [right of = l33, node distance=1.5cm] {Topic Layer};
 		
 		% Layer 4
 		\node (l41) [unobserved] at ([shift=({270:2 cm})]l31) {};
 		\node (l42) [unobserved] at ([shift=({270:2 cm})]l32) {};
 		\node (l43) [unobserved] at ([shift=({270:2 cm})]l33) {};
 		\node (l2_dots) [right of = l42, node distance=1.75cm] {\scalebox{0.75}{$\bullet\bullet\bullet$}};
+		\node (4name) [right of = l43, node distance=1.5cm] {Word Layer};
 		
 		\path
 		% Layer 0
