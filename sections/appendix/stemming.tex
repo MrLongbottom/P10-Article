@@ -1,5 +1,5 @@
 \subsection{Stemming the dataset}\label{sec:stemming}
-In this project we have done minimal preprocessing of the dataset, because in a previous project, a more aggressive preprocessing step turned out to have a negative effect on the \gls{lda} model.
+In this project, we have done minimal preprocessing of the dataset, because, in a previous project, a more aggressive preprocessing step turned out to hurt the performance of the \gls{lda} model.
 This made us completely avoid trying to include a stemming process, even though this was only a smaller part of this previous preprocessing step.
 Though, after further consideration, it is worth looking into what effect adding just stemming to our current preprocessing, described in \autoref{sec:dataset}, would have on the standard \gls{lda} model.
 
@@ -13,8 +13,8 @@ To remove these words, we would have to include some more advanced preprocessing
 
 Examples of top words for similar topics between the models can be seen in \autoref{tab:topic_examples}.
 It is seen here that some of the topics between the models are clearly about the same subjects.
-The stemmed model's topics might also be slightly more understandable, because words with the same meaning (e.g. 'politi' and 'politiet') do not appear.
-Other than this, including stemming does not seem to have made a significant difference.
+The stemmed model's topics might also be slightly more understandable because words with the same meaning (e.g. 'politi' and 'politiet') do not appear.
+Other than this, including stemming, does not seem to have made a significant difference.
 
 \begin{table}
 	\caption{An example of topics that are similar between the non-stemmed and stemmed \gls{lda} model.
