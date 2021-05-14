@@ -25,14 +25,14 @@ We use the Author-Topic, presented by \citet{author_topic_2012}, and the main re
 \citet{tea_leaves} is a well-cited paper within the topic modeling community, which presents different methods for evaluating probabilistic topic models. 
 An important observation they made is that a good held-out likelihood, normally called perplexity, infers less semantically meaningful topics.
 They also present two different human judgment methods called \emph{word intrusion} and \emph{topic intrusion}, which can be used to evaluate topic models by human judgment. 
-\emph{Word intrusion} is where a "intrusion" word has been placed into a coherent topic and the task is to identify the word.
+\emph{Word intrusion} is where an "intrusion" word has been placed into a coherent topic and the task is to identify the word.
 \emph{Topic intrusion} is a task where a set of topics and a document are given and the goal is to identify the topic that does not associate with the document. 
 \citet{topic_coherence_2015} introduce new measures for evaluating topic models, where some of them use the co-occurrence or conditional probability of words within topics to measure how coherent the topics are. 
 In order to verify that these metrics work, they conduct a large user study in conjunction with these metric evaluations.
 We use the evaluation metrics presented in \citet{topic_coherence_2015}, to evaluate the topic quality for each of our models.
 
 \citet{li2006pachinko} present a \gls{dag} structured topic model, called the \gls{pam}, where topics are in a hierarchical structure, which allows it to find two types of topics, namely super-topics and sub-topics. 
-\gls{pam} is a generalization of the \gls{lda} model, where super and sup-topics are used to correlate topics within the model, like a football topic is a part of a sports topic.
+\gls{pam} is a generalization of the \gls{lda} model, where super and sup-topics are used to correlate topics within the model like a football topic is a part of a sports topic.
 We have a metadata field within our dataset, which is hierarchical structured.
 We create a modified \gls{pam} to account for this metadata field and investigate whether this type of information can improve the topic quality.
 
@@ -45,7 +45,7 @@ WF-LDA extends \gls{lda} by using word features to make a prior for the topics.
 LF-LDA takes the approach of replacing \gls{lda}'s topic-word Dirichlet multinomial component with a two-component mixture of a topic-word Dirichlet multinomial component and a latent feature component.
 
 From these works, we mainly use the concepts from \citet{author_topic_2012} for how we use metadata in our models, though with slight changes in the models for handling the characteristics of our data.
-As mentioned earlier, one of the main reason why we use the concepts from the Author-Topic model instead of the newer MetaLDA model~\cite{MetaLDA2017} is that in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document.
+As mentioned earlier, one of the main reasons why we use the concepts from the Author-Topic model instead of the newer MetaLDA model~\cite{MetaLDA2017} is that in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document.
 This limits the ability to analyze a model that includes multiple metadata, while in the author-topic model other metadata can be included as their own meta-topic distributions and be analyzed further.
 Also, since MetaLDA uses the document-topic distribution as its base, we would not be able to explore other interesting connections, such as the connection between learned category-topic distributions and the topics that are most probable for specific categories.
-We also explore whether adapting the \gls{pam}~\cite{li2006pachinko} to work with a hierarchical structured metadata called 'taxonomy', described in \autoref{sec:dataset_taxonomy}, gives the model more context and improves the topic quality or performance.
+We also explore whether adapting the \gls{pam}~\cite{li2006pachinko} to work with a hierarchically structured metadata called 'taxonomy', described in \autoref{sec:dataset_taxonomy}, gives the model more context and improves the topic quality or performance.
