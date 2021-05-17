@@ -1,1 +1,23 @@
 \section{Conclusion}\label{sec:conclusion}
+We explore possibilities of incorporating meta-data into existing topic models, such as \gls{lda} and \gls{pam}.
+We evaluate three different metadata, Author, Category, and Taxonomy, each of which represent the data in a different way.
+From the topic coherence results, shown in \autoref{tab:metric_results}, the \gls{pam} model using the Taxonomy meta data gets the best results.
+The Author and Category models are the worst performing, where the topic coherence is much lower than the other models.
+We want to answer the problem statement, which we stated in \autoref{sec:introduction}:
+
+\begin{itemize}
+	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
+	\item \textit{What possible problems can these models help alleviate at Nordjyske?}
+\end{itemize}
+
+Incorporating metadata into a topic model can be done various ways, and we incorporate them in multiple ways.
+The \gls{lda} model is used as a baseline, which indicates whether incorporating metadata can improve the topic quality of our topic models.
+Based on our analysis, we see that only using the metadata for topic assignment within \gls{lda}, can hurt the topic quality, which is how Author-Topic and Category-Topic is run.
+
+We use the \gls{pam} to incorporate a hierarchical structured metadata called Taxonomy, where we use a novel locking mechanism to lock the observed metadata's topic into place.
+Using this technique and model, we are able to get better topic quality and words within \gls{pam} compared to the \gls{lda}.
+However, the run time for the algorithm is quite slower than the \gls{lda}.
+
+
+
+
