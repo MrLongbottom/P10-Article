@@ -91,7 +91,7 @@ The perplexity measure is then calculated as follows:
 
 Topic difference is another metric that is used to check the quality of the topic model.
 It is based on the assumption that a good topic model will have little overlap between topics.
-It is therefore not necessarily the best measure of the final quality of a topic model, but it can show potential problems with a model.
+It is therefore not the best measure of the final quality of a topic model, but a low topic difference will indicate potential problems with a model.
 \begin{equation}
 	\emph{TopicDifference} = \frac{1}{K \cdot K} \sum_{i=1}^{K} \sum_{j=1}^{K} JS(\beta_{i},\beta_{j})
 \end{equation}
