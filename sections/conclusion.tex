@@ -1,9 +1,10 @@
 \section{Conclusion}\label{sec:conclusion}
 We explore possibilities of incorporating meta-data into existing topic models, such as \gls{lda} and \gls{pam}.
-We evaluate three different metadata, Author, Category, and Taxonomy, each of which represent the data in a different way.
-From the topic coherence results, shown in \autoref{tab:metric_results}, the \gls{pam} model using the Taxonomy meta data gets the best results.
-The Author and Category models are the worst performing, where the topic coherence is much lower than the other models.
+We evaluate three different metadata, Author, Category, and Taxonomy, each of which represents the data in a different way.
+From the topic coherence results, shown in \autoref{tab:metric_results}, the \gls{pam} model using the Taxonomy metadata gets the best results.
+The Author and Category models are the worst-performing, where the topic coherence is much lower than the other models.
 We want to answer the problem statement, which we stated in \autoref{sec:introduction}:
+
 
 \begin{itemize}
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
@@ -15,15 +16,17 @@ We want to answer the problem statement, which we stated in \autoref{sec:introdu
 
 We incorporate metadata into our topic models in multiple ways.
 The \gls{lda} model is used as a baseline, which indicates whether incorporating metadata can improve the topic quality of our topic models.
-Based on our analysis, we see that only using the metadata for topic assignment within \gls{lda}, can hurt the topic quality, which is how Author-Topic and Category-Topic is run.
+Based on our analysis, we see that only using the metadata for topic assignment within \gls{lda}, can hurt the topic quality, which is how Author-Topic and Category-Topic are run.
 Other studies have shown, that only using the metadata for topic assignment, improves the performance.
 This might be due to the particularities of the dataset, such as authors usually do not write about the same subject within the news environment.  
 
-We use the \gls{pam} to incorporate a hierarchical structured metadata called Taxonomy, where we use a novel locking mechanism to lock the observed metadata's topic into place.
-Using this technique and model, we are able to get better topic quality and words within \gls{pam} compared to the \gls{lda}.
+
+We use the \gls{pam} to incorporate a hierarchically structured metadata called Taxonomy, where we use a novel locking mechanism to lock the observed metadata's topic into place.
+Using this technique and model, we can get better topic quality and words within \gls{pam} compared to the \gls{lda}.
 However, the run time for the algorithm is quite slower than the \gls{lda}.
 
-Topic modeling can be used to alleviate many problem at Nordjyske, such as recommendation.
-From our models, we can use the topic distributions, to compare articles based on their similarity in topics. 
-This information can be used in content based filtering, to recommend similar articles.
-We suggest to use this topic information to enrich the recommendation process at Nordjyske. 
+
+Topic modeling can be used to alleviate many problems at Nordjyske, such as recommendations.
+We can use the topic distributions from our models to compare articles based on their similarity in topics. 
+This information can be used in content-based filtering, to recommend similar articles.
+We suggest using this topic information to enrich the recommendation process at Nordjyske. 
