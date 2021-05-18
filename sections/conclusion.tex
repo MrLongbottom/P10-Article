@@ -8,16 +8,22 @@ We want to answer the problem statement, which we stated in \autoref{sec:introdu
 \begin{itemize}
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
 	\item \textit{What possible problems can these models help alleviate at Nordjyske?}
+	\begin{itemize}
+		\item \textit{More specifically, how can these models improve recommendation?}
+	\end{itemize}
 \end{itemize}
 
-Incorporating metadata into a topic model can be done various ways, and we incorporate them in multiple ways.
+We incorporate metadata into our topic models in multiple ways.
 The \gls{lda} model is used as a baseline, which indicates whether incorporating metadata can improve the topic quality of our topic models.
 Based on our analysis, we see that only using the metadata for topic assignment within \gls{lda}, can hurt the topic quality, which is how Author-Topic and Category-Topic is run.
+Other studies have shown, that only using the metadata for topic assignment, improves the performance.
+This might be due to the particularities of the dataset, such as authors usually do not write about the same subject within the news environment.  
 
 We use the \gls{pam} to incorporate a hierarchical structured metadata called Taxonomy, where we use a novel locking mechanism to lock the observed metadata's topic into place.
 Using this technique and model, we are able to get better topic quality and words within \gls{pam} compared to the \gls{lda}.
 However, the run time for the algorithm is quite slower than the \gls{lda}.
 
-
-
-
+Topic modeling can be used to alleviate many problem at Nordjyske, such as recommendation.
+From our models, we can use the topic distributions, to compare articles based on their similarity in topics. 
+This information can be used in content based filtering, to recommend similar articles.
+We suggest to use this topic information to enrich the recommendation process at Nordjyske. 
