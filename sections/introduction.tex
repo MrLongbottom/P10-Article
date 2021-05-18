@@ -1,15 +1,18 @@
 \section{Introduction}\label{sec:introduction}
+
+Spreading information around the world is a crucial skill, that is used every day, as news articles, television and newspapers supply people with the latest information.
+Searching and categorizing the news is becoming a bigger problem, since news are created every day, if not every hour.
+As the internet, becomes more personalized, like targeted advertisement, recommendation is seeing more use in applications, such as Netflix and Amazon.
+Recommending news articles can be challenging, since there are many different approaches to solving this problem.
+
+The field of topic modeling has been applied within many different applications, such as scientific article recommendation. 
+
 % Intro to meta data
 Data is everywhere and it is used in many different scenarios and use cases. 
-When referring to a dataset, we talk about a dataset including metadata information, which are non-essential data features.
+When referring to a dataset, we talk about a dataset including metadata information.
 One example of this could be the publication date of a text document. 
 In most contexts, it is not needed to use and understand the document; however, it provides more context to the main content of the document: the text.
 However, a lot of metadata is not used, either because it is not useful or we do not know how to use it properly.
-
-% Intro to Nordjyske data and applications
-We have a dataset from a danish media group, called Nordjyske, with three years of article data.
-This dataset can be applied to a variety of different applications, such as topic modeling\cite{blei2003latent}\cite{MetaLDA2017}, text analysis\cite{baly2020written}, search engine optimization\cite{amjad2015topic}, and many more.
-In this paper, the dataset will be used with a focus on topic modeling.
 
 Within the field of topic modeling, \gls{lda} is a well known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}, without the use of metadata.
 Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
@@ -23,14 +26,18 @@ By modeling this relationship, they find connections between authors and topics,
 They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
 However, they only test their algorithm on scientific papers, where usually the authors write about the same subject (their research field), which might not be the case for other fields, like journalism. 
 
+% Intro to Nordjyske data and applications
+We have a dataset from a danish media group, called Nordjyske, with three years of article data.
+This dataset can be applied to a variety of different applications, such as topic modeling\cite{blei2003latent}\cite{MetaLDA2017}, text analysis\cite{baly2020written}, search engine optimization\cite{amjad2015topic}, and many more.
+In this paper, the dataset will be used with a focus on topic modeling.
+
 % In this paper
-In this paper, we are investigating use cases for the dataset, that has been provided by Nordjyske, within the field of topic modeling. 
 We want to construct different topic models that incorporate various metadata, to see whether incorporating this information changes the topic quality.
 We do this to aid in solving potential problems that Nordjyske might encounter as a media group, such as the recommendation of articles or search functionality.
 We also investigate differences between the produced topics for various models, to evaluate their potential uses.
 
 % Problem Statement
-We define the following problem to investigate in this paper:
+We define the following research questions to investigate in this paper:
 
 \begin{itemize}
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
