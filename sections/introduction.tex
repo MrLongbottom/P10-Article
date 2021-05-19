@@ -35,6 +35,9 @@ We define the following problem to investigate in this paper:
 \begin{itemize}
 	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
 	\item \textit{What possible problems can these models help alleviate at Nordjyske?}
+	\begin{itemize}
+		\item \textit{More specifically, how can these models improve recommendation of articles?}
+	\end{itemize}
 \end{itemize}
 
 Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
@@ -51,8 +54,8 @@ The paper is organized as follows:
 In \autoref{sec:related_work}, we explore related work within topic modeling using metadata.
 \autoref{sec:overview} gives an overview of our method by separating the process into steps.
 \autoref{sec:dataset} describes the dataset used in the experiments.
-In \autoref{sec:plate_notation}, \gls{lda}, the metadata topic models, and the model combinations are described, and their plate notation is shown.
-In \autoref{sec:experiment}, we set up an experiment to test the performance of the different metadata topic models along with their combinations and present the results.
+In \autoref{sec:plate_notation}, \gls{lda}, the metadata topic models are described, and their plate notation is shown.
+In \autoref{sec:experiment}, we set up an experiment to test the performance of the different metadata topic models and present the results.
 In \autoref{sec:discussion}, we analyze and discuss the results of our experiment.
 Finally, in \autoref{sec:conclusion}, conclusions and future work are given.
 \todo[inline]{Update paper structure}
