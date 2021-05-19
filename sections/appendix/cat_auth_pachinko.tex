@@ -1,16 +1,16 @@
 \subsection{Category and Author Pachinko}\label{app:cat_auth_pachinko}
-Given the good results of the taxonomy \gls{pam}, we decided to also test \gls{pam} with the two other metadata fields: author and category.
+Given the good results of the taxonomy \gls{pam}, we decided to test \gls{pam} with the two other metadata fields: Author and Category.
 These metadata are not layered and can therefore not utilize the layered nature of \gls{pam} in the same way.
-Instead a four-layer \gls{pam} will be used, with a root layer, a metadata layer where words are locked into topics using the technique outlined in \autoref{sec:appendix/locking}, a layer with 90 'blank' topics, and a word layer.
+Instead, a four-layer \gls{pam} will be used, with a root layer, a metadata layer where words are locked into topics using the technique outlined in \autoref{sec:appendix/locking}, a layer with 90 'blank' topics, and a word layer.
 
-As can be seen from the results in \autoref{tab:cat_auth_pachinko_results}, these models achieve greater results than the previous author and category models and \gls{lda} model.
-However the taxonomy \gls{pam} does do better.
-The same conlusion is reached after manual inspection of the topics of these models.
+As can be seen from the results in \autoref{tab:cat_auth_pachinko_results}, these models achieve better results than the previous author and category models and the \gls{lda} model.
+However, the taxonomy \gls{pam} is still better overall.
+The same conclusion is reached after manual inspection of the topics of these models.
 
 \begin{table}[h]
 	\centering
 	\caption{Topic Coherence ($C_v$) comparison of author and category \gls{pam} (marked with bold) and previous models.}
-	\begin{tabular}{l|c|c|c}
+	\begin{tabular}{l|c}
 		Topic Model & \makecell{Topic \\ Coherence} \\
 		\midrule
 		Taxonomy \acrlong{pam} & 0.660 \\
