@@ -25,6 +25,7 @@ As detailed in \autoref{sec:combinations}, these combinations are:
 These model combinations should give insight into what a model learns when multiple metadata have influence on the topics chosen.
 
 \subsection{Evaluation Metrics}\label{sec:experiment_metrics}
+\vejleder[inline]{fix commas in this section}
 All models previously mentioned are evaluated on the following evaluation metrics.
 
 The main metric used, in this experiment, is the topic coherence metric.
@@ -47,7 +48,7 @@ $S$ is defined by \autoref{eq:set_of_word_pairs}.
 	S = \{(W', W*)|W' = \{w_i\};w_i \in W;W* = W\}
 \end{equation}
 
-Before calculating word probabilities, a sliding window of size $s$ where $s =110$ is used to create a set of subdocuments $D_s$ over the document set $D$.
+Before calculating word probabilities, a sliding window of size $s$ where $s =110$ \vejleder[inline]{how are parameters chosen} is used to create a set of subdocuments $D_s$ over the document set $D$.
 These subdocuments are used rather than the normal documents to capture some degree of word proximity.
 Word probabilities are calculated based on how many documents, within the document set $D_s$, they occur in.
 $p(w_i)$ is the number of subdocuments in which the word $w_i$ occurs divided by $|D_s|$.
@@ -107,9 +108,6 @@ It is therefore not the best measure of the final quality of a topic model, but 
 \end{equation}
 \noindent where $JS$ is Jensen-Shannon distance, $K$ is the number of topics, and $\beta_{k}$ is the topic-word distribution for topic $k$.
 If the total sum is not averaged out, this measure can also be used to indicate convergence of the model.
-
-Finally, we also perform human evaluation of the topics generated.
-\todo[inline]{How/if we do this is still to be discussed}
 
 \subsection{Grid Search}\label{sec:experiment_gridsearch}
 To find the optimal hyperparameter values for the models, we run a grid search.
