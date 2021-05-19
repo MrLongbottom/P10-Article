@@ -1,5 +1,13 @@
 \subsection{Topic coherence}\label{app:topic_coherence}
 The equations, explanations, and values of the hyperparameters in this section are based on~\citet{Syed2017coherence} and the \textit{gensim} python package\footnote{\url{https://radimrehurek.com/gensim/}}.
+Calculating topic coherence requires the following steps:
+
+\begin{enumerate}
+\item Topic-word segmentation into word set pairs
+\item Word and word pair probability calculation
+\item Word set confirmation measure
+\item Aggregation of confirmation measures
+\end{enumerate}
 
 For segmentation, a set of word pairs $S$ is created, which pairs each word in the top-N most probable words $W$ in a specific topic $t$ with all other words in $W$.
 $S$ is defined by \autoref{eq:set_of_word_pairs}.
