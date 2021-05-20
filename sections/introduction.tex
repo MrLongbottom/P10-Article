@@ -1,15 +1,15 @@
 \section{Introduction}\label{sec:introduction}
 % Intro to recommendation and techniques
-Broadcasting information around the world is a crucial skill, that is used every day, like news articles, television and newspapers supply people with the latest information.
-Searching and categorizing the news is becoming a bigger problem since the news is created every day, if not every hour.
+News is being broadcast every day around the world in the form of news articles, television, and newspapers, which supply people with the latest information.
+Searching and categorizing the news is becoming a bigger problem since news is created at all times.
 As the internet, becomes more personalized, like a targeted advertisement, recommendation is seeing more use in applications, such as Netflix and Amazon.
-Within recommendation, there are two main machine learning techniques: Collaborative filtering and Content-based filtering.
-These two techniques are based on assumption that similar users like similar items (collaborative) or one user likes certain types of items(content-based).
+Within recommendation, there are two main machine learning techniques: collaborative filtering and content-based filtering.
+These two techniques are based on assumption that similar users like similar items (collaborative) or one user likes certain types of items (content-based).
 The recommendation task can be very specific depending on the dataset that is used.
 We focus on creating a better environment for the recommendation of news articles.
 
-One particular field, which covers a variety of different use cases and applications in the field of topic modeling.
-Topic modeling has been used for finding topics within a collection of documents, to either annotate or categorize certain collections of texts\cite{red_article_blei}.   
+One particular field, which covers a variety of different use cases and applications, such as being useful for recommendations, is the field of topic modeling.
+Topic modeling has been used for finding topics within a collection of documents to either annotate or categorize certain collections of texts~\cite{Probabilistic_Topic_Models}.
 The \gls{lda} model is a well-known topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}, without the use of metadata.
 Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
 In most models metadata is not used.
@@ -23,7 +23,7 @@ They also show that the Author-Topic combination yields better and more coherent
 However, they only test their algorithm on scientific papers, where usually the authors write about the same subject (their research field), which might not be the case for other fields, like journalism. 
 
 % Intro to meta data
-Data is everywhere and it is used in many different scenarios and use cases. 
+The dataset used with a topic model can have a large impact on the topics generated.
 When referring to a dataset, we talk about a dataset including metadata information.
 One example of this could be the publication date of a text document. 
 In most contexts, it is not needed to use and understand the document; however, it provides more context to the main content of the document: the text.
