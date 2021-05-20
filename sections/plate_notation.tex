@@ -109,10 +109,10 @@ The generative process for each document $d$ in \gls{pam} consists of the follow
 		\item Sample word $w$ from $\theta_{z_{wL_w}}^{(d)}$.
 	\end{itemize}
 \end{enumerate}
-$T = {t_1, t_2, \dots, t_s}$ os the set of topics in the \gls{pam}. 
-$g_i(\alpha_i)$ is a Dirichlet distribution based on a vector $\alpha_i$ which has the same dimention as the number of children in $t_i$.
-While it is possible to use different $\alpha$ values for each topic as shown in here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
-Illustration of the plate notation for \gls{pam} can be found in \autoref{fig:pachinko}.
+$T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}. 
+$g_i(\alpha_i)$ is a Dirichlet distribution based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
+While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
+An illustration of the plate notation for \gls{pam} can be found in \autoref{fig:pachinko}.
 
 We use Gibbs sampling for performing inference.
 For each word, a chain of topics is sampled by calculating the probability of all combinations of topics and making a weighted sample.
