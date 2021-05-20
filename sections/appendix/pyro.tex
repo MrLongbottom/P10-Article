@@ -16,4 +16,4 @@ This model uses an autoencoding approach where the model encodes the document-to
 This approach can handle more complex models and seems to be able to handle the inclusion of metadata.
 While this model is able to learn with our dataset, it restricts the possibility of changing the model since the main distributions of the model are learned with a neural network.
 These two examples show that Pyro can be useful when making basic topic models, but since we want to extend \gls{lda} with metadata, Pyro becomes too restrictive.
-To give us more opportunities to change the models to our liking and not be restricted by Pyro's implementation, we chose to implement the models from scratch with Gibbs sampling.
+To give us more opportunities to customize our models and not be restricted by Pyro's implementation, we chose to implement the models from scratch with Gibbs sampling.
