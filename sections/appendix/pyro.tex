@@ -1,26 +1,19 @@
 \subsection{Pyro model implementation}
-\vejleder[inline]{Ref og lidt for process orienteret og lassefair}
-\vejleder[inline]{What problems does Pyro have, is it with the language? 
-	What have we learned from it? der mangler lidt en pointe med section.
-
-adapting existing implementation and we choose to implement our own model}
-After we decided to work with metadata in \gls{lda} models, we had to firstly get a standard model implemented.
-Here we decided to look in a few directions for the best way to implement a generative model, and we found that the probabilistic programming language Pyro could be used.
+At the beginning of the project, we decided to look in a few directions for the best way to implement an \gls{lda} model, and we found that the probabilistic programming language Pyro could be used~\cite{bingham2019pyro}.
 Pyro is a probabilistic programming language that is written in Python with PyTorch as a backend.
 This makes it ideal for making quick implementations of models, with the possibility of using tensors and sampling with PyTorch distribution methods.
 Pyro also has a built-in stochastic variational inference class that simplifies the training of a model.
 These features made it an ideal programming language to look into.
 
-We found that Pyro had an example of a basic \gls{lda} model on their website\footnote{Amortized Latent Dirichlet Allocation: \url{https://pyro.ai/examples/lda.html}}.
-This example was a working model, but had the limitation that all documents needed to have the same number of words.
-We firstly changed the model to handle different sizes of documents, and then had a simple working \gls{lda} model, which did not use metadata information.
-The next step was then to get metadata included in our models, just like in our plate notation from \autoref{sec:plate_notation}.
-It was at this point that we discovered that the basic model we had used could not learn anything with metadata included, most likely because it became too complex for the model to handle.
-We never found a way to fix this model and searched for other possibilities.
+We found that Pyro has made two code examples of \gls{lda} available, one using purely distributions and the other using a neural network approach.
+We tested both of these examples to see if we could adapt an existing implementation to work with our dataset.
+Pyro's first example of an \gls{lda} model is very simple\footnote{Amortized Latent Dirichlet Allocation: \url{https://pyro.ai/examples/lda.html}}.
+It is a functioning model, but it has the limitation that all documents need to have the same number of words.
+This limitation is too restrictive for most datasets, including ours, and changing the model to handle any number of words makes the model unable to converge.
 
-We then found another model that Pyro had on their GitHub page, called ProdLDA\footnote{ProdLDA: \url{https://pyro.ai/examples/prodlda.html}}.
+The other model example from Pyro is called ProdLDA\footnote{ProdLDA: \url{https://pyro.ai/examples/prodlda.html}}.
 This model uses an autoencoding approach where the model encodes the document-topic distribution $\theta$ and decodes the topic-word distribution $\beta$.
-This approach should be able to handle more complex models, so we tried to expand this example with our metadata.
-By changing this model and giving it our metadata as a one-hot vector, we got a model which seemed to learn patterns in our dataset.
-We never got to look closely at whether the topics made sense, because at the same time we got our Gibbs Sampling approach working.
-This made us switch to fully work on the Gibbs Sampling \gls{lda} model, because this would give us more opportunities to change the models to our liking, and not be restricted by Pyro's implementation.
+This approach can handle more complex models and seems to be able to handle the inclusion of metadata.
+While this model is able to learn with our dataset, it restricts the possibility of changing the model since the main distributions of the model are learned with a neural network.
+These two examples show that Pyro can be useful when making basic topic models, but since we want to extend \gls{lda} with metadata, Pyro becomes too restrictive.
+To give us more opportunities to change the models to our liking and not be restricted by Pyro's implementation, we chose to implement the models from scratch with Gibbs sampling.
