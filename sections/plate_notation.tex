@@ -100,15 +100,20 @@ The fourth layer consists of $K = 90$ 'blank' topics, as with the other models w
 This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
 This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}. \vejleder[inline]{Figure 4 shows both the original and your adaption? rephrase}
 
-The generative process for \gls{pam} is described as follows:
-First, the multinomial distributions for each node in the \gls{dag} are sampled from Dirichlet distributions based on $\alpha$ values.
-While it is possible to use different $\alpha$ values for each layer, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
-Similarly, for the second to last layer, the multinomial distribution over words is sampled from a Dirichlet distribution based on a single $\beta$ value.
+The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
+\begin{enumerate}
+	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
+	\item For each word $w \in d$,
+	\begin{itemize}
+		\item Sample a topic path $\mathbf{z}_w$ of length $L_w:~< z_{w1}, z_{w2},\newline \dots, z_{wL_w} >$. $z_{w1}$ is always the root and $z_{w1}$ through $z_{wL_w}$ are topic nodes in $T$. $z_{wi}$ is a child of $z_{w(i-1)}$ and it is sampled according to the multinomial distribution $\theta_{z_{wL_w}}^{(d)}$.
+		\item Sample word $w$ from $\theta_{z_{wL_w}}^{(d)}$.
+	\end{itemize}
+\end{enumerate}
 
-After all topic distributions have been sampled, documents are created by sampling words in the following manner:
-For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
-More specifically, for each topic $Z_{wl}$ starting with the root topic $Z_{w1}$, \vejleder[inline]{root, hierarchy explained somewhere before?} we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
-This generative process in also illustrated in the plate notation for our \gls{pam} in \autoref{fig:pachinko}.
+$T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}. 
+Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
+While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
+An illustration of the plate notation for \gls{pam} can be found in \autoref{fig:pachinko}.
 
 We use Gibbs sampling for performing inference.
 For each word, a chain of topics is sampled by calculating the probability of all combinations of topics and making a weighted sample.
