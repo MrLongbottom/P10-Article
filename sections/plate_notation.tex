@@ -82,8 +82,8 @@ Pachinko allocation generalizes \gls{lda}, making it possible to construct topic
 
 Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
 However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
-An example of the \gls{dag} structure used in this paper is shown in \autoref{fig:pachinko_dag}.
-
+An example of the \gls{dag} structure used in this paper is in \autoref{fig:pachinko_dag} where each level of the \gls{pam} is shown.
+\vejleder[inline]{be more explicit if that is the same as original or different}
 In this paper, we use a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in each layer fully connected to every node in the next layer of the hierarchy.
 The first layer consists of only the root node, a topic which all documents are part of, and the bottom layer consists of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
 
@@ -95,10 +95,10 @@ We use a five-level pachinko tree structure, following the format presented by \
 The first layer is the root layer.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g. "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
-We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training.
+We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training. \vejleder[inline]{can you back this up with experiments or hard evidence?}
 The fourth layer consists of $K = 90$ 'blank' topics, as with the other models we present in this paper.
 This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
-This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
+This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}. \vejleder[inline]{Figure 4 shows both the original and your adaption? rephrase}
 
 The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
 \begin{enumerate}
@@ -140,10 +140,11 @@ $n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-
 \input{figures/pachinko}
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
+\vejleder[inline]{do you have a comparison in section 5}
 Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
 However, only $25\%$ of the documents in our dataset have an observed taxonomy.
 To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
-Some of the observed documents have multiple taxonomies.
+Some of the documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
