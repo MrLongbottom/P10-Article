@@ -1,0 +1,39 @@
+\subsection{Perplexity}\label{app:perplexity}
+One of the evaluation metric, that is commonly used to evaluate topic models, is perplexity.
+As described in \autoref{sec:related_work}, \citet{tea_leaves} states that perplexity does not infer semantically meaningful topics.
+Because of this, we have chosen not to use perplexity in our experiments.
+Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
+But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation~\cite{tea_leaves}.
+To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in:
+\begin{equation}\label{eq:likelihood}
+	\mathcal{L}(w_d) = \log p(w_d|\Phi) = \sum_{d} \log p(w_d|\Phi)
+\end{equation}
+\noindent where $\Phi$ is the topic-word matrix.
+The perplexity measure is then calculated as follows:
+\begin{equation}
+	\emph{Perplexity}(w_d) = exp \{-\frac{\mathcal{L}(w_d)}{W}\}
+\end{equation}
+\noindent where W is the number of words \cite{de2008evaluating}.
+
+Since the calculation is different for almost every model, it is difficult to compare the different models based on perplexity.
+For example, the standard \gls{lda} model multiplies entries in Doc-Topic and Topic-Word distributions for a test set, while Author-Category model multiplies Author-Topic, Category-Topic and Topic-Word.
+Since 
+
+\begin{table}[h]
+	\centering
+	\caption{Results.}
+	\begin{tabular}{l|c}
+		Topic Model & Perplexity \\
+		\midrule
+		\Acrlong{lda} & 6761.6 \\
+		Author-Topic Model & 10991.5 \\
+		Category-Topic Model & 11126.0 \\
+		Taxonomy-Topic Model & - \\
+		Author-Category Model & 64260.6  \\
+		Author-Doc Model & 888036.4  \\
+		Category-Doc Model & 896045.7 \\
+	\end{tabular}
+	\label{tab:app_perplexity}
+\end{table}
+
+From our standard model, the \gls{lda}, 
