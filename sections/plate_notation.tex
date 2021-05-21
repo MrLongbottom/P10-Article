@@ -52,9 +52,9 @@ This is due to our dataset never having more than one author or category for eac
 Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
-\begin{figure*}[ht]
+\begin{figure}[ht]
 	\centering
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.425\columnwidth}
 		\centering
 		\resizebox{\textwidth}{!}{%
 		\input{figures/category_plate}
@@ -63,7 +63,7 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 		\label{fig:category_lda}
 	\end{subfigure}
 	\hspace{2em}
-	\begin{subfigure}{0.3\textwidth}
+	\begin{subfigure}{0.425\columnwidth}
 		\centering
 		\resizebox{\textwidth}{!}{%
 			\input{figures/author_plate}
@@ -73,7 +73,7 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 	\end{subfigure}
 	\caption{Plate notation for the metadata \gls{lda} models.}
 	\label{fig:metadata_lda}
-\end{figure*}
+\end{figure}
 
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
