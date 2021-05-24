@@ -52,9 +52,9 @@ This is due to our dataset never having more than one author or category for eac
 Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
-\begin{figure*}[ht]
+\begin{figure}[ht]
 	\centering
-	\begin{subfigure}{0.25\textwidth}
+	\begin{subfigure}{0.425\columnwidth}
 		\centering
 		\resizebox{\textwidth}{!}{%
 		\input{figures/category_plate}
@@ -63,7 +63,7 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 		\label{fig:category_lda}
 	\end{subfigure}
 	\hspace{2em}
-	\begin{subfigure}{0.25\textwidth}
+	\begin{subfigure}{0.425\columnwidth}
 		\centering
 		\resizebox{\textwidth}{!}{%
 			\input{figures/author_plate}
@@ -71,18 +71,9 @@ The plate notation for our category and author \gls{lda} models can be seen in \
 		\caption{Author \gls{lda}.}
 		\label{fig:author_lda}
 	\end{subfigure}
-	\hspace{2em}
-	\begin{subfigure}{0.25\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/author_category_plate}
-		}
-		\caption{Author-Category \gls{lda}.}
-		\label{fig:author_category_lda}
-\end{subfigure}
 	\caption{Plate notation for the metadata \gls{lda} models.}
 	\label{fig:metadata_lda}
-\end{figure*}
+\end{figure}
 
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
@@ -91,8 +82,8 @@ Pachinko allocation generalizes \gls{lda}, making it possible to construct topic
 
 Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
 However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
-An example of the \gls{dag} structure used in this paper is shown in \autoref{fig:pachinko_dag}.
-
+An example of the \gls{dag} structure used in this paper is in \autoref{fig:pachinko_dag} where each level of the \gls{pam} is shown.
+\vejleder[inline]{be more explicit if that is the same as original or different}
 In this paper, we use a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in each layer fully connected to every node in the next layer of the hierarchy.
 The first layer consists of only the root node, a topic which all documents are part of, and the bottom layer consists of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
 
@@ -104,20 +95,25 @@ We use a five-level pachinko tree structure, following the format presented by \
 The first layer is the root layer.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g. "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
-We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training.
+We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training. \vejleder[inline]{can you back this up with experiments or hard evidence?}
 The fourth layer consists of $K = 90$ 'blank' topics, as with the other models we present in this paper.
 This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
-This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}.
+This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}. \vejleder[inline]{Figure 4 shows both the original and your adaption? rephrase}
 
-The generative process for \gls{pam} is described as follows:
-First, the multinomial distributions for each node in the \gls{dag} are sampled from Dirichlet distributions based on $\alpha$ values.
-While it is possible to use different $\alpha$ values for each layer, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
-Similarly, for the second to last layer, the multinomial distribution over words is sampled from a Dirichlet distribution based on a single $\beta$ value.
+The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
+\begin{enumerate}
+	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
+	\item For each word $w \in d$,
+	\begin{itemize}
+		\item Sample a topic path $\mathbf{z}_w$ of length $L_w:~< z_{w1}, z_{w2},\newline \dots, z_{wL_w} >$. $z_{w1}$ is always the root and $z_{w1}$ through $z_{wL_w}$ are topic nodes in $T$. $z_{wi}$ is a child of $z_{w(i-1)}$ and it is sampled according to the multinomial distribution $\theta_{z_{wL_w}}^{(d)}$.
+		\item Sample word $w$ from $\theta_{z_{wL_w}}^{(d)}$.
+	\end{itemize}
+\end{enumerate}
 
-After all topic distributions have been sampled, documents are created by sampling words in the following manner:
-For each word, a chain of topics is sampled by sampling one topic from each layer of the structure, and finally, a word is chosen based on the last topic.
-More specifically, for each topic $Z_{wl}$ starting with the root topic $Z_{w1}$, we sample a topic from the next layer $Z_{w(l+1)}$ from that node's topic distribution $\theta_l^{(d)}$ based on observed data from that document.
-This generative process in also illustrated in the plate notation for our \gls{pam} in \autoref{fig:pachinko}.
+$T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}. 
+Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
+While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
+An illustration of the plate notation for \gls{pam} can be found in \autoref{fig:pachinko}.
 
 We use Gibbs sampling for performing inference.
 For each word, a chain of topics is sampled by calculating the probability of all combinations of topics and making a weighted sample.
@@ -144,19 +140,11 @@ $n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-
 \input{figures/pachinko}
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
+\vejleder[inline]{do you have a comparison in section 5}
 Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
 However, only $25\%$ of the documents in our dataset have an observed taxonomy.
 To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
-Some of the observed documents have multiple taxonomies.
+Some of the documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document.
-
-\subsection{Combinations}\label{subsec:combinations}
-\vejleder[inline]{hvorfor og formål?}
-We have created a combination model to see whether using multiple metadata fields at the same time to draw topics, would affect the performance of the topic model.
-The first model we have created is the Author-Category combination model.
-To combine the Author and Category metadata, we multiply the topic distributions $\theta_a$ and $\theta_c$ when sampling a new word topic.
-Though, before sampling the word topic, we normalize the product of the multiplication to sum to 1, which also makes it a distribution. \vejleder[inline]{mathify this}
-This makes both of the learned meta distributions influence the sampled word topics.
-The plate notation for the Author-Category model can be seen in \autoref{fig:author_category_lda}.

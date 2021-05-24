@@ -14,17 +14,8 @@ As detailed in \autoref{sec:plate_notation}, the main models used in this experi
 	\item[Taxonomy-Topic Model] A \acrlong{pam} which uses hierarchical taxonomy information.
 \end{description}
 
-By extension of these models, combinations of the models are also evaluated.
-As detailed in \autoref{sec:combinations}, these combinations are:
-\begin{itemize}
-	\item Author-Category
-	\item Author-Taxonomy
-	\item Category-Taxonomy
-	\item Author-Category-Taxonomy
-\end{itemize}
-These model combinations should give insight into what a model learns when multiple metadata have influence on the topics chosen.
-
 \subsection{Evaluation Metrics}\label{sec:experiment_metrics}
+\vejleder[inline]{fix commas in this section}
 All models previously mentioned are evaluated on the following evaluation metrics.
 
 The main metric used, in this experiment, is the topic coherence metric.
@@ -62,9 +53,6 @@ It is therefore not the best measure of the final quality of a topic model, but 
 \end{equation}
 \noindent where $JS$ is Jensen-Shannon distance, $K$ is the number of topics, and $\beta_{k}$ is the topic-word distribution for topic $k$.
 If the total sum is not averaged out, this measure can also be used to indicate convergence of the model.
-
-Finally, we also perform human evaluation of the topics generated.
-\todo[inline]{How/if we do this is still to be discussed}
 
 \subsection{Grid Search}\label{sec:experiment_gridsearch}
 To find the optimal hyperparameter values for the models, we run a grid search.

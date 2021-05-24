@@ -10,8 +10,8 @@ Details of this phase are given in \autoref{sec:dataset}.
 After finishing this phase, we are left with $139,060$ articles and $69,192$ unique words to form the corpus, which will be used in the following steps.
 
 \subsubsection*{Step 2: \Gls{lda} Models}
-In this step, we train the standard \gls{lda} model, the category, author, and taxonomy metadata models as well as the combinations of these models on the corpus.
-The standard \gls{lda} model, the metadata models, and the combination models are described further in \autoref{sec:plate_notation}.
+In this step, we train the standard \gls{lda} model, the category, author, and taxonomy metadata models, as well as a combination model called the author-category model, on the corpus.
+The standard \gls{lda} model and the metadata models are described further in \autoref{sec:plate_notation}, and the combination model is described in \autoref{sec:combination}.
 The models are trained based on topic coherence, and after the training process the models are evaluated further.
 
 \subsubsection*{Step 3: Evaluation of \gls{lda} Models}
