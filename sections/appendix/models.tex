@@ -1,18 +1,19 @@
 \subsection{Extensions to our models}\label{subsec:app_exten_models}
 Looking at the results in \autoref{tab:metric_results}, the Author-Topic and Category-Topic model do not get very high scores in Topic Coherence.
-In an attempt to improve these results, we combine the original \gls{lda} model with these models, adding a topic distribution for each document and combining it with the existing topics distributions, as with the Author-Category model, which is explained in \autoref{subsec:combinations}.
+In an attempt to improve these results, we combine the original \gls{lda} model with these models, adding a topic distribution for each document and combining it with the existing topics distributions, as with the Author-Category model, which is explained in \autoref{sec:combination}.
 Therefore, we create two extra models: the Author-Doc and Category-Doc model.
 We run them using the same hyperparameters as all the other models and they get similar results to the standard \gls{lda} model.
 
 \begin{table}[h]
 	\centering
-	\caption{Bolded results are the new models, which have been run.}
+	\caption{Bolded results are the new models that have been run.}
 	\begin{tabular}{l|c|c}
 		Topic Model & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
 		\midrule
 		\Acrlong{lda} & 0.520 & 0.575 \\
 		Author-Topic Model & 0.335 & 0.615 \\
 		Category-Topic Model & 0.370 & 0.560 \\
+		\textbf{Author-Category Model} & \textbf{0.390} & \textbf{0.537} \\
 		\textbf{Author-Doc Model} & \textbf{0.543} & \textbf{0.574} \\
 		\textbf{Category-Doc Model} &\textbf{ 0.530} & \textbf{0.575} \\
 	\end{tabular}
