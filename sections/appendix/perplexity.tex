@@ -4,7 +4,7 @@ One evaluation metric, that is commonly used to evaluate topic models, is perple
 Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
 As described in \autoref{sec:related_work}, \citet{tea_leaves} states that perplexity does not infer semantically meaningful topics.
 Because of this, we have chosen not to use perplexity in our experiments.
-But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation~\cite{tea_leaves}.
+Even though perplexity is not specific to topic models and by itself does not give an indication of how coherent topics are, we show the perplexity results for our models in \autoref{tab:_extra_metric_results}.
 To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in:
 \begin{equation}\label{eq:likelihood}
 	\mathcal{L}(w_d) = \log p(w_d|\Phi) = \sum_{d} \log p(w_d|\Phi)
