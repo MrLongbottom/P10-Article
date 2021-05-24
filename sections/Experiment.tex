@@ -31,20 +31,7 @@ $C_v$ is calculated using the following steps, as presented by~\citet{Syed2017co
 The intuition is to calculate the degree of semantic similarity between highly probable words in a topic.
 This intuition, and each step, is explained further in Appendix \autoref{app:topic_coherence}.
 
-The second metric used in the experiment is perplexity.
-Perplexity is used as a metric, to show how well a model can predict new test samples $w_d$.
-But because perplexity is not specific to topic models, and by itself does not give an indication of how coherent topics are, it is mainly used as a secondary evaluation~\cite{tea_leaves}.
-To calculate perplexity, we first need to compute the log-likelihood of $w_d$, which is done in:
-\begin{equation}\label{eq:likelihood}
-	\mathcal{L}(w_d) = \log p(w_d|\Phi) = \sum_{d} \log p(w_d|\Phi)
-\end{equation}
-\noindent where $\Phi$ is the topic-word matrix.
-The perplexity measure is then calculated as follows:
-\begin{equation}
-	\emph{Perplexity}(w_d) = exp \{-\frac{\mathcal{L}(w_d)}{W}\}
-\end{equation}
-\noindent where W is the number of words \cite{de2008evaluating}.
-
+The second metric used in the experiment is topic difference.
 Topic difference is another metric that is used to check the quality of the topic model.
 It is based on the assumption that a good topic model will have little overlap between topics.
 It is therefore not the best measure of the final quality of a topic model, but a low topic difference will indicate potential problems with a model.
