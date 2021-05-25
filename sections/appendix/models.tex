@@ -6,21 +6,19 @@ We run them using the same hyperparameters as all the other models and they get 
 
 \begin{table}[h]
 	\centering
-	\caption{Results for the combination models.}
-	\label{tab:_extra_metric_results}
-	\begin{tabular}{l|c|c|c}
-		Topic Model & Perplexity & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
+	\caption{Bolded results are the new models that have been run.}
+	\begin{tabular}{l|c|c}
+		Topic Model & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
 		\midrule
-		\Acrlong{lda} & 6761.6 & 0.520 & 0.575 \\
-		Author-Topic Model & 10991.5 & 0.335 & 0.615 \\
-		Category-Topic Model & 11126.0 & 0.370 & 0.560 \\
-		\textbf{Author-Category Model} & \textbf{64260.6} & \textbf{0.390} & \textbf{0.537} \\
-		\textbf{Author-Doc Model} & \textbf{888036.4} & \textbf{0.543} & \textbf{0.574} \\
-		\textbf{Category-Doc Model} & \textbf{896045.7} &\textbf{ 0.530} & \textbf{0.575} \\
+		\Acrlong{lda} & 0.520 & 0.575 \\
+		Author-Topic Model & 0.335 & 0.615 \\
+		Category-Topic Model & 0.370 & 0.560 \\
+		\textbf{Author-Category Model} & \textbf{0.390} & \textbf{0.537} \\
+		\textbf{Author-Doc Model} & \textbf{0.543} & \textbf{0.574} \\
+		\textbf{Category-Doc Model} &\textbf{ 0.530} & \textbf{0.575} \\
 	\end{tabular}
+	\label{tab:_extra_metric_results}
 \end{table}
-
-As \autoref{tab:_extra_metric_results} shows, the perplexity scores for the two models are extremely high since we are multiplying three vectors instead of two.
 
 When looking at the topics that the two models produce, and comparing them, we can see some subtle differences, which might indicate the influence of the metadata.
 \begin{table}

@@ -23,6 +23,13 @@ This preprocessing also makes the size of the remaining categories more evenly d
 	\label{fig:category_hist}
 \end{figure*}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=.5\linewidth]{figures/category_box.png}
+	\caption{Boxplot over the size of the categories after filtering. Size meaning the amount of documents with the same category.}
+	\label{fig:category_box}
+\end{figure}
+
 As mentioned in \autoref{sec:dataset}, there are some category labels which seemingly have no relevance to the documents using the labels.
 Specifically, the category labels '26. Frederik' and '53. Frederik' do not indicate what they cover, since Frederik is simply a normal Danish name.
 Since they are not filtered into the 'misc' category during preprocessing, it is worth looking into what documents have these categories.
