@@ -34,19 +34,12 @@ However, there are also nonsensical categories such as '53. Frederik', that does
 % stats
 This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
 However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
-Filtering away all categories covering less than $140$ documents (approximately $0.01\%$ of the total document set) and combining them into a single new 'misc' category, $34$ categories remain.\todo[inline]{What is the size of the misc category?}
+After filtering away all categories covering less than $140$ documents (approximately $0.01\%$ of the total document set) and combining them into a single new 'misc' category of size $229$, $34$ categories remain.
+The smallest category consists of $188$ documents, and for all categories, the median category size is $3022$.
 \autoref{fig:category_box} shows an overview of the size of the categories after filtering.
-It can be seen here that the smallest category now has 188 documents, and for all categories, the median category size is 3022.
 The categories from the 3rd quartile and up do become much larger compared to the median, and there is an outlier with 20241 documents.
 These larger categories seem to be about topics that are written about often or categories that cover a specific newspaper.
-All of the category labels can be seen in \autoref{tab:category_table} in \autoref{sec:appendix_meta_data}.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1 \linewidth]{figures/category_box.png}
-	\caption{Boxplot over the size of the categories. Size meaning the amount of documents with the same category.}
-	\label{fig:category_box}
-\end{figure}
+All of the category labels can be seen in \autoref{tab:category_table} and the statistics in \autoref{tab:meta_prepro_stats}.
 
 \subsection{Taxonomy}\label{sec:dataset_taxonomy}
 The taxonomy field describes a hierarchical sequence of the topical or geographical subject of the articles.
