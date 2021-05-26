@@ -8,8 +8,8 @@ To combine the Author and Category metadata, we multiply the topic distributions
 \begin{equation}
 	p_z = \frac{\theta_a}{C(\theta_a)} \cdot \frac{\theta_c}{C(\theta_c)} \cdot \frac{\beta_w}{C(\beta_w)}
 \end{equation}
-Where C() is a function that counts number of times the word or document is used within a topic.
-Though, before sampling a new topic, we normalize it by the $L1$ norm, where we divide by sum of all variables, which also makes it a distribution. 
+Where \emph{C()} is a function that counts the number of times the word or document is used within a topic.
+Though, before sampling a new word topic, we normalize $p_z$ by the $L1$ norm where we divide by the sum of all variables, which also makes it a distribution. 
 \begin{equation}
 	dist = \frac{p_z}{\sum_{1}^{t} p_z}
 \end{equation}
