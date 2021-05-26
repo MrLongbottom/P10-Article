@@ -101,6 +101,7 @@ This layer is added so that the model can construct its own topics based on the 
 This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}. \vejleder[inline]{Figure 4 shows both the original and your adaption? rephrase}
 
 The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
+\vejleder[inline]{se thomas dokument}
 \begin{enumerate}
 	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
 	\item For each word $w \in d$,
@@ -116,6 +117,7 @@ While it is possible to use different $\alpha$ values for each topic, as shown h
 An illustration of the plate notation for \gls{pam} can be found in \autoref{fig:pachinko}.
 
 We use Gibbs sampling for performing inference.
+\vejleder[inline]{beskriv gibbs sampling i appendix}
 For each word, a chain of topics is sampled by calculating the probability of all combinations of topics and making a weighted sample.
 The probability of each topic combination is calculated using the joint probability of the topics, as presented in \autoref{eq:pachinko_gibbs}.
 
@@ -141,7 +143,7 @@ $n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
 \vejleder[inline]{do you have a comparison in section 5}
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.\vejleder[inline]{hvad vil du sige?}
 However, only $25\%$ of the documents in our dataset have an observed taxonomy.
 To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
