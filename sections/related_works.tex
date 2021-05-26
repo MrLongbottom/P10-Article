@@ -8,22 +8,21 @@ This way the model learns assignments of the words in each document to the metad
 The models we create follow the upstream pattern.
 
 \citet{author_topic_2012} have developed an \gls{lda} model called the Author-Topic model, which incorporates authorship information in the \gls{lda} model.
-Specifically, each document has a vector of authors, where for each word an author is drawn from this vector.
+Specifically, each document has a vector of authors, where for each word an author is drawn from this vector.\vejleder[inline]{er dette korrekt?}
 The author is then used in combination with an author-topic distribution to draw a specific topic that this author writes about.
 The words from the topic-word distribution can be generated based on this topic.
 The purpose of using authorship information in this way, is to show patterns in which topics an author usually writes about, and be able to explore how related authors are in what they write about.
 \citeauthor{author_topic_2012} also show that the combination of authorship and \gls{lda} yield more coherent topics.
 However, the Author-Topic model from \citet{author_topic_2012} is applied to scientific article datasets, where the authors usually write about the same subject.
-We apply this model to a news article dataset to see whether similar performance can be obtained.
+We apply this model to the Nordjyske news article dataset to see whether similar performance can be obtained.
 
 \citet{MetaLDA2017} present a model, called MetaLDA, which can incorporate both metadata information and word embeddings within a topic model.
 Since the field of incorporating word embeddings within generative topic models have gained popularity\cite{dieng2020topic}, \citet{MetaLDA2017} show how to use this information for a variety of different datasets.
 They also compare against a list of other models that take either metadata information or word embeddings into account when doing inference.
-We take inspiration from \citet{MetaLDA2017}, but we do not employ the model they present.
-As mentioned, we use the Author-Topic model, presented by \citet{author_topic_2012}. 
-We use this model instead of MetaLDA because, in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, making it difficult to analyze a model that includes multiple metadata fields.
+We take inspiration from \citet{MetaLDA2017}, but we do not employ the model they present. 
+We use the Author-Topic model instead of MetaLDA because, in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, making it difficult to analyze a model that includes multiple metadata fields.
 
-\citet{tea_leaves} is a well-cited paper within the topic modeling community, which presents different methods for evaluating probabilistic topic models. 
+\citet{tea_leaves} present different methods for evaluating probabilistic topic models. 
 An important observation they made is that a good held-out likelihood, normally called perplexity, infers less semantically meaningful topics.
 They also present two different human judgment methods called \emph{word intrusion} and \emph{topic intrusion}, which can be used to evaluate topic models by human judgment. 
 \emph{Word intrusion} is where an "intrusion" word has been placed into a coherent topic, and the task is to identify the word.
@@ -34,7 +33,7 @@ We use the evaluation metrics presented in \citet{topic_coherence_2015} to evalu
 
 \citet{li2006pachinko} present a \gls{dag} structured topic model, called the \acrfull{pam}, where topics are in a hierarchical structure, which allows it to find two types of topics, namely super-topics and sub-topics. 
 \Gls{pam} is a generalization of the \gls{lda} model, where super and sub-topics are used to correlate topics within the model, e.g. a football topic being part of a sports topic.
-We have a metadata field within our dataset, which is hierarchically structured.
+We have a metadata field within our dataset, which is hierarchically structured. \vejleder[inline]{måske presenter data-afsnit først?}
 We create a modified \gls{pam} to account for this metadata field and investigate whether this type of information can improve the topic quality.
 
 There also exist a variety of models that look at either document or word metadata.
@@ -45,8 +44,8 @@ Examples of models that incorporate word-level metadata are: WF-LDA by \citet{wf
 WF-LDA extends \gls{lda} by using word features to make a prior for the topics.
 LF-LDA takes the approach of replacing \gls{lda}'s topic-word Dirichlet multinomial component with a two-component mixture of a topic-word Dirichlet multinomial component and a latent feature component.
 
-From these works, we mainly use the concepts from \citet{author_topic_2012} for how we use metadata in our models, though with slight changes in the models for handling the characteristics of our data.
-As mentioned earlier, one of the main reasons why we use the concepts from the Author-Topic model instead of the newer MetaLDA model~\cite{MetaLDA2017} is that in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document.
-This limits the ability to analyze a model that includes multiple metadata, while in the author-topic model other metadata can be included as their own meta-topic distributions and be analyzed further.
+From these works, we adapt the concepts from \citet{author_topic_2012}\vejleder[inline]{argument ad fra data + formål} for how we use metadata in our models, though with slight changes in the models for handling the characteristics of our data.
+As mentioned earlier, one of the main reasons why we use the concepts from the Author-Topic model instead of the newer MetaLDA model~\cite{MetaLDA2017} is that in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document.\vejleder[inline]{meget vanskeligt at følge med uden indsigt i modellerne}
+Analyzing such a model that includes multiple metadata, can be complicated while in the author-topic model other metadata can be included as their own meta-topic distributions and be analyzed further.
 Also, since MetaLDA uses the document-topic distribution as its base, we would not be able to explore other interesting connections, such as the connection between learned category-topic distributions and the topics that are most probable for specific categories.
 We also explore whether adapting the \gls{pam}~\cite{li2006pachinko} to work with a hierarchically structured metadata called 'taxonomy', described in \autoref{sec:dataset_taxonomy}, gives the model more context and improves the topic quality or performance.
