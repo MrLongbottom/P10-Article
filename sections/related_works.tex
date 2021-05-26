@@ -44,7 +44,7 @@ Examples of models that incorporate word-level metadata are: WF-LDA by \citet{wf
 WF-LDA extends \gls{lda} by using word features to make a prior for the topics.
 LF-LDA takes the approach of replacing \gls{lda}'s topic-word Dirichlet multinomial component with a two-component mixture of a topic-word Dirichlet multinomial component and a latent feature component.
 
-From these works, we adapt the concepts from \citet{author_topic_2012}\vejleder[inline]{argument ad fra data + formål} for how we use metadata in our models, though with slight changes in the models for handling the characteristics of our data.
+From these works, we adapt the concepts from \citet{author_topic_2012}\vejleder{argument ad fra data + formål} for how we use metadata in our models, though with slight changes in the models for handling the characteristics of our data.
 As mentioned earlier, one of the main reasons why we use the concepts from the Author-Topic model instead of the newer MetaLDA model~\cite{MetaLDA2017} is that in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document.\vejleder[inline]{meget vanskeligt at følge med uden indsigt i modellerne}
 Analyzing such a model that includes multiple metadata, can be complicated while in the author-topic model other metadata can be included as their own meta-topic distributions and be analyzed further.
 Also, since MetaLDA uses the document-topic distribution as its base, we would not be able to explore other interesting connections, such as the connection between learned category-topic distributions and the topics that are most probable for specific categories.
