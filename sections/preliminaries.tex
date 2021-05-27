@@ -58,7 +58,7 @@ Each node in the \gls{dag} structure represents a topic in the pachinko allocati
 However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
 
 \citet{li2006pachinko} present the four-level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in each layer fully connected to every node in the next layer of the hierarchy.
-The first layer consists of only the root node, a topic which all documents are part.
+The first layer consists of only the root node, a topic which all documents are part of.
 The bottom layer consists of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
 The rest are middle layers representing topics of different abstraction levels.
 
