@@ -52,7 +52,8 @@ This mechanism is discussed further in \autoref{subsec:mod_pachinko}.
 The first layer of the \gls{dag} is the root layer.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g. "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
-We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training. \vejleder[inline]{can you back this up with experiments or hard evidence?}
+We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training.
+From our experiments, the training time for 50 epochs, increases from 12 hours to 130 hours between four and five level pachinko.
 The fourth layer consists of $K = 90$ 'blank' topics, as with the other models we present in this paper.
 This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
 
