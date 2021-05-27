@@ -33,7 +33,7 @@ It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
 		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}, \alpha, \beta) = 
-		\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{d'} C^{DT}_{d'k} + T\alpha}}_{Doc-Topic}
+		\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
 		\underbrace{\frac{C^{WT}_{mk} + \beta}{\sum_{m'} C^{WT}_{m'k} + V\beta}}_{Topic-Word}
 	\end{split}
 \end{equation}
