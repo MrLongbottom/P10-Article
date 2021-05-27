@@ -11,11 +11,11 @@ To combine the Author and Category metadata, we use the notation described in \c
 	\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
 	\underbrace{\frac{C^{WT}_{mk} + \beta}{\sum_{m'} C^{WT}_{m'k} + V\beta}}_{Topic-Word}
 \end{equation}
-where $C^{AT}_{ak}$ and $C^{CT}_{ck}$ is the number of times author $a$ and category $c$ uses topic $k$, respectively.
-The intuition behind this is to multiply the three distributions together to get combined distribution to draw a topic from.
+where $C^{AT}_{ak}$ and $C^{CT}_{ck}$ is the number of times author $a$ and category $c$ use topic $k$, respectively.
+The intuition behind this is to multiply the three distributions together to get a combined distribution to draw a topic from.
 But before drawing a topic, we normalize it based on the sum of the distribution.
 \begin{equation}
-	dist = \frac{x}{\sum_{1}^{t} x}
+	dist = \frac{x}{\sum_{1}^{K} x}
 \end{equation}
 
 \begin{figure*}[ht]
