@@ -1,5 +1,5 @@
 In the main paper, we initialize and describe our problem with a focus on results.
-Within this appendix, we are expanding on many aspects of the aforementioned paper.
+Within this appendix, we are expanding on many aspects of the aforementioned paper and describing new experiments that have been made.
 
 This includes:
 \begin{itemize}
@@ -7,22 +7,25 @@ This includes:
 	\begin{itemize}
 		\item A brief explanation of the process of training and evaluating our models.
 	\end{itemize}
+	\item Expanding on the paper
+	\begin{itemize}
+		\item The metadata is shown in tables for all three metadata types, and observations about the metadata labels are described.
+		\item We explain the purpose and mathematical ideas behind the evaluation metrics we use in the paper.
+		\item Our grid search process is described further on how we chose our hyperparameters.
+		\item More articles are highlighted the same way as in \autoref{sec:discussion} and observations are made.
+	\end{itemize}
 	\item Code
 	\begin{itemize}
-		\item The code for the Gibbs sampler is explained and the other models we explored are described in how they differ from the standard Gibbs Sampler. 
-		Other versions of the models are also explained, such as a parallel Gibbs sampler.
+		\item An experiment using a stemmed dataset is described, and the results are observed.
+		\item We describe the probabilistic programming language Pyro which we explored before choosing to work with Gibbs sampling.
+		\item The code for the Gibbs sampler is explained and how the \gls{pam} differs from the standard Gibbs Sampler is described. 
+		\item Our testing of a parallel Gibbs sampler is also described.
 	\end{itemize}
-	\item Metrics 
+	\item Expanded model experiments
 	\begin{itemize}
-		\item We explain the purpose and mathematical ideas behind the three evaluation metrics we use in the paper.
-	\end{itemize}
-	\item Modifications 
-	\begin{itemize}
-		\item The specific modifications we have implemented into our models are evaluated and explain in detail.
-	\end{itemize}
-	\item Metadata
-	\begin{itemize}
-		\item The metadata is shown in tables, specifically for the author and category metadata, and observations about the metadata labels are described.
+		\item We go into detail how we explored using author and category metadata in the \gls{pam} and what results were achieved.
+		\item We also explored a model combining the author-topic and category-topic models into one model with two topic distribution. This model is also analyzed.
+		\item Further model combinations we explored, were models that combine the standard \gls{lda} with our author and category metadata models.
 	\end{itemize}
 	\item Applications
 	\begin{itemize}

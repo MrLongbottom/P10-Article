@@ -109,27 +109,30 @@ rech16@student.aau.dk}
 \glsresetall
 \onecolumn
 \appendix
-% Intro
+% Intro and overview
 \input{sections/appendix/Intro.tex}
-
-% Overview
 \input{sections/appendix/Overview.tex}
+
+% Expansions to sections from paper
 \input{sections/appendix/metadata_labels.tex}
 \input{sections/appendix/metrics.tex}
 %\input{sections/appendix/perplexity.tex}
 \input{sections/appendix/grid_search.tex}
-\input{sections/appendix/stemming.tex}
-\input{sections/appendix/author_category.tex}
 \input{sections/appendix/color_articles.tex}
-% Code
+
+% New experiments and related details
+\input{sections/appendix/stemming.tex}
+%% Code
+\input{sections/appendix/pyro.tex}
 \input{sections/appendix/gibbs_sampling.tex}
 \input{sections/appendix/multi_process_gibbs.tex}
 \input{sections/appendix/pachinko_implementation.tex}
 \input{sections/appendix/locking.tex}
-\input{sections/appendix/pachinko_results.tex}
+\input{sections/appendix/pachinko_results.tex} % The big table
+%% New models
 \input{sections/appendix/cat_auth_pachinko.tex}
+\input{sections/appendix/author_category.tex}
 \input{sections/appendix/models.tex}
-\input{sections/appendix/pyro.tex}
 
 % Applications
 \input{sections/appendix/applications.tex}
