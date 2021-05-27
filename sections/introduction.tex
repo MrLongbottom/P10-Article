@@ -4,8 +4,7 @@ News is being broadcast every day around the world in the form of news articles,
 Searching and categorizing the news is becoming a bigger problem since news is created at all times.
 As the internet becomes more personalized, as seen with targeted advertisements, recommender systems are seeing more use in applications, such as Netflix and Amazon.
 Within recommendation, there are two main machine learning techniques: collaborative filtering and content-based filtering.
-These two techniques are based on the assumption that similar users like similar items (collaborative) or one user likes certain types of items (content-based).
-We focus on creating a better environment for the content-based recommendation of news articles.
+These two techniques are based on the assumption that similar users like similar items (collaborative) or a user likes certain types of items (content-based).
 
 One particular field, which covers a variety of different use cases and applications, such as being useful for recommendations, is the field of topic modeling.
 Topic modeling has been used for finding topics within a collection of documents to either annotate or categorize certain collections of texts~\cite{Probabilistic_Topic_Models}.
@@ -15,7 +14,7 @@ In most models metadata is not used.
 However, there is some previous work that attempts to make use of the metadata available, by incorporating it into topic models, such as the Author-Topic model by \citet{author_topic_2012} and the MetaLDA model by \citet{MetaLDA2017}.
 
 % Author-Topic
-One of the well-cited extensions of \gls{lda} is the Author-Topic model by \citet{author_topic_2012} that combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
+The Author-Topic model by \citet{author_topic_2012} combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
 This is based on the assumption that most authors usually write about only a few different topics.
 By modeling this relationship, they find connections between authors and topics, and between different authors, giving more underlying information to the topics.
 They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
@@ -31,22 +30,19 @@ However, a lot of metadata is not used, either because it is not useful or we do
 % Intro to Nordjyske data and applications
 We have a dataset from a danish media group, called Nordjyske, with three years of article data.
 This dataset can be applied to a variety of different applications, such as topic modeling\cite{blei2003latent}\cite{MetaLDA2017}, text analysis\cite{baly2020written}, search engine optimization\cite{amjad2015topic}, and many more.
-In this paper, the dataset will be used with a focus on topic modeling.
+The dataset contains a variety of different metadata, which have the potential to improve topic models in the same way as \citet{author_topic_2012}. 
+In this paper, the dataset will be used with a focus on topic modeling and incorporation of metadata.
 
 % In this paper
 We want to construct different topic models that incorporate various metadata, to see whether incorporating this information changes the topic quality.
-We do this to aid in solving potential problems that Nordjyske might encounter as a media group, such as the recommendation of articles or search functionality.
 We also investigate differences between the produced topics for various models, to evaluate their potential uses.
 
 % Problem Statement
 We define the following research questions to investigate in this paper:
 
 \begin{itemize}
-	\item \textit{How does including metadata within the \gls{lda} model impact the resulting topics?}
-	\item \textit{What possible problems can these models help alleviate at Nordjyske?} \vejleder[inline]{hvordan vil i vudere det?}
-	\begin{itemize}
-		\item \textit{More specifically, how can these models improve recommendation of articles?}
-	\end{itemize}
+	\item \textit{How can we establish models that incorporate metadata from the Nordjyske dataset?}
+	\item \textit{How does including metadata within such models impact the resulting topics?}
 \end{itemize}
 
 Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
@@ -55,7 +51,7 @@ Instead of using the document-topic distribution for drawing word topics, we wan
 An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
 We investigate the effect that creating a meta-topic distribution for any specific meta-information, such as the author information, has on the resulting topics.
 The intuition behind this is to create new topic models, which describe the data in a different way using topics that are influenced by metadata.
-For example, if the metadata describes something about geographic locations, location-specific topics will be generated, which could be useful in a many cases.
+For example, if the metadata describes something about geographic locations, location-specific topics will be generated, which could be useful in many cases.
 The metadata, within the Nordjyske dataset, includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
 
 % Paper Structure
