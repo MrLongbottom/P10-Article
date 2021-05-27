@@ -4,12 +4,14 @@ The idea is that this model combination should give insight into what a model le
 The model we have created is the Author-Category combination model.
 As the name suggests, this model includes an author-topic distribution and a category-topic distribution, and the plate notation can be seen in \autoref{fig:author_category_lda}.
 
-To combine the Author and Category metadata, we multiply the topic distributions $\theta_a$ and $\theta_c$ and the topic word $\beta_w$ when sampling a new topic $t$ for word $w$.
+To combine the Author and Category metadata, we use the notation described in \citet{author_topic_2012} and in \ref{sec:appendix_gibbs}.
 \begin{equation}
-	p_z = \frac{\theta_a}{C(\theta_a)} \cdot \frac{\theta_c}{C(\theta_c)} \cdot \frac{\beta_w}{C(\beta_w)}
+		P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+	\underbrace{\frac{C^{AT}_{ak} + \alpha}{\sum_{k'} C^{AT}_{ak'} + T\alpha}}_{Author-Topic}
+	\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
+	\underbrace{\frac{C^{WT}_{mk} + \beta}{\sum_{m'} C^{WT}_{m'k} + V\beta}}_{Topic-Word}
 \end{equation}
-Where \emph{C()} is a function that counts the number of times the word or document is used within a topic.
-Though, before sampling a new word topic, we normalize $p_z$ by the $L1$ norm where we divide by the sum of all variables, which also makes it a distribution. 
+where $C^{AT}_{ak}$ and $C^{CT}_{ck}$ is the number of times author $a$ and category $c$ uses topic $k$, respectively.
 \begin{equation}
 	dist = \frac{p_z}{\sum_{1}^{t} p_z}
 \end{equation}
