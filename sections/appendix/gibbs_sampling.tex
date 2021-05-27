@@ -30,7 +30,6 @@ def rand_initialize(documents: List[np.ndarray]):
 Various parameters are left out to simplify the code listing of our initialization method.
 The \emph{\_conditional\_distribution()} function creates a distribution of topics based on the current word.
 It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
-
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
 		P(z_i = k|w_i = m, z_{-i}, w_{-i}, \alpha, \beta) = 
