@@ -1,4 +1,4 @@
-\subsection{Applications of our framework}\label{sec:appendix_applications}
+\subsection{Applications of our models}\label{sec:appendix_applications}
 There are a variety of different applications that topic modeling could be used for. 
 \citet{Probabilistic_Topic_Models} describes many different purposes for topic modeling, like exploring the history of news articles over time.
 The \gls{lda} model, created by \citet{blei2003latent}, has seen many extensions over the years to try and improve the generality of the model.
@@ -6,17 +6,17 @@ Normally \gls{lda} works by inferring hidden topic structure, which is based on 
 An extension to the \gls{lda} is the Author-Topic model, created by \citet{author_topic_2012}, which creates a relationship between the author meta-information and the corpus.
 This idea of taking meta-information into account seems to be overlooked, even though a few papers have touched upon this area, the application possibilities for these kind of meta-information integrations are endless.
 
-News media groups, like Nordjyske, are trying to find new ways of integrating smarter and more intelligent methods for keeping their customers, and using topic modeling can help improve their processes in different ways.
-One case could be that they want better search functionality for their articles.
-This problem could be alleviated by using the topics created by our \gls{lda} model, to specifically target certain types of topics and group articles together with very similar topic distributions, like sports articles.
+News media groups, like Nordjyske, are trying to find new ways of integrating smarter and more intelligent methods for keeping their customers, and using topic modeling can help improve their processes such as : searching, recommendation, grouping of articles, information completion, etc.
+We will briefly give an overview of each of these to explain how topic modelling might play a role in improving these processes.
+
+The first example is to improve search functionality for their articles.
+This problem could be alleviated by using the topics created by our \gls{lda} model, by performing query expansions finding similar words to the ones that appear in the query, providing more context to find results from.
+Once initial search results have been found, topic models could also be used to find other results with similar topics.
 
 One very important problem, within news agencies, is recommendation of articles.
-Many algorithms have already been developed for solving the recommendation problem but incorporating topics within these models could improve the recommendation if scoring of the articles was possible.
-Then, scoring of the articles could be used in recommendation for a wide variety of different users, who might take a liking to a specific article or a topic which is popular at that moment.
+Topic models can be used particularly for content-based filtering, finding other articles that have similar topics either to a users preferences based on their history or to another article.
 
-One important goal of ours is to emphasize the importance of metadata and how it can affect future applications.
-As \citet{author_topic_2012} described, they investigate how authors can have an influence on the topics created by the \gls{lda}.
-We want to see how any meta-information can impact the topics created by the \gls{lda}. 
-How can meta-information, such as geographic locations from the Category or Taxonomy fields, influence the topics created?
-Are we able to figure out which types of articles do well in certain regions of a country based on this information? 
-Can time information be used to figure out whether a certain article gets better performance on another date?
+Grouping together items, or clustering, can serve many different purposes. Topic modelling provides a new way of grouping together articles based on topic similiarity.
+
+A topic model might also be used to fill in missing information to the dataset.
+For example with the taxonomy-topic model, we sample new taxonomies for the majority of the dataset which does not already have a taxonomy entry.
