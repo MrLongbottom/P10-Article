@@ -21,7 +21,7 @@ In this paper we answer these research questions:
 We work with a dataset Nordjyske, a Danish news agency.
 This dataset contains $248,385$ articles from 2017 to 2019.
 Basic preprocessing is done to make the data more applicable for topic models.
-Each article includes three types of metadata that we chose to extend our topic models with: author, category, and taxonomy metadata.
+Each article includes three types of metadata: author, category, and taxonomy, that we chose to extend our topic models with.
 
 The author field is for the author who has written the article.
 This field is fully observed within the dataset, and each article only has a single author, so we do not account for multiple authors.
@@ -86,7 +86,8 @@ Finally, it was described how the layered structure of \gls{pam} gives further o
 The analysis shows that each model has its own usefulness in supporting the recommendation of articles depending on what kind of recommendation is wanted.
 
 %appendix
-As further experimentation and exploration, we tested what would happen if we did further preprocessing, if we included multiple topic distributions in our models, and if we used the author and category metadata in the \gls{pam}.
+As further experimentation and exploration, we tested what would happen if we did further preprocessing.
+We also tested the effect of including multiple topic distributions in our models and what would happen if we used the author and category metadata in the \gls{pam}.
 
 For further preprocessing, we tested what effect including stemming in our dataset would have on the models.
 With stemming on the \gls{lda} model, it was seen that there were a lot fewer unique words.
