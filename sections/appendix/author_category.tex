@@ -1,13 +1,22 @@
 \subsection{The author-category model}\label{sec:combination}
-\vejleder[inline]{hvorfor og formål?}
 We have created a combination model, as an extension of our metadata models, to see whether using multiple metadata fields at the same time to draw topics, would affect the performance of the topic model.
 The idea is that this model combination should give insight into what a model learns when multiple metadata influence the topics chosen.
 The model we have created is the Author-Category combination model.
 As the name suggests, this model includes an author-topic distribution and a category-topic distribution, and the plate notation can be seen in \autoref{fig:author_category_lda}.
 
-To combine the Author and Category metadata, we multiply the topic distributions $\theta_a$ and $\theta_c$ when sampling a new word topic.
-Though, before sampling the word topic, we normalize the product of the multiplication to sum to 1, which also makes it a distribution. \vejleder[inline]{mathify this}
-This makes both of the learned meta distributions influence the sampled word topics.
+To combine the Author and Category metadata, we use the notation described in \citet{author_topic_2012} and in \ref{sec:appendix_gibbs}.
+\begin{equation}
+		P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+	\underbrace{\frac{C^{AT}_{ak} + \alpha}{\sum_{k'} C^{AT}_{ak'} + T\alpha}}_{Author-Topic}
+	\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
+	\underbrace{\frac{C^{WT}_{mk} + \beta}{\sum_{m'} C^{WT}_{m'k} + V\beta}}_{Topic-Word}
+\end{equation}
+where $C^{AT}_{ak}$ and $C^{CT}_{ck}$ is the number of times author $a$ and category $c$ use topic $k$, respectively.
+The intuition behind this is to multiply the three distributions together to get a combined distribution to draw a topic from.
+But before drawing a topic, we normalize it based on the sum of the distribution.
+\begin{equation}
+	dist = \frac{x}{\sum_{1}^{K} x}
+\end{equation}
 
 \begin{figure*}[ht]
 	\centering
