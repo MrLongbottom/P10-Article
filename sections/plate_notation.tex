@@ -57,8 +57,7 @@ An example of the \gls{dag} structure used in this paper is in \autoref{fig:pach
 The idea behind the \gls{dag} structure is to be able to model correlations between topics and in turn make more coherent topics.
   
 In this paper, we use a layered \gls{pam}, as in \cite{author_topic_2012}, meaning that the \gls{dag} structure is divided into layers where each layer is fully connected.
-However, we use five layers instead of four.
-The first layer consists of only the root node, a topic which all documents are part of, and the bottom layer consists of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
+However, \citet{li2006pachinko} use four layers where we use five to capture more taxonomy fields.
 
 We replicate some layers in our \gls{dag} structure based on the structure from the taxonomy field within our dataset, having some nodes represent a topic based on a specific taxonomy.
 An example of this could be in the second layer, we have "STEDER", and this is connected to "Danmark" in the third layer.
@@ -77,7 +76,29 @@ This layer is added so that the model can construct its own topics based on the 
 
 \input{figures/dag_structure}
 
-\input{figures/pachinko}
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{0.45\columnwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/pachinko_original}
+		}
+		\caption{Original Four layer Pachinko}
+		\label{fig:five_layer_pachinko}
+	\end{subfigure}
+	\hspace{1em}
+	\begin{subfigure}{0.45\columnwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/pachinko}
+		}
+		\caption{Five layer Pachinko}
+		\label{fig:five_layer_pachinko}
+	\end{subfigure}
+\end{figure}
+\vejleder[inline]{a,b,c ~ $t_i$ in Figure 5}
+
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
 \vejleder[inline]{do you have a comparison in section 5}
