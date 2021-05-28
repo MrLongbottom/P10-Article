@@ -107,7 +107,7 @@ $T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}.
 Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
 While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
 
-The intuition behind this generative process is to create all possible layer(topic) sequences and combine these into a multinational distribution, to draw a topic sequence from.
+The intuition behind this generative process is to create all possible layer (topic) sequences and combine these into a multinational distribution to draw a topic sequence from.
 Otherwise, the Gibbs sampling is the same as with the \gls{lda} model.
 
 The plate notation from \citet{li2006pachinko} and our modification can be seen in \ref{fig:pachinko_plates}.
@@ -120,7 +120,7 @@ The plate notation from \citet{li2006pachinko} and our modification can be seen 
 			\input{figures/pachinko_original}
 		}
 		\caption{Original Four layer Pachinko}
-		\label{fig:five_layer_pachinko}
+		\label{fig:four_layer_pachinko}
 	\end{subfigure}
 	\hspace{1em}
 	\begin{subfigure}{0.45\columnwidth}
@@ -131,5 +131,7 @@ The plate notation from \citet{li2006pachinko} and our modification can be seen 
 		\caption{Five layer Pachinko}
 		\label{fig:five_layer_pachinko}
 	\end{subfigure}
+	\caption{Plate notation for the original four layer \gls{pam} and our five layer \gls{pam}.}
+	\label{fig:pachinko_plates}
 \end{figure}
 \vejleder[inline]{a,b,c ~ $t_i$ in Figure 5}
