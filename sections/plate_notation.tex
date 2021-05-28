@@ -101,10 +101,9 @@ This layer is added so that the model can construct its own topics based on the 
 
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
-\vejleder[inline]{do you have a comparison in section 5}
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.\vejleder[inline]{hvad vil det sige?}
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy,  but the taxonomy values would be disregarded during training, since it would generate new taxonomy sequences.
 However, only $25\%$ of the documents in our dataset have an observed taxonomy.
-To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
+To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the \gls{pam} \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
 Some of the documents have multiple taxonomies.
