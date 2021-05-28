@@ -26,8 +26,7 @@ This might be due to the particularities of the dataset, such as authors not usu
 We use the \gls{pam} to incorporate a hierarchically structured metadata called Taxonomy, where we use a novel locking mechanism to lock the observed metadata's topics into place.
 Using this model and technique, we can get better topic quality and words within \gls{pam} compared to the \gls{lda}.
 However, the run time of the algorithm is quite slow compared to the \gls{lda}.
-\todo[inline]{Remember to include the run time of pachinko in the discussion}
-
+All models ran for 50 epochs, but \gls{pam} had a runtime of 130 hours, compared to \gls{lda} which had a runtime of 8 hours.
 
 Topic modeling can be used to alleviate many problems at Nordjyske, such as recommendations.
 We can use the topic distributions from our models to compare articles based on their similarity in topics.
