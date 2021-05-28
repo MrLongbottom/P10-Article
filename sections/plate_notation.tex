@@ -1,53 +1,15 @@
-\section{Topic Models}\label{sec:plate_notation}
-In this section, selected topic models that are explored in the experiment are detailed.
-This covers the standard \gls{lda} from \citet{blei2003latent}, our category and author metadata models, which build on the concept of \gls{lda}, and our taxonomy metadata model, which uses the \acrlong{pam}.
-
-\subsection{Standard \gls{lda}}
-The purpose of \gls{lda}, and topic models in general, is to create a tool for exploring collections of text.
-Topic models do this by uncovering the underlying semantic structure of a text collection by using hierarchical Bayesian models.
-\Gls{lda} uncovers this semantic structure by discovering patterns of word use in documents and finding topics based on these~\cite{blei2009topic}.
-
-The standard \gls{lda} by \citet{blei2003latent} can be described by the following generative process, which is the way the model assumes the documents arose:
-$D$ is the number of documents in the corpus, $N_d$ is the number of words in document $d$, $V$ is the size of the vocabulary, and $K$ is the number of topics.
-Topics are represented as distributions over words and documents are represented as distributions of topics.
-\Gls{lda} assumes that the topics are shared across the corpus, while the document-topic distributions are unique for each document.
-For each topic $k \in \{1,\dots, K\}$ a topic-word distribution $\beta_k$ is sampled from a V-dimensional Dirichlet distribution parameterized by $\eta$.
-That is, K topics $\beta_{1:k}$ are sampled, each being a distribution over the vocabulary, written as: $\beta_k \sim Dirichlet(\eta)$.
-Likewise, for each document $d \in \{1,\dots, D\}$ a document-topic distribution $\theta_d$ is sampled from a K-dimensional Dirichlet distribution parameterized by $\alpha$.
-For each word $n \in \{1, \dots, N_d\}$ in each document $d$, a topic $z_{d,n}$ is sampled from a K-multinomial distribution $\theta_d$, and then a word $w_{d,n}$ is sampled from a V-multinomial distribution $\beta_{z_{d,n}}$.
-The generative process for each document is seen in these steps:
-
-\vspace{\topsep}
-\begin{enumerate}
-	\item Draw topic proportion $\theta_d \sim Dirichlet(\alpha)$
-	\item For each word $n$ in the document:
-	\begin{enumerate}
-		\item Draw topic assignment $z_{d,n} \sim Mult(\theta_d)$
-		\item Draw word $w_{d,n} \sim Mult(\beta_{z_{d,n}})$
-	\end{enumerate}
-\end{enumerate}
-\vspace{\topsep}
-
-The generative process for topics and documents, generates a list of $K$ topics and $D$ documents that can be used as a $K \times V$ matrix of topic-word distributions and a $D \times K$ matrix of document-topic distributions, respectively.
-The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
-
-\input{figures/lda_plate}
-
-After training the \gls{lda} model, there are multiple possibilities for exploring the corpus using the posterior distributions of the hidden random variables.
-One possibility is to visualize the posterior topics of the model, e.g., by sorting $\beta_k$ according to the highest probabilities.
-It is also possible to visualize the documents by, e.g., sorting by the highest topic proportions in $\theta_d$.
-Another possibility of exploration is finding similar documents by using a distribution distance function on the topic proportions $\theta_d$ between documents~\cite{blei2009topic}.
+\section{Our Topic Models}\label{sec:plate_notation}
+In this section, we detail the modifications that we have implemented to the existing models, outlined in \autoref{sec:preliminaries}.
+We present three models, one for each of the metadata fields detailed in \autoref{sec:dataset}.
+Two of the models: the Author and Category metadata models are based on the Author-topic \gls{lda} explained in \autoref{subsec:auth_prelim}.
+Lastly the Taxonomy metadata model is based on \gls{pam}, which is explained in \autoref{subsec:pachinko_prelim}.
 
 \subsection{Author-Topic \gls{lda} and Category-Topic \gls{lda}}
-We model both of the metadata fields 'Author' and 'Category' similarly to the model presented by \citet{author_topic_2012}.
-In this model, there are no document-topic distributions $\theta$.
-Instead, each author and category has its own topic distribution.
-This is based on the assumption that authors prefer to write about specific topics, and that categories of the articles were chosen based on the content of the finished article or that local newspapers have their own unique topic preferences.
+We model both of the metadata fields 'Author' and 'Category' similarly to the model by \citet{author_topic_2012} presented in \autoref{subsec:auth_prelim}.
+The category model builds on the assumption that categories of the articles were chosen based on the content of the finished article and that local newspapers have their own unique topic preferences.
+We find this model to be generally applicable to most metadata information, assuming that the metadata is either chosen based on the text of the documents (as with the category metadata) or that it has some impact on the text of the document (as with the author metadata).
 
-Our topic models are \glspl{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than \glspl{dm} where topics are fitted to have an influence on both word distributions and other metadata.
-
-\citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
-However, for our category-topic model and our own author-topic model, each document $d$ is associated with one category $c_d$ from a set of categories $C$ and one author $a_d$ from a set of authors $A$, rather than a vector.
+For our category-topic model and our author-topic model, each document $d$ is associated with only one category $c_d$ from a set of categories $C$ and only one author $a_d$ from a set of authors $A$, rather than a vector.
 This is due to our dataset never having more than one author or category for each document.
 Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
@@ -105,49 +67,13 @@ This mechanism is discussed further in \autoref{subsec:mod_pachinko}.
 
 We use a five-level pachinko tree structure, following the format presented by \citet{li2006pachinko}.
 The first layer is the root layer which all topics are a part of.
+
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g. "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
-We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training exponentially, since the probability of all possible combinations of topics needs to be sampled for every word during training. \vejleder[inline]{can you back this up with experiments or hard evidence?}
+We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training.
+From our experiments, the training time for 50 epochs, increases from 12 hours to 130 hours between four and five level pachinko.
 The fourth layer consists of $K = 90$ 'blank' topics, as with the other models we present in this paper.
 This layer is added so that the model can construct its own topics based on the higher-level topics learned from our taxonomy metadata.
-This \gls{dag} structure is visualized in \autoref{fig:pachinko_dag}. \vejleder[inline]{Figure 4 shows both the original and your adaption? rephrase}
-
-The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
-\vejleder[inline]{se thomas dokument}
-\begin{enumerate}
-	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
-	\item For each word $w \in d$,
-	\begin{itemize}
-		\item Sample a topic path $\mathbf{z}_w$ of length $L_w:~< z_{w1}, z_{w2},\newline \dots, z_{wL_w} >$. $z_{w1}$ is always the root and $z_{w1}$ through $z_{wL_w}$ are topic nodes in $T$. $z_{wi}$ is a child of $z_{w(i-1)}$ and it is sampled according to the multinomial distribution $\theta_{z_{wL_w}}^{(d)}$.
-		\item Sample word $w$ from $\theta_{z_{wL_w}}^{(d)}$.
-	\end{itemize}
-\end{enumerate}
-
-$T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}. 
-Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
-While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
-An illustration of the plate notation for \gls{pam} can be found in \autoref{fig:pachinko}.
-
-We use Gibbs sampling for performing inference.
-\vejleder[inline]{beskriv gibbs sampling i appendix}
-For each word, a chain of topics is sampled by calculating the probability of all combinations of topics and making a weighted sample.
-The probability of each topic combination is calculated using the joint probability of the topics, as presented in \autoref{eq:pachinko_gibbs}.
-
-\begin{equation}\label{eq:pachinko_gibbs}
-	\begin{split}
-		P(Z_{w2} = t_a, Z_{w3} = t_b, Z_{w4} = t_c | \textbf{D}, z_{-w}, \alpha, \beta) \propto \\
-		\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}} \times
-		\frac{n_{ab}^d + \alpha_{ab}}{n_a^d + \sum_{b'} \alpha_{ab'}}  \times 
-		\frac{n_{bc}^d + \alpha_{bc}}{n_{b}^d + \sum_{c'} \alpha_{bc'}} \\ \times 
-		\frac{n_{cw}^d + \beta_{w}}{n_{c} + \sum_{m} \beta_{m}} 
-	\end{split}
-\end{equation}
-As in \citet{li2006pachinko}, $Z_{w2}$, $Z_{w3}$, $Z_{w4}$ are topic assignments for the three middle layers of topics in our 5-layer Pachinko model.
-The root topic is not part of this equation since all words are part of it, so the probability does not need to be calculated.
-$Z_{-w}$ is the word topic assignment, for all other words except the one that is being updated.
-$n_x^d$ is the number of times topic $t_x$ occurs in document $d$ according to $Z_{-w}$. 
-The $n_{xy}^d$ describes how many times topic $t_y$ is sampled from its parent $t_x$ within document $d$ according to $Z_{-w}$.
-$n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-w}$, and $n_{xw}$ is the number of times a word $w$ is in $t_x$ according to $Z_{-w}$.
 
 \input{figures/dag_structure}
 
