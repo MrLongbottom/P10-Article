@@ -46,9 +46,7 @@ In this model, there are no document-topic distributions $\theta$, but rather on
 This is a \gls{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than \glspl{dm} where topics are fitted to have an influence on both word distributions and other metadata.
 
 \citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
-
-\todo[inline]{insert and ref plate notation for original author topic model}
-\todo[inline]{this section possibly needs more in depth explanation (generative process, etc.)}
+The plate notation for the Author-Topic \gls{lda} can be seen in \autoref{fig:original_author_lda}.
 
 \subsection{\acrlong{pam}}\label{subsec:pachinko_prelim}
 Pachinko allocation is a topic model that generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
