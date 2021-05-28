@@ -47,8 +47,39 @@ This is a \gls{um}, meaning that topics are only word distributions and are chos
 
 \citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
 
-\todo[inline]{insert and ref plate notation for original author topic model}
-\todo[inline]{this section possibly needs more in depth explanation (generative process, etc.)}
+The original plate notation for the Author-Topic model and our modifications can be seen in \ref{fig:metadata_lda}.
+
+\begin{figure*}[ht]
+	\centering
+	\begin{subfigure}{0.275\textwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/author_plate_original}
+		}
+		\caption{Author \gls{lda} from \cite{author_topic_2012}.}
+		\label{fig:original_author_lda}
+	\end{subfigure}
+	\hspace{2em}
+	\begin{subfigure}{0.275\textwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/category_plate}
+		}
+		\caption{Category \gls{lda}.}
+		\label{fig:category_lda}
+	\end{subfigure}
+	\hspace{2em}
+	\begin{subfigure}{0.275\textwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/author_plate}
+		}
+		\caption{Author \gls{lda}.}
+		\label{fig:author_lda}
+	\end{subfigure}	
+	\caption{Plate notation for the metadata \gls{lda} models.}
+	\label{fig:metadata_lda}
+\end{figure*}
 
 \subsection{\acrlong{pam}}\label{subsec:pachinko_prelim}
 Pachinko allocation is a topic model that generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
@@ -76,4 +107,29 @@ $T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}.
 Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
 While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
 
-\todo[inline]{insert and ref plate notation for original pachinko}
+The intuition behind this generative process is to create all possible layer(topic) sequences and combine these into a multinational distribution, to draw a topic sequence from.
+Otherwise, the Gibbs sampling is the same as with the \gls{lda} model.
+
+The plate notation from \citet{li2006pachinko} and our modification can be seen in \ref{fig:pachinko_plates}.
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{0.45\columnwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/pachinko_original}
+		}
+		\caption{Original Four layer Pachinko}
+		\label{fig:five_layer_pachinko}
+	\end{subfigure}
+	\hspace{1em}
+	\begin{subfigure}{0.45\columnwidth}
+		\centering
+		\resizebox{\textwidth}{!}{%
+			\input{figures/pachinko}
+		}
+		\caption{Five layer Pachinko}
+		\label{fig:five_layer_pachinko}
+	\end{subfigure}
+\end{figure}
+\vejleder[inline]{a,b,c ~ $t_i$ in Figure 5}

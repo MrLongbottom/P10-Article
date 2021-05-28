@@ -14,38 +14,6 @@ This is due to our dataset never having more than one author or category for eac
 Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
-\begin{figure*}[ht]
-	\centering
-	\begin{subfigure}{0.275\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/author_plate_original}
-		}
-		\caption{Author \gls{lda} from \cite{author_topic_2012}.}
-		\label{fig:original_author_lda}
-	\end{subfigure}
-	\hspace{2em}
-	\begin{subfigure}{0.275\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-		\input{figures/category_plate}
-		}
-		\caption{Category \gls{lda}.}
-		\label{fig:category_lda}
-	\end{subfigure}
-	\hspace{2em}
-	\begin{subfigure}{0.275\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/author_plate}
-		}
-		\caption{Author \gls{lda}.}
-		\label{fig:author_lda}
-	\end{subfigure}	
-	\caption{Plate notation for the metadata \gls{lda} models.}
-	\label{fig:metadata_lda}
-\end{figure*}
-
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
 Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
@@ -77,27 +45,6 @@ This layer is added so that the model can construct its own topics based on the 
 \input{figures/dag_structure}
 
 
-\begin{figure}[ht]
-	\centering
-	\begin{subfigure}{0.45\columnwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/pachinko_original}
-		}
-		\caption{Original Four layer Pachinko}
-		\label{fig:five_layer_pachinko}
-	\end{subfigure}
-	\hspace{1em}
-	\begin{subfigure}{0.45\columnwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/pachinko}
-		}
-		\caption{Five layer Pachinko}
-		\label{fig:five_layer_pachinko}
-	\end{subfigure}
-\end{figure}
-\vejleder[inline]{a,b,c ~ $t_i$ in Figure 5}
 
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
