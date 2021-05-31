@@ -1,0 +1,87 @@
+\subsubsection{Taxonomy}\label{subsec:appendix_taxonomy}
+Taxonomy is fundamentally different from the other metadata fields, in this paper.
+It is not fully observed with only roughly $25\%$ of documents having a taxonomy field.
+It is hierarchical, with each taxonomy containing a sequence of sub-taxonomies, such as: 'STEDER/Danmark/Nordjylland/Aalborg'.
+It is also possible for each document to have multiple taxonomy sequences.
+Like with authors, we remove any sub-taxonomy that is used in less than $14$ taxonomy sequences ($0.01\%$ of the number of documents).
+Out of $1135$ sub-taxonomies, $779$ are removed during this preprocessing.
+A subset of the taxonomies and the number of articles they appear in can be seen in \autoref{tab:taxonomy_table}.
+The taxonomy tree has the following sizes: $1$, $4$, $32$, $90$, and $69.192$.
+The numbers $4$ and $32$ are based on the number of unique taxonomy fields observed in the dataset.
+The numbers $1$, $90$, and $69.192$ are the root, the number of topics, and the number of words, respectively.
+
+For the labels in \autoref{tab:taxonomy_table}, the counts show the labels' sizes.
+It is worth mentioning that, while the counts of the labels are directly linked to the number of documents in the whole dataset, they are also connected to the size of the previous layer's taxonomy.
+For example, the label 'Danmark' is in the layer below the 'STEDER' label, where the 26145 documents of 'Danmark' is a subset of the 29535 documents of 'STEDER'.
+
+There is also a much larger number of 'STEDER' (places) documents compared to 'EMNER' (subjects) documents, respectively 29535 compared to 5449.
+In \autoref{tab:taxonomy_table}, the first label on a lower layer that comes from 'EMNER' is 'Sport' with 408 documents.
+This indicates that the subject taxonomies, in general, are much smaller in size.
+The \gls{pam} will then be mostly influenced by this location information compared to actual topical labels.
+
+The labels removed during preprocessing appear, as expected, to be places or subjects that have been written about just once or a few times.
+We could have combined them into a 'misc' taxonomy as we did for the category and author metadata, but decided against it because it would just be a large collection of mostly random documents.
+
+\begin{table*}[h]
+	\caption{Number of documents written by each taxonomy in the Nordjyske dataset from 2017 to 2019.
+	After sorting by the number of documents, only the first 100 and last 100 taxonomies are shown.
+	The highlighted taxonomies are filtered and combined during preprocessing.}
+	\label{tab:taxonomy_table}
+	\centering
+	\scriptsize
+	\begin{tabular}{l|c|l|c|l|c|l|c}
+		Taxonomy                & Number & Taxonomy                     & Number & Taxonomy                       & Number & Taxonomy                       & Number \\
+		\midrule
+		\emph{No taxonomy} & 103928 & Farsø & 182 & \textbf{Mallorca} & 1 & \textbf{Mali} & 1 \\
+		STEDER & 29535 & Skørping & 177 & \textbf{Kloning} & 1 & \textbf{Godstransport} & 1 \\
+		Danmark & 26145 & Hurup & 169 & \textbf{Hjørring revyen} & 1 & \textbf{Energiforbrug} & 1 \\
+		Nordjylland & 23274 & Dronninglund & 167 & \textbf{Fredensborg} & 1 & \textbf{Gedser} & 1 \\
+		EMNER & 5449 & Fjerritslev & 165 & \textbf{Iværksættere} & 1 & \textbf{Mylund} & 1 \\
+		Thisted & 3592 & Aabybro & 163 & \textbf{Tall ships races} & 1 & \textbf{Bygge- og anlægsbranchen} & 1 \\
+		Udland & 3390 & Frankrig & 159 & \textbf{Sproget} & 1 & \textbf{Kunstig intelligens} & 1 \\
+		Aalborg & 3311 & Sverige & 158 & \textbf{Grurup} & 1 & \textbf{Nielstrup} & 1 \\
+		Hjørring & 2146 & Paris & 157 & \textbf{Hørning} & 1 & \textbf{Kristiansand} & 1 \\
+		Frederikshavn & 1997 & Fyn & 156 & \textbf{Hem} & 1 & \textbf{Nordborg} & 1 \\
+		Mariagerfjord & 1987 & Rusland & 151 & \textbf{Floorball} & 1 & \textbf{Uggerhalne} & 1 \\
+		Brønderslev & 1969 & Ulykker & 150 & \textbf{Store Brøndum} & 1 & \textbf{Barmer} & 1 \\
+		Vesthimmerland & 1660 & Aarhus & 145 & \textbf{Korup} & 1 & \textbf{Narkomisbrug} & 1 \\
+		Hovedstadsområdet & 1380 & Tyskland & 144 & \textbf{Fødevaresikkerhed} & 1 & \textbf{Adoption} & 1 \\
+		Rebild & 1289 & Moskva & 143 & \textbf{Hammershøj} & 1 & \textbf{Fødevareindustri} & 1 \\
+		Jammerbugt & 1198 & Arden & 142 & \textbf{Hjerneskade} & 1 & \textbf{Smugling} & 1 \\
+		København & 1125 & Politik & 139 & \textbf{CATEGORY} & 1 & \textbf{Skikke og traditioner} & 1 \\
+		Hobro & 996 & Morsø & 137 & \textbf{AaB Plus} & 1 & \textbf{Kigali} & 1 \\
+		Aalborg og omegn & 833 & Berlin & 132 & \textbf{Ekstremsport} & 1 & \textbf{Holtet} & 1 \\
+		Thisted og omegn & 800 & Sjælland & 131 & \textbf{Mozambique} & 1 & \textbf{Fritidshuse} & 1 \\
+		Midtjylland & 783 & Løkken & 129 & \textbf{Maputo} & 1 & \textbf{Årslev} & 1 \\
+		Mors & 630 & New York & 124 & \textbf{Handelsskole} & 1 & \textbf{Aalborg Håndbold} & 1 \\
+		Aars & 540 & Natur & 123 & \textbf{Vendsyssel Håndbold} & 1 & \textbf{Oman} & 1 \\
+		USA & 478 & Erhverv & 119 & \textbf{Biludstyr} & 1 & \textbf{Turistbranchen} & 1 \\
+		Frederikshavn og omegn & 410 & Spanien & 119 & \textbf{Brandstiftelse} & 1 & \textbf{Øl} & 1 \\
+		Sport & 408 & Klitmøller & 118 & \textbf{Nørre Dråby} & 1 & \textbf{Forlystelsespark} & 1 \\
+		England & 381 & Aalestrup & 118 & \textbf{Stae} & 1 & \textbf{Etiopien} & 1 \\
+		London & 379 & Herning & 116 & \textbf{Rebild Bakker} & 1 & \textbf{Addis Abeba} & 1 \\
+		Hjørring og omegn & 369 & Stockholm & 115 & \textbf{Kampsport} & 1 & \textbf{Lystsejlads} & 1 \\
+		Løgstør & 368 & Madrid & 115 & \textbf{Lynnedslag} & 1 & \textbf{Herfølge} & 1 \\
+		Mariagerfjord og omegn & 364 & Jerslev & 113 & \textbf{Frederikshavn White Hawks} & 1 & \textbf{Sexchikane} & 1 \\
+		Brønderslev og omegn & 360 & Nørager & 111 & \textbf{Paraguay} & 1 & \textbf{Gebyrer} & 1 \\
+		Skagen & 341 & Sundhed & 105 & \textbf{Asuncion} & 1 & \textbf{Frederikssund} & 1 \\
+		Sæby & 334 & Sindal & 105 & \textbf{Nordkraft} & 1 & \textbf{Gadeuorden} & 1 \\
+		Vesthimmerland og omegn & 327 & Brovst & 105 & \textbf{Vendsyssel Elite Badminton} & 1 & \textbf{Mjels} & 1 \\
+		Syddanmark & 301 & Trafik & 99 & \textbf{Tonga} & 1 & \textbf{Katmandu} & 1 \\
+		Støvring & 300 & Blokhus & 95 & \textbf{Efteruddannelse} & 1 & \textbf{Militærøvelser} & 1 \\
+		Hadsund & 277 & Lønstrup & 92 & \textbf{Vin} & 1 & \textbf{Fakse} & 1 \\
+		Hanstholm & 276 & Uddannelse & 91 & \textbf{Årup} & 1 & \textbf{Kulturpolitik} & 1 \\
+		Kultur & 246 & Pandrup & 88 & \textbf{Fiskeripolitik} & 1 & \textbf{Skræm} & 1 \\
+		Rebild og omegn & 245 & Vrå & 88 & \textbf{Gudumlund} & 1 & \textbf{Taiwan} & 1 \\
+		Washington & 242 & Vorupør & 86 & \textbf{Myrhøj} & 1 & \textbf{Taipei} & 1 \\
+		Jammerbugt og omegn & 229 & Øster Hurup & 85 & \textbf{Ejerslev Lyng} & 1 & \textbf{Økonomisk kriminalitet} & 1 \\
+		Nørresundby & 223 & Hvalpsund & 82 & \textbf{La Paz} & 1 & \textbf{Udviklingsbistand} & 1 \\
+		Mariager & 214 & Odense & 82 & \textbf{Byplanlægning} & 1 & \textbf{Kollerup} & 1 \\
+		Belgien & 207 & Aså & 80 & \textbf{Ajstrup} & 1 & \textbf{Askildrup} & 1 \\
+		Bruxelles & 207 & Norge & 79 & \textbf{Guatemala} & 1 & \textbf{Helsinge} & 1 \\
+		Hirtshals & 197 & INDHOLDSTYPER & 79 & \textbf{Vedsted} & 1 & \textbf{Albanien} & 1 \\
+		Kriminalitet & 192 & Videnskab & 78 & \textbf{Yemen} & 1 & \textbf{Tirana} & 1 \\
+		Hjallerup & 190 & Israel & 78 & \textbf{Skovsted} & 1 & \textbf{Jern \& maskinindustrien} & 1 \\
+		\bottomrule
+	\end{tabular}
+\end{table*}

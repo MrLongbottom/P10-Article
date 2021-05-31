@@ -1,0 +1,61 @@
+\section{Dataset}\label{sec:dataset}
+Nordjyske is a Danish news agency that maintains multiple newspapers, radios, and other news sources throughout north Jutland, a region in Denmark.
+They store their news articles in a non-public database, where each article contains multiple metadata fields which describe some aspect of the data e.g. the author.
+The dataset we use ranges from 2017 to 2019 and contains $248,385$ articles.
+
+We perform some basic preprocessing to make the data more applicable for topic models.
+Firstly, because the dataset includes articles from multiple cities and regions, duplicates do occur in the dataset.
+These duplicates are removed, so only unique articles are kept.
+After this, we filter out words that appear in less than 10 articles and words that appear in more than 10$\%$ of articles.
+This is done to keep words that are used enough to find patterns in topics and to remove words that are similar to stop words.
+Finally, after the words are filtered out, the empty documents are removed.
+After preprocessing, the dataset contains $139,060$ articles that use a vocabulary of $69,192$ unique words.
+
+The metadata fields that we will be working with do have some problems that can be mitigated to a degree by preprocessing.
+These problems are all related to some metadata values having only a few documents.
+Since the metadata values will be used to group documents together and find common topics and words within grouped documents, metadata values that group too few documents are not very relevant and will therefore be removed.
+
+In the following section, we describe each of the metadata fields which are analyzed.
+
+\subsection{Author}
+This field is for the author, who has written the article.
+Each article only has a single author, so we do not account for multiple authors.
+This field is fully observed within the dataset, meaning that every article has an author.
+Originally there were $227$ different authors within the dataset.
+After filtering away authors that have written less than $14$ documents (${\sim}0.001\%$ of the total document set), $184$ remain.
+%and they are almost evenly distributed in the number of articles they have written.
+
+\subsection{Category}
+% what it is?
+The category field describes a variety of different aspects.
+A proportion of the categories contains which specific newspaper they belong to, e.g. 'Aalborg-Newspaper'.
+Another proportion of the category field describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
+However, there are also nonsensical categories such as '53. Frederik', that does not seem to describe the subject of the document.
+% stats
+This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
+However, while most of these categories cover a significant number of documents, there are some categories which are only used by a few documents.
+After filtering away all categories covering less than $140$ documents (approximately $0.01\%$ of the total document set) and combining them into a single new 'misc' category of size $229$, $34$ categories remain.
+The smallest category consists of $188$ documents, and for all categories, the median category size is $3022$.
+\autoref{fig:category_box} shows an overview of the size of the categories after filtering.
+The categories from the 3rd quartile and up do become much larger compared to the median, and there is an outlier with 20241 documents.
+These larger categories seem to be about topics that are written about often or categories that cover a specific newspaper.
+All of the category labels can be seen in \autoref{tab:category_table} and the statistics in \autoref{tab:meta_prepro_stats}.
+
+\subsection{Taxonomy}\label{sec:dataset_taxonomy}
+The taxonomy field describes a hierarchical sequence of the topical or geographical subject of the articles.
+Each sequence consists of a number of sub-taxonomies.
+This field is only partially observed within the dataset, which means that ${\sim}25\%$ of the articles contain this field.
+It is also possible for articles to contain multiple taxonomy sequences.
+We observe some general patterns when traversing this field, which are:
+\begin{itemize}
+	\item PLACES/Country/Region/Town
+	\item TOPICS/Sub-Topic/Subsub-topic
+\end{itemize}
+Examples of this field are:
+\begin{itemize}
+	\item PLACES/Danmark/Nordjylland/Aalborg/Lillevorde
+	\item TOPICS/Religion/Christianity
+\end{itemize}
+About $80\%$ of the observed fields contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable.
+There are also a few other top-level taxonomies; however, they are not as informative and very rarely used.
+Originally there were $1135$ different taxonomies; however, after removing taxonomies used by less than $14$ documents (${\sim}0.001\%$ of the total document set), $345$ remain.

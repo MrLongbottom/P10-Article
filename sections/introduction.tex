@@ -1,0 +1,66 @@
+\section{Introduction}\label{sec:introduction}
+% Intro to recommendation and techniques
+News is being broadcast every day around the world in the form of news articles, television, and newspapers, which supply people with the latest information.
+Searching and categorizing the news is becoming a bigger problem since news is created at all times.
+As the internet becomes more personalized, as seen with targeted advertisements, recommender systems are seeing more use in applications, such as Netflix and Amazon.
+Within recommendation, there are two main machine learning techniques: collaborative filtering and content-based filtering.
+These two techniques are based on the assumption that similar users like similar items (collaborative) or a user likes certain types of items (content-based).
+
+One particular field, which covers a variety of different use cases and applications, such as being useful for recommendations, is the field of topic modeling.
+Topic modeling has been used for finding topics within a collection of documents to either annotate or categorize certain collections of texts~\cite{Probabilistic_Topic_Models}.
+The \gls{lda} model is a well-cited topic model which generates topics and topic distributions for documents based on the words in documents~\cite{blei2003latent}, without the use of metadata.
+Other extensions of \gls{lda} have also modeled various other information to generate better topics and/or topics with different focuses and potential uses.
+In most models metadata is not used.
+However, there is some previous work that attempts to make use of the metadata available, by incorporating it into topic models, such as the Author-Topic model by \citet{author_topic_2012} and the MetaLDA model by \citet{MetaLDA2017}.
+
+% Author-Topic
+The Author-Topic model by \citet{author_topic_2012} combines the \gls{lda} model with author information to model the relationship between authors and the documents, which they have written.
+This is based on the assumption that most authors usually write about only a few different topics.
+By modeling this relationship, they find connections between authors and topics, and between different authors, giving more underlying information to the topics.
+They also show that the Author-Topic combination yields better and more coherent topics, which begs the question of whether any other document-related data can be applied similarly.
+However, they only test their algorithm on scientific papers, where usually the authors write about the same subject (their research field), which might not be the case for other fields, like journalism. 
+
+% Intro to meta data
+The dataset used with a topic model can have a large impact on the topics generated.
+When referring to a dataset, we talk about a dataset including metadata information.
+One example of this could be the publication date of a text document. 
+In most contexts, it is not needed to use and understand the document; however, it provides more context to the main content of the document: the text.
+However, a lot of metadata is not used, either because it is not useful or we do not know how to use it properly.
+
+% Intro to Nordjyske data and applications
+We have a dataset from a danish media group, called Nordjyske, with three years of article data.
+This dataset can be applied to a variety of different applications, such as topic modeling\cite{blei2003latent}\cite{MetaLDA2017}, text analysis\cite{baly2020written}, search engine optimization\cite{amjad2015topic}, and many more.
+The dataset contains a variety of different metadata, which have the potential to improve topic models in the same way as \citet{author_topic_2012}. 
+In this paper, the dataset will be used with a focus on topic modeling and incorporation of metadata.
+
+% In this paper
+We want to construct different topic models that incorporate various metadata, to see whether incorporating this information changes the topic quality.
+We also investigate differences between the produced topics for various models, to evaluate their potential uses.
+
+% Problem Statement
+We define the following research questions to investigate in this paper:
+
+\begin{itemize}
+	\item \textit{How can we establish models that incorporate metadata from the Nordjyske dataset?}
+	\item \textit{How does including metadata within such models impact the resulting topics?}
+\end{itemize}
+
+% Contributions
+Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
+However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document-topic distribution used with the \gls{lda}.
+Instead of using the document-topic distribution for drawing word topics, we want to create a new meta-topic distribution which influences the drawn topics.
+An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
+We investigate the effect that creating a meta-topic distribution for any specific meta-information, such as the author information, has on the resulting topics.
+The intuition behind this is to create new topic models, which describe the data in a different way using topics that are influenced by metadata.
+For example, if the metadata describes something about geographic locations, location-specific topics will be generated, which could be useful in many cases.
+The metadata, within the Nordjyske dataset, includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
+These categorical metadata are the basis for the novelties in this paper, which is our category-topic model that makes a topic distribution for each category in the dataset and using \gls{pam} on an existing metadata hierarchy (taxonomy) by applying a locking mechanism.
+
+% Paper Structure
+The paper is organized as follows:
+\autoref{sec:dataset} describes the dataset and the metadata used in the evaluation.
+In \autoref{sec:related_work}, we explore related work within topic modeling using metadata.
+\autoref{sec:preliminaries} gives preliminary knowledge about the topic models we adapt, and \autoref{sec:plate_notation} describes our metadata topic models and shows the plate notation.
+In \autoref{sec:experiment}, we set up an evaluation to test the performance of the different metadata topic models and present the results.
+In \autoref{sec:discussion}, we analyze and discuss the results of our topic models.
+Finally, in \autoref{sec:conclusion}, conclusions and future work are given.

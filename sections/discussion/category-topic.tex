@@ -1,0 +1,46 @@
+\subsection{Category-topic model}\label{sec:discussion_category_topic} 
+Specific observations for the category-topic model can also be made.
+Just as for the author-topic model, the similarity between pairs of categories can be calculated.
+Because topic distributions are generated for each category, just as they are for each author in the author-topic model, \autoref{eq:author_similarity} can be used for categories as well, with $i$ and $j$ being the categories.
+In \autoref{tab:category_similarity}, the top 10 category pairs, based on symmetric KL divergence, are shown.
+
+\begin{table}[h]
+	\centering
+	\caption{Top 10 category pairs based on the symmetric KL divergence between categories.}
+	\begin{tabular}{r|c}
+		Category pair & KL \\
+		\midrule
+		misc (292) \& Friii (2333) & 3.65 \\
+		Friii (2333) \& Debat (10075) & 3.80 \\
+		Feature (188) \& Hjørring-avis (4235) & 4.22 \\
+		Sport-avis (10941) \& Morsø Sport (2350) & 5.04 \\
+		Indsigt (984) \& Perspektiv (613) & 5.27 \\
+		53. Frederik (203) \& Navne (3749) & 5.69 \\
+		Rebild-avis (4415) \& Bo Godt (1447) & 5.78 \\
+		Nordjyske Biler (1400) \& Thisted-avis (11473) & 5.91 \\
+		misc (292) \& Debat (10075) & 6.67 \\
+		Frederikshavn-avis (4325) \& Bo Godt (1447) & 6.81 \\
+		\midrule
+		Maximum KL divergence & 35.62 \\
+		Median KL divergence & 27.09 \\
+	\end{tabular}
+	\label{tab:category_similarity}
+\end{table}
+
+The second most similar pair, 'Friii' and 'Debat', is interesting to look at since 'Debat' has a specific writing style and 'Friii' does not.
+While 'Friii' does not seem to have a theme in the articles written, articles with the 'Debat' (debate) category seem to mostly cover themes that can bring differing opinions and articles with interviews.
+This indicates that the model does not find these deeper thematic differences in articles or that it finds other patterns that humans do not easily see.
+
+It is also interesting that the 'misc' category is seen twice in the top 10 ranking even though it is made up of many smaller categories with no connection to each other.
+Though, it is not surprising that this thematically mixed category is quite similar to 'Friii' and 'Debat', which are more thematically wide categories.
+
+It is also clear that some of the topics that the model has learned fit well with how some categories are used in the dataset.
+For example, the 4th ranking pair 'Sport-avis' and 'Morsø Sport' clearly by their category names cover sports news, and the similarity of the topic distributions learned for both categories indicates that the model has learned these sports topics correctly.
+
+Finally, it is worth noting that category pairs, where both categories are based on geographic locations, do not appear in the top 10 pairs.
+This may indicate that each city or municipality in Denmark, does have some differences in which topics are written about in general.
+
+A selection of categories from the dataset and the top words from their most probable topic can be seen in \autoref{tab:category_top_words}.
+
+This knowledge about categories can assist Nordjyske in multiple ways.
+An example is, that while they already have the possibility to filter articles based on categories, knowing which categories are similar gives further opportunities for recommending related or similar articles.

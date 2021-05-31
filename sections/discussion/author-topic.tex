@@ -1,0 +1,81 @@
+\subsection{Author-topic model}\label{sec:discussion_author_topic}
+Some interesting observations can also be made specifically in the author-topic model.
+The similarity of authors is a good example, which can be measured by taking the distance between their topic distributions.
+In this model, the author-topic distribution defines the probabilities of topics being written by a specific author.
+Then, just as \citet{author_topic_2012}, the similarity of authors can be found by calculating the symmetric Kullback-Leibler divergence:
+
+\begin{equation} \label{eq:author_similarity}
+	sKL(i,j) = \sum_{t=1}^{T}\left[\theta_{it}\, log \frac{\theta_{it}}{\theta_{jt}} + \theta_{jt}\, log \frac{\theta_{jt}}{\theta_{it}}\right]
+\end{equation}
+\noindent where $\theta_{it}$ is the probability of author $i$ having written about topic $t$, and the same for $\theta_{jt}$ with author $j$.
+
+In the context of using these similarities to assist Nordjyske, knowing how similar authors are, gives the opportunity to recommend new authors to readers, while the articles are about similar topics.
+In \autoref{tab:author_similarity}, the top 10 author pairs, based on this similarity measure, are shown.
+A smaller KL value means the authors are more similar.
+The number in parenthesis next to each author is the number of articles they have written in our dataset.
+
+\begin{table}[h]
+	\centering
+	\caption{Top 10 author pairs based on the symmetric KL divergence between authors.}
+	\begin{tabular}{r|c}
+		Author pair & KL \\
+		\midrule
+		Lars Termansen (328) \& Mikkel Færgemann Viken (91) & 1.50 \\
+		Morten Nis Klenø (17) \& Anne Helene Thomsen (606) & 1.72 \\
+		Lars Termansen (328) \& Lars Christensen (1293) & 2.43 \\
+		Esben Heine Pedersen (1689) \& Caspar Birk (71) & 2.47 \\
+		Lars Christensen (1293) \& Poul Christoffersen (65) & 2.53 \\
+		Lone Beck (92) \& Max Melgaard (587) & 2.74 \\
+		HANNE Lindblad Jensen (27) \& Peter Tordrup Larsen (5002) & 2.94 \\
+		Søren Kjær (95) \& Carl Chr. Madsen (785) & 2.98 \\
+		Heidi Majgaard B. Pedersen (244) \& Lisbeth Helleskov (361) & 3.05 \\
+		Lars Termansen (328) \& Morten Lind (413) & 3.16 \\
+		\midrule
+		Maximum & 34.51 \\
+		Median & 24.20 \\
+	\end{tabular}
+	\label{tab:author_similarity}
+\end{table}
+
+In general for these pairs, there does not seem to be a correlation between a high similarity and the categories of the articles they have written.
+While one author in a pair might have written for the sports category (Sport-avis) the other author might not have written for this category at all.
+This can also be seen for categories that cover geographic locations, where one author might have written for Aalborg (Aalborg-avis) and the other author can have written for Thisted (Thisted-avis).
+
+When looking at a sample of documents for the most similar author pair (Lars Termansen \& Mikkel Færgemann Viken), it is seen that they both write a mix of regular news and sports articles.
+The reason why they become this similar, might be that the ratio between news and sports news for both authors is similar, and possibly also because of the types of news they write about.
+Another interesting observation is that, for the second most similar author pair (Morten Nis Klenø \& Anne Helene Thomsen) the difference in the number of articles written is significant.
+Here Morten Nis Klenø has written just 17 articles while Anne Helene Thomsen has written 606 articles.
+This suggests that some part of why these authors' similarity is high, simply dependents on the types of news the authors have written, no matter the amount.
+
+It is also worth noting that while authors that write scientific papers usually write in just a few subject areas, the scientific area they work in, this is not necessarily the case for news article authors.
+In our dataset, this can be seen in the fact that the authors have written for 7.86 categories on average, with 7 categories as the median.
+This can make it more difficult for the author-topic model to find patterns in what the authors write about, especially since each category can cover multiple topics.
+
+A selection of authors from the dataset and the top words from their most probable topic can be seen in \autoref{tab:author_top_words}.
+
+\begin{table*}[h]
+	\centering
+	\caption{Selection of authors/categories and the top 10 words from their most probable topic.}
+	\begin{tabular}{c|c|c|c|c|c|c}
+		\toprule
+		\multicolumn{7}{c}{Authors} \\
+		\midrule
+		Birgitte Bové & Kirsten Østergaard & Pauline Bülow & Karen Marie Foldbjerg & Claus T. Kræmmergård & Hanne Lindblad Jensen & Ole Jensen \\
+		\midrule
+		Topic 41 & Topic 50 & Topic 3 & Topic 13 & Topic 88 & Topic 2 & Topic 50 \\
+		\midrule
+		\makecell{millioner \\ eu \\ hans \\ større \\ bedre \\ formand \\ kr \\ nordjyske \\ taget \\ skriver} & \makecell{du \\ thisted \\ unge \\ mig \\ børn \\ procent \\ hans \\ hver \\ penge \\ hjørring} & \makecell{procent \\ bag \\ rigtig \\ lave \\ dansk \\ formand \\ gode \\ klar \\ svært \\ plads} & \makecell{du \\ sine \\ formand \\ seneste \\ jensen \\ hvert \\ nyt \\ hvordan \\ finde \\ kommunen} & \makecell{du \\ procent \\ unge \\ børn \\ arige \\ hans \\ dansk \\ mig \\ thisted \\ mener} & \makecell{du \\ thisted \\ procent \\ mig \\ børn \\ hans \\ unge \\ dansk \\ mener \\ a} & \makecell{du \\ thisted \\ unge \\ mig \\ børn \\ procent \\ hans \\ hver \\ penge \\ hjørring} \\
+		\midrule
+		\multicolumn{7}{c}{Categories} \\
+		\midrule
+		Frieord & Bo Godt & WEEKEND & Mariagerfjord-avis & Aalborg-avis & Navne & Sport-avis \\
+		\midrule
+		Topic 37 & Topic 7 & Topic 31 & Topic 39 & Topic 63 & Topic 14 & Topic 39 \\
+		\midrule
+		\makecell{du \\ thisted \\ mig \\ hans \\ procent \\ børn \\ a \\ kr \\ arige \\ unge} & \makecell{du \\ børn \\ mig \\ hans \\ unge \\ procent \\ mener \\ politiet \\ hvordan \\ thisted} & \makecell{du \\ hans \\ børn \\ mig \\ thisted \\ procent \\ bedre \\ a \\ kr \\ maske} & \makecell{du \\ thisted \\ dansk \\ unge \\ mig \\ børn \\ a \\ hans \\ procent \\ arbejde} & \makecell{børn \\ hver \\ thy \\ rigtig \\ millioner \\ synes \\ mennesker \\ ham \\ mand \\ dansk} & \makecell{hver \\ haft \\ bedre \\ ham \\ thy \\ mener \\ hans \\ mig \\ nordjylland \\ plads} & \makecell{du \\ thisted \\ dansk \\ unge \\ mig \\ børn \\ a \\ hans \\ procent \\ arbejde} \\
+		\bottomrule
+	\end{tabular}
+	\label{tab:author_top_words}
+\end{table*}
+
+As can be seen through this analysis, this knowledge about authors and their topic probabilities can be useful for making better news recommendation systems, but it will be limited since news authors usually write about multiple subjects.

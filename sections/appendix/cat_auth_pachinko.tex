@@ -1,0 +1,34 @@
+\subsection{Category and Author Pachinko}\label{app:cat_auth_pachinko}
+Given the good results of the taxonomy \gls{pam}, we decided to test \gls{pam} with the two other metadata fields: Author and Category.
+These metadata are not layered and can therefore not utilize the layered nature of \gls{pam} in the same way.
+Instead, a four-layer \gls{pam} will be used, with a root layer, a metadata layer where words are locked into topics using the technique outlined in \autoref{sec:appendix/locking}, a layer with 90 'blank' topics, and a word layer.
+
+As can be seen from the results in \autoref{tab:cat_auth_pachinko_results}, these models achieve better results than the previous author and category models and the \gls{lda} model.
+However, the taxonomy \gls{pam} is still better overall.
+The same conclusion is reached after manual inspection of the topics of these models.
+
+\begin{table}[h]
+	\centering
+	\caption{Topic Coherence ($C_v$) comparison of author and category \gls{pam} (marked with bold) and previous models.}
+	\begin{tabular}{l|c}
+		Topic Model & \makecell{Topic \\ Coherence} \\
+		\midrule
+		\acrfull{lda} model & 0.520 \\
+		Author-Topic \acrlong{lda} model & 0.335 \\
+		Category-Topic \acrlong{lda} model & 0.370 \\
+		Taxonomy \acrlong{pam} & 0.660 \\
+		\textbf{Author \acrlong{pam}} & \textbf{0.598} \\
+		\textbf{Category \acrlong{pam}} & \textbf{0.585} \\
+		\textbf{\acrlong{pam}} & \textbf{0.670} \\
+	\end{tabular}
+	\label{tab:cat_auth_pachinko_results}
+\end{table}
+
+For comparison we also ran a four-level \gls{pam} without any metadata, using 100 and 90 as the sizes of the two middle layers.
+This ended up providing very good results, slightly better than the Taxonomy \gls{pam}.
+This also shows that while Category \gls{pam} and Author \gls{pam} get better results than their \gls{lda} counterparts, it is better to run \gls{pam} without modifications.
+This could be due to our models being unable to make good use of the extra information provided by the metadata.
+It might also point towards these two particular metadata fields not being particularly useful in this specific project.
+The category metadata is generally very vague and some categories have seemingly no connection between documents.
+As discussed earlier, the author metadata might not be as useful within journalism as authors don't write about the same topics as with scientific papers.
+And while the \gls{pam} without metadata does achieve better topic coherence than the Taxonomy \gls{pam}, they are close enough in both topic coherence and manual inspection of the quality of topics that no conclusions can be drawn.
