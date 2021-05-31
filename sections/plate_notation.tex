@@ -48,14 +48,13 @@ This layer is added so that the model can construct its own topics based on the 
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
 Normally when working with topic modeling, one does not know which topics will be present in the document set before training the model.
-However, the taxonomy metadata fields provides some general subject names of different levels of abstraction and some amount of documents attached to these subject names.
+However, the taxonomy metadata fields provide some general subject names of different levels of abstraction and some amount of documents attached to these subject names.
 This provides a unique opportunity for using the existing taxonomies as higher-level topics.
 Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
 However, in our case, we have a partially observed taxonomy and we want to use the existing meta-information to estimate the topics quicker and more accurately.
-Although, only $25\%$ of the documents in our dataset have an observed taxonomy.
+Although, only ${\sim}25\%$ of the documents in our dataset have an observed taxonomy.
 To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the \gls{pam} \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
 Some of the documents have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document. 
-
