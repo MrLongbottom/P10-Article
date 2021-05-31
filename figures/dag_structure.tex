@@ -1,10 +1,10 @@
 \begin{figure}[h]
 	\centering
-	\resizebox{0.7\columnwidth}{!}{%
+	\resizebox{0.85\columnwidth}{!}{%
 	\begin{tikzpicture}
 		[
-		observed/.style={minimum size=15pt,circle,draw=blue!50,fill=blue!20},
-		unobserved/.style={minimum size=26pt,circle,draw},
+		observed/.style={minimum size=25pt,circle,draw=blue!50,fill=blue!20},
+		unobserved/.style={minimum size=25pt,circle,draw},
 		post/.style={->,>=stealth',semithick},
 		]
 		% Layer 0
@@ -74,7 +74,33 @@
 		(l33) edge [post] (l43)
 		;
 		
-	\end{tikzpicture}}
-	\caption{Illustration of the \gls{dag} structure for the five-level \gls{pam}.}	
+		
+		\node (root) [unobserved, node distance=1.85cm] at (7,0) {};
+		\node (rootname) [right of = root, node distance=2.5cm] {Root};
+		
+		\node (first) [observed, below of=root, node distance=1.85cm] {};
+		\node (firstname) [right of = first, node distance=2.5cm] {STEDER};
+		
+		\node (second) [observed, below of=first, node distance=1.85cm] {};
+		\node (secondname) [right of = second, node distance=2.5cm] {Danmark};
+		
+		\node (third) [unobserved, below of=second, node distance=1.85cm] {};
+		\node (thirdname) [right of = third, node distance=2.5cm] {Sports topic};
+		
+		\node (fourth) [unobserved, below of=third, node distance=1.85cm] {};
+		\node (fourthname) [right of = fourth, node distance=2.5cm] {"Football"};
+		
+		
+		\path
+		% Layer 0
+		(root) edge [post] (first)
+		(first) edge [post] (second)
+		(second) edge [post] (third)
+		(third) edge [post] (fourth)
+		;
+		
+\end{tikzpicture}}
+	\caption{Illustration of the \gls{dag} structure for the five-level \gls{pam}, where the general structure is on the left and an example of a path from the root to a word is on the right. 
+	The two observed variables are from our taxonomy metadata and can be found in \ref{tab:taxonomy_table}}	
 	\label{fig:pachinko_dag}
 \end{figure}

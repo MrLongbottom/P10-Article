@@ -1,67 +1,60 @@
-\begin{figure}[h]
-	\centering
-	\resizebox{0.8\columnwidth}{!}{%
-	\begin{tikzpicture}
-		[
-		observed/.style={minimum size=26pt,circle,draw=blue!50,fill=blue!20},
-		unobserved/.style={minimum size=26pt,circle,draw},
-		post/.style={->,>=stealth',semithick},
-		]
-		
-		\node (w-j) [observed] at (0,0) {$W$};
-		\node (z-4) [unobserved, above of= w-j, node distance=2.5cm] {$Z_{w4}$};
-		\node (z-3) [unobserved, left of= z-4, node distance=2cm] {$Z_{w3}$};
-		\node (z-2) [unobserved, left of= z-3, node distance=1.5cm] {$Z_{w2}$};
-		\node (z-1) [unobserved, left of= z-2, node distance=1.5cm] {$Z_{w1}$};
-		
-		\node (theta_a) [unobserved, above of= z-2, node distance=2cm] {$\theta_a^d$};
-		\node (alpha_a) [unobserved, above of= theta_a , node distance=2cm] {$\alpha_a$};
-		
-		\node (theta_b) [unobserved, above of= z-3, node distance=2cm] {$\theta_b^d$};
-		\node (alpha_b) [unobserved, above of= theta_b , node distance=2cm] {$\alpha_b$};
-		
-		\node (theta_c) [unobserved, above of= z-4, node distance=2cm] {$\theta_c^d$};
-		\node (alpha_c) [unobserved, above of= theta_c , node distance=2cm] {$\alpha_c$};
-		
-		\node (theta_s2) [unobserved, left of=w-j , node distance=8cm] {$\theta_c$};
-		\node (beta) [unobserved, above of=theta_s2 , node distance=2.5cm] {$\beta$};
-		
-		\path
-		(z-4) edge [post] (w-j)
-		(z-3) edge [post] (z-4)
-		(z-2) edge [post] (z-3)
-		(z-1) edge [post] (z-2)
-		
-		(theta_a) edge [post] (z-2)
-		(alpha_a) edge [post] (theta_a)
-		
-		(theta_b) edge [post] (z-3)
-		(alpha_b) edge [post] (theta_b)
-		
-		(theta_c) edge [post] (z-4)
-		(alpha_c) edge [post] (theta_c)
-		
-		(theta_s2) edge [post] (w-j)
-		(beta) edge [post] (theta_s2)
-		;
-		
-		\node [draw,fit=(w-j) (theta_a) (z-1), inner sep=25pt] (plate-context) {};
-		\node [above left] at (plate-context.south east) {$N$};
-		
-		\node [draw,fit=(w-j) (z-1), inner sep=12.5pt] (plate-token) {};
-		\node [above left] at (plate-token.south east) {$|d|$};
-		
-		\node [draw,fit=(theta_s2), inner sep=10pt] (plate-token) {};
-		\node [above left] at (plate-token.south east) {$S_3$};
-		
-		\node [draw,fit=(theta_c) (alpha_c), inner sep=10pt] (plate-token) {};
-		\node [above left] at (plate-token.south east) {$S_2$};
-		
-		\node [draw,fit=(theta_b) (alpha_b), inner sep=10pt] (plate-token) {};
-		\node [above left] at (plate-token.south east) {$S_1$};
-		
-	\end{tikzpicture}}
-	\caption{Plate notation for the five-level \gls{pam}.}
-	\label{fig:pachinko}
-\end{figure}
-\vejleder[inline]{a,b,c ~ $t_i$ in Figure 5}
+\begin{tikzpicture}
+	[
+	observed/.style={minimum size=26pt,circle,draw=blue!50,fill=blue!20},
+	unobserved/.style={minimum size=26pt,circle,draw},
+	post/.style={->,>=stealth',semithick},
+	]
+	
+	\node (w-j) [observed] at (0,0) {$W$};
+	\node (z-4) [unobserved, above of= w-j, node distance=2.5cm] {$Z_{w4}$};
+	\node (z-3) [unobserved, left of= z-4, node distance=2cm] {$Z_{w3}$};
+	\node (z-2) [unobserved, left of= z-3, node distance=1.5cm] {$Z_{w2}$};
+	\node (z-1) [unobserved, left of= z-2, node distance=1.5cm] {$Z_{w1}$};
+	
+	\node (theta_a) [unobserved, above of= z-2, node distance=2cm] {$\theta_a^d$};
+	\node (alpha_a) [unobserved, above of= theta_a , node distance=2cm] {$\alpha_a$};
+	
+	\node (theta_b) [unobserved, above of= z-3, node distance=2cm] {$\theta_b^d$};
+	\node (alpha_b) [unobserved, above of= theta_b , node distance=2cm] {$\alpha_b$};
+	
+	\node (theta_c) [unobserved, above of= z-4, node distance=2cm] {$\theta_c^d$};
+	\node (alpha_c) [unobserved, above of= theta_c , node distance=2cm] {$\alpha_c$};
+	
+	\node (theta_s2) [unobserved, left of=w-j , node distance=8cm] {$\theta_c$};
+	\node (beta) [unobserved, above of=theta_s2 , node distance=2.5cm] {$\beta$};
+	
+	\path
+	(z-4) edge [post] (w-j)
+	(z-3) edge [post] (z-4)
+	(z-2) edge [post] (z-3)
+	(z-1) edge [post] (z-2)
+	
+	(theta_a) edge [post] (z-2)
+	(alpha_a) edge [post] (theta_a)
+	
+	(theta_b) edge [post] (z-3)
+	(alpha_b) edge [post] (theta_b)
+	
+	(theta_c) edge [post] (z-4)
+	(alpha_c) edge [post] (theta_c)
+	
+	(theta_s2) edge [post] (w-j)
+	(beta) edge [post] (theta_s2)
+	;
+	
+	\node [draw,fit=(w-j) (theta_a) (z-1), inner sep=25pt] (plate-context) {};
+	\node [above left] at (plate-context.south east) {$N$};
+	
+	\node [draw,fit=(w-j) (z-1), inner sep=12.5pt] (plate-token) {};
+	\node [above left] at (plate-token.south east) {$|d|$};
+	
+	\node [draw,fit=(theta_s2), inner sep=10pt] (plate-token) {};
+	\node [above left] at (plate-token.south east) {$S_3$};
+	
+	\node [draw,fit=(theta_c) (alpha_c), inner sep=10pt] (plate-token) {};
+	\node [above left] at (plate-token.south east) {$S_2$};
+	
+	\node [draw,fit=(theta_b) (alpha_b), inner sep=10pt] (plate-token) {};
+	\node [above left] at (plate-token.south east) {$S_1$};
+	
+\end{tikzpicture}

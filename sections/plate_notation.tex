@@ -14,51 +14,26 @@ This is due to our dataset never having more than one author or category for eac
 Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category and author \gls{lda} models can be seen in \autoref{fig:metadata_lda}.
 
-\begin{figure*}[ht]
-	\centering
-	\begin{subfigure}{0.275\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/author_plate_original}
-		}
-		\caption{Author \gls{lda} from \cite{author_topic_2012}.}
-		\label{fig:original_author_lda}
-	\end{subfigure}
-	\hspace{2em}
-	\begin{subfigure}{0.275\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-		\input{figures/category_plate}
-		}
-		\caption{Category \gls{lda}.}
-		\label{fig:category_lda}
-	\end{subfigure}
-	\hspace{2em}
-	\begin{subfigure}{0.275\textwidth}
-		\centering
-		\resizebox{\textwidth}{!}{%
-			\input{figures/author_plate}
-		}
-		\caption{Author \gls{lda}.}
-		\label{fig:author_lda}
-	\end{subfigure}	
-	\caption{Plate notation for the metadata \gls{lda} models.}
-	\label{fig:metadata_lda}
-\end{figure*}
-
 \subsection{Pachinko Allocation}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
+Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
+\gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the connections between these topics.
 
-In this paper, we construct a five-level \gls{pam}, following the format presented by \citet{li2006pachinko}.
-The \gls{dag} structure used in this paper is in \autoref{fig:pachinko_dag}, where each layer has been named.
-The plate notation for this model is shown in \autoref{fig:pachinko}
+Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
+However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
+An example of the \gls{dag} structure used in this paper is in \autoref{fig:pachinko_dag} where each level of the \gls{pam} is shown.
+The idea behind the \gls{dag} structure is to be able to model correlations between topics and in turn make more coherent topics.
+  
+In this paper, we use a layered \gls{pam}, as in \cite{li2006pachinko}, meaning that the \gls{dag} structure is divided into layers where each layer is fully connected.
+However, \citet{li2006pachinko} use four layers where we use five to capture more taxonomy fields.
 
-Some layers in our \gls{dag} structure are duplicates of layers from the taxonomy field within our dataset.
-This allows us to have some nodes represent a topic based on a specific taxonomy.
+We replicate some layers in our \gls{dag} structure based on the structure from the taxonomy field within our dataset, having some nodes represent a topic based on a specific taxonomy.
+An example of this can be seen in \autoref{fig:pachinko_dag}, where we have the node "STEDER", and this is connected to "Danmark" in the third layer.
 To make the algorithm construct the topics to be based on our taxonomies, we introduce a novel locking mechanism for the Gibbs sampler which we use to run \gls{pam}.
 This mechanism is discussed further in \autoref{subsec:mod_pachinko}.
 
-The first layer of the \gls{dag} is the root layer.
+We use a five-level pachinko tree structure, following the format presented by \citet{li2006pachinko}.
+The first layer is the root layer which all topics are a part of.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g. "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
 We only use the first two layers for this, as these are among the most informative, and because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training.
@@ -68,13 +43,13 @@ This layer is added so that the model can construct its own topics based on the 
 
 \input{figures/dag_structure}
 
-\input{figures/pachinko}
+
+
 
 \subsubsection{Modification to Pachinko Allocation}\label{subsec:mod_pachinko}
-\vejleder[inline]{do you have a comparison in section 5}
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the topics will not actually be based on the taxonomy.\vejleder[inline]{hvad vil det sige?}
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
 However, only $25\%$ of the documents in our dataset have an observed taxonomy.
-To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the pachinko \gls{dag} instead of continuously sampling them using Gibbs sampling.
+To account for this, we lock taxonomy for the words in the observed documents to be in the corresponding topics within the \gls{pam} \gls{dag} instead of continuously sampling them using Gibbs sampling.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomies will be fitted around.
 
 Some of the documents have multiple taxonomies.
