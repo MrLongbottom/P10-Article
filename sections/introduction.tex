@@ -23,8 +23,7 @@ In this paper, the dataset will be used with a focus on topic modeling and the i
 The dataset used with a topic model can have a large impact on the topics generated.
 When referring to a dataset, we talk about a dataset including metadata information.
 An example of metadata could be the publication date of a text document. 
-In most contexts, it is not needed to use and understand the document; however, it provides more context to the main content of the document: the text.
-However, a lot of metadata is not used, either because it is not useful or we do not know how to use it properly. \vejleder{lidt ude af kontekst den her paragraf}
+In most contexts, it is not needed to use and understand the document; however, it provides more context to the main content of the document.
 
 % In this paper
 We want to construct different topic models that incorporate various metadata, to see whether incorporating this information changes the topic quality. \vejleder{hvorfor ikke blot integrate and extract models to include meta-info. Som vi gør i problemformuerlingen}
@@ -40,14 +39,15 @@ We define the following research questions to investigate in this paper:
 
 % Contributions
 Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
-However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the meta-information given in their dataset, which gives a specific topic distribution for each meta-information field and in turn affect the document-topic distribution used with the \gls{lda}.
-Instead of using the document-topic distribution for drawing word topics, we want to create a new meta-topic distribution which influences the drawn topics.
+However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the metadata given in their dataset, which affects the document-topic distribution used with the \gls{lda}.
+Instead of using the document-topic distribution for drawing word topics, we want to create a new metadata-topic distribution that influences the drawn topics.
 An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
-We investigate the effect that creating a meta-topic distribution for any specific meta-information, such as the author information, has on the resulting topics.
+We investigate the effect that creating a metadata-topic distribution for any specific metadata information, such as the author information, has on the resulting topics.
 The intuition behind this is to create new topic models, which describe the data in a different way using topics that are influenced by metadata.
 For example, if the metadata describes something about geographic locations, location-specific topics will be generated, which could be useful in many cases.
-The metadata, within the Nordjyske dataset, includes author information, as well as higher-level categorical information, which will be described in \autoref{sec:dataset}.
-These categorical metadata are the basis for the novelties in this paper, which is our category-topic model that makes a topic distribution for each category in the dataset and using \gls{pam} on an existing metadata hierarchy (taxonomy) by applying a locking mechanism.\vejleder{denne paragraf er lidt vanskelig at følge}
+
+The metadata, within the Nordjyske dataset, includes author information, as well as higher-level categorical information, which is described in \autoref{sec:dataset}.
+These categorical metadata are the basis for the novelties in this paper, which is our category-topic model that makes a topic distribution for each category in the dataset and using the \gls{pam} on a hierarchical metadata (taxonomy) by applying a locking mechanism.\vejleder{denne paragraf er lidt vanskelig at følge}
 
 % Paper Structure
 The paper is organized as follows:
