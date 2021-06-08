@@ -1,14 +1,14 @@
 \section{Preliminaries}\label{sec:preliminaries}
-This section covers previous work within topic modelling that will be expanded upon in this paper.
+Here we present the foundation for the two models that we are adapting in this paper.
 
-\subsection{\acrlong{lda}}
+\subsection{\Acrlong{lda}}
 The purpose of \gls{lda}, and topic models in general, is to create a tool for exploring collections of text.
 Topic models do this by uncovering the underlying semantic structure of a text collection by using hierarchical Bayesian models.
 \Gls{lda} uncovers this semantic structure by discovering patterns of word use in documents and finding topics based on these~\cite{blei2009topic}.
 
 The standard \gls{lda} by \citet{blei2003latent} can be described by the following generative process, which is the way the model assumes the documents arose:
 $D$ is the number of documents in the corpus, $N_d$ is the number of words in document $d$, $V$ is the size of the vocabulary, and $K$ is the number of topics.
-Topics are represented as distributions over words and documents are represented as distributions of topics.
+Topics are represented as distributions over words and documents are represented as distributions over topics.
 \Gls{lda} assumes that the topics are shared across the corpus, while the document-topic distributions are unique for each document.
 For each topic $k \in \{1,\dots, K\}$ a topic-word distribution $\beta_k$ is sampled from a V-dimensional Dirichlet distribution parameterized by $\eta$.
 That is, K topics $\beta_{1:k}$ are sampled, each being a distribution over the vocabulary, written as: $\beta_k \sim Dirichlet(\eta)$.
@@ -27,26 +27,23 @@ The generative process for each document is seen in these steps:
 \end{enumerate}
 \vspace{\topsep}
 
-The generative process for topics and documents, generates a list of $K$ topics and $D$ documents that can be used as a $K \times V$ matrix of topic-word distributions and a $D \times K$ matrix of document-topic distributions, respectively.
+The result is $K$ topics, based on $D$ documents.
+These topics are represented by a $K \times V$ matrix of topic-word distributions and a $D \times K$ matrix of document-topic distributions.
 The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
 
 \input{figures/lda_plate}
 
-After training the \gls{lda} model, there are multiple possibilities for exploring the corpus using the posterior distributions of the hidden random variables.
-One possibility is to visualize the posterior topics of the model, e.g., by sorting $\beta_k$ according to the highest probabilities.
-It is also possible to visualize the documents by, e.g., sorting by the highest topic proportions in $\theta_d$.
-Another possibility of exploration is finding similar documents by using a distribution distance function on the topic proportions $\theta_d$ between documents~\cite{blei2009topic}.
 
 
-\subsection{Author-Topic \gls{lda}}\label{subsec:auth_prelim}
+\subsection{Author-Topic \gls{lda}}\label{subsec:auth_prelim} \vejleder{introducer modellen som den er i \cite{author_topic_2012}, gerne flere detaljer}
+\todo[inline]{Beskriv den generative process}
 \citet{author_topic_2012} present the Author-Topic model.
 It seeks to find topics based on author metadata, and is based on the assumption that authors prefer to write about specific topics.
 In this model, there are no document-topic distributions $\theta$, but rather one author-topic distribution for each author.
 
-This is a \gls{um}, meaning that topics are only word distributions and are chosen based on the data of the documents, rather than \glspl{dm} where topics are fitted to have an influence on both word distributions and other metadata.
 
-\citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word draw an author $x$ from this vector.
-The original plate notation for the Author-Topic model and our modifications can be seen in \ref{fig:metadata_lda}.
+\citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word uniformly choose an author $x$ at random from this vector.
+The original plate notation for the Author-Topic model can be seen in \autoref{fig:metadata_lda}.
 
 \begin{figure*}[ht]
 	\centering
@@ -81,35 +78,37 @@ The original plate notation for the Author-Topic model and our modifications can
 \end{figure*}
 
 \subsection{\acrlong{pam}}\label{subsec:pachinko_prelim}
-Pachinko allocation is a topic model that generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
+The \acrfull{pam}~\cite{li2006pachinko} is a topic model that generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
 The model focuses on finding topics of different abstraction levels, as well as modeling the connections between these topics.
 
 Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
-However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are multinomial distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
+However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
 
-\citet{li2006pachinko} present the four-level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in each layer fully connected to every node in the next layer of the hierarchy.
+\citet{li2006pachinko} present the four-level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in a layer being fully connected to every node in the next layer of the hierarchy.
+It consists of $L$ layers of varying sizes $S_0, S_1, \dots, S_{L-1}$.
 The first layer consists of only the root node, a topic which all documents are part of.
-The bottom layer consists of leaf nodes, which are the only nodes to contain distributions over words, and they have no other topics in their distribution.
+The bottom layer consists of leaf nodes, which represent the words in the vocabulary.
 The rest are middle layers representing topics of different abstraction levels.
 
 The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
 \begin{enumerate}
-	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
+	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from \vejleder{what is a g function?} $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
 	\item For each word $w \in d$,
 	\begin{itemize}
-		\item Sample a topic path $\mathbf{z}_w$ of length $L_w:~< z_{w1}, z_{w2},\newline \dots, z_{wL_w} >$. $z_{w1}$ is always the root and $z_{w1}$ through $z_{wL_w}$ are topic nodes in $T$. $z_{wi}$ is a child of $z_{w(i-1)}$ and it is sampled according to the multinomial distribution $\theta_{z_{wL_w}}^{(d)}$.
+		\item Sample a topic path $\mathbf{z}_w$ of length $L_w:~< z_{w1}, z_{w2},\newline \dots, z_{wL_w} >$. $z_{w1}$ is always the root and $z_{w1}$ through $z_{wL_w}$ are topic nodes in $T$. $z_{wi}$\vejleder{DAG over topics?} is a child of $z_{w(i-1)}$ and it is sampled according to the multinomial distribution $\theta_{z_{wL_w}}^{(d)}$.
 		\item Sample word $w$ from $\theta_{z_{wL_w}}^{(d)}$.
 	\end{itemize}
 \end{enumerate}
 
-$T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}. 
+\vejleder{flyt denne paragraph op}
+$T = {t_1, t_2, \dots, t_s}$ is the set of topics\vejleder{graf?} in the \gls{pam}. 
 Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
 While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
 
-The intuition behind this generative process is to create all possible layer (topic) sequences and combine these into a multinational distribution to draw a topic sequence from.
+The intuition behind this generative process is to create all possible topic sequences and combine these into a multinomial distribution to draw a topic sequence from.
 Otherwise, the Gibbs sampling is the same as with the \gls{lda} model.
 
-The plate notation from \citet{li2006pachinko} and our modification can be seen in \ref{fig:pachinko_plates}.
+The plate notation from \citet{li2006pachinko} and our modification can be seen in \autoref{fig:pachinko_plates}.
 
 \begin{figure*}[ht]
 	\centering

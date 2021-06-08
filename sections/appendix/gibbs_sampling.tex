@@ -1,10 +1,10 @@
-\subsection{Gibbs Sampling}\label{sec:appendix_gibbs}
+\subsection{Gibbs sampling}\label{sec:appendix_gibbs}
 The Gibbs Sampling algorithm consists of two procedures: Random Initialization and Gibbs Sampling.
 In the following sections, we explain how these procedures have been implemented.
 
 \subsubsection{Random Initialization}
-Before a Gibbs sampling algorithm can run, word occurrences need to be randomly initialized with topics.
-To do this, we iterate over each word within each document and assign a random topic for it.
+Before a Gibbs sampling algorithm can run, every word needs to be assigned a random topic.
+To do this, we iterate over each word within each document and assign a random topic to it.
 This procedure is shown in \autoref{lst:randomInit}.
 \begin{lstlisting}[language=Python, caption=Random Initialization,label={lst:randomInit}, float, floatplacement=H]
 import numpy as np
@@ -32,21 +32,19 @@ The \emph{\_conditional\_distribution()} function creates a distribution of topi
 It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
-		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}, \alpha, \beta) = 
+		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
 		\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
-		\underbrace{\frac{C^{WT}_{mk} + \beta}{\sum_{m'} C^{WT}_{m'k} + V\beta}}_{Topic-Word}
+		\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
 	\end{split}
 \end{equation}
-where $C^{DT}_{dk}$ is the number of times document $d$ uses topic $k$.
-
-$C^{WT}_{mk}$ is the number of times topic $k$ uses word $m$.
+where $C^{DT}_{dk}$ is the number of times document $d$ uses topic $k$ and $C^{WT}_{mk}$ is the number of times topic $k$ uses word $m$.
 $\boldsymbol{z}_{-i}$ represents the topic assignments where the current instance is disregarded.
-$\alpha$ and $\beta$ is the Dirichlet parameter for the document-topic and topic-word distribution, respectively.
+$\alpha$ and $\eta$ are the Dirichlet parameters for the document-topic and topic-word distribution, respectively.
 The first fraction describes how likely topic $t$ appearing in document $d$ is, and the second fraction describes which words are most probable in topic $t$.
-Following the code in \autoref{lst:randomInit}, as we initialize, the words get higher probability of clustering together, since we update the counts every time, we look at a new word in line 16.
+Following the code in \autoref{lst:randomInit}, as we initialize, the words get a higher probability of clustering together, since we increase the counts every time at line $16$.
 
 \subsubsection{Gibbs Sampling}
-Continuing the analogy from before, we can start to investigate the Gibbs sampling method itself, where we iterate over each word in every document and draw a new topic based on the given topic distribution.
+We can start investigating the Gibbs sampling method itself, where we iterate over each word in every document and draw a new topic based on the given topic distribution.
 As in \autoref{lst:randomInit}, the code has been simplified.
 \begin{lstlisting}[language=Python, caption=Gibbs Sampling Method,label={lst:gibbsSampling}, float, floatplacement=H]
 import numpy as np
@@ -76,7 +74,8 @@ def gibbs_sampling(documents: List[np.ndarray],
 			# And increase the topic count
 			increase_count()
 \end{lstlisting}
-The Gibbs sampling method is very similar to the random initialization method in \autoref{lst:randomInit}, but with a few extra additions. 
-Now we introduce the \emph{decrease\_count()} which decreases the topic count for both words and documents, as the \emph{increase\_count()} increases them.
-The sampling explained in \autoref{lst:randomInit} is the same.
+The Gibbs sampling method is very similar to the random initialization method in \autoref{lst:randomInit}, but with a few additions. 
+Now we introduce the \emph{decrease\_count()} which decreases the topic count for both words and documents, and  \emph{increase\_count()} which increases them.
+This is done because new samples need to be calculated based on all other word topic assignments (not including the current word).
+The sampling is explained in \autoref{lst:gibbsSampling}.
 On line 13, we get the current topic for the given word and on line 23 we assign a newly drawn topic to that word.

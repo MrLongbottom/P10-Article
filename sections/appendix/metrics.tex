@@ -17,17 +17,19 @@ $S$ is defined by \autoref{eq:set_of_word_pairs}.
 \end{equation}
 
 Before calculating word probabilities, a sliding window of size $s$ where $s =110$ is used to create a set of subdocuments $D_s$ over the document set $D$.
+We choose not to change the sliding window size $s$ to be able to compare against other papers, but this is a hyperparameter, which could provide better results for our dataset if changed. 
+\todo{talk about how sliding window works, and how it influences this metric}
 These subdocuments are used rather than the normal documents to capture some degree of word proximity.
 Word probabilities are calculated based on how many documents, within the document set $D_s$, they occur in.
 $p(w_i)$ is the number of subdocuments in which the word $w_i$ occurs divided by $|D_s|$.
 $p(w_i, w_j)$ is the number of subdocuments in which both words occur divided by $|D_s|$. 
 
-We create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry per word pair combination in $W$.
+As part of the word set confirmation measure we create a \gls{npmi} matrix of size $|W|\times|W|$, with one entry per word pair combination in $W$.
 \begin{equation}\label{eq:coherence_2}
 	\text{NPMI}(w_i,w_j) =  \frac{\log\frac{p(w_i,w_j) + \epsilon}{p(w_i)\cdot p(w_j)}}{-log(p(w_i,w_j) + \epsilon)}
 \end{equation}
 \noindent where $\epsilon$ is a low number ($10^{-12}$) used to avoid $log(0)$.
-The \gls{npmi} matrix describes how much each word occurs alone versus together with other words.
+The \gls{npmi} matrix describes how much each word in the topic co-occurs with the other words.
 Each value is between $-1$ and $1$, with $-1$ meaning that the words never occur together and 1 meaning that they only occur together.
 
 After having calculated the \gls{npmi} matrix, we construct context vectors for both elements $W'$ and $W*$ in each word-pair $S_i$, by summing over the rows of the \gls{npmi} matrix.
