@@ -1,6 +1,6 @@
 \subsubsection{Category}\label{subsec:appendix_category}
 There are $58$ different category labels present within the dataset.
-Categories with less than 140 documents ($0.1\%$ of the number of documents) are removed as part of preprocessing and replaced with a single miscellaneous category 'misc'.
+Categories with less than 140 documents (${\sim}0.1\%$ of the number of documents) are removed as part of preprocessing and replaced with a single miscellaneous category 'misc'.
 This reduces the number of categories to $34$, while only replacing 292 documents to have the 'misc' category.
 This preprocessing also makes the size of the remaining categories more evenly distributed, as can be seen in \autoref{fig:category_hist}.
 
@@ -19,7 +19,7 @@ This preprocessing also makes the size of the remaining categories more evenly d
 		\label{fig:category_hist_after}
 	\end{subfigure}
 	\caption{Histogram over the number of categories for different number of documents, before and after preprocessing.
-	Categories on the x-axis are grouped into 50 buckets.}
+	Categories on the x-axis are grouped into 50 columns.}
 	\label{fig:category_hist}
 \end{figure*}
 
@@ -30,7 +30,7 @@ This preprocessing also makes the size of the remaining categories more evenly d
 	\label{fig:category_box}
 \end{figure}
 
-As mentioned in \autoref{sec:dataset}, there are some category labels which seemingly have no relevance to the documents using the labels.
+As mentioned in \autoref{sec:dataset}, some category labels seemingly have no relevance to the documents using the labels.
 Specifically, the category labels '26. Frederik' and '53. Frederik' do not indicate what they cover, since Frederik is simply a normal Danish name.
 Since they are not filtered into the 'misc' category during preprocessing, it is worth looking into what documents have these categories.
 
@@ -38,16 +38,13 @@ By looking at a random selection of documents from these categories, there is no
 The topics, within these categories, can be about anything from sports to news from anywhere around the world or locally in Denmark.
 The articles from '26. Frederik' appear all years in our dataset, while the articles for '53. Frederik' seem to be just from 2019, the last year in our dataset, but evenly distributed over the whole year.
 Curiously enough, most of the documents from these categories seem to be written by Anders Kjærgaard, with only a few other authors.
-For '26. Frederik' there are just 5 unique authors: Carsten Tolbøll, Emil Abkjær Kristensen, Morten Kyndby Holm, Jens Fogh-Andersen, and Anders Kjærgaard.
-For '53. Frederik' there are just 4 unique authors: Klaus Færch Gjerulff, Morten Kyndby Holm, Jens Fogh-Andersen, and Anders Kjærgaard.
-This shows that Morten Kyndby Holm, Jens Fogh-Andersen, and Anders Kjærgaard have written for both categories.
+For '26. Frederik' there are just 5 unique authors and for '53. Frederik' there are just 4 unique authors, where Morten Kyndby Holm, Jens Fogh-Andersen, and Anders Kjærgaard have written for both categories.
 
 From the exploration of these two categories, we can not say with certainty why these categories exist, or why multiple authors have chosen to write for these categories.
 We continue to use these categories in our experiment, for the possibility of making other observations through the topic models.
-\vejleder{har vi undersøgt forskellen imellem aviserne?}
 \begin{table*}[h]
 	\caption{Number of documents for each of the 58 categories within the Nordjyske dataset from 2017 to 2019.
-		The highlighted categories are filtered and combined during preprocessing.}
+		The highlighted categories are combined during preprocessing.}
 	\label{tab:category_table}
 	\centering
 	\begin{tabular}{l|c|l|c|l|c|l|c}
