@@ -1,7 +1,7 @@
-In the main paper, we initialize and describe our problem with a focus on results. \vejleder{kun et niveau?}
-Within this appendix, we are expanding on many aspects of the aforementioned paper and describing new experiments that have been made.
+In the main paper, we initialize and describe our problem with a focus on results and analysis. \vejleder{kun et niveau?}
+Within this appendix, we are expanding on many aspects of the aforementioned paper and new extensions to the models.
 
-This includes:
+This appendix is split up into these overall categories:
 \begin{itemize}
 	\item Overview
 	\begin{itemize}
@@ -12,23 +12,23 @@ This includes:
 		\item The metadata is shown in tables for all three metadata types, and observations about the metadata labels are described.
 		\item We explain the purpose and mathematical ideas behind the evaluation metrics we use in the paper.
 		\item Our grid search process is described further on how we chose our hyperparameters.
-		\item More articles are highlighted the same way as in \autoref{sec:discussion} and observations are made.
+		\item More articles are highlighted the same way as in \autoref{sec:discussion}.
 	\end{itemize}
 	\item Code
 	\begin{itemize}
-		\item An experiment using a stemmed dataset is described, and the results are observed.
+		\item An experiment using a stemmed dataset is described, and the results are shown.
 		\item We describe the probabilistic programming language Pyro which we explored before choosing to work with Gibbs sampling.
 		\item The code for the Gibbs sampler is explained and how the \gls{pam} differs from the standard Gibbs Sampler is described. 
 		\item Our testing of a parallel Gibbs sampler is also described.
 	\end{itemize}
 	\item Expanded model experiments
 	\begin{itemize}
-		\item We go into detail how we explored using author and category metadata in the \gls{pam} and what results were achieved.
-		\item We also explored a model combining the author-topic and category-topic models into one model with two topic distribution. This model is also analyzed.
-		\item Further model combinations we explored, were models that combine the standard \gls{lda} with our author and category metadata models.
+		\item We go into detail about how we explored using author and category metadata in the \gls{pam} and what results were achieved.
+		\item We also explored a model combining the author-topic and category-topic models into one model with two topic distributions. This model is also analyzed.
+		\item Further model combinations we explored were models that combine the standard \gls{lda} with our author and category metadata models.
 	\end{itemize}
 	\item Applications
 	\begin{itemize}
-		\item We explore the application possibilities of our project and propose various applications which could be implemented at Nordjyske.
+		\item We explore the application possibilities of our project and propose various applications which could be implemented at news sites such as Nordjyske.
 	\end{itemize}
 \end{itemize}
