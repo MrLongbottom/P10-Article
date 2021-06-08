@@ -1,5 +1,5 @@
 \subsection{Author-topic model}\label{sec:discussion_author_topic}
-Some interesting observations can also be made specifically in the author-topic model.
+Interesting observations can also be made specifically for the author-topic model.
 The similarity of authors is a good example, which can be measured by taking the distance between their topic distributions.
 In this model, the author-topic distribution defines the probabilities of topics being written by a specific author.
 Then, just as \citet{author_topic_2012}, the similarity of authors can be found by calculating the symmetric Kullback-Leibler divergence:
@@ -7,9 +7,10 @@ Then, just as \citet{author_topic_2012}, the similarity of authors can be found 
 \begin{equation} \label{eq:author_similarity}
 	sKL(i,j) = \sum_{t=1}^{T}\left[\theta_{it}\, log \frac{\theta_{it}}{\theta_{jt}} + \theta_{jt}\, log \frac{\theta_{jt}}{\theta_{it}}\right]
 \end{equation}
+\todo{en sætning til at beskrive at theta i equation ovenfor er posterior probability from the gibbs sampler}
 \noindent where $\theta_{it}$ is the probability of author $i$ having written about topic $t$, and the same for $\theta_{jt}$ with author $j$.
 
-In the context of using these similarities to assist Nordjyske, knowing how similar authors are, gives the opportunity to recommend new authors to readers, while the articles are about similar topics.
+In the context of using these similarities for recommendation, knowing how similar authors are, gives the opportunity to recommend new authors to readers, while the articles are about similar topics.
 In \autoref{tab:author_similarity}, the top 10 author pairs, based on this similarity measure, are shown.
 A smaller KL value means the authors are more similar.
 The number in parenthesis next to each author is the number of articles they have written in our dataset.
@@ -37,21 +38,21 @@ The number in parenthesis next to each author is the number of articles they hav
 	\label{tab:author_similarity}
 \end{table}
 
-In general for these pairs, there does not seem to be a correlation between a high similarity and the categories of the articles they have written.
-While one author in a pair might have written for the sports category (Sport-avis) the other author might not have written for this category at all.
+In general, for these pairs, there does not seem to be a correlation between a high similarity and the categories of the articles they have written.
+While one author in a pair might have mainly written for the sports category (Sport-avis) the other author might not have written for this category at all.
 This can also be seen for categories that cover geographic locations, where one author might have written for Aalborg (Aalborg-avis) and the other author can have written for Thisted (Thisted-avis).
 
-When looking at a sample of documents for the most similar author pair (Lars Termansen \& Mikkel Færgemann Viken), it is seen that they both write a mix of regular news and sports articles.
-The reason why they become this similar, might be that the ratio between news and sports news for both authors is similar, and possibly also because of the types of news they write about.
+From sample documents written by the most similar author pair (Lars Termansen \& Mikkel Færgemann Viken), we find that both authors write a mix of regular news and sports articles.
+Their high similarity could be due to the ratio between news and sports news for both authors being similar, and possibly also because of the types of news they write about.
 Another interesting observation is that, for the second most similar author pair (Morten Nis Klenø \& Anne Helene Thomsen) the difference in the number of articles written is significant.
 Here Morten Nis Klenø has written just 17 articles while Anne Helene Thomsen has written 606 articles.
-This suggests that some part of why these authors' similarity is high, simply dependents on the types of news the authors have written, no matter the amount.
+This suggests that some part of why these authors' similarity is high, simply depends on the types of news the authors have written, no matter the amount.
 
 It is also worth noting that while authors that write scientific papers usually write in just a few subject areas, the scientific area they work in, this is not necessarily the case for news article authors.
 In our dataset, this can be seen in the fact that the authors have written for 7.86 categories on average, with 7 categories as the median.
 This can make it more difficult for the author-topic model to find patterns in what the authors write about, especially since each category can cover multiple topics.
 
-A selection of authors from the dataset and the top words from their most probable topic can be seen in \autoref{tab:author_top_words}.
+A random selection of authors from the dataset and the top words from their most probable topic can be seen in \autoref{tab:author_top_words}.
 
 \begin{table*}[h]
 	\centering
@@ -77,5 +78,3 @@ A selection of authors from the dataset and the top words from their most probab
 	\end{tabular}
 	\label{tab:author_top_words}
 \end{table*}
-
-As can be seen through this analysis, this knowledge about authors and their topic probabilities can be useful for making better news recommendation systems, but it will be limited since news authors usually write about multiple subjects.
