@@ -1,13 +1,13 @@
 \subsubsection{Author}\label{subsec:appendix_author}
 There are a total of $227$ authors within the dataset where each author on average have written $757$ articles from 2017 to 2019.
-An interesting fact is that the median is $316$ which is much lower than the average which is visible in \autoref{fig:author_histogram}.
-This shows that while most authors have written just a few hundred articles, there is a small amount of authors that have written thousands of articles, increasing the average.
+An interesting fact is that the median is $323$ which is much lower than the average which is visible in \autoref{fig:auhtor_box_after}.
+This shows that while most authors have written just a few hundred articles, there is a small number of authors that have written thousands of articles, increasing the average.
 The minimum number of articles that have been written by an author is $1$ and the maximum number is $9906$.
 When we look at the top two most writing authors, we get these:
 \begin{itemize}
 	\item Ove Nørhave (9893 articles)
 	\begin{itemize}
-		\item A well-known journalist, who have been at Nordjyske for over 25 years.
+		\item A well-known journalist, who has been at Nordjyske for over 25 years.
 	\end{itemize}
 	\item System Administrator (9038 articles)
 	\begin{itemize}
@@ -15,13 +15,13 @@ When we look at the top two most writing authors, we get these:
 	\end{itemize}
 \end{itemize}
 
-In \autoref{fig:auhtor_hist_after}, we see that the vast majority of authors have written under $2000$ articles within the three years. 
+In \autoref{fig:author_hist_before}, we see that the vast majority of authors have written under $2000$ articles within the three years. 
 All authors and the number of articles they have written can be seen in \autoref{tab:author_table}.
 
-Unlike with Categories, the Author metadata field does not have a natural cut-off point, with a good amount of values in a specific lower range, followed by more evenly distributed numbers.
-Instead, the vast majority of the values fall in a lower range, meaning that setting too high a cut-off point, will result in removing a large portion of the data.
-We instead choose a lower cut-off point, keeping most of the authors, except the ones that contained so few documents, that finding common topics would be inefficient.
-Authors, who have written less than $14$ documents ($0.01\%$ of the number of documents), are removed as part of preprocessing.
+Unlike with the category metadata, the author metadata does not have a natural threshold, with authors that have values in a specific lower range, followed by more evenly distributed values.
+Instead, the vast majority of the values fall in a lower range, meaning that setting the threshold too high will result in removing a large portion of the data.
+We instead choose a lower threshold, keeping most of the authors, except the ones that contained so few documents, that finding common topics would be inefficient.
+Authors, who have written less than $14$ documents (${\sim}0.01\%$ of the number of documents), are removed as part of preprocessing.
 This removes $43$ out of $227$ authors, combining them into a single 'misc' author.
 A total of $204$ documents are assigned to the 'misc' author.
 
@@ -40,7 +40,7 @@ A total of $204$ documents are assigned to the 'misc' author.
 		\label{fig:auhtor_hist_after}
 	\end{subfigure}
 	\caption{Histogram over amount authors who have written certain number of documents, before and after preprocessing.
-		Authors on the x-axis are grouped into 50 buckets.}
+		Authors on the x-axis are grouped into 50 columns.}
 	\label{fig:author_hist}
 \end{figure*}
 
@@ -62,14 +62,14 @@ A total of $204$ documents are assigned to the 'misc' author.
 	\label{fig:author_box}
 \end{figure*}
 
-Other than the 'System Administrator' author, there are a few authors that seem different since they do not have the name of a person.
-These are: 'SAXoTECH Systembruger' with 1 article, 'JSLbruger Nordjyske', 'testbruger', and 'Danske Fagmedier master' with 2 articles, and 'AAArtikler parkeret' with 51 articles.
+Other than the 'System Administrator' author, there are a few other authors that seem different since they do not have the name of a person.
+These are: 'SAXoTECH Systembruger' with 1 article, 'JSLbruger Nordjyske', 'testbruger', and 'Danske Fagmedier master' with 2 articles each, and 'AAArtikler parkeret' with 51 articles.
 After preprocessing, only 'AAArtikler parkeret' will not be put into the 'misc' author, since it has more than 13 articles.
 From their names, they seem to be test users or authors that cover specific articles.
 From looking at some articles these authors have written this seems to be the case since there are no obvious patterns in the articles written.
 The name 'AAArtikler parkeret' also indicates that these articles, at least at some point, were unfinished and put under this author's name.
 
-These articles are kept in our dataset, even though we can not be certain of who wrote them.
+These articles are kept in our dataset, even though we can not be certain who wrote them.
 
 \begin{table*}[h]
 	\caption{Number of documents written by each author in the Nordjyske dataset from 2017 to 2019.
