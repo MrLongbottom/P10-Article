@@ -15,7 +15,7 @@ This is due to our dataset never having more than one author or category for eac
 Unless otherwise stated, future mentions of the author-topic model are to our implementation of this model, rather than the model presented by \citet{author_topic_2012}.
 The plate notation for our category-topic and author-topic models can be seen in \autoref{fig:metadata_lda}.
 
-\subsection{Pachinko Allocation}\vejleder{make sure that you talk about the original pachinko model and not our modification}
+\subsection{Pachinko Allocation}\label{subsec:pam}\vejleder{make sure that you talk about the original pachinko model and not our modification}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
 Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
 \gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the connections between these topics.
