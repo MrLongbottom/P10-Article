@@ -1,12 +1,12 @@
 \subsection{The author-doc and category-doc models}\label{subsec:app_exten_models}
-Looking at the results in \autoref{tab:metric_results}, the Author-Topic and Category-Topic model do not get very high scores in Topic Coherence.
-In an attempt to improve these results, we combine the original \gls{lda} model with these models, adding a topic distribution for each document and combining it with the existing topics distributions, as with the Author-Category model, which is explained in \autoref{sec:combination}.
+Looking at the results in \autoref{tab:metric_results}, the Author-Topic and Category-Topic models do not get very high scores in topic coherence.
+In an attempt to improve these results, we combine the original \gls{lda} model with these models, adding a topic distribution for each document and combining it with the existing topic distributions, as with the Author-Category model, which is explained in \autoref{sec:combination}.
 Therefore, we create two extra models: the Author-Doc and Category-Doc model.
 We run them using the same hyperparameters as all the other models and they get similar results to the standard \gls{lda} model.
 
 \begin{table}[h]
 	\centering
-	\caption{Bolded results are the new models that have been run.}
+	\caption{Bolded results are the new models.}
 	\begin{tabular}{l|c|c}
 		Topic Model & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
 		\midrule
@@ -25,7 +25,7 @@ When looking at the topics that the two models produce, and comparing them, we c
 		\centering
 	\caption{Top 10 words for similar topics within the extension models.}
 	\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
-		Model & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+		Model pairs & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
 		\midrule
 		Author-Doc & wozniacki & vandt & open & sæt & turneringen & caroline & hobro & runde & nummer & arige \\
 		Category-Doc & vandt & wozniacki & nummer & runde & open & sæt & turneringen & par & slag & dansk \\
@@ -41,8 +41,8 @@ When looking at the topics that the two models produce, and comparing them, we c
 We have taken 3 topic pairs, which seem to be about the same topics, and compare them between the models.
 The first topic pair in \autoref{tab:top_word_comparison} is about tennis since some of the words are talking about Caroline Wozniacki, who is a professional Danish tennis player, and "turneringen" (the tournament).
 Specifically, "caroline" is not in the top 10 of the Category-Doc model which might indicate that the authors have written about "caroline wozniacki" before in other contexts.
-The word "slag" (hit) is also used within tennis, which might indicate that the Category metadata helps bring sport words higher up in the ranks.
-Otherwise the two topics are pretty similar in the words they use.
+The word "slag" (hit) is also used within tennis, which might indicate that the Category metadata helps bring sports words higher up in the ranks.
+Otherwise, there are no significant differences in the words they use.
 
 Looking at the second pair of topics, which is about the EU and Great Britain, we can see that they are very similar.
 The 8th word for the Author-topic model is "sagde" (said), which is not a very informative word regarding the topic, but an author might use these kinds of words many times during an article.
