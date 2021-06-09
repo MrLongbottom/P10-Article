@@ -56,24 +56,28 @@ A random selection of authors from the dataset and the top words from their most
 
 \begin{table*}[h]
 	\centering
-	\caption{Selection of authors/categories and the top 10 words from their most probable topic.}
-	\begin{tabular}{c|c|c|c|c|c|c}
+	\caption{Selection of authors and categories and the top 10 words from their most probable topic.}
+	\begin{tabular}{c|c|c}
 		\toprule
-		\multicolumn{7}{c}{Authors} \\
+		Author & Topic ID & Top 10 words\\
 		\midrule
-		Birgitte Bové & Kirsten Østergaard & Pauline Bülow & Karen Marie Foldbjerg & Claus T. Kræmmergård & Hanne Lindblad Jensen & Ole Jensen \\
+		Birgitte Bové & 41 & millioner, eu, hans, større, bedre, formand, kr, nordjyske, taget, skriver \\
+		Kirsten Østergaard & 50 & du, thisted, unge, mig, børn, procent, hans, hver, penge, hjørring \\
+		Pauline Bülow & 3 & procent, bag, rigtig, lave, dansk, formand, gode, klar, svært, plads \\
+		Karen Marie Foldbjerg & 13 & du, sine, formand, seneste, jensen, hvert, nyt, hvordan, finde, kommunen \\
+		Claus T. Kræmmergård & 88 & du, procent, unge børn, arige, hans, dansk, mig, thised, mener \\
+		Hanne Lindblad Jensen & 2 & du, thisted, procent, mig, børn, hans, unge, dansk, mener, a \\
+		Ole Jensen & 50 & du, thisted, unge, mig, børn, procent, hans, hver, penge, hjørring \\
 		\midrule
-		Topic 41 & Topic 50 & Topic 3 & Topic 13 & Topic 88 & Topic 2 & Topic 50 \\
+		Category & Topic ID & Top 10 words \\
 		\midrule
-		\makecell{millioner \\ eu \\ hans \\ større \\ bedre \\ formand \\ kr \\ nordjyske \\ taget \\ skriver} & \makecell{du \\ thisted \\ unge \\ mig \\ børn \\ procent \\ hans \\ hver \\ penge \\ hjørring} & \makecell{procent \\ bag \\ rigtig \\ lave \\ dansk \\ formand \\ gode \\ klar \\ svært \\ plads} & \makecell{du \\ sine \\ formand \\ seneste \\ jensen \\ hvert \\ nyt \\ hvordan \\ finde \\ kommunen} & \makecell{du \\ procent \\ unge \\ børn \\ arige \\ hans \\ dansk \\ mig \\ thisted \\ mener} & \makecell{du \\ thisted \\ procent \\ mig \\ børn \\ hans \\ unge \\ dansk \\ mener \\ a} & \makecell{du \\ thisted \\ unge \\ mig \\ børn \\ procent \\ hans \\ hver \\ penge \\ hjørring} \\
-		\midrule
-		\multicolumn{7}{c}{Categories} \\
-		\midrule
-		Frieord & Bo Godt & WEEKEND & Mariagerfjord-avis & Aalborg-avis & Navne & Sport-avis \\
-		\midrule
-		Topic 37 & Topic 7 & Topic 31 & Topic 39 & Topic 63 & Topic 14 & Topic 39 \\
-		\midrule
-		\makecell{du \\ thisted \\ mig \\ hans \\ procent \\ børn \\ a \\ kr \\ arige \\ unge} & \makecell{du \\ børn \\ mig \\ hans \\ unge \\ procent \\ mener \\ politiet \\ hvordan \\ thisted} & \makecell{du \\ hans \\ børn \\ mig \\ thisted \\ procent \\ bedre \\ a \\ kr \\ maske} & \makecell{du \\ thisted \\ dansk \\ unge \\ mig \\ børn \\ a \\ hans \\ procent \\ arbejde} & \makecell{børn \\ hver \\ thy \\ rigtig \\ millioner \\ synes \\ mennesker \\ ham \\ mand \\ dansk} & \makecell{hver \\ haft \\ bedre \\ ham \\ thy \\ mener \\ hans \\ mig \\ nordjylland \\ plads} & \makecell{du \\ thisted \\ dansk \\ unge \\ mig \\ børn \\ a \\ hans \\ procent \\ arbejde} \\
+		Frieord & 37 & du, thisted, mig, hans, procent, børn, a, kr, arige, unge \\
+		Bo Godt & 7 & du, børn, mig, hans, unge, procent, mener, politiet, hvordan, thisted \\
+		WEEKEND & 31 & du, hans, børn, mig, thisted, procent, bedre, a, kr, maske \\
+		Mariagerfjord-avis & 39 & du, thisted, dansk, unge, mig, børn, a, hans, procent, arbejde \\
+		Aalborg-avis & 63 & børn, hver, thy, rigtig, millioner, synes, mennesker, ham, mand, dansk \\
+		Navne & 14 & hver, haft, bedre, ham, thy, mener, hans, nordjylland, plads \\
+		Sport-avis & 39 & du, thisted, dansk, unge, mig, børn, a, hans, procent, arbejde \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:author_top_words}
