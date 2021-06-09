@@ -1,5 +1,5 @@
 \section{Model analysis}\label{sec:discussion}
-In this section, we investigate the different models to see how each meta-information field impacts the resulting topics.
+In this section, we investigate the different models to see how each metadata field impacts the resulting topics.
 Firstly, we want to investigate the most probable topic words within each model.
 We have chosen an article arbitrarily from the dataset and visualized how the topics differ between the models. 
 Before investigating the article, we define a specific color scheme for each model, which is seen in \autoref{tab:disc_color}.
@@ -63,8 +63,8 @@ Since the Author and Category models do not have a document-topic distribution w
 	\label{fig:the_article}
 \end{figure}
 
-Overall, we see that there is a large amount of overlap between the models, which is interesting since the models use different meta-information to create the various topic distributions.
-This indicates that the models share many of the top words, while also indicating a slight deviation between the models due to the meta-information.
+Overall, we see that there is a large amount of overlap between the models, which is interesting since the models use different metadata information to create the various topic distributions.
+This indicates that the models share many of the top words, while also indicating a slight deviation between the models due to the metadata information.
 The \gls{lda} model shows words like "landbrug" (agriculture) and "produktion" (production), which is what the article is mostly about.
 Author-topic specific words are not very present and are only showing three unique words: "byder", "hører", and "børnene".
 This indicates that the Author-topic model has trouble generalizing what the author of this article (Peter Tordrup Larsen) is writing about. 
