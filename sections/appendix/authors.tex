@@ -19,7 +19,7 @@ In \autoref{fig:author_hist_before}, we see that the vast majority of authors ha
 All authors and the number of articles they have written can be seen in \autoref{tab:author_table}.
 
 Unlike with the category metadata, the author metadata does not have a natural threshold, with authors that have values in a specific lower range, followed by more evenly distributed values.
-Instead, the vast majority of the values fall in a lower range, meaning that setting the threshold too high will result in removing a large portion of the data.
+Instead, the vast majority of the values fall in a lower range, meaning that setting the threshold too high would result in removing a large portion of the data.
 We instead choose a lower threshold, keeping most of the authors, except the ones that contained so few documents, that finding common topics would be inefficient.
 Authors, who have written less than $14$ documents (${\sim}0.01\%$ of the number of documents), are removed as part of preprocessing.
 This removes $43$ out of $227$ authors, combining them into a single 'misc' author.
@@ -64,7 +64,7 @@ A total of $204$ documents are assigned to the 'misc' author.
 
 Other than the 'System Administrator' author, there are a few other authors that seem different since they do not have the name of a person.
 These are: 'SAXoTECH Systembruger' with 1 article, 'JSLbruger Nordjyske', 'testbruger', and 'Danske Fagmedier master' with 2 articles each, and 'AAArtikler parkeret' with 51 articles.
-After preprocessing, only 'AAArtikler parkeret' will not be put into the 'misc' author, since it has more than 13 articles.
+After preprocessing, only 'AAArtikler parkeret' is not put into the 'misc' author, since it has more than 13 articles.
 From their names, they seem to be test users or authors that cover specific articles.
 From looking at some articles these authors have written this seems to be the case since there are no obvious patterns in the articles written.
 The name 'AAArtikler parkeret' also indicates that these articles, at least at some point, were unfinished and put under this author's name.

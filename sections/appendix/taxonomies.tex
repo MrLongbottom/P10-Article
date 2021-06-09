@@ -1,39 +1,38 @@
 \subsubsection{Taxonomy}\label{subsec:appendix_taxonomy}
-The taxonomy field is fundamentally different from the other metadata fields.
-It is not fully observed with only roughly $25\%$ of documents having a taxonomy field.
+The taxonomy metadata is fundamentally different from the other metadata types.
+It is not fully observed with only roughly $25\%$ of documents having a taxonomy sequence.
 It is hierarchical, with each taxonomy containing a sequence of taxonomy entries, such as: 'STEDER/Danmark/Nordjylland/Aalborg'.
 Taxonomy sequences can have varying length, ranging from $1$ to $5$.
 It is also possible for each document to have multiple taxonomy sequences, such as having both "STEDER" and "EMNER" in two separate taxonomies.
 Like with authors, we remove any taxonomy entries that are used in less than $14$ taxonomy sequences (${\sim}0.01\%$ of the number of documents).
-Out of $1135$ sub-taxonomies, $780$ are removed during this preprocessing, with $355$ remaining.
-A subset of the taxonomies and the number of articles they appear in can be seen in \autoref{tab:taxonomy_table}.
-The taxonomy tree has the following sizes: $1$, $4$, $32$, $90$, and $69.192$.
-The numbers $4$ and $32$ are based on the number of unique taxonomy fields observed in the dataset.
-The numbers $1$, $90$, and $69.192$ are the root, the number of topics, and the number of words, respectively.
-\todo{fix sizes to fit with taxonomy tree instead of pachinko dag. also move this to main paper so we know dag sizes. Tree sizes: 4, 32, 80, 99, 290}
+Out of $1135$ taxonomy entries, $779$ are removed during this preprocessing, with $355$ remaining.
+A subset of the taxonomy entries and the number of articles they appear in can be seen in \autoref{tab:taxonomy_table}.
+The taxonomy sequences for all the documents in the dataset can be combined into a tree of taxonomy entries.
+This taxonomy tree has the following layer sizes: $4$, $32$, $80$, $99$, and $290$.
+The layers of size $4$ and $32$ are used in the second and third layer of the \gls{dag} structure for the taxonomy-topic model.
 
 For the labels in \autoref{tab:taxonomy_table}, the counts show the labels' sizes.
-It is worth mentioning that, while the counts of the labels are directly linked to the number of documents in the whole dataset, they are also connected to the size of the previous layer's taxonomy.
+It is worth mentioning that, while the counts of the labels are directly linked to the number of documents in the whole dataset, they are also connected to the size of the previous layer's taxonomy entry.
 For example, the label 'Danmark' is in the layer below the 'STEDER' label, where the 26145 documents of 'Danmark' are a subset of the 29535 documents of 'STEDER'.
 
 There is also a much larger number of 'STEDER' (places) documents compared to 'EMNER' (subjects) documents, respectively 29535 compared to 5449.
 In \autoref{tab:taxonomy_table}, the first label on a lower layer that comes from 'EMNER' is 'Sport' with 408 documents.
 This indicates that the subject taxonomies, in general, are much smaller in size.
-The \gls{pam} will then be mostly influenced by this location information compared to actual topical labels.
+The \gls{pam} is mostly influenced by the location information compared to actual topical labels.
 
 The labels removed during preprocessing appear, as expected, to be places or subjects that have been written about just once or a few times.
 We could have combined them into a 'misc' taxonomy as we did for the category and author metadata, but decided against it because it would just be a large collection of mostly random documents.
 The taxonomy sequences that had some taxonomy entries removed, also still contain other taxonomy entries so they are not entirely without information as with the 'misc' author and category.
 
 \begin{table*}[h]
-	\caption{Number of documents written by each taxonomy in the Nordjyske dataset from 2017 to 2019.
+	\caption{Number of documents that contain each taxonomy entry in the Nordjyske dataset from 2017 to 2019.
 	After sorting by the number of documents, only the first 100 and last 100 taxonomies are shown.
-	The highlighted taxonomies are filtered and combined during preprocessing.}
+	The highlighted taxonomy entries are filtered and combined during preprocessing.}
 	\label{tab:taxonomy_table}
 	\centering
 	\scriptsize
 	\begin{tabular}{l|c|l|c|l|c|l|c}
-		Taxonomy                & Number & Taxonomy                     & Number & Taxonomy                       & Number & Taxonomy                       & Number \\
+		Taxonomy Entry & Number & Taxonomy Entry                    & Number & Taxonomy Entry                       & Number & Taxonomy Entry                      & Number \\
 		\midrule
 		\emph{No taxonomy} & 103928 & Farsø & 182 & \textbf{Mallorca} & 1 & \textbf{Mali} & 1 \\
 		STEDER & 29535 & Skørping & 177 & \textbf{Kloning} & 1 & \textbf{Godstransport} & 1 \\
