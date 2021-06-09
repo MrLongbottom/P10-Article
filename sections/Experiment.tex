@@ -8,9 +8,9 @@ The main difference between the models is how they draw a specific topic for a w
 As detailed in \autoref{sec:plate_notation} the main models used in this experiment are:
 \begin{description}
 	\item[\Acrlong{lda}] Standard \gls{lda} which uses document-topic distributions.
-	\item[Author-Topic Model]\cite{author_topic_2012} An \gls{lda} based model, which uses author-topic distributions.
-	\item[Category-Topic Model] An \gls{lda} based model which uses category-topic distributions.
-	\item[Taxonomy-Topic Model] A \acrlong{pam} which uses hierarchical taxonomy information.
+	\item[Author-topic model]\cite{author_topic_2012} An \gls{lda} based model, which uses author-topic distributions.
+	\item[Category-topic model] An \gls{lda} based model which uses category-topic distributions.
+	\item[Taxonomy-topic model] A \acrlong{pam} which uses hierarchical taxonomy information.
 \end{description}
 \todo[inline]{Føler ikke dette afsnit giver nok til at fylde så meget. Tænker subsection kan fjernes, og at det meste af teksten kan forkortes til 1-2 sætninger. Itemizen med beskrivelse behøves ikke, men modellerne brugt kan nævnes i en af sætningerne. husk at emphasize at det er vores modeller}
 
@@ -20,6 +20,7 @@ This metric indicates how semantically similar the top words within each topic a
 There are different ways of calculating topic coherence.
 We are using $C_v$ topic coherence, for this paper.
 The intuition is to calculate the degree of semantic similarity between highly probable words in a topic.
+Topic coherence ranges between zero and one.
 This evaluation metric is explained further in Appendix \autoref{app:topic_coherence}.
 
 The second metric used in the evaluation is topic difference.
@@ -33,6 +34,7 @@ Topic difference is calculated using the following equation:
 	\emph{TopicDifference} = \frac{1}{K \cdot K} \sum_{i=1}^{K} \sum_{j=1}^{K} JS(\beta_{i},\beta_{j})
 \end{equation}
 \noindent where $JS$ is the Jensen-Shannon distance, $K$ is the number of topics, and $\beta_{k}$ is the topic-word distribution for topic $k$.
+Topic difference ranges between zero and one.
 
 \subsection{Grid Search}\label{sec:experiment_gridsearch}
 To find the optimal hyperparameter values for the models, we run two rounds of grid searches.

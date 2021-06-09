@@ -1,10 +1,10 @@
 \section{Proposed Topic Models}\label{sec:plate_notation}
 In this section, we detail the modifications that we have implemented to describe our proposed topic models outlined in \autoref{sec:preliminaries}.
 We present three models, one for each of the metadata fields detailed in \autoref{sec:dataset}.
-Two of the models, the Author and Category metadata models, are based on the Author-topic model explained in \autoref{subsec:auth_prelim}.
+Two of the models, the Author and Category metadata models, are based on the author-topic model explained in \autoref{subsec:auth_prelim}.
 The Taxonomy metadata model is based on \gls{pam}, which is explained in \autoref{subsec:pachinko_prelim}.
 
-\subsection{Author-Topic model and Category-Topic model}
+\subsection{Author-topic model and category-topic model}
 We model both the author and category metadata fields similarly to the model by \citet{author_topic_2012}.
 The category-topic model is based on the assumption that categories of the articles were chosen based on the content of the article and that local newspapers have their own unique topic preferences.
 We find this model structure to be generally applicable to most metadata information, assuming that the metadata is either chosen based on the text of the documents\vejleder{hvad med det?} (as with the category metadata) or that it has some impact on the text of the document (as with the author metadata).
@@ -33,12 +33,12 @@ An example of this can be seen in \autoref{fig:pachinko_dag}, where we have the 
 To make the algorithm construct the topics to be based on our taxonomies, we introduce a novel locking mechanism for the Gibbs sampler which we use to run \gls{pam}.
 This mechanism is discussed further at the end of this section.
 
-We use a five-level\vejleder{hvorfor bruger vi en 5 lag} pachinko tree structure, following the format presented by \citet{li2006pachinko}.
+We use a Five-Level\vejleder{hvorfor bruger vi en 5 lag} pachinko tree structure, following the format presented by \citet{li2006pachinko}.
 The first layer is the root layer which all topics are a part of.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g., "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
 We only use the first two layers for this, because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training.
-From our experiments, the training time for $50$ epochs increases from $12$ hours to $130$ hours between four and five-level pachinko.
+From our experiments, the training time for $50$ epochs increases from $12$ hours to $130$ hours between the Four-Level and Five-Level \gls{pam}.
 The fourth layer consists of $K = 90$ 'blank' topics, where the value of $90$ comes from a grid search described in \autoref{sec:experiment_gridsearch}.
 This layer is added so that the model can construct topics based on the higher-level topics learned from our taxonomy metadata.
 
