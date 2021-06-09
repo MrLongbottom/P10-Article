@@ -1,11 +1,11 @@
 \section{Proposed Topic Models}\label{sec:plate_notation}
 In this section, we detail the modifications that we have implemented to describe our proposed topic models outlined in \autoref{sec:preliminaries}.
-We present three models, one for each of the metadata fields detailed in \autoref{sec:dataset}.
-Two of the models, the Author and Category metadata models, are based on the author-topic model explained in \autoref{subsec:auth_prelim}.
-The Taxonomy metadata model is based on \gls{pam}, which is explained in \autoref{subsec:pachinko_prelim}.
+We present three models, one for each of the metadata types detailed in \autoref{sec:dataset}.
+Two of the models, the author-topic model and category-topic model, are based on the author-topic model explained in \autoref{subsec:auth_prelim}.
+The taxonomy-topic model is based on \gls{pam}, which is explained in \autoref{subsec:pachinko_prelim}.
 
-\subsection{Author-topic model and category-topic model}
-We model both the author and category metadata fields similarly to the model by \citet{author_topic_2012}.
+\subsection{Author-Topic model and Category-Topic model}
+We model both the author and category metadata types similarly to the model by \citet{author_topic_2012}.
 The category-topic model is based on the assumption that categories of the articles were chosen based on the content of the article and that local newspapers have their own unique topic preferences.
 We find this model structure to be generally applicable to most metadata information, assuming that the metadata is either chosen based on the text of the documents\vejleder{hvad med det?} (as with the category metadata) or that it has some impact on the text of the document (as with the author metadata).
 
@@ -16,7 +16,7 @@ For the remainder of this paper, 'author-topic model' refers to our modified top
 The plate notation for our category-topic and author-topic models can be seen in \autoref{fig:metadata_lda}.
 
 \subsection{Pachinko Allocation}\label{subsec:pam}\vejleder{make sure that you talk about the original pachinko model and not our modification}
-In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
+In order to handle the hierarchical structure of the taxonomy metadata, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
 Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
 \gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the connections between these topics.
 
@@ -28,7 +28,7 @@ The idea behind the \gls{dag} structure is to be able to model correlations betw
 In this paper, we use a layered \gls{pam}, as in \cite{li2006pachinko}, meaning that the \gls{dag} structure is divided into layers where each layer is fully connected to the next layer.
 However, \citet{li2006pachinko} use four layers where we use five to capture more of the underlying information in the taxonomy metadata.
 
-We construct some layers in our \gls{dag} structure based on the structure from the taxonomy field within our dataset, having some nodes represent a topic based on a specific taxonomy.
+We construct some layers in our \gls{dag} structure based on the structure from the taxonomy metadata in our dataset, having some nodes represent a topic based on a specific taxonomy entry.
 An example of this can be seen in \autoref{fig:pachinko_dag}, where we have the node "STEDER", and this is connected to "Danmark" in the third layer.
 To make the algorithm construct the topics to be based on our taxonomies, we introduce a novel locking mechanism for the Gibbs sampler which we use to run \gls{pam}.
 This mechanism is discussed further at the end of this section.
@@ -36,9 +36,9 @@ This mechanism is discussed further at the end of this section.
 We use a Five-Level\vejleder{hvorfor bruger vi en 5 lag} pachinko tree structure, following the format presented by \citet{li2006pachinko}.
 The first layer is the root layer which all topics are a part of.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
-The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g., "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
-We only use the first two layers for this, because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training.
-From our experiments, the training time for $50$ epochs increases from $12$ hours to $130$ hours between the Four-Level and Five-Level \gls{pam}.
+The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique taxonomy entry in the first or second position of a taxonomy sequence (e.g., "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
+We only use the first two layers for this, because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topic sequences needs to be sampled for every word during training.
+From our experiments, the training time for $50$ epochs increases from $12$ hours to $130$ hours between Four-Level and Five-Level pachinko.
 The fourth layer consists of $K = 90$ 'blank' topics, where the value of $90$ comes from a grid search described in \autoref{sec:experiment_gridsearch}.
 This layer is added so that the model can construct topics based on the higher-level topics learned from our taxonomy metadata.
 
@@ -49,14 +49,14 @@ This layer is added so that the model can construct topics based on the higher-l
 
 \vejleder{hvordan ? algoritmisk?}
 Normally when working with topic modeling, one does not know which topics will be present in the document set before training the model.
-However, the taxonomy metadata fields provide some general subject names of different levels of abstraction and some amount of documents attached to these subject names.
-This provides a unique opportunity for using the existing taxonomies as higher-level topics.
+However, the taxonomy metadata provide some general subject names of different levels of abstraction and some amount of documents attached to these subject names.
+This provides a unique opportunity for using the existing taxonomy entries as higher-level topics.
 Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
-However, in our case, we have a dataset with a partially observed taxonomy field (${\sim}25\%$ of the documents), and we want to use the existing metadata information to estimate the topics quicker and more accurately.
+However, in our case, we have a dataset with a partially observed taxonomy metadata (${\sim}25\%$ of the documents), and we want to use the existing metadata information to estimate the topics quicker and more accurately.
 To account for this, we only sample the unobserved nodes within the topic sequences.
 For some of the dataset only the fourth layer is unobserved, but for the ${\sim}75\%$ documents without a taxonomy sequence, all layers are unobserved.
 The observed taxonomy sequences are never sampled, hence they are 'locked' in place.
 This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences will be fitted around.
 
-Some of the documents in our dataset have multiple taxonomies.
-For these documents, one of the taxonomies is chosen randomly for each word in the document. 
+Some of the documents in our dataset have multiple taxonomy sequences.
+For these documents, one of the taxonomy sequence are chosen randomly for each word in the document. 

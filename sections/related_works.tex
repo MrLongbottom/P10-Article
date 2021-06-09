@@ -11,8 +11,8 @@ We apply this model to the Nordjyske news article dataset to see whether similar
 \citet{MetaLDA2017} present a model, called MetaLDA, which can incorporate both metadata information and word embeddings within a topic model.
 Since the field of incorporating word embeddings within generative topic models has gained popularity\cite{dieng2020topic}, \citet{MetaLDA2017} show how to use word embeddings for a variety of different datasets.
 They also compare against a list of other models that take either metadata information or word embeddings into account when doing inference.
-We take inspiration from \citet{MetaLDA2017}, but we do not employ the model they present. 
-We adapt the author-topic model instead of MetaLDA because, in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document, making it difficult to analyze the effect of a specific metadata type in a model that includes multiple metadata fields.
+We take inspiration from \citet{MetaLDA2017}, but we do not employ the model they present.
+We adapt the author-topic model instead of MetaLDA because, in MetaLDA, each document has a specific Dirichlet prior for its topic distribution, which is computed from the metadata of the document, making it difficult to analyze the effect of a specific metadata type in a model that includes multiple metadata types.
 
 \citet{tea_leaves} present different methods for evaluating probabilistic topic models. 
 An important observation they made is that a good held-out likelihood, normally called perplexity, infers less semantically meaningful topics.
@@ -23,8 +23,8 @@ We use an evaluation metric called "Topic coherence" presented by \citet{topic_c
 
 \citet{li2006pachinko} present a \gls{dag} structured topic model called the \acrfull{pam}, where topics are in a hierarchical structure, which allows it to find two types of topics, namely super-topics and sub-topics. 
 \Gls{pam} is a generalization of the \gls{lda} model, where super and sub-topics are used to correlate topics within the model, e.g., a football topic being part of a sports topic.
-We have a hierarchically structured taxonomy metadata field within our dataset, which fits well with the hierarchical structure of this model.
-We create a modified \gls{pam} to account for this metadata field and investigate whether this type of information can improve the topic quality.
+We have a hierarchically structured taxonomy metadata within our dataset, which fits well with the hierarchical structure of this model.
+We create a modified \gls{pam} to account for this metadata and investigate whether this type of information can improve the topic quality.
 
 There also exist a variety of models that look at either document or word metadata.
 Some examples of models that incorporate document-level metadata are: Supervised LDA (sLDA) by \citet{blei2010supervised}, Labelled LDA (LLDA) by \citet{llda2009}, and the Dirichlet Multinomial Regression (DMR) model by \citet{mimno2008topic}.

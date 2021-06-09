@@ -24,8 +24,8 @@ $n_x$ is the number of times topic $t_x$ occurs in the corpus according to $Z_{-
 However, the \gls{pam} framework can support any number of layers using this structure.
 In order to do this, we must generalize the process of Gibbs sampling for pachinko using 'level' \gls{dag} structures.
 Firstly, before the Gibbs sampling begins a one-time random initialization is made, where each word in each document is randomly assigned to a chain of topics (one for each layer).
-In our \gls{pam}, some topic layers represent taxonomy layers, since some documents in the dataset already have a topic entry.
-These documents are assigned the topics corresponding to their taxonomy entries, and the rest of the taxonomy chain will then be randomly generated if it is not already complete.
+In our \gls{pam}, some topic layers represent taxonomy tree layers, since some documents in the dataset already have a topic entry.
+These documents are assigned the topics corresponding to their taxonomy entries, and the rest of the taxonomy sequence will then be randomly generated if it is not already complete.
 
 The Gibbs sampling for \gls{pam} consists of the following steps for each word in each document:
 
