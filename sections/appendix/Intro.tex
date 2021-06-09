@@ -1,30 +1,54 @@
-In the main paper, we initialize and describe our problem with a focus on results and analysis. \vejleder{kun et niveau?}
+In the main paper, we initialize and describe our problem with a focus on results and analysis.
 Within this appendix, we are expanding on many aspects of the aforementioned paper and new extensions to the models.
+Following is an overview over each section and what it investigates.
 
-This appendix is split up into these overall categories:
-\begin{itemize}
-	\item Expanding on the paper
+\begin{enumerate}
+	\item Metadata labels
 	\begin{itemize}
 		\item The metadata is shown in tables for all three metadata types, and observations about the metadata labels are described.
+	\end{itemize} 
+	\item Topic coherence
+	\begin{itemize}
 		\item We explain the purpose and mathematical ideas behind the evaluation metrics we use in the paper.
+	\end{itemize} 
+	\item Grid search 
+	\begin{itemize}
 		\item Our grid search process is described further on how we chose our hyperparameters.
-		\item More articles are highlighted the same way as in \autoref{sec:discussion}.
 	\end{itemize}
-	\item Code
+	\item Coloring articles 
+	\begin{itemize}
+		\item Two more articles are highlighted the same way as in \autoref{sec:discussion} and are analyzed.
+	\end{itemize}
+	\item Stemming the dataset 
 	\begin{itemize}
 		\item An experiment using a stemmed dataset is described, and the results are shown.
-		\item We describe the probabilistic programming language Pyro which we explored before choosing to work with Gibbs sampling.
-		\item The code for the Gibbs sampler is explained and how the \gls{pam} differs from the standard Gibbs Sampler is described. 
-		\item Our testing of a parallel Gibbs sampler is also described.
 	\end{itemize}
-	\item Expanded model experiments
+	\item Pyro model implementation
 	\begin{itemize}
-		\item We go into detail about how we explored using author and category metadata in the \gls{pam} and what results were achieved.
-		\item We also explored a model combining the author-topic and category-topic models into one model with two topic distributions. This model is also analyzed.
-		\item Further model combinations we explored were models that combine the standard \gls{lda} with our author and category metadata models.
+		\item We describe the probabilistic programming language Pyro which we explored before choosing to work with Gibbs sampling.
 	\end{itemize}
-	\item Applications
+	\item Gibbs sampling
+	\begin{itemize}
+		\item The code for the Gibbs sampler is explained and investigated. A parallel Gibbs sampling method is also mentioned.
+	\end{itemize}
+	\item Pachinko implementation
+	\begin{itemize}
+		\item The implementation of our \gls{pam} model and how it differs from the Gibbs sampling method is explained.
+	\end{itemize}
+	\item Category and author \gls{pam}
+	\begin{itemize}
+		\item We go into detail about how we are using author and category metadata in the \gls{pam} and what results were achieved.
+	\end{itemize}
+	\item The author-category model
+	\begin{itemize}
+		\item We also combine the author-topic and category-topic models into one model with two topic distributions. This model is also analyzed.
+	\end{itemize}
+	\item The author-doc and category-doc models
+	\begin{itemize}
+		\item We create two new models called the author-doc and category-doc model. These models are a combination of the standard \gls{lda} and the author and category metadata.
+	\end{itemize}
+	\item Applications of our models
 	\begin{itemize}
 		\item We explore the application possibilities of our project and propose various applications which could be implemented at news sites such as Nordjyske.
 	\end{itemize}
-\end{itemize}
+\end{enumerate}

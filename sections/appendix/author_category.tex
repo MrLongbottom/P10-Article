@@ -1,5 +1,5 @@
 \subsection{The author-category model}\label{sec:combination}
-We have created a combination model, as an extension of our metadata models, to see whether using multiple metadata fields at the same time to draw topics, would affect the performance of the topic model.
+We have created a combination model, as an extension of our metadata models, to see whether using multiple metadata types at the same time to draw topics, would affect the performance of the topic model.
 The idea is that this model combination should give insight into what a model learns when multiple metadata influence the topics chosen.
 The model we have created is the Author-Category combination model.
 As the name suggests, this model includes an author-topic distribution and a category-topic distribution, and the plate notation can be seen in \autoref{fig:author_category_lda}.
@@ -23,7 +23,7 @@ But before drawing a topic, we normalize it based on the sum of the distribution
 	\resizebox{.3\textwidth}{!}{%
 		\input{figures/author_category_plate}
 	}
-	\caption{Plate notation for the Author-Category \gls{lda} model.}
+	\caption{Plate notation for the author-category model.}
 	\label{fig:author_category_lda}
 \end{figure*}
 
