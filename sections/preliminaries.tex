@@ -84,13 +84,13 @@ The model focuses on finding topics of different abstraction levels, as well as 
 Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
 However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
 
-\citet{li2006pachinko} present the four-level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in a layer being fully connected to every node in the next layer of the hierarchy.
+\citet{li2006pachinko} present a four-level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in a layer being fully connected to every node in the next layer of the hierarchy.
 It consists of $L$ layers of varying sizes $S_0, S_1, \dots, S_{L-1}$.
 The first layer consists of only the root node, a topic which all documents are part of.
 The bottom layer consists of leaf nodes, which represent the words in the vocabulary.
 The rest are middle layers representing topics of different abstraction levels.
 
-The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citet{li2006pachinko}:
+The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citeauthor{li2006pachinko}~\cite{li2006pachinko}:
 \begin{enumerate}
 	\item Sample $\theta_{t_1}^{(d)}, \theta_{t_2}^{(d)}, \dots, \theta_{t_s}^{(d)}$ from \vejleder{what is a g function?} $g_1(\alpha_1), g_2(\alpha_2), \dots, \newline g_s(\alpha_s)$, where $\theta_{t_i}^{(d)}$ is a multinomial distribution of topic $t_i$ over its children.
 	\item For each word $w \in d$,
