@@ -5,16 +5,16 @@
 		Topic Model & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
 		\midrule
 		\Acrlong{lda} & 0.520 & 0.575 \\
-		Author-Topic Model & 0.335 & 0.615 \\
-		Category-Topic Model & 0.370 & 0.560 \\
-		Taxonomy-Topic Model & \textbf{0.660} & \textbf{0.709} \\
+		Author-topic model & 0.335 & 0.615 \\
+		Category-topic model & 0.370 & 0.560 \\
+		Taxonomy-topic model & \textbf{0.660} & \textbf{0.709} \\
 	\end{tabular}
 	\label{tab:metric_results}
 \end{table}
 
-From \autoref{tab:metric_results}, we can see that the Author and Category-Topic models are performing the worst, whereas the Taxonomy-Topic model is outperforming all other models.
-However, the run time of the Taxonomy-topic model is worse than the standard \gls{lda}.
+From \autoref{tab:metric_results}, we can see that the author-topic and category-topic models are performing the worst, whereas the taxonomy-topic model is outperforming all other models.
+However, the run time of the taxonomy-topic model is worse than the standard \gls{lda}.
 It takes about $6$-$8$ hours to compute $50$ epochs for the \gls{lda} model, depending on the CPU. 
-The Taxonomy model running a 5 layered \gls{pam} took 132 hours before completing the 50 epochs.
+The taxonomy-topic model running a 5 layered \gls{pam} took 132 hours before completing the 50 epochs.
 Analysis of the topics in the trained models is given in \autoref{sec:discussion}.
 Extended analysis and other models are investigated in Appendix \autoref{subsec:app_exten_models} and \autoref{app:cat_auth_pachinko}.

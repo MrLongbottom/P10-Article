@@ -1,8 +1,25 @@
 \subsection{The author-doc and category-doc models}\label{subsec:app_exten_models}
-Looking at the results in \autoref{tab:metric_results}, the Author-Topic and Category-Topic models do not get very high scores in topic coherence.
-In an attempt to improve these results, we combine the original \gls{lda} model with these models, adding a topic distribution for each document and combining it with the existing topic distributions, as with the Author-Category model, which is explained in \autoref{sec:combination}.
-Therefore, we create two extra models: the Author-Doc and Category-Doc model.
+Looking at the results in \autoref{tab:metric_results}, the author-topic and category-topic models do not get very high scores in topic coherence.
+In an attempt to improve these results, we combine the original \gls{lda} model with these models, adding a topic distribution for each document and combining it with the existing topic distributions, as with the author-category model, which is explained in \autoref{sec:combination}.
+Therefore, we create two extra models: the author-doc and category-doc model.
 We run them using the same hyperparameters as all the other models and they get similar results to the standard \gls{lda} model.
+
+The function for choosing a topic is shown for both models in \autoref{eq:doc_author} and \autoref{eq:doc_category}. 
+\begin{equation}\label{eq:doc_author}
+	P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) \propto 
+	\underbrace{\frac{C^{AT}_{ak} + \alpha}{\sum_{k'} C^{AT}_{ak'} + T\alpha}}_{Author-Topic}
+	\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
+	\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
+\end{equation}
+where $C^{AT}_{ak}$ and $C^{DT}_{dk}$ is the number of times author $a$ and document $d$ use topic $k$, respectively.
+
+\begin{equation}\label{eq:doc_category}
+	P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) \propto
+	\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
+	\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
+	\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
+\end{equation}
+where $C^{CT}_{ck}$ and $C^{DT}_{dk}$ is the number of times category $c$ and document $d$ use topic $k$, respectively.
 
 \begin{table}[h]
 	\centering
@@ -11,11 +28,11 @@ We run them using the same hyperparameters as all the other models and they get 
 		Topic Model & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
 		\midrule
 		\Acrlong{lda} & 0.520 & 0.575 \\
-		Author-Topic Model & 0.335 & 0.615 \\
-		Category-Topic Model & 0.370 & 0.560 \\
-		\textbf{Author-Category Model} & \textbf{0.390} & \textbf{0.537} \\
-		\textbf{Author-Doc Model} & \textbf{0.543} & \textbf{0.574} \\
-		\textbf{Category-Doc Model} &\textbf{ 0.530} & \textbf{0.575} \\
+		Author-topic model & 0.335 & 0.615 \\
+		Category-topic model & 0.370 & 0.560 \\
+		\textbf{Author-category model} & \textbf{0.390} & \textbf{0.537} \\
+		\textbf{Author-doc model} & \textbf{0.543} & \textbf{0.574} \\
+		\textbf{Category-doc model} &\textbf{ 0.530} & \textbf{0.575} \\
 	\end{tabular}
 	\label{tab:_extra_metric_results}
 \end{table}
@@ -27,30 +44,30 @@ When looking at the topics that the two models produce, and comparing them, we c
 	\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
 		Model pairs & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
 		\midrule
-		Author-Doc & wozniacki & vandt & open & sæt & turneringen & caroline & hobro & runde & nummer & arige \\
-		Category-Doc & vandt & wozniacki & nummer & runde & open & sæt & turneringen & par & slag & dansk \\
+		Author-doc & wozniacki & vandt & open & sæt & turneringen & caroline & hobro & runde & nummer & arige \\
+		Category-doc & vandt & wozniacki & nummer & runde & open & sæt & turneringen & par & slag & dansk \\
 		\midrule
-		Author-Doc & eu & brexit & britiske & storbritannien & aftale & may & parlamentet & sagde & london & premierminister \\
-		Category-Doc & eu & brexit & britiske & storbritannien & parlamentet & may & aftale & europa & london & johnson \\
+		Author-doc & eu & brexit & britiske & storbritannien & aftale & may & parlamentet & sagde & london & premierminister \\
+		Category-doc & eu & brexit & britiske & storbritannien & parlamentet & may & aftale & europa & london & johnson \\
 		\midrule
-		Author-Doc & natur & dyr & landbrug & naturen & landmænd & skov & hektar & vand & lille & danmarks \\
-		Category-Doc & naturen & natur & du & dansk & hvordan & maske & omradet & landbrug & penge & kystsikring \\
+		Author-doc & natur & dyr & landbrug & naturen & landmænd & skov & hektar & vand & lille & danmarks \\
+		Category-doc & naturen & natur & du & dansk & hvordan & maske & omradet & landbrug & penge & kystsikring \\
 	\end{tabular}
 	\label{tab:top_word_comparison}
 \end{table}
 We have taken 3 topic pairs, which seem to be about the same topics, and compare them between the models.
 The first topic pair in \autoref{tab:top_word_comparison} is about tennis since some of the words are talking about Caroline Wozniacki, who is a professional Danish tennis player, and "turneringen" (the tournament).
-Specifically, "caroline" is not in the top 10 of the Category-Doc model which might indicate that the authors have written about "caroline wozniacki" before in other contexts.
-The word "slag" (hit) is also used within tennis, which might indicate that the Category metadata helps bring sports words higher up in the ranks.
+Specifically, "caroline" is not in the top 10 of the category-doc model which might indicate that the authors have written about "caroline wozniacki" before in other contexts.
+The word "slag" (hit) is also used within tennis, which might indicate that the category metadata helps bring sports words higher up in the ranks.
 Otherwise, there are no significant differences in the words they use.
 
 Looking at the second pair of topics, which is about the EU and Great Britain, we can see that they are very similar.
-The 8th word for the Author-topic model is "sagde" (said), which is not a very informative word regarding the topic, but an author might use these kinds of words many times during an article.
+The 8th word for the author-topic model is "sagde" (said), which is not a very informative word regarding the topic, but an author might use these kinds of words many times during an article.
 Other than that, the topics are very similar when looking at the 10 most probable words.
 
 The third pair of topics is about nature and agriculture.
 These two topics are not as similar as the other two pairs we have looked at, but they have two different viewpoints on this topic.
-The Author-Doc model describes words concerning agriculture since two of the words used are "landbrug" (agriculture) and "landmand" (farmer). 
+The author-doc model describes words concerning agriculture since two of the words used are "landbrug" (agriculture) and "landmand" (farmer). 
 It also mentions nature, with words such as: "natur" (nature), "dyr" (animals), "skov" (forest), and "vand" (water).
-The Category-Doc model describes nature as well but is more focused on areas within nature since the words "området" (the area) and "kystsikring" (coastal protection) are used.
+The category-doc model describes nature as well but is more focused on areas within nature since the words "området" (the area) and "kystsikring" (coastal protection) are used.
 The model might focus more on the debate within the nature topic, which could be about coastal protection.    
