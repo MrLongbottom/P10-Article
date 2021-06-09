@@ -5,7 +5,7 @@ It is hierarchical, with each taxonomy containing a sequence of taxonomy entries
 Taxonomy sequences can have varying length, ranging from $1$ to $5$.
 It is also possible for each document to have multiple taxonomy sequences, such as having both "STEDER" and "EMNER" in two separate taxonomies.
 Like with authors, we remove any taxonomy entries that are used in less than $14$ taxonomy sequences (${\sim}0.01\%$ of the number of documents).
-Out of $1135$ taxonomy entries, $779$ are removed during this preprocessing.
+Out of $1135$ taxonomy entries, $779$ are removed during this preprocessing, with $355$ remaining.
 A subset of the taxonomy entries and the number of articles they appear in can be seen in \autoref{tab:taxonomy_table}.
 The taxonomy sequences for all the documents in the dataset can be combined into a tree of taxonomy entries.
 This taxonomy tree has the following layer sizes: $4$, $32$, $80$, $99$, and $290$.
