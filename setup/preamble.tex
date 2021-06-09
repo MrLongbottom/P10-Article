@@ -9,7 +9,9 @@
 \usepackage[dvips]{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
-
+\usepackage{etoolbox}
+\AtBeginEnvironment{tcolorbox}{\small}
+\renewcommand{\theenumi}{\Alph{enumi}}
 % formatting from IEEE conference. Needs to be fitted with our natbib
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -55,12 +57,18 @@
 \usepackage[english]{babel}
 \usepackage{wrapfig}
 \newcommand{\thiscolor}[1]{\colorbox{#1}{\phantom{Here is text}}}
-\newcommand{\mycolor}[3]{
-	\!\!\!\!\! \tcbox[sharp corners, size=small,
+\renewcommand{\colorbox}[2]{
+	\tcbox[sharp corners, size=tight,
 	colback=#1, colframe=black!5!white, 
 	halign upper=left, valign upper=top,
 	halign lower=right, valign lower=bottom,
-	enhanced, on line, boxsep=2pt,
+	enhanced, on line, boxsep=1pt]{#2}}
+\newcommand{\mycolor}[3]{
+	\!\!\!\!\! \tcbox[sharp corners, size=tight,
+	colback=#1, colframe=black!5!white, 
+	halign upper=left, valign upper=top,
+	halign lower=right, valign lower=bottom,
+	enhanced, on line, boxsep=1pt,
 	underlay = {
 		\begin{tcbclipinterior}
 			\filldraw[fill=#2, draw=tcbcolframe] (frame.south west)--++(90:1cm) to [out=5, in=185] ([yshift=-1cm]frame.north east)|-cycle;

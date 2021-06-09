@@ -35,15 +35,15 @@ The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
 
 
 
-\subsection{Author-Topic \gls{lda}}\label{subsec:auth_prelim} \vejleder{introducer modellen som den er i \cite{author_topic_2012}, gerne flere detaljer}
+\subsection{Author-topic \gls{lda}}\label{subsec:auth_prelim} \vejleder{introducer modellen som den er i \cite{author_topic_2012}, gerne flere detaljer}
 \todo[inline]{Beskriv den generative process}
-\citet{author_topic_2012} present the Author-Topic model.
+\citet{author_topic_2012} present the author-topic model.
 It seeks to find topics based on author metadata, and is based on the assumption that authors prefer to write about specific topics.
 In this model, there are no document-topic distributions $\theta$, but rather one author-topic distribution for each author.
 
 
 \citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word uniformly choose an author $x$ at random from this vector.
-The original plate notation for the Author-Topic model can be seen in \autoref{fig:metadata_lda}.
+The original plate notation for the author-topic model can be seen in \autoref{fig:metadata_lda}.
 
 \begin{figure*}[ht]
 	\centering
@@ -52,7 +52,7 @@ The original plate notation for the Author-Topic model can be seen in \autoref{f
 		\resizebox{\textwidth}{!}{%
 			\input{figures/author_plate_original}
 		}
-		\caption{Author \gls{lda} from \cite{author_topic_2012}.}
+		\caption{Author-topic model from \cite{author_topic_2012}.}
 		\label{fig:original_author_lda}
 	\end{subfigure}
 	\hspace{2em}
@@ -61,7 +61,7 @@ The original plate notation for the Author-Topic model can be seen in \autoref{f
 		\resizebox{\textwidth}{!}{%
 			\input{figures/category_plate}
 		}
-		\caption{Category \gls{lda}.}
+		\caption{Category-topic model.}
 		\label{fig:category_lda}
 	\end{subfigure}
 	\hspace{2em}
@@ -70,7 +70,7 @@ The original plate notation for the Author-Topic model can be seen in \autoref{f
 		\resizebox{\textwidth}{!}{%
 			\input{figures/author_plate}
 		}
-		\caption{Author \gls{lda}.}
+		\caption{Author-topic model.}
 		\label{fig:author_lda}
 	\end{subfigure}	
 	\caption{Plate notation for the metadata \gls{lda} models.}
@@ -84,7 +84,7 @@ The model focuses on finding topics of different abstraction levels, as well as 
 Each node in the \gls{dag} structure represents a topic in the pachinko allocation model. 
 However, unlike \gls{lda} where topics are distributions over words, in \gls{pam} topics are distributions over words and/or other topics further down the hierarchy of the \gls{dag} structure.
 
-\citet{li2006pachinko} present a four-level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in a layer being fully connected to every node in the next layer of the hierarchy.
+\citet{li2006pachinko} present a Four-Level \gls{pam}, which is a layered \gls{pam} meaning that the \gls{dag} structure is divided into layers, with every node in a layer being fully connected to every node in the next layer of the hierarchy.
 It consists of $L$ layers of varying sizes $S_0, S_1, \dots, S_{L-1}$.
 The first layer consists of only the root node, a topic which all documents are part of.
 The bottom layer consists of leaf nodes, which represent the words in the vocabulary.
@@ -117,7 +117,7 @@ The plate notation from \citet{li2006pachinko} and our modification can be seen 
 		\resizebox{\textwidth}{!}{%
 			\input{figures/pachinko_original}
 		}
-		\caption{Original Four layer Pachinko}
+		\caption{Original Four-Level \gls{pam}.}
 		\label{fig:four_layer_pachinko}
 	\end{subfigure}
 	\hspace{1em}
@@ -126,9 +126,9 @@ The plate notation from \citet{li2006pachinko} and our modification can be seen 
 		\resizebox{\textwidth}{!}{%
 			\input{figures/pachinko}
 		}
-		\caption{Five layer Pachinko}
+		\caption{Five-Level \gls{pam}.}
 		\label{fig:five_layer_pachinko}
 	\end{subfigure}
-	\caption{Plate notation for the original four layer \gls{pam} and our five layer \gls{pam}.}
+	\caption{Plate notation for the original Four-Level \gls{pam} and our Five-Level \gls{pam}.}
 	\label{fig:pachinko_plates}
 \end{figure*}
