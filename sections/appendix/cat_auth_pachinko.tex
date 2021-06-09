@@ -26,8 +26,8 @@ The same conclusion is reached after manual inspection of the topics of these mo
 
 For comparison we also ran a four-level \gls{pam} without any metadata, using 100 and 90 as the sizes of the two middle layers.
 This ended up providing very good results, slightly better than the taxonomy-topic model.
-The runtime of the four-level \gls{pam} was 128 hours for 50 epochs, roughly the same as our five-level taxonomy-topic model which had a run-time of 132 hours for 50 epochs.
-The slower speed compared to the size of the \gls{dag} structure is due to this model being unable to skip observed values when sampling, since it does not incorporate any metadata.
+The elapsed time of the Four-Level \gls{pam} was ${\sim}128$ hours for $50$ epochs, roughly the same as our Five-Level taxonomy-topic model, which had an elapsed time of $132$ hours for $50$ epochs.
+The slower speed compared to the size of the \gls{dag} structure is due to this model being unable to skip observed values when sampling since it does not incorporate any metadata.
 This also shows that while Category \gls{pam} and Author \gls{pam} get better results than their \gls{lda} counterparts, it is better to run \gls{pam} without modifications.
 This could be due to our models being unable to make good use of the extra information provided by the metadata.
 It might also point towards these two particular metadata fields not being particularly useful in this specific project.
