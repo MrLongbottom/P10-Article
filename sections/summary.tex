@@ -18,17 +18,17 @@ This dataset contains $248,385$ articles from 2017 to 2019.
 Basic preprocessing is done to make the data more applicable for topic models.
 Each article includes three types of metadata: author, category, and taxonomy, that we chose to extend our topic models with.
 
-The author field is for the author who has written the article.
+The author metadata is for the author who has written the article.
 This field is fully observed within the dataset, and each article only has a single author, so we do not account for multiple authors.
 There are $227$ different authors within the dataset and after preprocessing $184$ remain.
 
-The category field describes a variety of different aspects, but the categories are generally either about a specific newspaper or an overall subject.
+The category metadata describes a variety of different aspects, but the categories are generally either about a specific newspaper or an overall subject.
 This field is also fully observed within the dataset, and there are $58$ unique categories in the dataset before processing, and $34$ categories after preprocessing.
 
-The taxonomy field describes a hierarchical sequence of the topical or geographical subject of the articles.
+The taxonomy metadata describes a hierarchical sequence of the topical or geographical subjects associated with the article.
 Each sequence consists of several taxonomy entries.
 This field is only partially observed within the dataset, with ${\sim}25\%$ of the articles containing this field.
-There are $1135$ different taxonomies and after preprocessing $345$ remain.
+There are $1135$ different taxonomy entries and after preprocessing $345$ remain.
 
 %models
 The models we have made that include metadata for our evaluations are called the author-topic, category-topic, and taxonomy-topic model.
@@ -41,11 +41,11 @@ Instead, each of the $A$ authors and $C$ categories have their own topic distrib
 This is based on the assumption that authors prefer to write about specific topics and that categories of the articles were chosen based on the content of the finished article or that local newspapers have their own unique topic preferences.
 For our category-topic model and author-topic model, each document $d$ is associated with one category $c_d$ from a set of categories $C$ and one author $a_d$ from a set of authors $A$, which is used when drawing a word topic.
 
-To have our taxonomy-topic model handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model called the \acrfull{pam}.
+To have our taxonomy-topic model handle the hierarchical structure of the taxonomy metadata, we use a hierarchical topic model called the \acrfull{pam}.
 Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
 \gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the correlations between these topics.
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
-However, in our case, we have a dataset with a partially observed taxonomy field (${\sim}25\%$ of the documents), and we want to use the existing metadata information to estimate the topics quicker and more accurately.
+Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy entries would be disregarded during training since it would generate new taxonomy sequences.
+However, in our case, we have a dataset with a partially observed taxonomy metadata (${\sim}25\%$ of the documents), and we want to use the existing metadata information to estimate the topics quicker and more accurately.
 To account for this, we only sample the unobserved nodes within the topic sequences.
 For some of the dataset only the fourth layer is unobserved, but for the ${\sim}75\%$ documents without a taxonomy sequence, all layers are unobserved.
 The observed taxonomy sequences are never sampled, hence they are 'locked' in place.
@@ -64,8 +64,8 @@ We only run the grid search on the standard \gls{lda} model, with the assumption
 Based on the topic coherence of the model we choose $K = 90$, $\alpha = 0.01$, and $\eta = 0.1$ as the hyperparameters for all models in the experiment.
 
 For the results, the topic coherence of \gls{lda} is 0.520, author-topic is 0.335, category-topic is 0.370, and taxonomy-topic is 0.660.
-This shows that the Author and Category-Topic models performed the worst in topic coherence, whereas the Taxonomy-Topic model is outperforming all other models.
-However, the run time of the Taxonomy model is much higher than the standard \gls{lda}.
+This shows that the Author and category-topic models performed the worst in topic coherence, whereas the taxonomy-topic model is outperforming all other models.
+However, the run time of the taxonomy model is much higher than the standard \gls{lda}.
 
 %discussion
 In the analysis of the models, we explored the highest probable words from each model, except the taxonomy-topic model, that would appear in a chosen article.
