@@ -20,7 +20,7 @@ It also mentions a few different farms in the Northern part of Jutland and descr
 	\end{tabular}
 	\begin{tabular}{c|p{0.8\columnwidth}}
 		\midrule
-		Topic & Top 10 words for Author-Topic \\
+		Topic & Top 10 words for author-topic \\
 		\midrule
 		0 & du, procent, unge, børn, arige, hans, dansk, mig, thisted, mener\\
 		1 & sine, skriver, mig, børn, seneste, land, dansk, kommuner, andersen, formand \\
@@ -28,7 +28,7 @@ It also mentions a few different farms in the Northern part of Jutland and descr
 	\end{tabular}
 	\begin{tabular}{c|p{0.8\columnwidth}}
 		\midrule
-		Topic & Top 10 words for Category-Topic \\
+		Topic & Top 10 words for category-topic \\
 		\midrule
 		0 & du, hans, børn, mig, thisted, procent, bedre, a, kr, maske \\
 		1 & klar, haft, fem, hjørring, ham, nyt, formand, min, aften, sagen\\
@@ -46,8 +46,8 @@ Since the Author and Category models do not have a document-topic distribution w
 		Topic Model & Color \\
 		\midrule
 		\Acrlong{lda} & \thiscolor{Goldenrod} \vspace*{2mm} \\
-		Author-Topic Model & \thiscolor{Aquamarine} \vspace*{2mm} \\
-		Category-Topic Model & \thiscolor{LimeGreen} \vspace*{2mm} \\
+		Author-topic model & \thiscolor{Aquamarine} \vspace*{2mm} \\
+		Category-topic model & \thiscolor{LimeGreen} \vspace*{2mm} \\
 		Word appearing in all models & \thiscolor{Peach} \vspace*{2mm}  \\
 	\end{tabular}
 	\label{tab:disc_color}
@@ -63,14 +63,14 @@ Since the Author and Category models do not have a document-topic distribution w
 	\label{fig:the_article}
 \end{figure}
 
-Overall, we see that there is a large amount of overlap between the models, which is interesting since the models use different meta-information to create the various topic distributions.
-This indicates that the models share many of the top words, while also indicating a slight deviation between the models due to the meta-information.
+Overall, we see that there is a large amount of overlap between the models, which is interesting since the models use different metadata information to create the various topic distributions.
+This indicates that the models share many of the top words, while also indicating a slight deviation between the models due to the metadata information.
 The \gls{lda} model shows words like "landbrug" (agriculture) and "produktion" (production), which is what the article is mostly about.
 Author-topic specific words are not very present and are only showing three unique words: "byder", "hører", and "børnene".
-This indicates that the Author-topic model has trouble generalizing what the author of this article (Peter Tordrup Larsen) is writing about. 
+This indicates that the author-topic model has trouble generalizing what the author of this article (Peter Tordrup Larsen) is writing about. 
 This might be because he has written $5002$ articles in our dataset and generalizing that many articles is a challenge.
-Another aspect of the Author-Topic model is that the authors writing these articles most likely do not write about just one subject, which explains why there are only three less important words marked here. 
-The Category-topic model only shows four unique words: "søndag" (Sunday), "leg" (play), "klokken" (clock), and "danskere" (Danes).
+Another aspect of the author-topic model is that the authors writing these articles most likely do not write about just one subject, which explains why there are only three less important words marked here. 
+The category-topic model only shows four unique words: "søndag" (Sunday), "leg" (play), "klokken" (clock), and "danskere" (Danes).
 These words are also very abstract and can be used in many different scenarios.
 
 An interesting part of this analysis is the words appearing in all models.
