@@ -12,15 +12,15 @@
 		\node (topname) [right of = top, node distance=1.5cm] {Root Layer};
 		
 		% Layer 1
-		\node (l11) [unobserved] at ([shift=({245:2 cm})]top) {};
-		\node (l12) [unobserved] at ([shift=({295:2 cm})]top) {};
+		\node (l11) [observed] at ([shift=({245:2 cm})]top) {};
+		\node (l12) [observed] at ([shift=({295:2 cm})]top) {};
 		\node (l1_dots) [right of = l11, node distance=0.85cm] {\scalebox{0.75}{$\bullet\bullet\bullet$}};
 		\node (1name) [right of = l12, node distance=2cm] {Taxonomy Layer 1};
 		
 		% Layer 2
-		\node (l21) [unobserved] at ([shift=({245:2 cm})]l11) {};
-		\node (l22) [unobserved] at ([shift=({295:2 cm})]l11) {};
-		\node (l23) [unobserved] at ([shift=({295:2 cm})]l12) {};
+		\node (l21) [observed] at ([shift=({245:2 cm})]l11) {};
+		\node (l22) [observed] at ([shift=({295:2 cm})]l11) {};
+		\node (l23) [observed] at ([shift=({295:2 cm})]l12) {};
 		\node (l2_dots) [right of = l22, node distance=0.85cm] {\scalebox{0.75}{$\bullet\bullet\bullet$}};
 		\node (2name) [right of = l23, node distance=2cm] {Taxonomy Layer 2};
 		
@@ -101,6 +101,6 @@
 		
 \end{tikzpicture}}
 	\caption{Illustration of the \gls{dag} structure for the five-level \gls{pam}, where the general structure is on the left and an example of a path from the root to a word is on the right. 
-	The two observed variables are from our taxonomy metadata and can be found in \ref{tab:taxonomy_table}}	
+	The two observed variables are from our taxonomy metadata and can be found in Appendix \autoref{tab:taxonomy_table}.}	
 	\label{fig:pachinko_dag}
 \end{figure}
