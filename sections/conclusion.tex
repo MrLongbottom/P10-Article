@@ -1,10 +1,10 @@
 \section{Conclusion}\label{sec:conclusion}\todo{motivate the problem again here}
 In this paper, we have explored possibilities for incorporating metadata\vejleder{gerne ??} into existing topic models, such as \gls{lda} and \gls{pam}.
-We have constructed models based on three different types of metadata: Author, Category, and Taxonomy, each of which represents the data in a different way.
-We evaluated our models based on topic coherence and found that the Taxonomy model was the best-performing model for our dataset.
+We have constructed models based on three different types of metadata: author, category, and taxonomy, each of which represents the data in a different way.
+We evaluated our models based on topic coherence and found that the taxonomy-topic model was the best-performing model for our dataset.
 
-From the topic coherence results, shown in \autoref{tab:metric_results}, the \acrfull{pam} using the Taxonomy metadata gets the best results.
-The Author-topic and Category-topic models based on \gls{lda} are the worst-performing, where the topic coherence is much lower than the other models. 
+From the topic coherence results, shown in \autoref{tab:metric_results}, the \acrfull{pam} using the taxonomy metadata gets the best results.
+The author-topic and category-topic models based on \gls{lda} are the worst-performing, where the topic coherence is much lower than the other models. 
 This can be due to the authors within journalism covering a broader range of topics than within scientific literature, which can negatively impact the topic coherence.
 
 We want to answer the research questions, which we stated in \autoref{sec:introduction}:
@@ -17,7 +17,7 @@ We want to answer the research questions, which we stated in \autoref{sec:introd
 
 We incorporate metadata into our topic models in multiple ways.
 The \gls{lda} model is used as a baseline, which indicates whether incorporating metadata can improve the topic quality of our topic models.
-Based on the results of the Author-topic and Category-topic models, we see that only using the metadata for word topic assignment within \gls{lda} can hurt the topic quality.
+Based on the results of the author-topic and category-topic models, we see that only using the metadata for word topic assignment within \gls{lda} can hurt the topic quality.
 Other studies have shown that only using the metadata for word topic assignments can improve performance~\cite{MetaLDA2017} \cite{author_topic_2012}.
 This might be due to the particularities of our dataset, such as authors not usually writing about the same subject within the news environment.  
 
@@ -28,6 +28,6 @@ However, the elapsed time of the algorithm is quite slow compared to the \gls{ld
 
 Topic modeling can be used to support recommendation in different ways.
 We can use the topic distributions from our models to compare articles based on their similarity in topics.
-For example, the author-topic model's topic distribution can be used to recommend similar authors, while for the topic distributions of the taxonomy model, there is the possibility of looking at topics from different layers.
+For example, the author-topic model's topic distribution can be used to recommend similar authors, while for the topic distributions of the taxonomy-topic model, there is the possibility of looking at topics from different layers.
 This information can be used in a content-based filtering approach to recommend similar articles.
 
