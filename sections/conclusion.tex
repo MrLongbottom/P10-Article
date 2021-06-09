@@ -1,4 +1,4 @@
-\section{Conclusion}\label{sec:conclusion}
+\section{Conclusion}\label{sec:conclusion}\todo{motivate the problem again here}
 In this paper, we have explored possibilities for incorporating metadata\vejleder{gerne ??} into existing topic models, such as \gls{lda} and \gls{pam}.
 We have constructed models based on three different types of metadata: Author, Category, and Taxonomy, each of which represents the data in a different way.
 We evaluated our models based on topic coherence and found that the Taxonomy model was the best-performing model for our dataset.
@@ -25,7 +25,6 @@ This might be due to the particularities of our dataset, such as authors not usu
 We use the \gls{pam} to incorporate a hierarchically structured taxonomy metadata, where we use a novel locking mechanism to lock the observed metadata's topics into place.
 Using this model and technique, we can get better topic quality within \gls{pam} compared to the \gls{lda} model.
 However, the run time of the algorithm is quite slow compared to the \gls{lda}.
-All models ran for $50$ epochs, but \gls{pam} had a runtime of $132$ hours, compared to \gls{lda} which had a runtime of $8$ hours.
 
 Topic modeling can be used to support recommendation in different ways.
 We can use the topic distributions from our models to compare articles based on their similarity in topics.

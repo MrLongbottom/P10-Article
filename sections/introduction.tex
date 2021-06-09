@@ -15,7 +15,7 @@ They show that the Author-Topic combination yields better and more coherent topi
 However, they only test their algorithm on a dataset of scientific papers, where the authors usually only write about a small set of subjects (their research field), which might not be the case for other fields, like journalism.
 
 % Intro to Nordjyske data and applications
-We have a dataset from a danish media group, called Nordjyske, with three years of article data.
+We have a dataset from a Danish media group, called Nordjyske, with three years of article data.
 The dataset contains a variety of different metadata, which have the potential to improve topic models in the same way as \citet{author_topic_2012}. 
 In this paper, the dataset will be used with a focus on topic modeling and the incorporation of metadata.
 
@@ -41,13 +41,13 @@ We define the following research questions to investigate in this paper:
 Our work is similar in goal to that of \citet{MetaLDA2017} since we work with meta information and are applying it to an \gls{lda} model.
 However, \citet{MetaLDA2017} learn a specific Dirichlet prior based on the metadata given in their dataset, which affects the document-topic distribution used with the \gls{lda}.
 Instead of using the document-topic distribution for drawing word topics, we want to create a new metadata-topic distribution that influences the drawn topics.
-An example is the author-topic model from \citet{author_topic_2012}, where they also create a distribution for each author.
+
 We investigate the effect that creating a metadata-topic distribution for any specific metadata information, such as the author information, has on the resulting topics.
 The intuition behind this is to create new topic models, which describe the data in a different way using topics that are influenced by metadata.
 For example, if the metadata describes something about geographic locations, location-specific topics will be generated, which could be useful in many cases.
 
 The metadata, within the Nordjyske dataset, includes author information, as well as higher-level categorical information, which is described in \autoref{sec:dataset}.
-These categorical metadata are the basis for the novelties in this paper, which is our category-topic model that makes a topic distribution for each category in the dataset and using the \gls{pam} on a hierarchical metadata (taxonomy) by applying a locking mechanism.\vejleder{denne paragraf er lidt vanskelig at følge}
+These categorical metadata are the basis for the novelties in this paper, which is our category-topic model that makes a topic distribution for each category in the dataset and using the \gls{pam} on a hierarchical metadata (taxonomy) by applying a locking mechanism.
 
 % Paper Structure
 The paper is organized as follows:

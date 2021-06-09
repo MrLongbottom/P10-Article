@@ -1,25 +1,25 @@
-\section{Dataset}\label{sec:dataset}
+\section{Dataset and Preprocessing}\label{sec:dataset}
 Nordjyske is a Danish news agency that maintains multiple newspapers, radios, and other news sources throughout north Jutland, a region in Denmark.
-They store their news articles in a non-public database, where each article contains multiple metadata fields which describe some aspect of the data, e.g., the author.
+They store their news articles in a non-public database, where each article contains multiple metadata fields which describe aspects of the data, e.g., the author and publication date.
 The dataset we use ranges from 2017 to 2019 and contains $248,385$ articles.
 
-We perform some basic preprocessing to make the data more applicable for topic models.
+We perform basic preprocessing to make the data more applicable for topic models.
 Firstly, because the dataset includes articles from multiple cities and regions, duplicates do occur in the dataset.
 These duplicates are removed, so only unique articles are kept.
-After this, we filter out words that appear in less than 10 articles and words that appear in more than 10$\%$ of articles.
+After this, words that appear in less than 10 articles and words that appear in more than 10$\%$ of articles are filtered out.
 This is done to keep words that are used enough to find patterns in topics and to remove words that are similar to stop words.
 Finally, after the words are filtered out, the empty documents are removed.
 After preprocessing, the dataset contains $139,060$ articles that use a vocabulary of $69,192$ unique words.
+
+In the following sections, we describe each of the metadata fields which are analyzed.
+Further details about the metadata labels can be seen in Appendix \autoref{sec:appendix_meta_data}.
 
 The metadata fields that we are working with do have some problems that can be mitigated to a degree by preprocessing.
 These problems are all related to some metadata values only being used in a few documents.
 Since the metadata values are used to group documents together and find common topics and words within grouped documents, metadata values that group too few documents are not very relevant and are therefore combined or removed.
 
-In the following sections, we describe each of the metadata fields which are analyzed.
-Further details about the metadata labels can be seen in Appendix \autoref{sec:appendix_meta_data}.
-
 \subsection{Author}
-This field is for the author, who has written the article.
+This field contains the name of the author, who has written the article.
 Each article only has a single author, so we do not account for multiple authors, whereas \citet{author_topic_2012} account for multiple authors.
 This field is fully observed within the dataset, meaning that every article has an author.
 Originally there were $227$ different authors within the dataset.
@@ -29,8 +29,8 @@ After combining authors that have written less than $14$ documents (${\sim}0.001
 \subsection{Category}
 % what it is?
 The category field describes a variety of different aspects.
-A proportion of the categories contains which specific newspaper they belong to, e.g., 'Aalborg-Newspaper'.
-Another proportion of the category field describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
+One part of the categories contains which specific newspaper the article belong to, e.g., 'Aalborg-Newspaper'.
+Another part of the categories describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
 However, there are also nonsensical categories such as '53. Frederik', that do not seem to describe the subject of the document.
 % stats
 This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
@@ -48,7 +48,7 @@ The taxonomy field describes a hierarchical sequence of the topical or geographi
 Each sequence consists of several sub-taxonomies.
 This field is only partially observed within the dataset, which means that ${\sim}25\%$ of the articles contain this field.
 It is also possible for articles to contain multiple taxonomy sequences.
-We observe some general patterns when traversing this field, which are:
+General patterns when traversing this field include:
 \begin{itemize}
 	\item PLACES/Country/Region/Town
 	\item TOPICS/Sub-Topic/Subsub-topic

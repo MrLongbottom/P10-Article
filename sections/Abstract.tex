@@ -1,5 +1,6 @@
-We introduce models that extend the \gls{lda} to include author and category metadata information and a third model which applies taxonomy metadata on the \gls{pam}.
+\todo{introduce the general first and then our problem}We introduce models that extend the \gls{lda} to include author and category metadata information and a third model which applies taxonomy metadata on the \gls{pam}.
 The author-topic and category-topic models are based on the author-topic model with slight modifications, and the taxonomy-topic model uses the \gls{pam}.
 To make the \gls{pam} include the metadata information in each layer of its \gls{dag} structure, a novel topic locking mechanism is created.
-The results show that for the applied dataset, our modified pachinko model integrates the meta-data well and improves the run-time.
-However, the taxonomy-topic model has a higher topic coherence and more understandable topics than \gls{lda}.
+The results show that for a news article dataset, our taxonomy-topic model integrates the metadata well and improves the run-time in comparison to the original pachinko model.
+The taxonomy-topic model has a higher topic coherence and more understandable topics than \gls{lda}.
+Our results show that integrating metadata can improve topic modeling in various ways.
