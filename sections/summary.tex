@@ -44,19 +44,19 @@ For our category-topic model and author-topic model, each document $d$ is associ
 To have our taxonomy-topic model handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model called the \acrfull{pam}.
 Pachinko allocation generalizes \gls{lda}, making it possible to construct topic hierarchies based on any \gls{dag} structure.
 \gls{pam} is a topic model focusing on finding topics of different abstraction levels and modeling the correlations between these topics.
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
+Without modification, \gls{pam} finds topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
 However, in our case, we have a dataset with a partially observed taxonomy field (${\sim}25\%$ of the documents), and we want to use the existing metadata information to estimate the topics quicker and more accurately.
 To account for this, we only sample the unobserved nodes within the topic sequences.
 For some of the dataset only the fourth layer is unobserved, but for the ${\sim}75\%$ documents without a taxonomy sequence, all layers are unobserved.
 The observed taxonomy sequences are never sampled, hence they are 'locked' in place.
-This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences will be fitted around.
+This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences are fitted around.
 
 %evaluation
 The main metric used, in this experiment, is the topic coherence metric.
-This metric indicates how semantically similar the top words within each topic are, and will be an indication of the quality of the topics of a topic model.
+This metric indicates how semantically similar the top words within each topic are, and is an indication of the quality of the topics of a topic model.
 The second metric used in the experiment is topic difference.
 The topic difference is another metric that is used to check the quality of the topic model.
-It is based on the assumption that a good topic model will have little overlap between topics.
+It is based on the assumption that a good topic model has little overlap between topics.
 
 Before fitting our models, we search for the optimal hyperparameters for our models, since these can vary based on the dataset.
 The hyperparameters we are testing in this grid search are the number of topics $K$ and an $\alpha$ and $\eta$ parameter.

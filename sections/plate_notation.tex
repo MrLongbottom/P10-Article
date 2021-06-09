@@ -36,7 +36,7 @@ This mechanism is discussed further at the end of this section.
 We use a five-level\vejleder{hvorfor bruger vi en 5 lag} pachinko tree structure, following the format presented by \citet{li2006pachinko}.
 The first layer is the root layer which all topics are a part of.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
-The second and third layers will be constructed based on the entries of the first two positions in our taxonomy metadata, meaning there will be one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g., "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
+The second and third layers is constructed based on the entries of the first two positions in our taxonomy metadata, meaning there is one node for each unique sub-taxonomy entry that is in the first or second position in the taxonomy sequence (e.g., "STEDER" and "Danmark", which is taken from "STEDER/Danmark/Aalborg", but not "Aalborg" since it is in the third position).
 We only use the first two layers for this, because introducing even more layers would slow down the training significantly, since the probability of all possible combinations of topics needs to be sampled for every word during training.
 From our experiments, the training time for $50$ epochs increases from $12$ hours to $130$ hours between four and five-level pachinko.
 The fourth layer consists of $K = 90$ 'blank' topics, where the value of $90$ comes from a grid search described in \autoref{sec:experiment_gridsearch}.
@@ -48,15 +48,15 @@ This layer is added so that the model can construct topics based on the higher-l
 
 
 \vejleder{hvordan ? algoritmisk?}
-Normally when working with topic modeling, one does not know which topics will be present in the document set before training the model.
+Normally when working with topic modeling, one does not know which topics are present in the document set before training the model.
 However, the taxonomy metadata fields provide some general subject names of different levels of abstraction and some amount of documents attached to these subject names.
 This provides a unique opportunity for using the existing taxonomies as higher-level topics.
-Without modification, \gls{pam} will find topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
+Without modification, \gls{pam} finds topics with the same structure as our taxonomy, but the taxonomy values would be disregarded during training since it would generate new taxonomy sequences.
 However, in our case, we have a dataset with a partially observed taxonomy field (${\sim}25\%$ of the documents), and we want to use the existing metadata information to estimate the topics quicker and more accurately.
 To account for this, we only sample the unobserved nodes within the topic sequences.
 For some of the dataset only the fourth layer is unobserved, but for the ${\sim}75\%$ documents without a taxonomy sequence, all layers are unobserved.
 The observed taxonomy sequences are never sampled, hence they are 'locked' in place.
-This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences will be fitted around.
+This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences are fitted around.
 
 Some of the documents in our dataset have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document. 
