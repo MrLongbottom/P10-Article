@@ -64,8 +64,8 @@ We only run the grid search on the standard \gls{lda} model, with the assumption
 Based on the topic coherence of the model we choose $K = 90$, $\alpha = 0.01$, and $\eta = 0.1$ as the hyperparameters for all models in the experiment.
 
 For the results, the topic coherence of \gls{lda} is 0.520, author-topic is 0.335, category-topic is 0.370, and taxonomy-topic is 0.660.
-This shows that the Author and Category-Topic models performed the worst in topic coherence, whereas the Taxonomy-Topic model is outperforming all other models.
-However, the run time of the Taxonomy model is much higher than the standard \gls{lda}.
+This shows that the author-topic and category-topic models performed the worst in topic coherence, whereas the taxonomy-topic model is outperforming all other models.
+However, the run time of the taxonomy-topic model is much higher than the standard \gls{lda}.
 
 %discussion
 In the analysis of the models, we explored the highest probable words from each model, except the taxonomy-topic model, that would appear in a chosen article.
@@ -99,6 +99,6 @@ We run these models using the same hyperparameters as all the other models and t
 Author-doc gets a topic coherence of 0.543 and category-doc gets 0.530.
 
 Finally, we tested what would happen if we ran \gls{pam} with just the author and category metadata.
-A four-layer \gls{pam} was used for both of these models, but otherwise, the same structure is used as with the taxonomy-topic model.
+A Four-Level \gls{pam} was used for both of these models, but otherwise, the same structure is used as with the taxonomy-topic model.
 The author \gls{pam} gets a topic coherence of 0.598 and the category \gls{pam} gets 0.585.
-These models achieved better results than the previous author and category models and the \gls{lda} model but had lower topic coherence compared to the taxonomy-topic model.
+These models achieved better results than the previous author-topic and category-topic models and the \gls{lda} model but had lower topic coherence compared to the taxonomy-topic model.
