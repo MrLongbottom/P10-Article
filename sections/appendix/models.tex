@@ -4,6 +4,23 @@ In an attempt to improve these results, we combine the original \gls{lda} model 
 Therefore, we create two extra models: the Author-Doc and Category-Doc model.
 We run them using the same hyperparameters as all the other models and they get similar results to the standard \gls{lda} model.
 
+The function for choosing a topic is shown for both models are in \autoref{eq:doc_author} and \autoref{eq:doc_category}. 
+\begin{equation}\label{eq:doc_author}
+	P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+	\underbrace{\frac{C^{AT}_{ak} + \alpha}{\sum_{k'} C^{AT}_{ak'} + T\alpha}}_{Author-Topic}
+	\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
+	\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
+\end{equation}
+where $C^{AT}_{ak}$ and $C^{DT}_{dk}$ is the number of times author $a$ and document $d$ use topic $k$, respectively.
+
+\begin{equation}\label{eq:doc_category}
+	P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+	\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
+	\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
+	\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
+\end{equation}
+where $C^{CT}_{ck}$ and $C^{DT}_{dk}$ is the number of times category $c$ and document $d$ use topic $k$, respectively.
+
 \begin{table}[h]
 	\centering
 	\caption{Bolded results are the new models.}
