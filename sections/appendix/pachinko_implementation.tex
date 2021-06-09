@@ -7,11 +7,11 @@ The probability of each topic combination is calculated using the joint probabil
 
 \begin{equation}\label{eq:pachinko_gibbs}
 	\begin{split}
-		P(Z_{w2} = t_a, Z_{w3} = t_b, Z_{w4} = t_c | \textbf{D}, z_{-w}, \alpha, \beta) \propto \\
-		\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}} \times
-		\frac{n_{ab}^d + \alpha_{ab}}{n_a^d + \sum_{b'} \alpha_{ab'}}  \times 
-		\frac{n_{bc}^d + \alpha_{bc}}{n_{b}^d + \sum_{c'} \alpha_{bc'}} \times 
-		\frac{n_{cw} + \eta_{w}}{n_{c} + \sum_{m} \eta_{m}} 
+		P(Z_{w2} = t_a, Z_{w3} = t_b, Z_{w4} = t_c | \textbf{D}, z_{-w}, \alpha, \beta) \propto
+		\underbrace{\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}}}_{\text{Root $\rightarrow$ Tax.1}} \times
+		\underbrace{\frac{n_{ab}^d + \alpha_{ab}}{n_a^d + \sum_{b'} \alpha_{ab'}}}_{\text{Tax.1 $\rightarrow$ Tax.2}}  \times 
+		\underbrace{\frac{n_{bc}^d + \alpha_{bc}}{n_{b}^d + \sum_{c'} \alpha_{bc'}}}_{\text{Tax.2 $\rightarrow$ Topics}} \times 
+		\underbrace{\frac{n_{cw} + \eta_{w}}{n_{c} + \sum_{m} \eta_{m}}}_{\text{Topics $\rightarrow$ Words}} 
 	\end{split}
 \end{equation}
 As in \citet{li2006pachinko}, $Z_{w2}$, $Z_{w3}$, and $Z_{w4}$ are topic assignments for the three middle layers of topics in our Five-Level \gls{pam}.

@@ -26,22 +26,39 @@ def rand_initialize(documents: List[np.ndarray]):
 		wt_assignment.append(curr_doc)
 	return wt_assignment
 \end{lstlisting}
-
 Various parameters are left out to simplify the code listing of our initialization method.
 The \emph{\_conditional\_distribution()} function creates a distribution of topics based on the current word.
-It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
+Standard \gls{lda} is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012} and the author-topic and category-topic models are based on \autoref{eq:author_gibbs_eq} and \autoref{eq:category_gibbs_eq}, respectively.
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
-		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) \propto 
 		\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
 		\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
 	\end{split}
 \end{equation}
+\begin{equation}\label{eq:author_gibbs_eq}
+	\begin{split}
+		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}, a_d) \propto 
+		\underbrace{\frac{C^{AT}_{ak} + \alpha}{\sum_{k'} C^{AT}_{ak'} + T\alpha}}_{Author-Topic}
+		\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
+	\end{split}
+\end{equation}
+\begin{equation}\label{eq:category_gibbs_eq}
+	\begin{split}
+		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}, c_d) \propto 
+		\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
+		\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
+	\end{split}
+\end{equation}
 where $C^{DT}_{dk}$ is the number of times document $d$ uses topic $k$ and $C^{WT}_{mk}$ is the number of times topic $k$ uses word $m$.
+$C^{AT}_{ak}$ and $C^{CT}_{ck}$ is the number of times author $a$ and category $c$ use topic $k$, respectively.
 $\boldsymbol{z}_{-i}$ represents the topic assignments where the current instance is disregarded.
 $\alpha$ and $\eta$ are the Dirichlet parameters for the document-topic and topic-word distribution, respectively.
 The first fraction describes how likely topic $t$ appearing in document $d$ is, and the second fraction describes which words are most probable in topic $t$.
 Following the code in \autoref{lst:randomInit}, as we initialize, the words get a higher probability of clustering together, since we increase the counts every time at line $16$.
+In the author-topic and category-topic models a metadata distribution is used where they follow the functions described in 
+
+
 
 \subsubsection{Gibbs Sampling}
 We can start investigating the Gibbs sampling method itself, where we iterate over each word in every document and draw a new topic based on the given topic distribution.

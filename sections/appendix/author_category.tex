@@ -6,7 +6,7 @@ As the name suggests, this model includes an author-topic distribution and a cat
 
 To combine the author and category metadata, we use the notation described in \citet{author_topic_2012} and in \autoref{sec:appendix_gibbs}.
 \begin{equation}
-		P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+		P(z_i = k |w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) \propto 
 	\underbrace{\frac{C^{AT}_{ak} + \alpha}{\sum_{k'} C^{AT}_{ak'} + T\alpha}}_{Author-Topic}
 	\underbrace{\frac{C^{CT}_{ck} + \alpha}{\sum_{k'} C^{CT}_{ck'} + T\alpha}}_{Category-Topic}
 	\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
