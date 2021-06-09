@@ -56,7 +56,8 @@ $\boldsymbol{z}_{-i}$ represents the topic assignments where the current instanc
 $\alpha$ and $\eta$ are the Dirichlet parameters for the document-topic and topic-word distribution, respectively.
 The first fraction describes how likely topic $t$ appearing in document $d$ is, and the second fraction describes which words are most probable in topic $t$.
 Following the code in \autoref{lst:randomInit}, as we initialize, the words get a higher probability of clustering together, since we increase the counts every time at line $16$.
-In the author-topic and category-topic models a metadata distribution is used where they follow the functions described in 
+In the author-topic and category-topic models, a metadata distribution is used instead of the document-topic distribution.
+This can be seen in \autoref{eq:author_gibbs_eq} and \autoref{eq:category_gibbs_eq}
 
 
 
