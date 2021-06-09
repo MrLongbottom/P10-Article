@@ -5,7 +5,7 @@ We have chosen an article arbitrarily from the dataset and visualized how the to
 Before investigating the article, we define a specific color scheme for each model, which is seen in \autoref{tab:disc_color}.
 
 In \autoref{fig:the_article}, we have highlighted the highest probable words within the three most probable topics in the article.
-The article is about agriculture and how farmers are letting their cows out onto grass fields in September. 
+The article is about agriculture and how farmers opening their doors to the public. 
 It also mentions a few different farms in the Northern part of Jutland and describes these in various ways.
 
 \begin{table}
@@ -36,7 +36,6 @@ It also mentions a few different farms in the Northern part of Jutland and descr
 	\end{tabular}
 \end{table}
 
-In \autoref{tab:top_words_three_models}, we can see that there are not many top words in the Author-Topic and Category-Topic model that appear in the article below.
 To compare these models, we take the top 200 words of the topic-word distributions within each model and mark them in the article.
 We take 200 words since we want to see how intertwined the models are.
 Since the Author and Category models do not have a document-topic distribution we can not look at the specific document, but instead, we have marked the words from the given category- and author-topic distribution for the document's category and author, to see what the difference in topics are.
@@ -81,6 +80,7 @@ These words are not very representative of the content of the article, but the a
 Combining the results of these models might yield better topic models since some words appearing in two models are "medarbejder" (coworker), "arbejdet" (the work), and "dyr" (animals).
 However, there are also words such as "otte" (eight), "september", and "ligesom" (like), which are not that descriptive of articles about agriculture. 
 There is also the possibility that choosing another random article would give completely different numbers of marked words per model because this highly depends on the article's author and category.
+In Appendix \autoref{app:color_articles}, we investigate how the coloring applies to two other articles.
 
 \input{sections/discussion/author-topic.tex}
 \input{sections/discussion/category-topic.tex}
