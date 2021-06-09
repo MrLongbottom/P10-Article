@@ -14,6 +14,7 @@ This is different from \citet{author_topic_2012}, where each document has a vect
 This is due to our dataset never having more than one author or category for each document.
 For the remainder of this paper, 'author-topic model' refers to our modified topic model, rather than the one presented in \citet{author_topic_2012}.
 The plate notation for our category-topic and author-topic models can be seen in \autoref{fig:metadata_lda}.
+The Gibbs sampling algorithm we have implemented and use for \gls{lda}, the author-topic model, and the category-topic model is described in Appendix \autoref{sec:appendix_gibbs}.
 
 \subsection{Pachinko Allocation}\label{subsec:pam}\vejleder{make sure that you talk about the original pachinko model and not our modification}
 In order to handle the hierarchical structure of the taxonomy metadata field, we use a hierarchical topic model, namely the \acrfull{pam} from \citet{li2006pachinko}.
@@ -60,3 +61,5 @@ This creates a constant context for the taxonomy topics, which the documents wit
 
 Some of the documents in our dataset have multiple taxonomies.
 For these documents, one of the taxonomies is chosen randomly for each word in the document. 
+
+A further description of the Gibbs sampling for our \gls{pam} implementation is given in Appendix \autoref{sec:pam_gibbs}.

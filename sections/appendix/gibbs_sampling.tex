@@ -32,7 +32,7 @@ The \emph{\_conditional\_distribution()} function creates a distribution of topi
 It is based on \autoref{eq:gibbs_eq}~\cite{author_topic_2012}.
 \begin{equation}\label{eq:gibbs_eq}
 	\begin{split}
-		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) = 
+		P(z_i = k|w_i = m, \boldsymbol{z}_{-i}, \boldsymbol{w}_{-i}) \propto 
 		\underbrace{\frac{C^{DT}_{dk} + \alpha}{\sum_{k'} C^{DT}_{dk'} + T\alpha}}_{Doc-Topic}
 		\underbrace{\frac{C^{WT}_{mk} + \eta}{\sum_{m'} C^{WT}_{m'k} + V\eta}}_{Topic-Word}
 	\end{split}
