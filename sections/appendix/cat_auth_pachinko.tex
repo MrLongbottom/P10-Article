@@ -1,5 +1,5 @@
 \subsection{Category and author \gls{pam}}\label{app:cat_auth_pachinko}
-Given the good results of the taxonomy-topic model, we decided to test \gls{pam} with the two other metadata fields: Author and Category.
+Given the good results of the taxonomy-topic model, we decided to test \gls{pam} with the two other metadata types: Author and Category.
 These metadata are not layered and can therefore not utilize the layered nature of \gls{pam} in the same way.
 Instead, a Four-Level \gls{pam} will be used, with a root layer, a metadata layer where authors and categories are locked into topics using the technique outlined in \autoref{subsec:pam}, a layer with 90 'blank' topics, and a word layer.
 
@@ -28,7 +28,7 @@ For comparison we also ran a four-level \gls{pam} without any metadata, using 10
 This ended up providing very good results, slightly better than the taxonomy-topic model.
 This also shows that while Category \gls{pam} and Author \gls{pam} get better results than their \gls{lda} counterparts, it is better to run \gls{pam} without modifications.
 This could be due to our models being unable to make good use of the extra information provided by the metadata.
-It might also point towards these two particular metadata fields not being particularly useful in this specific project.
+It might also point towards these two particular metadata types not being particularly useful in this specific project.
 The category metadata is generally very vague and some categories have seemingly no connection between documents.
 As discussed earlier, the author metadata might not be as useful within journalism as authors don't write about the same topics as with scientific papers.
 And while the \gls{pam} without metadata does achieve better topic coherence than the taxonomy-topic model, they are close enough in both topic coherence and manual inspection of the quality of topics that no conclusions can be drawn.

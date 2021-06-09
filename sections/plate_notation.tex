@@ -1,11 +1,11 @@
 \section{Proposed Topic Models}\label{sec:plate_notation}
 In this section, we detail the modifications that we have implemented to describe our proposed topic models outlined in \autoref{sec:preliminaries}.
-We present three models, one for each of the metadata fields detailed in \autoref{sec:dataset}.
+We present three models, one for each of the metadata types detailed in \autoref{sec:dataset}.
 Two of the models, the author-topic model and category-topic model, are based on the Author-topic model explained in \autoref{subsec:auth_prelim}.
 The taxonomy-topic model is based on \gls{pam}, which is explained in \autoref{subsec:pachinko_prelim}.
 
 \subsection{Author-Topic model and Category-Topic model}
-We model both the author and category metadata fields similarly to the model by \citet{author_topic_2012}.
+We model both the author and category metadata types similarly to the model by \citet{author_topic_2012}.
 The category-topic model is based on the assumption that categories of the articles were chosen based on the content of the article and that local newspapers have their own unique topic preferences.
 We find this model structure to be generally applicable to most metadata information, assuming that the metadata is either chosen based on the text of the documents\vejleder{hvad med det?} (as with the category metadata) or that it has some impact on the text of the document (as with the author metadata).
 

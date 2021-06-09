@@ -19,15 +19,15 @@ Basic preprocessing is done to make the data more applicable for topic models.
 Each article includes three types of metadata: author, category, and taxonomy, that we chose to extend our topic models with.
 
 The author metadata is for the author who has written the article.
-This field is fully observed within the dataset, and each article only has a single author, so we do not account for multiple authors.
+This metadata is fully observed within the dataset, and each article only has a single author, so we do not account for multiple authors.
 There are $227$ different authors within the dataset and after preprocessing $184$ remain.
 
 The category metadata describes a variety of different aspects, but the categories are generally either about a specific newspaper or an overall subject.
-This field is also fully observed within the dataset, and there are $58$ unique categories in the dataset before processing, and $34$ categories after preprocessing.
+This metadata is also fully observed within the dataset, and there are $58$ unique categories in the dataset before processing, and $34$ categories after preprocessing.
 
 The taxonomy metadata describes a hierarchical sequence of the topical or geographical subjects associated with the article.
 Each sequence consists of several taxonomy entries.
-This field is only partially observed within the dataset, with ${\sim}25\%$ of the articles containing this field.
+This metadata is only partially observed within the dataset, with ${\sim}25\%$ of the articles containing this metadata.
 There are $1135$ different taxonomy entries and after preprocessing $345$ remain.
 
 %models

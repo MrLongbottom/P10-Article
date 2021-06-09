@@ -1,6 +1,6 @@
 \section{Dataset and Preprocessing}\label{sec:dataset}
 Nordjyske is a Danish news agency that maintains multiple newspapers, radios, and other news sources throughout north Jutland, a region in Denmark.
-They store their news articles in a non-public database, where each article contains multiple metadata fields which describe aspects of the data, e.g., the author and publication date.
+They store their news articles in a non-public database, where each article contains multiple metadata types which describe aspects of the data, e.g., the author and publication date.
 The dataset we use ranges from 2017 to 2019 and contains $248,385$ articles.
 
 We perform basic preprocessing to make the data more applicable for topic models.
@@ -11,17 +11,17 @@ This is done to keep words that are used enough to find patterns in topics and t
 Finally, after the words are filtered out, the empty documents are removed.
 After preprocessing, the dataset contains $139,060$ articles that use a vocabulary of $69,192$ unique words.
 
-In the following sections, we describe each of the metadata fields which are analyzed.
-Further details about the metadata labels can be seen in Appendix \autoref{sec:appendix_meta_data}.
+In the following sections, we describe each of the metadata types which are analyzed.
+Further details about these metadata types can be seen in Appendix \autoref{sec:appendix_meta_data}.
 
-The metadata fields that we are working with do have some problems that can be mitigated to a degree by preprocessing.
+The metadata types that we are working with do have some problems that can be mitigated to a degree by preprocessing.
 These problems are all related to some metadata values only being used in a few documents.
 Since the metadata values are used to group documents together and find common topics and words within grouped documents, metadata values that group too few documents are not very relevant and are therefore combined or removed.
 
 \subsection{Author}
 The author metadata contains the name of the author, who has written the article.
 Each article only has a single author, so we do not account for multiple authors, whereas \citet{author_topic_2012} account for multiple authors.
-This field is fully observed within the dataset, meaning that every article has an author.
+This metadata is fully observed within the dataset, meaning that every article has an author.
 Originally there were $227$ different authors within the dataset.
 After combining authors that have written less than $14$ documents (${\sim}0.001\%$ of the total document set) into a 'misc' author of size $204$, $184$ authors remain.
 %and they are almost evenly distributed in the number of articles they have written.
@@ -33,7 +33,7 @@ One part of the categories contains which specific newspaper the article belong 
 Another part of the categories describes the overall subject of the document, such as 'Culture' and 'Sports-newspaper'.
 However, there are also nonsensical categories such as '53. Frederik', that do not seem to describe the subject of the document.
 % stats
-This field is fully observed within the dataset and there are originally $58$ different categories in the dataset.
+This metadata is fully observed within the dataset and there are originally $58$ different categories in the dataset.
 However, while most of these categories cover a significant number of documents, some categories are only used by a few documents.
 After combining all categories covering less than $140$ documents (${\sim}0.01\%$ of the total document set) into a single new 'misc' category of size $229$, $34$ categories remain.
 The smallest category consists of $188$ documents, and for all categories, the median category size is $3022$.
@@ -58,6 +58,6 @@ Examples of these sequences are:
 	\item PLACES/Danmark/Nordjylland/Aalborg/Lillevorde
 	\item TOPICS/Religion/Christianity
 \end{itemize}
-About $80\%$ of the observed fields contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable.
+About $80\%$ of the observed sequences contain the 'PLACES' variable and $20\%$ use the 'TOPICS' variable.
 There are also a few other top-level taxonomy entries; however, they are not as informative and are very rarely used.
 Originally there were $1135$ different taxonomy entries; however, after removing taxonomy entries used by less than $14$ documents (${\sim}0.001\%$ of the total document set), only $345$ remain.
