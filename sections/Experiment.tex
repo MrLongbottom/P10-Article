@@ -20,7 +20,7 @@ This metric indicates how semantically similar the top words within each topic a
 There are different ways of calculating topic coherence.
 We are using $C_v$ topic coherence, for this paper.
 The intuition is to calculate the degree of semantic similarity between highly probable words in a topic.
-Topic coherence range between zero and one.
+Topic coherence ranges between zero and one.
 This evaluation metric is explained further in Appendix \autoref{app:topic_coherence}.
 
 The second metric used in the evaluation is topic difference.
@@ -34,7 +34,7 @@ Topic difference is calculated using the following equation:
 	\emph{TopicDifference} = \frac{1}{K \cdot K} \sum_{i=1}^{K} \sum_{j=1}^{K} JS(\beta_{i},\beta_{j})
 \end{equation}
 \noindent where $JS$ is the Jensen-Shannon distance, $K$ is the number of topics, and $\beta_{k}$ is the topic-word distribution for topic $k$.
-Topic difference range between zero and one.
+Topic difference ranges between zero and one.
 
 \subsection{Grid Search}\label{sec:experiment_gridsearch}
 To find the optimal hyperparameter values for the models, we run two rounds of grid searches.
