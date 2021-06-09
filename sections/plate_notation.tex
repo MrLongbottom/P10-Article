@@ -33,7 +33,7 @@ An example of this can be seen in \autoref{fig:pachinko_dag}, where we have the 
 To make the algorithm construct the topics to be based on our taxonomies, we introduce a novel locking mechanism for the Gibbs sampler which we use to run \gls{pam}.
 This mechanism is discussed further at the end of this section.
 
-We use a Five-Level\vejleder{hvorfor bruger vi en 5 lag} pachinko tree structure, following the format presented by \citet{li2006pachinko}.
+We use a Five-level pachinko tree structure, following the format presented by \citet{li2006pachinko}.
 The first layer is the root layer which all topics are a part of.
 The last layer is the word layer consisting of one node for each word in the vocabulary of our corpus.
 
@@ -46,7 +46,6 @@ This layer is added so that the model can construct topics based on the higher-l
 
 \input{figures/dag_structure}
 
-\vejleder{hvordan ? algoritmisk?}
 Normally when working with topic modeling, one does not know which topics are present in the document set before training the model.
 However, the taxonomy metadata provide some general subject names of different levels of abstraction and some amount of documents attached to these subject names.
 This provides a unique opportunity for using the existing taxonomy entries as higher-level topics.
@@ -55,7 +54,8 @@ However, in our case, we have a dataset with a partially observed taxonomy metad
 To account for this, we only sample the unobserved nodes within the topic sequences.
 For some of the dataset only the fourth layer is unobserved, but for the ${\sim}75\%$ documents without a taxonomy sequence, all layers are unobserved.
 The observed taxonomy sequences are never sampled, hence they are 'locked' in place.
-This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences are fitted around.
-
-Some of the documents in our dataset have multiple taxonomy sequences.
-For these documents, one of the taxonomy sequence are chosen randomly for each word in the document. 
+This creates a constant context for the taxonomy topics, which the documents with unobserved taxonomy sequences will be fitted around.
+It also makes the algorithm run faster, as fewer sequences need to be sampled.
+We go into more detail about the difference in elapsed time in Appendix \autoref{app:cat_auth_pachinko}.
+A small number of documents in the dataset also have multiple taxonomy sequences.
+For these documents, one of the taxonomies is chosen randomly for each word in the document.
