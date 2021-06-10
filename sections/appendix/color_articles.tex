@@ -12,7 +12,8 @@ As a reminder, the color scheme is shown below in \autoref{tab:appendix_disc_col
 		\Acrlong{lda} & \thiscolor{Goldenrod} \vspace*{2mm} \\
 		Author-topic model & \thiscolor{Aquamarine} \vspace*{2mm} \\
 		Category-topic model & \thiscolor{LimeGreen} \vspace*{2mm} \\
-		Word appearing in all models & \thiscolor{Peach} \vspace*{2mm}  \\
+		Taxonomy-topic model & \thiscolor{Orchid} \vspace*{2mm} \\
+		Word appearing in 3+ models & \thiscolor{Peach} \vspace*{2mm} \\
 	\end{tabular}
 	\label{tab:appendix_disc_color}
 \end{table}
@@ -21,33 +22,33 @@ As a reminder, the color scheme is shown below in \autoref{tab:appendix_disc_col
 The article is not that long, and therefore there are not many words marked.
 From the colored words in the article, the words appearing in all models are not very descriptive of what the article is about.
 The topic that is the most present in this article is most likely a sports topic based on the top 10 words.
-The top 10 words of this most present topic are: ['tour', 'vandt', 'løb', 'par', 'mig', 'løbet', 'hold', 'vm', 'slag', 'nummer'].
+The top 10 words of this most present \gls{lda} topic are: ['tour', 'vandt', 'løb', 'par', 'mig', 'løbet', 'hold', 'vm', 'slag', 'nummer'].
 We can see based on these words that other sports are higher up in the list, such as 'tour' from Tour de France, which is likely due to there being few Le Mans articles in the dataset.
 \\
 \begin{figure}
 	\begin{tcolorbox}
 		\emph{
-			Dårligt \mycolor{Goldenrod}{LimeGreen}{løb} for Aalborg-kører SPIELBERG: Den aalborgensiske racerkører Anders Fjordbach havde sammen med teamet High Class Racing en gennemført skidt \mycolor{Goldenrod}{LimeGreen}{tredje} afdeling af European Le Mans Series på Red Bull Ring i Østrig. Her blev det til en beskeden ottendeplads i LMP2-klassen. - Det var \colorbox{Peach}{selvfølgelig} ærgerligt kun at blive \colorbox{Goldenrod}{nummer} otte, men det er \colorbox{LimeGreen}{vel} ikke en skam at have en dårlig weekend, siger Anders Fjordbach, der \colorbox{Goldenrod}{kører} sammen med Dennis Andersen.  Forkert dækvalg, et \colorbox{Peach}{mindre} sammenstød, en generator, der \colorbox{Aquamarine}{stod} af og andre små problemer var årsagen. Det \mycolor{Goldenrod}{Aquamarine}{eneste} positive var, at teamet \colorbox{Peach}{fortsat} er på tredjepladsen sammenlagt.clajen
+			dårligt \colorbox{Peach}{løb} for aalborg-kører spielberg: den aalborgensiske racerkører anders fjordbach havde sammen med teamet high class racing en gennemført skidt \colorbox{Peach}{tredje} afdeling af \mycolor{Orchid}{Goldenrod}{european} le mans series på red bull ring i østrig. her blev det til en beskeden ottendeplads i lmp2-klassen. - det var \colorbox{Peach}{selvfølgelig} ærgerligt kun at blive \mycolor{Orchid}{Goldenrod}{nummer} otte, men det er \colorbox{LimeGreen}{vel} ikke en skam at have en dårlig weekend, siger anders fjordbach, der \mycolor{Orchid}{Goldenrod}{kører} sammen med \colorbox{LimeGreen}{dennis} andersen.  \colorbox{LimeGreen}{forkert} dækvalg, et \colorbox{Peach}{mindre} sammenstød, en generator, der \mycolor{Orchid}{Aquamarine}{stod} af og andre små problemer var årsagen. det \colorbox{Peach}{eneste} positive var, at teamet \colorbox{Peach}{fortsat} er på tredjepladsen sammenlagt.clajen
 		}
 	\end{tcolorbox}
-	\caption{Article 1.}
+	\caption{An article about a race car driver from Aalborg, and him driving in the European Le Mans Series.}
 	\label{art:1}
 \end{figure}
 
 \autoref{art:2} is about politics in Aalborg, specifically about charter ships docking in Aalborg and how the municipality is trying to solve this problem.
 \autoref{art:2} is a bit longer than the one in \autoref{art:1}, which in turn colors more words.
 We can see that the majority of these words appear in every model, where a lot of non-descriptive words occur, such as 'finde' (to find), 'giver' (give), and 'ting' (stuff). 
-Opposite to the original article analyzed in the paper, word combinations of the category-Topic model and \gls{lda} model are much more present within this article.
+Opposite to the original article analyzed in the paper, word combinations of the category-Topic model and \gls{lda} model are more present within this article.
 From the top words within the category-topic model, many generic words appear, which might be why there is a higher trend in word appearances.
 The author-topic model is not showing up with many unique words, but the author (Pernille K. Damsgaard) has written $922$ articles, which might indicate that she usually does not write about this topic.
 \\
 \begin{figure}
 	\begin{tcolorbox}
 		\emph{
-			Rådmand: Der skal \mycolor{Goldenrod}{LimeGreen}{findes}  en \colorbox{Goldenrod}{løsning} AALBORG: Rådmand Hans Henrik Henriksen (S) er indstillet på, at der fra \mycolor{Goldenrod}{LimeGreen}{kommunens} side bidrages til en løsning, der sikrer krydstogtgæsterne sikker adgang på tværs af Slotspladsen. - Lad os prøve at se, om vi ikke ved \mycolor{Goldenrod}{LimeGreen}{fælles} \colorbox{Peach}{hjælp} kan \colorbox{Peach}{finde} en god løsning, der fungerer, på det her, siger by- og landskabsrådmanden med henvisning til dagsordenen for det \colorbox{Peach}{kommende} \colorbox{Peach}{møde} med deltagelse af VisitAalborg, \colorbox{Peach}{kommunen} ved \colorbox{Goldenrod}{trafik} og veje, \colorbox{LimeGreen}{politiet} \colorbox{Peach}{samt} Aalborg Havn, der også har en \mycolor{Goldenrod}{Aquamarine}{interesse} i \mycolor{Goldenrod}{LimeGreen}{udvikling} af krydstogtforretningen. Forud for mødet har han ikke noget bud på en løsning, og han gentager en tidligere afvisning af et traditionelt fodgængerfelt. - Folk med viden på det felt har forklaret mig, at der \colorbox{Peach}{faktisk} \colorbox{Peach}{sker} flere ulykker i et fodgængerfelt, fordi nogle bilister overser striberne, hvorved det \colorbox{Peach}{giver} gående en falsk tryghed. Men \colorbox{Goldenrod}{lad} os nu slette tavlen og se på det med friske øjne, siger rådmanden, der er enig med VisitAalborgs Lars Bech i, at der skal \mycolor{Goldenrod}{LimeGreen}{findes} en tilfreds stillende løsning. - Når vi markedsfører os i \colorbox{Peach}{forhold} til krydstogtsturismen, og ved fra VisitAalborg, at det ikke er ligetil at få rederierne til at vælge Aalborg, skal der også være en service, der virkelig fungerer, og der \colorbox{Aquamarine}{tæller} de små \colorbox{Peach}{ting} som adgang til \colorbox{Peach}{byen} også. Så det her skal vi \colorbox{Peach}{finde} en \colorbox{Goldenrod}{løsning} på. Det ville ikke være til at bære, hvis der \colorbox{LimeGreen}{skete} en ulykke, siger rådmanden, der mener, at det på tværs vil være \colorbox{Peach}{muligt} at \colorbox{Peach}{finde} de nødvendige \colorbox{Peach}{penge} til et eventuelt nyanlæg, siger rådmanden, der kan forestille sig, at en \mycolor{Goldenrod}{Aquamarine}{form} for lysregulering kommer til at indgå i løsningen. - Det vil ikke være tilstrækkeligt bare at male zebrastriber på vejen, siger han.
+			rådmand: der skal \colorbox{Peach}{findes}  en \mycolor{Orchid}{Goldenrod}{løsning} aalborg: rådmand \colorbox{Peach}{hans} \colorbox{Peach}{henrik} \colorbox{Peach}{henriksen} (s) er indstillet på, at der fra \mycolor{Goldenrod}{LimeGreen}{kommunens} side bidrages til en løsning, der sikrer krydstogtgæsterne sikker adgang på tværs af slotspladsen. - \colorbox{Goldenrod}{lad} os prøve at se, om vi ikke ved \mycolor{Goldenrod}{LimeGreen}{fælles} \colorbox{Peach}{hjælp} kan \colorbox{Peach}{finde} en god løsning, der fungerer, på det her, siger by- og landskabsrådmanden med henvisning til dagsordenen for det \colorbox{Peach}{kommende} \colorbox{Peach}{møde} med deltagelse af visitaalborg, \colorbox{Peach}{kommunen} ved \mycolor{Orchid}{Goldenrod}{trafik} og veje, \mycolor{LimeGreen}{Aquamarine}{politiet} \colorbox{Peach}{samt} aalborg havn, der også har en \mycolor{Goldenrod}{Aquamarine}{interesse} i \mycolor{Goldenrod}{LimeGreen}{udvikling} af krydstogtforretningen. forud for mødet har han ikke noget bud på en løsning, og han gentager en tidligere afvisning af et traditionelt fodgængerfelt. - \colorbox{Peach}{folk} med viden på det felt har forklaret mig, at der \colorbox{Peach}{faktisk} \colorbox{Peach}{sker} flere ulykker i et fodgængerfelt, fordi nogle bilister overser striberne, hvorved det \colorbox{Peach}{giver} gående en falsk tryghed. men \colorbox{Goldenrod}{lad} os nu slette tavlen og se på det med friske øjne, siger rådmanden, der er enig med visitaalborgs \colorbox{Peach}{lars} bech i, at der skal \colorbox{Peach}{findes} en tilfreds stillende løsning. - når vi markedsfører os i \colorbox{Peach}{forhold} til krydstogtsturismen, og ved fra visitaalborg, at det ikke er ligetil at få rederierne til at vælge aalborg, skal der også være en service, der virkelig fungerer, og der \colorbox{Aquamarine}{tæller} de små \colorbox{Peach}{ting} som adgang til \colorbox{Peach}{byen} også. så det her skal vi \colorbox{Peach}{finde} en \mycolor{Orchid}{Goldenrod}{løsning} på. det ville ikke være til at bære, hvis der \mycolor{LimeGreen}{Aquamarine}{skete} en ulykke, siger rådmanden, der mener, at det på tværs vil være \colorbox{Peach}{muligt} at \colorbox{Peach}{finde} de nødvendige \colorbox{Peach}{penge} til et eventuelt nyanlæg, siger rådmanden, der kan forestille sig, at en \colorbox{Peach}{form} for lysregulering kommer til at indgå i løsningen. - det vil ikke være tilstrækkeligt bare at male zebrastriber på vejen, siger han.
 		}
 	\end{tcolorbox}
-	\caption{Article 2.}
+	\caption{An article about politics in Aalborg, specifically about charter ships docking in Aalborg and how the municipality is trying to solve this problem.}
 	\label{art:2}
 \end{figure}
  

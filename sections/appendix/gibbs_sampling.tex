@@ -6,7 +6,7 @@ In the following sections, we explain how these procedures have been implemented
 Before a Gibbs sampling algorithm can run, every word needs to be assigned a random topic.
 To do this, we iterate over each word within each document and assign a random topic to it.
 This procedure is shown in \autoref{lst:randomInit}.
-\begin{lstlisting}[language=Python, caption=Random Initialization,label={lst:randomInit}, float, floatplacement=H]
+\begin{lstlisting}[language=Python, caption=Random Initialization for the Gibbs sampler.,label={lst:randomInit}, float, floatplacement=H]
 import numpy as np
 
 def rand_initialize(documents: List[np.ndarray]):
@@ -64,7 +64,7 @@ This can be seen in \autoref{eq:author_gibbs_eq} and \autoref{eq:category_gibbs_
 \subsubsection{Gibbs Sampling}
 We can start investigating the Gibbs sampling method itself, where we iterate over each word in every document and draw a new topic based on the given topic distribution.
 As in \autoref{lst:randomInit}, the code has been simplified.
-\begin{lstlisting}[language=Python, caption=Gibbs Sampling Method,label={lst:gibbsSampling}, float, floatplacement=H]
+\begin{lstlisting}[language=Python, caption=The Gibbs Sampling Method.,label={lst:gibbsSampling}, float, floatplacement=H]
 import numpy as np
 
 def gibbs_sampling(documents: List[np.ndarray],
