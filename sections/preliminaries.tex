@@ -39,21 +39,23 @@ The plate notation for \gls{lda} can be seen in \autoref{fig:standard_lda}.
 \citet{author_topic_2012} present the author-topic model.
 It seeks to find topics based on author metadata, and is based on the assumption that authors prefer to write about specific topics.
 In this model, there are no document-topic distributions $\theta$, but rather one author-topic distribution for each author.
-The reason for this is to find the interest of authors, within the documents, that we are analyzing.
-The generative process for the author-topic model is similar to that of the \gls{lda} with a few minor changes.
-The model assumes that there are multiple authors for each document which is modeled by the $x$ variable in \autoref{fig:original_author_lda}
-Before drawing a word topic, we need to select an author before drawing a topic which is executed in B.a.
+The reason for this is to find the interest of authors within the documents that we are analyzing.
+The generative process for the author-topic model is similar to that of the \gls{lda} model with a few minor changes.
+The model assumes that there are multiple authors for each document which is modeled by the $\boldsymbol{a_d}$ and $x$ variables in \autoref{fig:original_author_lda}.
+Before drawing a word topic, we need to select an author $x$ from $\boldsymbol{a_d}$.
+The generative process is seen in the following steps:
 \vspace{\topsep}
 \begin{enumerate}
-	\item Draw topic proportion $\theta_a \sim Dirichlet(\alpha)$
+	\item For each author, draw topic proportion $\theta_a \sim Dirichlet(\alpha)$
 	\item For each word $n$ in the document:
 	\begin{enumerate}
-		\item Draw author assignment $x \sim \boldsymbol{a_d}$
-		\item Draw topic assignment $z_{d,n} \sim Mult(\theta_a)$
+		\item Draw author assignment $x \sim U(\boldsymbol{a_d})$
+		\item Draw topic assignment $z_{d,n} \sim Mult(\theta_x)$
 		\item Draw word $w_{d,n} \sim Mult(\beta_{z_{d,n}})$
 	\end{enumerate}
 \end{enumerate}
 \vspace{\topsep}
+Here $U()$ denotes the discrete uniform distribution.
 
 \citet{author_topic_2012} describe the author-topic model where for each document $d$, they assign a vector of authors $a_d$ from a set of authors $A$, and for each word uniformly choose an author $x$ at random from this vector.
 The original plate notation for the author-topic model can be seen in \autoref{fig:metadata_lda}.
