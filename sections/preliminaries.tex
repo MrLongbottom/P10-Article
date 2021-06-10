@@ -18,7 +18,7 @@ The generative process for each document is seen in these steps:
 
 \vspace{\topsep}
 \begin{enumerate}
-	\item Draw topic proportion $\theta_d \sim Dirichlet(\alpha)$
+	\item Draw topic proportion $\theta_d \sim Dir(\alpha)$
 	\item For each word $n$ in the document:
 	\begin{enumerate}
 		\item Draw topic assignment $z_{d,n} \sim Mult(\theta_d)$
@@ -44,9 +44,10 @@ The generative process for the author-topic model is similar to that of the \gls
 The model assumes that there are multiple authors for each document which is modeled by the $\boldsymbol{a_d}$ and $x$ variables in \autoref{fig:original_author_lda}.
 Before drawing a word topic, we need to select an author $x$ from $\boldsymbol{a_d}$.
 The generative process is seen in the following steps:
+\newpage
 \vspace{\topsep}
 \begin{enumerate}
-	\item For each author, draw topic proportion $\theta_a \sim Dirichlet(\alpha)$
+	\item For each author, draw topic proportion $\theta_a \sim Dir(\alpha)$
 	\item For each word $n$ in the document:
 	\begin{enumerate}
 		\item Draw author assignment $x \sim U(\boldsymbol{a_d})$
@@ -76,7 +77,7 @@ The original plate notation for the author-topic model can be seen in \autoref{f
 		\resizebox{\textwidth}{!}{%
 			\input{figures/category_plate}
 		}
-		\caption{Category-topic model.}
+		\caption{Our category-topic model.}
 		\label{fig:category_lda}
 	\end{subfigure}
 	\hspace{2em}
@@ -85,7 +86,7 @@ The original plate notation for the author-topic model can be seen in \autoref{f
 		\resizebox{\textwidth}{!}{%
 			\input{figures/author_plate}
 		}
-		\caption{Author-topic model.}
+		\caption{Our author-topic model.}
 		\label{fig:author_lda}
 	\end{subfigure}	
 	\caption{Plate notation for the metadata \gls{lda} models.}
@@ -140,7 +141,7 @@ The plate notation from \citet{li2006pachinko} and our modification can be seen 
 		\resizebox{\textwidth}{!}{%
 			\input{figures/pachinko}
 		}
-		\caption{Five-Level \gls{pam}.}
+		\caption{Our Five-Level \gls{pam}.}
 		\label{fig:five_layer_pachinko}
 	\end{subfigure}
 	\caption{Plate notation for the original Four-Level \gls{pam} and our Five-Level \gls{pam}.}

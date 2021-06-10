@@ -4,29 +4,6 @@ As with the author-topic model, the similarity between pairs of categories can b
 Because topic distributions are generated for each category, category similarity can also be calculated using \autoref{eq:author_similarity} where $i$ and $j$ are categories instead of authors.
 In \autoref{tab:category_similarity}, the top 10 category pairs, based on symmetric KL divergence, are shown.
 
-\begin{table}[h]
-	\centering
-	\caption{Top 10 category pairs based on the symmetric KL divergence between categories.}
-	\begin{tabular}{r|c}
-		Category pair & KL \\
-		\midrule
-		misc (292) \& Friii (2333) & 3.65 \\
-		Friii (2333) \& Debat (10075) & 3.80 \\
-		Feature (188) \& Hjørring-avis (4235) & 4.22 \\
-		Sport-avis (10941) \& Morsø Sport (2350) & 5.04 \\
-		Indsigt (984) \& Perspektiv (613) & 5.27 \\
-		53. Frederik (203) \& Navne (3749) & 5.69 \\
-		Rebild-avis (4415) \& Bo Godt (1447) & 5.78 \\
-		Nordjyske Biler (1400) \& Thisted-avis (11473) & 5.91 \\
-		misc (292) \& Debat (10075) & 6.67 \\
-		Frederikshavn-avis (4325) \& Bo Godt (1447) & 6.81 \\
-		\midrule
-		Maximum KL divergence & 35.62 \\
-		Median KL divergence & 27.09 \\
-	\end{tabular}
-	\label{tab:category_similarity}
-\end{table}
-
 The second most similar pair, 'Friii' and 'Debat', is interesting to look at since 'Friii' does not seem to have a theme in the articles written, articles with the 'Debat' (debate) category seem to mostly cover themes that can bring differing opinions and articles with interviews.
 This indicates that the model does not find these deeper thematic differences in articles or that it finds other patterns that are difficult to see.
 
@@ -43,3 +20,49 @@ A random selection of categories from the dataset and the top words from their m
 
 This knowledge about categories can support recommendation in multiple ways.
 An example is, that while news sites often have the possibility to filter articles based on categories, knowing which categories are similar gives further opportunities for recommending related or similar articles.
+
+\begin{table*}[t]
+	\centering
+	\caption{Top 10 words of selected topics from our taxonomy-topic model. Labels have been manually added to the topics to increase readability.}
+	\label{tab:pachinko_selected_topics}
+	\begin{tabular}{c | c | c}
+		Topic & Label & Top 10 words \\
+		\hline
+		8 & politics & venstre, valg, valget, partiet, partier, parti, stemmer, mette, politik, regering \\
+		9 & money & procent, viser, tal, antallet, milliarder, pct, seneste, penge, millioner, indland \\
+		19 & filler & mig, maske, du, folk, synes, ting, faktisk, nogen, altid, tror \\
+		21 & university & unge, uddannelse, studerende, gymnasium, elever, uddannelser, universitet, procent, uddannelsen, nordjylland \\
+		41 & academic research & universitet, professor, forskere, forskning, forskerne, viser, verden, institut, procent, aarhus \\
+		42 & filler & mig, min, mit, ham, aldrig, gik, lille, maske, mine, altid \\
+		45 & wildlife & dyr, naturen, natur, ulve, fugle, ulven, arter, dyrene, vilde, ulv \\
+		47 & church & kirke, kirken, sognepræst, præst, søndag, koret, gudstjeneste, aften, kor, organist \\
+		59 & music concerts & musik, koncert, sange, spiller, koncerter, band, koncerten, festival, musikken, publikum \\
+		60 & buisness & virksomheden, millioner, a, direktør, procent, medarbejdere, selskabet, overskud, ansatte, virksomhed \\
+		69 & primary school & elever, unge, skole, eleverne, skolen, skoler, klasse, børn, folkeskolen, lærere \\
+		74 & elder care & ældre, borgere, kommunen, millioner, penge, nordjylland, plejehjem, borgerne, kommunens, budget \\
+		75 & filler & du, din, dig, dit, altsa, dine, maske, nemlig, bruge, hvordan \\
+		79 & filler & mig, min, hendes, hende, rigtig, arige, altid, arbejde, mor, mine \\
+		86 & sports & handbold, mors, thy, hold, kamp, sæson, kampe, kampen, point, holdet \\
+	\end{tabular}
+\end{table*}
+
+
+\begin{table*}[t]
+	\centering
+	\caption{IDs of the 5 most occurring fourth layer topics for each third layer topic from the taxonomy-topic model. See \autoref{tab:pachinko_selected_topics} and Appendix \autoref{tab:pachinko_topics} for the most occurring words for each ID.}
+	\label{tab:pachinko_mid_topics}
+	\begin{tabular}{c | c | c | c | c | c}
+		Taxonomy Name & Top 5 Topic IDs & Taxonomy Name & Top 5 Topic IDs & Taxonomy Name & Top 5 Topic IDs \\ \hline
+		Danmark & 8, 42, 82, 59, 79 & Udland & 42, 79, 59, 8, 32 & Kultur & 9, 42, 79, 19, 8 \\
+		Landbrug & 42, 79, 8, 9, 19 & Kriminalitet & 42, 75, 60, 8, 86 & Socialstof & 42, 9, 79, 86, 8 \\
+		Arbejdsmarked & 42, 79, 59, 8, 9 & Økonomi & 79, 75, 74, 42, 9 & Sundhed & 8, 32, 42, 9, 19 \\
+		Politik & 42, 75, 9, 19, 74 & Musik & 75, 42, 59, 11, 79 & Sport & 42, 75, 8, 59, 52 \\
+		Bolig & 75, 42, 86, 79, 8 & Videnskab & 42, 8, 52, 79, 19 & Trafik & 42, 74, 8, 52, 32 \\
+		Erhverv & 42, 8, 59, 32, 79 & Uddannelse & 42, 9, 75, 32, 74 & Energi & 42, 8, 79, 19, 86 \\
+		Ulykker & 42, 75, 9, 79, 32 & Fritid & 42, 8, 75, 82, 79 & Socialt & 42, 75, 79, 59, 9 \\
+		Dyr & 86, 42, 79, 52, 9 & Natur & 42, 52, 9, 32, 79 & Miljø & 8, 42, 75, 52, 59 \\
+		Familie & 79, 8, 42, 59, 32 & Politi & 42, 75, 79, 8, 59 & Byggeri & 75, 42, 79, 77, 59 \\
+		Etik & 79, 42, 8, 86, 74 & Religion & 42, 79, 8, 59, 32 & Kommunalvalg & 42, 8, 75, 79, 32 \\
+		Nordjyske Plus & 42, 86, 9, 79, 74 & DF & 42, 8, 59, 52, 19 & & \\
+	\end{tabular}
+\end{table*}

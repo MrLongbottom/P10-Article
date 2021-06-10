@@ -4,6 +4,7 @@ We present three models, one for each of the metadata types detailed in \autoref
 Two of the models, the author-topic model and category-topic model, are based on the author-topic model explained in \autoref{subsec:auth_prelim}.
 The taxonomy-topic model is based on \gls{pam}, which is explained in \autoref{subsec:pachinko_prelim}.
 
+
 \subsection{Author-Topic model and Category-Topic model}
 We model both the author and category metadata types similarly to the model by \citet{author_topic_2012}.
 The category-topic model is based on the assumption that categories of the articles were chosen based on the content of the article and that local newspapers have their own unique topic preferences.
@@ -46,6 +47,7 @@ From our experiments, the training time for $50$ epochs increases from $12$ hour
 
 The fourth layer consists of $K = 90$ 'blank' topics, where the value of $90$ comes from a grid search described in \autoref{sec:experiment_gridsearch}.
 This layer is added so that the model can construct topics based on the higher-level topics learned from our taxonomy metadata.
+
 
 \input{figures/dag_structure}
 

@@ -9,37 +9,46 @@ The article is about agriculture and how farmers opening their doors to the publ
 It also mentions a few different farms in the Northern part of Jutland and describes these in various ways.
 
 \begin{table}
-	\caption{Top 10 words for each model used in \autoref{tab:disc_color}.}
+	\caption{Top 10 words of top 3 most occurring topics, within the article in \autoref{fig:the_article}, for each model used in \autoref{tab:disc_color}.}
 	\label{tab:top_words_three_models}
 	\begin{tabular}{c|p{0.8\columnwidth}}
 		Topic & Top 10 words for \gls{lda} \\
 		\midrule
-		0 & sæby, a, direktør, frederikshavn, virksomheden, hans, medarbejdere, pedersen, firmaet, procent \\
-		1 & omradet, boliger, natur, naturen, ligger, du, vand, dyr, a, skov \\
-		2 & nielsen, arets, prisen, dansk, mors, jensen, løgstør, aars, vm, thy \\
+		1 & sæby, a, direktør, frederikshavn, virksomheden, hans, medarbejdere, pedersen, firmaet, procent \\
+		2 & omradet, boliger, natur, naturen, ligger, du, vand, dyr, a, skov \\
+		3 & nielsen, arets, prisen, dansk, mors, jensen, løgstør, aars, vm, thy \\
 	\end{tabular}
 	\begin{tabular}{c|p{0.8\columnwidth}}
 		\midrule
 		Topic & Top 10 words for author-topic \\
 		\midrule
-		0 & du, procent, unge, børn, arige, hans, dansk, mig, thisted, mener\\
-		1 & sine, skriver, mig, børn, seneste, land, dansk, kommuner, andersen, formand \\
-		2 & set, glas, odense, vesthimmerland, leth, markedet, trump, ni, regionerne, prins\\
+		1 & du, procent, unge, børn, arige, hans, dansk, mig, thisted, mener\\
+		2 & sine, skriver, mig, børn, seneste, land, dansk, kommuner, andersen, formand \\
+		3 & set, glas, odense, vesthimmerland, leth, markedet, trump, ni, regionerne, prins\\
 	\end{tabular}
 	\begin{tabular}{c|p{0.8\columnwidth}}
 		\midrule
 		Topic & Top 10 words for category-topic \\
 		\midrule
-		0 & du, hans, børn, mig, thisted, procent, bedre, a, kr, maske \\
-		1 & klar, haft, fem, hjørring, ham, nyt, formand, min, aften, sagen\\
-		2 & du, min, gode, gamle, ad, henrik, eu, finde, sat, hobro\\
+		1 & du, hans, børn, mig, thisted, procent, bedre, a, kr, maske \\
+		2 & klar, haft, fem, hjørring, ham, nyt, formand, min, aften, sagen\\
+		3 & du, min, gode, gamle, ad, henrik, eu, finde, sat, hobro\\
+	\end{tabular}
+	\begin{tabular}{c|p{0.8\columnwidth}}
+		\midrule
+		Topic & Top 10 words for taxonomy-topic \\
+		\midrule
+		1 & aab, jacob, kasper, rasmus, jakob, pedersen, andersen, friis, minut, allan \\
+		2 & landbrug, landbruget, landmænd, vand, miljø, affald, bedre, natur, vandløb, fødevarer \\
+		3 & virksomheden, millioner, a, direktør, procent, medarbejdere, selskabet, overskud, ansatte, virksomhed \\
 	\end{tabular}
 \end{table}
 
 To compare these models, we take the top 200 words of the topic-word distributions within each model and mark them in the article.
 We take 200 words since we want to see how intertwined the models are.
-Since the Author and Category models do not have a document-topic distribution we can not look at the specific document, but instead, we have marked the words from the given category- and author-topic distribution for the document's category and author, to see what the difference in topics are.
-\begin{table}[ht]
+Since the author-topic and category-topic models do not have a document-topic distribution we can not look at the specific document, but instead, we have marked the words from the given category- and author-topic distribution for the document's category and author to see what the difference in topics are.
+For the taxonomy model, we find the most probable topics within the article by inspecting the topic-word distribution and marking the words within \autoref{fig:the_article}.
+\begin{table}[b]
 	\centering
 	\caption{Color scheme for each model.}
 	\begin{tabular}{l|c}
@@ -48,7 +57,8 @@ Since the Author and Category models do not have a document-topic distribution w
 		\Acrlong{lda} & \thiscolor{Goldenrod} \vspace*{2mm} \\
 		Author-topic model & \thiscolor{Aquamarine} \vspace*{2mm} \\
 		Category-topic model & \thiscolor{LimeGreen} \vspace*{2mm} \\
-		Word appearing in all models & \thiscolor{Peach} \vspace*{2mm}  \\
+		Taxonomy-topic model & \thiscolor{Orchid} \vspace*{2mm} \\
+		Word appearing in 3+ models & \thiscolor{Peach} \vspace*{2mm} \\
 	\end{tabular}
 	\label{tab:disc_color}
 \end{table}
@@ -56,31 +66,55 @@ Since the Author and Category models do not have a document-topic distribution w
 \begin{figure}[h]
 	\begin{tcolorbox}[boxsep=5pt, top=0pt, bottom=0pt, left=0pt, right=0pt]
 		\emph{
-			Kig på grise, køer og kyllinger10 \colorbox{Peach}{nordjyske} bedrifter åbner \colorbox{LimeGreen}{søndag} for stalddørene Landbruget åbner \colorbox{LimeGreen}{søndag} 16. \mycolor{Goldenrod}{Aquamarine}{september} ladeporte og stalddøre for offentligheden. 52 danske bedrifter er med i årets ”Åbent landbrug”. I det \colorbox{Peach}{nordjyske} kan man kigge forbi på 10 \colorbox{Peach}{forskellige} landbrug. Blandt de \colorbox{Peach}{nordjyske} deltagere er der \colorbox{Peach}{mulighed} for at få indsigt i både kvæg- og svinebedrifter, \mycolor{Goldenrod}{Aquamarine}{ligesom} en producent af slagtekyllinger \colorbox{Aquamarine}{byder} velkommen. Sidstnævnte kan opleves hos Rokkedahl i Farstrup. De er tre familier med i alt \colorbox{Peach}{seks} børn, der sammen driver Rokkedahl Landbrug med slagtekyllinger og planteproduktion \colorbox{Peach}{samt} Rokkedahl Energi, som laver energioptimering. Herudover har de \colorbox{Goldenrod}{eget} slagteri, hvor ca. 35 af deres i alt 65 \mycolor{Goldenrod}{LimeGreen}{medarbejdere} arbejder. Familien Rokkedahl har \mycolor{Goldenrod}{Aquamarine}{arbejdet} med kyllinger siden 1963 og er tredje generation. I staldene og i de omkringliggende folde har de både fritgående og økologiske slagtekyllinger. Velfærdskyllingerne går i flokke og har adgang til store folde. På årsbasis opdrætter Rokkedahl \mycolor{Goldenrod}{Aquamarine}{otte} \colorbox{Peach}{millioner} kyllinger som enten slagtes på deres \colorbox{Goldenrod}{eget} slagteri eller sælges til eksterne slagterier. På de 1350 \colorbox{Goldenrod}{hektar} har de hvede, byg raps, havre, rug, ærter og hestebønner. Det anvendes primært til foder til velfærdskyllingerne. De dyrker \mycolor{Goldenrod}{Aquamarine}{jorden} primært økologisk og anvender halmen til opvarmning af staldene. De har varmevekslere på alle stalde for at minimere varmeforbruget og ammoniakudledningen til omgivelserne. Britt og Klaus Kristiansen på Solbakken Agri ved Aabybro er \colorbox{Peach}{klar} til vise en stor, \colorbox{Peach}{dansk} mælkeproduktion frem. Familien tæller også de fire børn, Maria på 18 år, Daniel på 16 år, Kamilla og Laura på 13 år, og de er sjette generation på gården, som de overtog i 2013. Solbakken har 600 økologiske malkekøer, som tilsammen \colorbox{Peach}{giver} 17.000 liter mælk om dagen. Den bliver hentet og kørt til et af Arlas mejerier, hvor den bliver anvendt til økologiske mejeriprodukter. 575 \colorbox{Goldenrod}{hektar} \colorbox{Peach}{land} tilhører gården, og her producerer \colorbox{Goldenrod}{familien} foder til deres \mycolor{Goldenrod}{LimeGreen}{dyr} \colorbox{Peach}{samt} andre fødevarer.  I Himmerland kan man besøge Sanne og Ole Mathiasen, der driver Nørregaard på Braulstrupvej 9 i Suldrup. Her kan man se søer, smågrise og slagtesvin i staldene og \colorbox{Aquamarine}{høre} om \colorbox{Goldenrod}{produktion} af velfærdsgrise, se maskinerne, få smagsprøver fra Danish Crown og på \colorbox{Peach}{lokale} fødevarer, og \colorbox{Aquamarine}{høre} om biavl. For \colorbox{Aquamarine}{børnene} er der \colorbox{LimeGreen}{leg} i korncontainer og halm, pedaltraktorbane og ponytrækketure. Der er kaffe og kagebord. Åbent \colorbox{Goldenrod}{landbrug} foregår \colorbox{LimeGreen}{søndag} fra \colorbox{LimeGreen}{klokken} 10 til 16. Det er gratis at deltage. Sidste år deltog 96.000 \colorbox{LimeGreen}{danskere} i åbent landbrug.
+			kig på grise, køer og kyllinger10 \colorbox{Peach}{nordjyske} bedrifter åbner \mycolor{LimeGreen}{Aquamarine}{søndag} for stalddørene \mycolor{Orchid}{Goldenrod}{landbruget} åbner \mycolor{LimeGreen}{Aquamarine}{søndag} 16. \mycolor{Goldenrod}{Aquamarine}{september} ladeporte og stalddøre for offentligheden. 52 danske bedrifter er med i årets ”åbent \mycolor{Orchid}{Goldenrod}{landbrug}”. i det \colorbox{Peach}{nordjyske} kan man kigge forbi på 10 \colorbox{Peach}{forskellige} \mycolor{Orchid}{Goldenrod}{landbrug}. blandt de \colorbox{Peach}{nordjyske} deltagere er der \colorbox{Peach}{mulighed} for at få indsigt i både kvæg- og svinebedrifter, \colorbox{Peach}{ligesom} en producent af slagtekyllinger \colorbox{Aquamarine}{byder} velkommen. sidstnævnte kan opleves hos rokkedahl i farstrup. de er tre familier med i alt \colorbox{Peach}{seks} børn, der sammen driver rokkedahl \mycolor{Orchid}{Goldenrod}{landbrug} med slagtekyllinger og planteproduktion \colorbox{Peach}{samt} rokkedahl energi, som laver energioptimering. herudover har de \colorbox{Goldenrod}{eget} slagteri, hvor ca. 35 af deres i alt 65 \colorbox{Peach}{medarbejdere} arbejder. \colorbox{Goldenrod}{familien} rokkedahl har \colorbox{Peach}{arbejdet} med kyllinger siden 1963 og er tredje generation. i staldene og i de omkringliggende folde har de både fritgående og økologiske slagtekyllinger. velfærdskyllingerne går i flokke og har adgang til store folde. på årsbasis opdrætter rokkedahl \mycolor{Goldenrod}{Aquamarine}{otte} \colorbox{Peach}{millioner} kyllinger som enten slagtes på deres \colorbox{Goldenrod}{eget} slagteri eller sælges til eksterne slagterier. på de 1350 \mycolor{Orchid}{Goldenrod}{hektar} har de hvede, byg raps, havre, rug, ærter og hestebønner. det anvendes primært til foder til velfærdskyllingerne. de dyrker \colorbox{Peach}{jorden} primært økologisk og anvender halmen til opvarmning af staldene. de har varmevekslere på alle stalde for at minimere varmeforbruget og ammoniakudledningen til omgivelserne. britt og \colorbox{LimeGreen}{klaus} kristiansen på solbakken agri ved aabybro er \colorbox{Peach}{klar} til vise en stor, \colorbox{Peach}{dansk} mælkeproduktion frem. \colorbox{Goldenrod}{familien} tæller også de fire børn, maria på 18 år, daniel på 16 år, \colorbox{LimeGreen}{kamilla} og laura på 13 år, og de er sjette generation på gården, som de overtog i 2013. solbakken har 600 økologiske malkekøer, som tilsammen \colorbox{Peach}{giver} 17.000 liter mælk om dagen. den bliver hentet og kørt til et af arlas mejerier, hvor den bliver anvendt til økologiske mejeriprodukter. 575 \mycolor{Orchid}{Goldenrod}{hektar} \colorbox{Peach}{land} tilhører gården, og her producerer \colorbox{Goldenrod}{familien} foder til deres \colorbox{Peach}{dyr} \colorbox{Peach}{samt} andre fødevarer.  i himmerland kan man besøge sanne og \mycolor{LimeGreen}{Aquamarine}{ole} mathiasen, der driver nørregaard på braulstrupvej 9 i suldrup. her kan man se søer, smågrise og slagtesvin i staldene og \colorbox{Aquamarine}{høre} om \mycolor{Orchid}{Goldenrod}{produktion} af velfærdsgrise, se maskinerne, få smagsprøver fra \mycolor{Orchid}{Goldenrod}{danish} \colorbox{Goldenrod}{crown} og på \colorbox{Peach}{lokale} fødevarer, og \colorbox{Aquamarine}{høre} om biavl. for \colorbox{Aquamarine}{børnene} er der \colorbox{LimeGreen}{leg} i korncontainer og halm, pedaltraktorbane og ponytrækketure. der er kaffe og kagebord. åbent \mycolor{Orchid}{Goldenrod}{landbrug} foregår \mycolor{LimeGreen}{Aquamarine}{søndag} fra \colorbox{Peach}{klokken} 10 til 16. det er gratis at deltage. sidste år deltog 96.000 \mycolor{LimeGreen}{Aquamarine}{danskere} i åbent \mycolor{Orchid}{Goldenrod}{landbrug}.
 		}
 	\end{tcolorbox}
-	\caption{An article chosen arbitrarily from our dataset.}
+	\caption{An article chosen arbitrarily from our dataset where words within top 200 of the top 3 topics within each model are highlighted.}
 	\label{fig:the_article}
 \end{figure}
 
 Overall, we see that there is a large amount of overlap between the models, which is interesting since the models use different metadata information to create the various topic distributions.
 This indicates that the models share many of the top words, while also indicating a slight deviation between the models due to the metadata information.
-The \gls{lda} model shows words like "landbrug" (agriculture) and "produktion" (production), which is what the article is mostly about.
+The \gls{lda} model and the taxonomy model show words like "landbrug" (agriculture) and "produktion" (production), and "hektar" (acre) which is what the article is mostly about.
 Author-topic specific words are not very present and are only showing three unique words: "byder", "hører", and "børnene".
 This indicates that the author-topic model has trouble generalizing what the author of this article (Peter Tordrup Larsen) is writing about. 
 This might be because he has written $5002$ articles in our dataset and generalizing that many articles is a challenge.
 Another aspect of the author-topic model is that the authors writing these articles most likely do not write about just one subject, which explains why there are only three less important words marked here. 
-The category-topic model only shows four unique words: "søndag" (Sunday), "leg" (play), "klokken" (clock), and "danskere" (Danes).
+The category-topic model only shows three unique words: "klaus", "kamilla", and "leg" (play).
 These words are also very abstract and can be used in many different scenarios.
 
-An interesting part of this analysis is the words appearing in all models.
-Some of the words within this category are: "dansk" (Danish), "millioner" (millions), "samt" (including), and "nordjyske" (North Jutland).
-These words are not very representative of the content of the article, but the article is also difficult to summarize since it covers a wide variety of specific topics.
+An interesting part of this analysis is the words appearing in three or more models.
+Some notable words within this category are: "medarbejder" (co-worker), "arbejdet" (worked), "jorden" (earth), "land", "nordjyske" (North Jutland), and "dyr" (animals).
+These words are fairly representative of the content of the article.
 
-Combining the results of these models might yield better topic models since some words appearing in two models are "medarbejder" (coworker), "arbejdet" (the work), and "dyr" (animals).
-However, there are also words such as "otte" (eight), "september", and "ligesom" (like), which are not that descriptive of articles about agriculture. 
+A general pattern which can be seen in \autoref{fig:the_article} is that the \gls{lda} model and the taxonomy-topic model are marking many of the same words, where the taxonomy-topic model only occurs together with other models.
+This makes sense because these two models have the best topic coherence in our results. 
+
 There is also the possibility that choosing another random article would give completely different numbers of marked words per model because this highly depends on the article's author and category.
 In Appendix \autoref{app:color_articles}, we investigate how the coloring applies to two other articles.
+
+\begin{table}[t]
+	\centering
+	\caption{Top 10 author pairs based on the symmetric KL divergence between authors.}
+	\begin{tabular}{r|c}
+		Author pair & KL \\
+		\midrule
+		Lars Termansen (328) \& Mikkel Færgemann Viken (91) & 1.50 \\
+		Morten Nis Klenø (17) \& Anne Helene Thomsen (606) & 1.72 \\
+		Lars Termansen (328) \& Lars Christensen (1293) & 2.43 \\
+		Esben Heine Pedersen (1689) \& Caspar Birk (71) & 2.47 \\
+		Lars Christensen (1293) \& Poul Christoffersen (65) & 2.53 \\
+		Lone Beck (92) \& Max Melgaard (587) & 2.74 \\
+		HANNE Lindblad Jensen (27) \& Peter Tordrup Larsen (5002) & 2.94 \\
+		Søren Kjær (95) \& Carl Chr. Madsen (785) & 2.98 \\
+		Heidi Majgaard B. Pedersen (244) \& Lisbeth Helleskov (361) & 3.05 \\
+		Lars Termansen (328) \& Morten Lind (413) & 3.16 \\
+		\midrule
+		Maximum & 34.51 \\
+		Median & 24.20 \\
+	\end{tabular}
+	\label{tab:author_similarity}
+\end{table}
 
 \input{sections/discussion/author-topic.tex}
 \input{sections/discussion/category-topic.tex}
