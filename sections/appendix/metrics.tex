@@ -16,9 +16,9 @@ $S$ is defined by \autoref{eq:set_of_word_pairs}.
 	S = \{(W', W*)|W' = \{w_i\};w_i \in W;W* = W\}
 \end{equation}
 
-Before calculating word probabilities, a sliding window of size $s$ where $s =110$ is used to create a set of subdocuments $D_s$ over the document set $D$.
+Before calculating word probabilities, a sliding window of size $s$ where $s =110$ is used to create a set of subdocuments $D_s$ over the document set $D$, by creating one subdocument for every window of size $s$ by sliding over each document at a rate of one word per step.
+So document $d = \{w_1, w_2, \dots, w_l\}$, would be converted into $d_1=\{w_1, w_2, \dots, w_s\}, d_2=\{w_2, w_3, \dots, w_{s+1}\}, \dots, d_{l-s}=\{w_{l-s}, w_{1+l-s}, \dots, w_l\}$.
 We choose not to change the sliding window size $s$ to be able to compare against other papers, but this is a hyperparameter, which could provide better results for our dataset if changed. 
-\todo{talk about how sliding window works, and how it influences this metric}
 These subdocuments are used rather than the normal documents to capture some degree of word proximity.
 Word probabilities are calculated based on how many documents, within the document set $D_s$, they occur in.
 $p(w_i)$ is the number of subdocuments in which the word $w_i$ occurs divided by $|D_s|$.
