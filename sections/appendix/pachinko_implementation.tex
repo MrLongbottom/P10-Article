@@ -7,7 +7,7 @@ The probability of each topic combination is calculated using the joint probabil
 
 \begin{equation}\label{eq:pachinko_gibbs}
 	\begin{split}
-		P(Z_{w2} = t_a, Z_{w3} = t_b, Z_{w4} = t_c | \textbf{D}, z_{-w}, \alpha, \beta) \propto
+		P(Z_{w2} = t_a, Z_{w3} = t_b, Z_{w4} = t_c | \textbf{D}, z_{-w}, \alpha, \eta) \propto
 		\underbrace{\frac{n_{1a}^d + \alpha_{1a}}{n_1^d + \sum_{a'} \alpha_{1a'}}}_{\text{Root $\rightarrow$ Tax.1}} \times
 		\underbrace{\frac{n_{ab}^d + \alpha_{ab}}{n_a^d + \sum_{b'} \alpha_{ab'}}}_{\text{Tax.1 $\rightarrow$ Tax.2}}  \times 
 		\underbrace{\frac{n_{bc}^d + \alpha_{bc}}{n_{b}^d + \sum_{c'} \alpha_{bc'}}}_{\text{Tax.2 $\rightarrow$ Topics}} \times 
