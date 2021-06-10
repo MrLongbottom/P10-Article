@@ -92,7 +92,7 @@ The rest are middle layers representing topics of different abstraction levels.
 
 $T = {t_1, t_2, \dots, t_s}$ is the set of topics in the \gls{pam}. 
 Each topic $t_i$ is associated with a Dirichlet distribution $g_i(\alpha_i)$ based on a vector $\alpha_i$ which has the same dimension as the number of children in $t_i$.
-While it is possible to use different $\alpha$ values for each topic, as shown here, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
+While it is possible to use different $\alpha$ values for each topic, as shown below, we found through experimentation that using the same $\alpha$ value for all layers still provided good results.
 
 The generative process for each document $d$ in \gls{pam} consists of the following steps, as described by \citeauthor{li2006pachinko}~\cite{li2006pachinko}:
 \begin{enumerate}

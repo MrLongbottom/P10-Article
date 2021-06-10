@@ -7,10 +7,9 @@ The taxonomy-topic model is based on \gls{pam}, which is explained in \autoref{s
 \subsection{Author-Topic model and Category-Topic model}
 We model both the author and category metadata types similarly to the model by \citet{author_topic_2012}.
 The category-topic model is based on the assumption that categories of the articles were chosen based on the content of the article and that local newspapers have their own unique topic preferences.
-We find this model structure to be generally applicable to most metadata information, 
-assuming that the metadata has influence on the text of the document or that the text of the document has influence on the metadata.
-The author metadata has influence on the text of the documents, as each author has their own writing style and subjects they write about.
-The text of the documents has influence on the category metadata, as it is assumed that the category is chosen after the document has been written.
+We find this model structure to be generally applicable to most metadata information, assuming that the metadata influences the text of the document or that the text of the document influences the metadata.
+The author metadata influences the text of the documents, as each author has their own writing style and subjects they write about.
+The text of the documents influences the category metadata, as it is assumed that the category is chosen after the document has been written.
 
 For our category-topic model and our author-topic model, each document $d$ is associated with only one category $c_d$ from the set of all categories $C$ and only one author $a_d$ from the set of all authors $A$.
 This is different from \citet{author_topic_2012}, where each document has a vector of authors.
