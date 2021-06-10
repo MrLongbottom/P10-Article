@@ -1,5 +1,5 @@
 \section{Conclusion}\label{sec:conclusion}\todo{motivate the problem again here}
-In this paper, we have explored possibilities for incorporating metadata\vejleder{gerne ??} into existing topic models, such as \gls{lda} and \gls{pam}.
+In this paper, we have explored the possibilities for incorporating news article metadata from Nordjyske into existing topic models, such as \gls{lda} and \gls{pam}.
 We have constructed models based on three different types of metadata: author, category, and taxonomy, each of which represents the data in a different way.
 We evaluated our models based on topic coherence and found that the taxonomy-topic model was the best-performing model for our dataset.
 
@@ -8,10 +8,8 @@ The author-topic and category-topic models based on \gls{lda} are the worst-perf
 This can be due to the authors within journalism covering a broader range of topics than within scientific literature, which can negatively impact the topic coherence.
 
 We want to answer the research questions we stated in \autoref{sec:introduction}:
-\vejleder{lidt rodet måske.}
-
 \begin{itemize}	
-    \item \textit{How can we establish models that incorporate metadata from the Nordjyske dataset?}	
+    \item \textit{How can we establish models that incorporate metadata from the Nordjyske dataset?}
     \item \textit{How does including metadata within such models impact the resulting topics?}
  \end{itemize}
 
@@ -19,8 +17,7 @@ We incorporate metadata into our topic models in multiple ways.
 The \gls{lda} model is used as a baseline, which indicates whether incorporating metadata can improve the topic quality of our topic models.
 Based on the results of the author-topic and category-topic models, we see that only using the metadata for word topic assignment within \gls{lda} can hurt the topic quality.
 Other studies have shown that only using the metadata for word topic assignments can improve performance~\cite{MetaLDA2017} \cite{author_topic_2012}.
-This might be due to the particularities of our dataset, such as authors not usually writing about the same subject within the news environment.  
-
+This might be due to the particularities of our dataset, such as authors not usually writing about the same subject within the news environment.
 
 We use the \gls{pam} to incorporate a hierarchically structured taxonomy metadata, where we use a novel locking mechanism to lock the observed metadata's topics into place.
 Using this model and technique, we can get better topic quality within \gls{pam} compared to the \gls{lda} model.
