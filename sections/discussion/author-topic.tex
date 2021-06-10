@@ -7,8 +7,7 @@ Then, just as \citet{author_topic_2012}, the similarity of authors can be found 
 \begin{equation} \label{eq:author_similarity}
 	sKL(i,j) = \sum_{t=1}^{T}\left[\theta_{it}\, log \frac{\theta_{it}}{\theta_{jt}} + \theta_{jt}\, log \frac{\theta_{jt}}{\theta_{it}}\right]
 \end{equation}
-\todo{en sætning til at beskrive at theta i equation ovenfor er posterior probability from the gibbs sampler}
-\noindent where $\theta_{it}$ is the probability of author $i$ having written about topic $t$, and the same for $\theta_{jt}$ with author $j$.
+\noindent where $\theta$ is the posterior distribution of the model, and $\theta_{it}$ is the probability of author $i$ having written about topic $t$, and the same for $\theta_{jt}$ with author $j$.
 
 In the context of using these similarities for recommendation, knowing how similar authors are, gives the opportunity to recommend new authors to readers, while the articles are about similar topics.
 In \autoref{tab:author_similarity}, the top 10 author pairs, based on this similarity measure, are shown.

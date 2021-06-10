@@ -3,6 +3,10 @@ There are $58$ different category labels present within the dataset.
 Categories with less than 140 documents (${\sim}0.1\%$ of the number of documents) are removed as part of preprocessing and replaced with a single miscellaneous category 'misc'.
 This reduces the number of categories to $34$, while only replacing 292 documents to have the 'misc' category.
 This preprocessing also makes the size of the remaining categories more evenly distributed, as can be seen in \autoref{fig:category_hist}.
+The smallest category consists of $188$ documents, and for all categories, the median category size is $3022$.
+\autoref{fig:category_box} shows an overview of the size of the categories after filtering.
+The categories from the 3rd quartile and up do become much larger compared to the median, and there is an outlier category with $20,241$ documents.
+These larger categories seem to be about topics that are written about often or categories that cover a specific newspaper.
 
 \begin{figure*}[ht]
 	\centering
