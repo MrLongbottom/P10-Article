@@ -46,7 +46,7 @@ It also mentions a few different farms in the Northern part of Jutland and descr
 
 To compare these models, we take the top 200 words of the topic-word distributions within each model and mark them in the article.
 We take 200 words since we want to see how intertwined the models are.
-Since the author-topic and category-topic models do not have a document-topic distribution we can not look at the specific document, but instead, we have marked the words from the given category- and author-topic distribution for the documents category and author, to see what the difference in topics are.
+Since the author-topic and category-topic models do not have a document-topic distribution we can not look at the specific document, but instead, we have marked the words from the given category- and author-topic distribution for the document's category and author to see what the difference in topics are.
 For the taxonomy model, we find the most probable topics within the article by inspecting the topic-word distribution and marking the words within \autoref{fig:the_article}.
 \begin{table}[b]
 	\centering
@@ -84,7 +84,7 @@ The category-topic model only shows three unique words: "klaus", "kamilla", and 
 These words are also very abstract and can be used in many different scenarios.
 
 An interesting part of this analysis is the words appearing in three or more models.
-Some notable words within this category are: "medarbejder" (co-worker), "arbejdet" (worked), "jorden" (earth), "land" (land), "nordjyske" (North Jutland), and "dyr" (animals).
+Some notable words within this category are: "medarbejder" (co-worker), "arbejdet" (worked), "jorden" (earth), "land", "nordjyske" (North Jutland), and "dyr" (animals).
 These words are fairly representative of the content of the article.
 
 A general pattern which can be seen in \autoref{fig:the_article} is that the \gls{lda} model and the taxonomy-topic model are marking many of the same words, where the taxonomy-topic model only occurs together with other models.
