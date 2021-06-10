@@ -1,18 +1,10 @@
 \section{Evaluation}\label{sec:experiment}
-In this section, we define the evaluation metrics and how hyperparameters for the models were chosen.
+In this section, we describe the evaluation metrics and how hyperparameters for the models are chosen.
 Lastly, an overview of the results is given.
 
-\subsection{Models}\label{sec:experiment_models}
-A list of different topic models is evaluated each using different metadata from the dataset.
-The main difference between the models is how they draw a specific topic for a word.
-As detailed in \autoref{sec:plate_notation} the main models used in this experiment are:
-\begin{description}
-	\item[\Acrlong{lda}] Standard \gls{lda} which uses document-topic distributions.
-	\item[Author-topic model]\cite{author_topic_2012} An \gls{lda} based model, which uses author-topic distributions.
-	\item[Category-topic model] An \gls{lda} based model which uses category-topic distributions.
-	\item[Taxonomy-topic model] A \acrlong{pam} which uses hierarchical taxonomy information.
-\end{description}
-\todo[inline]{Føler ikke dette afsnit giver nok til at fylde så meget. Tænker subsection kan fjernes, og at det meste af teksten kan forkortes til 1-2 sætninger. Itemizen med beskrivelse behøves ikke, men modellerne brugt kan nævnes i en af sætningerne. husk at emphasize at det er vores modeller}
+For our evaluation we train four models on our news article dataset.
+The standard \gls{lda} model is used as a baseline, and our models: the author-topic model, the category-topic model, and the taxonomy-topic model, are tested.
+The main differences between the models are how they draw a specific topic for a word, and in the taxonomy-topic model, a hierarchical structure is used.
 
 \subsection{Evaluation Metrics}\label{sec:experiment_metrics}
 The main metric used in this evaluation is topic coherence\cite{Syed2017coherence}.
