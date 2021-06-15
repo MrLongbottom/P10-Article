@@ -1,0 +1,270 @@
+\section{Experiment}
+\subsection{Hyperparameters}
+\begin{frame}{\insertsection}{\insertsubsection}
+	\begin{block}{Grid-search}
+	\begin{table}
+		\centering
+		\resizebox{.75\textwidth}{!}{
+		\begin{tabular}{c|c}
+			Parameter & Tested Values\\
+			\hline
+			$K_1$ & \textbf<2>{10}, \textbf<2>{50}, 100, 200, 300\\
+			$K_2$ & 5, 10, 15, 20, 25, \textbf<4>{30}, 35, 40, 45, 50\\
+			$\alpha$ & 0.5, \textbf<4>{0.1}, 0.01, 0.001\\
+			$\eta$ & \textbf<4>{0.1}, 0.01, 0.001, 0.0001\\
+		\end{tabular}
+	}
+	\end{table}
+
+	\centering
+	\includegraphics<3->[width=0.55\textwidth]{figures/topic_example.PNG}
+
+	\begin{itemize}
+		\item<4-> $K = 30$, $\alpha = 0.1$, and $\eta = 0.1$
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\section{Results}
+\begin{frame}{\insertsection}{}
+	\begin{block}{Mean Average Precision Results}
+		\begin{table}
+			\centering
+			\resizebox{\textwidth}{!}{
+			\begin{tabular}{l|c|c|c|c|c|c|c|c}
+				& \multicolumn{4}{c|}{Document Query Length} & \multicolumn{4}{c}{Topic Query Length} \\
+				\acrshort{ir} methods / \acrshort{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
+				\midrule
+				\acrshort{lda}-\acrshort{ir} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
+				\acrshort{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\
+				\acrshort{bm25} & 0.270 & 0.656 & 0.866 & \textbf{0.908} & 0.155 & 0.158 & 0.155 & 0.161 \\
+				\acrshort{tf-idf} & 0.210 & 0.621 & 0.799 & 0.897 & 0.155 & 0.157 & 0.155 & 0.161 \\
+				\acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.00458 & 0.00526 & 0.0429 & 0.0538 & 0.162 & \textbf{0.195} & \textbf{0.177} & \textbf{0.187} \\
+				\acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.00781 & 0.00569 & 0.0410 & 0.0537 & 0.156 & 0.186 & 0.168 & 0.179 \\
+				\acrshort{lm} + \acrshort{lda}-\acrshort{ir} & 0.0419 & 0.0214 & 0.0602 & 0.120 & 0.147 & 0.163 & 0.145 & 0.146 \\
+				\acrshort{lm} * \acrshort{lda}-\acrshort{ir} & 0.0931 & 0.0462 & 0.175 & 0.177 & 0.150 & 0.175 & 0.155 & 0.166 \\
+				\acrshort{lm} + \acrshort{pr} & 0.170 & 0.153 & 0.283 & 0.256 & 0.130 & 0.132 & 0.130 & 0.131 \\
+				\acrshort{lm} * \acrshort{pr} & 0.163 & 0.138 & 0.259 & 0.236 & 0.130 & 0.133 & 0.129 & 0.130 \\
+				\acrshort{lm} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.0499 & 0.0214 & 0.0601 & 0.120 & 0.148 & 0.164 & 0.146 & 0.147 \\
+				\acrshort{lm} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.0911 & 0.0459  & 0.157 & 0.170 & 0.150 & 0.175 & 0.155 & 0.166 \\
+				\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} & \textbf{0.276} & 0.524 & 0.588 & 0.365 & 0.155 & 0.184 & 0.168 & 0.176 \\
+				\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} & 0.139 & 0.270 & 0.412 & 0.365 & 0.154 & 0.159 & 0.156 & 0.162 \\
+				\acrshort{bm25} + \acrshort{pr} & 0.269 & 0.656 & 0.866 & 0.902 & \textbf{0.192} & 0.193 & 0.175 & 0.183 \\
+				\acrshort{bm25} * \acrshort{pr} & 0.267 & \textbf{0.663} & \textbf{0.884} & 0.904 & 0.155 & 0.159 & 0.155 & 0.161 \\
+				\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & \textbf{0.276} & 0.525 & 0.589 & 0.366 & 0.162 & 0.192 & 0.176 & 0.184 \\
+				\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.150 & 0.266 & 0.446 & 0.381 & 0.155 & 0.159 & 0.156 & 0.163 \\
+			\end{tabular}
+		}
+		\end{table}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\insertsection}{}
+	\begin{block}{Precision Results}
+		\begin{table}
+			\centering
+			\resizebox{\textwidth}{!}{
+				\begin{tabular}{l|c|c|c|c||c|c|c|c}
+					& \multicolumn{4}{c||}{Topic Query Length (P@10)} & \multicolumn{4}{c}{Topic Query Length (P@100)} \\
+					\acrshort{ir} methods & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
+					\midrule
+					\acrshort{lda}-\acrshort{ir} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
+					\acrshort{lm} & 0.126 & 0.118 & 0.116 & 0.069 & 0.090 & 0.092 & 0.087 & 0.093\\
+					\acrshort{bm25} & 0.136 & 0.161 & 0.164 & 0.174 & 0.142 & 0.165 & 0.175 & 0.151\\ 
+					\acrshort{tf-idf} & 0.160 & 0.125 & \textbf{0.200} & 0.148 & \textbf{0.163} & 0.169 & \textbf{0.188} & 0.170 \\
+					\acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.0188 & 0.103 & 0.141 & \textbf{0.211} & 0.062 & 0.131 & 0.175 & \textbf{0.198} \\
+					\acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.0125 & 0.100 & 0.133 & 0.200 & 0.062 & 0.132 & 0.167 & 0.192 \\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} & 0.02 & 0.101 & 0.136 & 0.196 & 0.060 & 0.129 & 0.161 & 0.188  \\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} & 0.02 & 0.085 & 0.109 & 0.161 & 0.055 & 0.114 & 0.129 & 0.152 \\
+					\acrshort{lm} + \acrshort{pr} & 0.138 & 0.130 & 0.116 & 0.0763 & 0.110 & 0.108 & 0.097 & 0.098 \\
+					\acrshort{lm} * \acrshort{pr} & 0.148 & 0.128 & 0.116 & 0.0963 & 0.110 & 0.112 & 0.101 & 0.101 \\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.019 & 0.101 & 0.134 & 0.195 & 0.061 & 0.129 & 0.163 & 0.187\\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.026 & 0.090 & 0.110 & 0.161 & 0.059 & 0.115 & 0.130 & 0.152\\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & \textbf{0.198} \\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
+					\acrshort{bm25} + \acrshort{pr} & 0.135 & 0.163 & 0.165 & 0.173 & 0.155 & 0.165 & 0.176 & 0.151 \\
+					\acrshort{bm25} * \acrshort{pr} & \textbf{0.165} & \textbf{0.169} & 0.184 & 0.170 & 0.148 & \textbf{0.177} & 0.186 & 0.161\\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.17 & \textbf{0.198}\\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.095 & 0.141 & 0.176 & 0.206 & 0.135 & 0.174 & 0.174 & 0.188\\
+				\end{tabular}
+			}
+		\end{table}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\insertsection}{}
+	\begin{block}{Average Rank Results}
+		\begin{table}
+			\centering
+			\resizebox{.8\textwidth}{!}{
+				\begin{tabular}{l|c|c|c|c}
+					& \multicolumn{4}{c}{Document Query Length} \\
+					\acrshort{ir} methods / Avg. Rank & 1 & 2 & 3 & 4 \\
+					\midrule
+					\acrshort{lda}-\acrshort{ir} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
+					\acrshort{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
+					\acrshort{bm25} & \textbf{19.58} & 7.94 & 1.78 & 1.41 \\
+					\acrshort{tf-idf} & 30.0 & 9.3 & 2.03 & 1.29 \\
+					\acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 2491.31 & 1342.53 & 1126.23 & 1906.76\\
+					\acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 2305.04 & 1600.93 & 1223.14 & 1920.175\\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} & 1971.19 & 1192.91 & 1027.95 & 1482.69 \\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} & 1874.81 & 1456.21 & 954.66 & 1853.44 \\
+					\acrshort{lm} + \acrshort{pr} & 7299.85 & 9134.81 & 6429.24 & 7725.36 \\
+					\acrshort{lm} * \acrshort{pr} & 7328.7625 & 9137.23 & 6504.85 & 7772.4\\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 1978.74 & 1179.21 & 994.91 & 1438.88 \\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 1892.12 & 1453.56 & 941.4 & 1850.43 \\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} & 30.45 & 28.59 & 17.7 & 23.76 \\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} & 163.76 & 557.13 & 297.48 & 1159.33 \\
+					\acrshort{bm25} + \acrshort{pr} & 19.69 & \textbf{7.88} & 1.79 & 1.43\\
+					\acrshort{bm25} * \acrshort{pr} & 23.96 & 8.45 & \textbf{1.61} & \textbf{1.24}\\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 30.35 & 28.44 & 17.65 & 23.76\\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 163.5 & 555.35 & 295.69 & 1158.08\\
+				\end{tabular}
+			}
+		\end{table}
+	\end{block}
+\end{frame}
+
+
+\subsection{New Experiments}
+\begin{frame}{\insertsection}{\insertsubsection}
+	\begin{block}{MAP Random Document Results}
+	    \begin{table}
+			\centering
+			\resizebox{\textwidth}{!}{
+			\begin{tabular}{l|c|c|c|c|c|c|c|c}
+				& \multicolumn{4}{c|}{Document Query Length} & \multicolumn{4}{c}{Topic Query Length} \\
+				\acrshort{ir} methods / \acrshort{map} & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 \\
+				\midrule
+				\acrshort{lda}-\acrshort{ir} & 0.00457 & 0.00527 & 0.0429 & 0.0538 & 0.155 & 0.186 & 0.168 & 0.178 \\
+				\acrshort{lm} & 0.198 & 0.152 & 0.291 & 0.260 & 0.126 & 0.130 & 0.128 & 0.129 \\
+				\acrshort{bm25} & 0.270 & 0.656 & 0.866 & \textbf{0.908} & 0.155 & 0.158 & 0.155 & 0.161 \\
+				\acrshort{tf-idf} & 0.210 & 0.621 & 0.799 & 0.897 & 0.155 & 0.157 & 0.155 & 0.161 \\
+				\acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.00458 & 0.00526 & 0.0429 & 0.0538 & 0.162 & \textbf{0.195} & \textbf{0.177} & \textbf{0.187} \\
+				\acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.00781 & 0.00569 & 0.0410 & 0.0537 & 0.156 & 0.186 & 0.168 & 0.179 \\
+				\acrshort{lm} + \acrshort{lda}-\acrshort{ir} & 0.0419 & 0.0214 & 0.0602 & 0.120 & 0.147 & 0.163 & 0.145 & 0.146 \\
+				\acrshort{lm} * \acrshort{lda}-\acrshort{ir} & 0.0931 & 0.0462 & 0.175 & 0.177 & 0.150 & 0.175 & 0.155 & 0.166 \\
+				\acrshort{lm} + \acrshort{pr} & 0.170 & 0.153 & 0.283 & 0.256 & 0.130 & 0.132 & 0.130 & 0.131 \\
+				\acrshort{lm} * \acrshort{pr} & 0.163 & 0.138 & 0.259 & 0.236 & 0.130 & 0.133 & 0.129 & 0.130 \\
+				\acrshort{lm} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.0499 & 0.0214 & 0.0601 & 0.120 & 0.148 & 0.164 & 0.146 & 0.147 \\
+				\acrshort{lm} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.0911 & 0.0459  & 0.157 & 0.170 & 0.150 & 0.175 & 0.155 & 0.166 \\
+				\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} & \textbf{0.276} & 0.524 & 0.588 & 0.365 & 0.155 & 0.184 & 0.168 & 0.176 \\
+				\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} & 0.139 & 0.270 & 0.412 & 0.365 & 0.154 & 0.159 & 0.156 & 0.162 \\
+				\acrshort{bm25} + \acrshort{pr} & 0.269 & 0.656 & 0.866 & 0.902 & \textbf{0.192} & 0.193 & 0.175 & 0.183 \\
+				\acrshort{bm25} * \acrshort{pr} & 0.267 & \textbf{0.663} & \textbf{0.884} & 0.904 & 0.155 & 0.159 & 0.155 & 0.161 \\
+				\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & \textbf{0.276} & 0.525 & 0.589 & 0.366 & 0.162 & 0.192 & 0.176 & 0.184 \\
+				\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.150 & 0.266 & 0.446 & 0.381 & 0.155 & 0.159 & 0.156 & 0.163 \\
+				\rowcolor{red!30}Random & \multicolumn{4}{c|}{0.000357} & \multicolumn{4}{c|}{0.144} \\
+			\end{tabular}
+		}
+		\end{table}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+	\begin{block}{Precision Random Document Results}
+	    \begin{table}
+			\centering
+			\resizebox{\textwidth}{!}{
+				\begin{tabular}{l|c|c|c|c||c|c|c|c}
+					& \multicolumn{4}{c||}{Topic Query Length (P@10)} & \multicolumn{4}{c}{Topic Query Length (P@100)} \\
+					\acrshort{ir} methods & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4\\
+					\midrule
+					\acrshort{lda}-\acrshort{ir} & 0.02 & 0.103 & 0.13 & 0.203 & 0.062 & 0.131 & 0.164 & 0.191 \\
+					\acrshort{lm} & 0.126 & 0.118 & 0.116 & 0.069 & 0.090 & 0.092 & 0.087 & 0.093\\
+					\acrshort{bm25} & 0.136 & 0.161 & 0.164 & 0.174 & 0.142 & 0.165 & 0.175 & 0.151\\ 
+					\acrshort{tf-idf} & 0.160 & 0.125 & \textbf{0.200} & 0.148 & \textbf{0.163} & 0.169 & \textbf{0.188} & 0.170 \\
+					\acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.0188 & 0.103 & 0.141 & \textbf{0.211} & 0.062 & 0.131 & 0.175 & \textbf{0.198} \\
+					\acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.0125 & 0.100 & 0.133 & 0.200 & 0.062 & 0.132 & 0.167 & 0.192 \\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} & 0.02 & 0.101 & 0.136 & 0.196 & 0.060 & 0.129 & 0.161 & 0.188  \\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} & 0.02 & 0.085 & 0.109 & 0.161 & 0.055 & 0.114 & 0.129 & 0.152 \\
+					\acrshort{lm} + \acrshort{pr} & 0.138 & 0.130 & 0.116 & 0.0763 & 0.110 & 0.108 & 0.097 & 0.098 \\
+					\acrshort{lm} * \acrshort{pr} & 0.148 & 0.128 & 0.116 & 0.0963 & 0.110 & 0.112 & 0.101 & 0.101 \\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.019 & 0.101 & 0.134 & 0.195 & 0.061 & 0.129 & 0.163 & 0.187\\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.026 & 0.090 & 0.110 & 0.161 & 0.059 & 0.115 & 0.130 & 0.152\\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.168 & \textbf{0.198} \\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} & 0.09 & 0.139 & 0.175& 0.206 & 0.134 & 0.170 & 0.174 & 0.187 \\
+					\acrshort{bm25} + \acrshort{pr} & 0.135 & 0.163 & 0.165 & 0.173 & 0.155 & 0.165 & 0.176 & 0.151 \\
+					\acrshort{bm25} * \acrshort{pr} & \textbf{0.165} & \textbf{0.169} & 0.184 & 0.170 & 0.148 & \textbf{0.177} & 0.186 & 0.161\\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 0.124 & 0.160 & 0.154 & 0.204 & 0.113 & 0.155 & 0.17 & \textbf{0.198}\\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 0.095 & 0.141 & 0.176 & 0.206 & 0.135 & 0.174 & 0.174 & 0.188\\
+					\rowcolor{red!30}Random & \multicolumn{4}{c|}{0.142} & \multicolumn{4}{c|}{0.152} \\
+				\end{tabular}
+			}
+		\end{table}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+	\begin{block}{Average Rank Random Document Results}
+	    \begin{table}
+			\centering
+			\resizebox{.8\textwidth}{!}{
+				\begin{tabular}{l|c|c|c|c}
+					& \multicolumn{4}{c}{Document Query Length} \\
+					\acrshort{ir} methods / Avg. Rank & 1 & 2 & 3 & 4 \\
+					\midrule
+					\acrshort{lda}-\acrshort{ir} & 2287.93 & 1599.95 & 1241.18 & 1926.78 \\
+					\acrshort{lm} & 7120.04 & 9082.9 & 6501.85 & 7782.65 \\
+					\acrshort{bm25} & \textbf{19.58} & 7.94 & 1.78 & 1.41 \\
+					\acrshort{tf-idf} & 30.0 & 9.3 & 2.03 & 1.29 \\
+					\acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 2491.31 & 1342.53 & 1126.23 & 1906.76\\
+					\acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 2305.04 & 1600.93 & 1223.14 & 1920.175\\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} & 1971.19 & 1192.91 & 1027.95 & 1482.69 \\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} & 1874.81 & 1456.21 & 954.66 & 1853.44 \\
+					\acrshort{lm} + \acrshort{pr} & 7299.85 & 9134.81 & 6429.24 & 7725.36 \\
+					\acrshort{lm} * \acrshort{pr} & 7328.7625 & 9137.23 & 6504.85 & 7772.4\\
+					\acrshort{lm} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 1978.74 & 1179.21 & 994.91 & 1438.88 \\
+					\acrshort{lm} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 1892.12 & 1453.56 & 941.4 & 1850.43 \\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} & 30.45 & 28.59 & 17.7 & 23.76 \\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} & 163.76 & 557.13 & 297.48 & 1159.33 \\
+					\acrshort{bm25} + \acrshort{pr} & 19.69 & \textbf{7.88} & 1.79 & 1.43\\
+					\acrshort{bm25} * \acrshort{pr} & 23.96 & 8.45 & \textbf{1.61} & \textbf{1.24}\\
+					\acrshort{bm25} + \acrshort{lda}-\acrshort{ir} + \acrshort{pr} & 30.35 & 28.44 & 17.65 & 23.76\\
+					\acrshort{bm25} * \acrshort{lda}-\acrshort{ir} * \acrshort{pr} & 163.5 & 555.35 & 295.69 & 1158.08\\
+					\rowcolor{red!30}Random & \multicolumn{4}{c|}{16080} \\
+				\end{tabular}
+			}
+		\end{table}
+	\end{block}
+\end{frame}
+
+\begin{frame}{\insertsection}{\insertsubsection}
+	\begin{block}{Self-made Query}
+	    \begin{itemize}
+	        \item<1-> Looking for a specific document (EU og klimaet til debat)
+	        \begin{itemize}
+	            \item<1-> Debate about EU and converting to green energy
+	        \end{itemize}
+	        \item<2-> "EU", "grøn" (green), "omstilling" (conversion)
+	        \item<3-> IR method: BM25 + PR
+	        \item<4-> 17717, 2657, 18245, 9213, \textbf{30000}, 18809, 13197, 15307, 20145, 19180
+	        \item<5-> Article 17717 is also about green growth and protecting the environment
+	    \end{itemize}
+	\end{block}
+\end{frame}
+
+
+\section{Conclusion}
+\begin{frame}{\insertsection}{}
+	\begin{itemize}
+		\item \emph{How can we generate queries for a dataset to use for \acrshort{ir}?}
+		\begin{itemize}
+			\item<2-> Generate two types of queries
+			\item<2-> Important words from a specific document or topic
+		\end{itemize}
+	\vspace{.2cm}
+		\item \emph{How can we evaluate \acrshort{ir} methods in a way that favors abstraction, rather than word frequency?}
+		\begin{itemize}
+			\item<3-> Query types favor both specificity and abstraction
+			\item<3-> Evaluated using MAP, P@n, and average rank
+		\end{itemize}
+	\vspace{.2cm}
+		\item \emph{Can \acrshort{pr} be used on a document dataset with no explicit connections to improve \acrshort{ir} methods?}
+		\begin{itemize}
+			\item<4-> Creating the PR adjacency matrix using the similarity between document topic distributions
+			\item<4-> Highly effective
+		\end{itemize}
+	\end{itemize}
+\end{frame}

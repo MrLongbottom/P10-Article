@@ -1,0 +1,106 @@
+\documentclass[10pt,usenames,dvipsnames]{beamer}
+\usetheme[
+%%% options passed to the outer theme
+    hidetitle,           % hide the (short) title in the sidebar
+    hideauthor,          % hide the (short) author in the sidebar
+    hideinstitute,       % hide the (short) institute in the bottom of the sidebar
+%    shownavsym,          % show the navigation symbols
+%    width=2cm,           % width of the sidebar (default is 2 cm)
+    hideothersubsections,% hide all subsections but the subsections in the current section
+%    hideallsubsections,  % hide all subsections
+%    left               % right of left position of sidebar (default is right)
+%%% options passed to the color theme
+%    lightheaderbg,       % use a light header background
+  ]{AAUsidebar}
+
+% If you want to change the colors of the various elements in the theme, edit and uncomment the following lines
+% Change the bar and sidebar colors:
+%\setbeamercolor{AAUsidebar}{fg=red!20,bg=red}
+%\setbeamercolor{sidebar}{bg=red!20}
+% Change the color of the structural elements:
+%\setbeamercolor{structure}{fg=red}
+% Change the frame title text color:
+%\setbeamercolor{frametitle}{fg=blue}
+% Change the normal text color background:
+%\setbeamercolor{normal text}{bg=gray!10}
+% ... and you can of course change a lot more - see the beamer user manual.
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{helvet}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\newlength{\xdim}
+
+\definecolor{findOptimalPartition}{HTML}{D7191C}
+\definecolor{storeClusterComponent}{HTML}{FDAE61}
+\definecolor{dbscan}{HTML}{ABDDA4}
+\definecolor{constructCluster}{HTML}{2B83BA}
+
+% colored hyperlinks
+\newcommand{\chref}[2]{%
+  \href{#1}{{\usebeamercolor[bg]{AAUsidebar}#2}}%
+}
+\usepackage{pgfplots}
+\usetikzlibrary{decorations.pathreplacing,calc,shapes,shapes.misc}
+
+\usepackage{siunitx}
+\usepackage{graphicx}
+
+\graphicspath{{figures/}{../figures/}}
+
+\usepackage{booktabs}
+\usepackage{glossaries}
+% for vertical merging table cells
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning,shapes.misc}
+\usepackage[misc]{ifsym}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{matrix,positioning,arrows.meta,arrows}
+
+\tikzset{my arrow/.style={-latex},
+	set@com@col/.style={},set@com@col@aryarg/.style={column #1/.style={set@com@col}},
+	set@com@row/.style={},set@com@row@aryarg/.style={row #1/.style={set@com@row}},
+	set common column/.style 2 args={set@com@col/.style={#2}, set@com@col@aryarg/.list={#1}},
+	set common row/.style 2 args={set@com@row/.style={#2}, set@com@row@aryarg/.list={#1}},
+}
+
+
+%%%%%%%%%%
+% Macros %
+%%%%%%%%%%
+ \tikzset{
+    invisible/.style={opacity=0,text opacity=0},
+    visible on/.style={alt={#1{}{invisible}}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+  }
+
+\newenvironment{mytikz}[1][]{\begin{tikzpicture}[#1]}{\end{tikzpicture}} 
+
+
+% Display current overlay index
+\makeatletter
+\newcommand*{\overlaynumber}{\number\beamer@slideinframe}
+\makeatother
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+\newsavebox\MBox
+\newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
+  \rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{1pt}}}
+  
+\usepackage{amsmath}

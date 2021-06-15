@@ -1,0 +1,158 @@
+\subsection{Language Model}
+\begin{frame}{\insertsubsection}{Information retrieval goal}
+    \begin{itemize}
+        \item We want to find relevant documents based on words in a query
+        \begin{equation*}\label{eq:query_prob}
+	        P(q|d) = \prod_{w \in q} P(w|d)
+        \end{equation*}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsubsection}{Explanation}
+    \only<1>{
+    \begin{equation*}\label{eq:word_prob}
+    	P(w|d) = \frac{N_d}{N_d + \lambda} \cdot \frac{tf(w,d)}{N_d} + (1 - \frac{N_d}{N_d + \lambda}) \cdot \frac{tf(w,D)}{N_D}
+    \end{equation*}
+    \begin{itemize}
+        \item $d$ = document
+        \item $N_d$ = Number of words in $d$
+        \item $\lambda$ is the average document length 
+        \item $D$ = Corpus
+    \end{itemize}
+    }
+    \only<2>{
+    \begin{equation*}\label{eq:word_prob}
+    	P(w|d) = \underbrace{\frac{N_d}{N_d + \lambda}}_{\text{weight term}} \cdot \frac{tf(w,d)}{N_d} + \underbrace{(1 - \frac{N_d}{N_d + \lambda})}_{\text{inverse weight term}} \cdot \frac{tf(w,D)}{N_D}
+    \end{equation*}
+    \begin{itemize}
+        \item $d$ = document
+        \item $N_d$ = Number of words in $d$
+        \item $\lambda$ is the average document length 
+        \item $D$ = Corpus
+    \end{itemize}
+    }
+    \only<3>{
+    \begin{equation*}\label{eq:word_prob}
+    	P(w|d) = \underbrace{\frac{N_d}{N_d + \lambda}}_{\text{weight term}} \cdot \underbrace{\frac{tf(w,d)}{N_d}}_{\text{\% of w in d}} + \underbrace{(1 - \frac{N_d}{N_d + \lambda})}_{\text{inverse weight term}} \cdot \underbrace{\frac{tf(w,D)}{N_D}}_{\text{\% w in D}}
+    \end{equation*}
+    \begin{itemize}
+        \item $d$ = document
+        \item $N_d$ = Number of words in $d$
+        \item $\lambda$ is the average document length 
+        \item $D$ = Corpus
+    \end{itemize}
+    }
+    \only<4>{
+    \begin{equation*}\label{eq:word_prob}
+    	P(w|d) = \underbrace{\frac{N_d}{N_d + \lambda}}_{\text{weight term}} \cdot \underbrace{\frac{tf(w,d)}{N_d}}_{\text{\% of w in d}} + \underbrace{(1 - \frac{N_d}{N_d + \lambda})}_{\text{inverse weight term}} \cdot \underbrace{\frac{tf(w,D)}{N_D}}_{\text{\% w in D}}
+    \end{equation*}
+    \begin{itemize}
+        \item $d$ = document
+        \item $N_d$ = Number of words in $d$
+        \item $\lambda$ is the average document length 
+        \item $D$ = Corpus
+    \end{itemize}
+    }
+    \only<5>{
+        \begin{itemize}
+            \item Favors high percentage of a word in a document or corpus
+        \end{itemize}
+    }
+\end{frame}
+
+\subsection{TF-IDF}
+\begin{frame}{\insertsubsection}{Explanation}
+    \only<1>{
+    \begin{equation*}\label{eq:tfidf}
+    	\text{tf-idf}(t, d, D) = \text{tf}(t, d) \cdot \text{idf}(t, D)
+    \end{equation*}
+    \begin{itemize}
+        \item $t$ = Term
+        \item $d$ = Document
+        \item $D$ = Corpus
+    \end{itemize}
+    }
+    \only<2>{
+    \begin{equation*}\label{eq:tfidf}
+    	\text{tf-idf}(t, d, D) = \text{tf}(t, d) \cdot log \frac{|\{d \in D\}|}{|\{d \in D : t \in d\}|}
+    \end{equation*}
+    }
+\end{frame}
+
+\begin{frame}{\insertsubsection}{Summary}
+    \begin{itemize}
+        \item Favors high usage of unique word(s) in a document or corpus
+    \end{itemize}
+\end{frame}
+
+
+\subsection{BM25}
+\begin{frame}{\insertsubsection}{Explanation}
+    \only<1>{
+    \begin{equation*}\label{eq:bm25}
+    	\text{bm25}(d, q) = \sum_{i=1}^{n}\text{idf}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (k_1 + 1)}{\text{tf}(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}
+    \end{equation*}
+    \begin{itemize}
+        \item $b$ adjust the sensitivity of varying document lengths
+        \item $k_1$ adjust how quickly a term is saturated 
+    \end{itemize}
+    }
+    
+    \only<2>{
+    \begin{equation*}\label{eq:bm25}
+    	\text{bm25}(d, q) = \sum_{i=1}^{n}\text{idf}(q_i) \cdot \frac{\text{tf}(q_i, d) \cdot (1.5 + 1)}{\text{tf}(q_i, d) + 1.5 \cdot (1 - 0.75 + 0.75 \cdot \frac{|d|}{avgdl})}
+    \end{equation*}
+    }
+\end{frame}
+
+\begin{frame}{\insertsubsection}{Summary}
+    \begin{itemize}
+        \item Similar to tf-idf but with some other focus points
+        \begin{itemize}
+            \item Document length 
+            \item Word saturation 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+
+\subsection{Combination of methods}
+\begin{frame}{\insertsubsection}{How to combine?}
+    \input{figures/combination_plus}
+    \vspace{0.5cm}
+    \only<2>{
+        \begin{itemize}
+            \item $ t \cdot A + (1-t) \cdot B $
+        \end{itemize}
+    }
+\end{frame}
+
+\section{Query Generation}
+\begin{frame}{\insertsection}{Types of queries}
+    \begin{itemize}
+        \item Document query
+        \begin{itemize}
+            \item Specificity - Finding a specific document
+        \end{itemize}
+        \item Topic query
+        \begin{itemize}
+            \item Generality - Finding topic relevant documents
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Document Query}
+\begin{frame}{\insertsubsection}{Generation}
+    \input{figures/document}
+\end{frame}
+
+\subsection{Topic Query}
+\begin{frame}{\insertsubsection}{Generation}
+    \input{figures/topic}
+    \only<6>{
+        \begin{itemize}
+            \item Sample the topic-word distribution instead
+        \end{itemize}
+    }
+\end{frame}

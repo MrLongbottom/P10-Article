@@ -1,0 +1,69 @@
+\input{preamble.tex}
+
+% Glossaries
+\input{acronyms.tex}
+
+\title% optional, use only with long paper titles
+{Integrating News Article Metadata into Topic Models}
+% \subtitle{}  % could also be a conference name
+
+\date{\today}
+
+\author % optional, use only with lots of authors
+{Rasmus Engesgaard Christensen, Peter Langballe Erichsen, and \\ Dennis Højbjerg Rose
+}
+% - Give the names in the same order as they appear in the paper.
+% - Use the \inst{?} command only if the authors have different
+%   affiliation. See the beamer manual for an example
+
+\institute[
+%  {\includegraphics[scale=0.2]{aau_segl}}\\ %insert a company, department or university logo
+  Dept.\ of Computer Science\\
+  Aalborg University\\
+  Denmark
+] % optional - is placed in the bottom of the sidebar on every slide
+{% is placed on the title page
+  Department of Computer Science\\
+  Aalborg University\\
+  Denmark
+
+  %there must be an empty line above this line - otherwise some unwanted space is added between the university and the country (I do not know why;( )
+}
+
+
+% specify a logo on the titlepage (you can specify additional logos an include them in 
+% institute command below
+\pgfdeclareimage[height=1.5cm]{titlepagelogo}{AAUgraphics/aau_logo_new} % placed on the title page
+%\pgfdeclareimage[height=1.5cm]{titlepagelogo2}{graphics/aau_logo_new} % placed on the title page
+\titlegraphic{% is placed on the bottom of the title page
+  \pgfuseimage{titlepagelogo}
+%  \hspace{1cm}\pgfuseimage{titlepagelogo2}
+}
+
+\begin{document}
+% the titlepage
+{\aauwavesbg%
+\begin{frame}[plain,noframenumbering] % the plain option removes the sidebar and header from the title page
+  \titlepage
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+% TOC
+\begin{frame}[noframenumbering]{Agenda}{}
+\setcounter{tocdepth}{1}
+\tableofcontents
+\end{frame}
+%%%%%%%%%%%%%%%%
+\input{sections/simba}
+\input{sections/balle}
+\input{sections/dennis}
+%%%%%%%%%%%%%%%%
+
+{\aauwavesbg
+\begin{frame}[plain,noframenumbering]
+  \finalpage{Thank you}
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+
+\end{document}

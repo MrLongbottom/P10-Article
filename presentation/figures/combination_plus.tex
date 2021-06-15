@@ -1,0 +1,14 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \matrix [matrix of nodes,row sep=0mm, set common column={2,3,4,5,7}{nodes={rectangle,draw,minimum width=3em}}, set common row={1,3} {nodes={draw=none}}, ] (O)
+        {
+            & $D_0$ & $D_1$ & $D_2$ & $D_3$ &  \\
+            BM25 (b) & $S^{b}_{D_0}$ & $S^{b}_{D_1}$ & $S^{b}_{D_2}$ & $S^{b}_{D_3}$ & \dots \\
+            & + & + & + & + & \\
+            PR (p) & $S^{p}_{D_0}$ & $S^{p}_{D_1}$ & $S^{p}_{D_2}$ & $S^{p}_{D_3}$ & \dots \\[8mm]
+            BM25+PR & $S^{b}_{D_0} + S^{p}_{D_0} $ & $S^{b}_{D_1} + S^{p}_{D_1} $ & $S^{b}_{D_2} + S^{p}_{D_2} $ & $S^{b}_{D_3} + S^{p}_{D_3} $ &  \dots \\
+        };
+        \foreach\x in{2,3,4,5}{\draw[my arrow] (O-4-\x) to (O-5-\x);}
+    \end{tikzpicture}
+\end{figure}
