@@ -102,7 +102,7 @@
 
 \subsection{Latent Dirichlet Allocation}
 
-\begin{frame}{\insertsubsection}{latent Dirichlet allocation}
+\begin{frame}{\insertsubsection}{Plate notation}
 	\begin{figure}
 		\centering
 		\resizebox{\textwidth}{!}{%
@@ -144,3 +144,29 @@
 	\end{itemize}
 	\let\thefootnote\relax\footnote{\tiny{All pieces are random variables}}
 \end{frame}
+
+
+\begin{frame}{\insertsubsection}{Implementation idea}
+	\begin{itemize}
+		\item Gibbs Sampling
+		\begin{enumerate}
+			\item Randomly assign a topic to each word
+			\item Iteratively, sample each word again from $Mult(\theta_d)$
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+\subsection{Author-Topic Model}
+\begin{frame}{\insertsubsection}{General idea}
+	\begin{itemize}
+		\item Gibbs Sampling
+		\begin{enumerate}
+			\item Randomly assign a topic to each word
+			\item Iteratively, sample each word again from $Mult(\theta_d)$
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+
+
+
