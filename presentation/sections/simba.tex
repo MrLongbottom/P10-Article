@@ -1,16 +1,13 @@
 \section{Introduction}
 
-\begin{frame}{\insertsection}{}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{\insertsection}{What is topic modeling?}
 	\begin{itemize}
-		\item Imagine going through $139,060$ articles, manually
-		\item With the goal of finding all sports article.
+		\item Imagine categorizing $100.000+$ documents, manually
 	\end{itemize}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figures/documents.jpg}
+		\let\thefootnote\relax\footnote{\tiny{https://emerj.com/partner-content/ai-based-document-digitization-an-enterprise-guide/}}
+	\end{figure}
 \end{frame}
 
 \begin{frame}{\insertsection}{What is topic modeling?}
@@ -88,13 +85,18 @@
 	\begin{itemize}
 		\item A hierarchical structure of topical or geographical information 
 		\item $355$ unique taxonomy entries (after preprocessing)
-		\item Example: PLACES/Danmark/Nordjylland/Aalborg and TOPICS/Religion/Christianity
+		\item Example: 
+		\begin{itemize}
+			\item PLACES/Danmark/Nordjylland/Aalborg
+			\item TOPICS/Religion/Christianity
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{\insertsection}{Metadata influence}
 	\begin{itemize}
 		\item What impact does these metadata have on the topics?
+		\item Can it improve the topic quality?
 	\end{itemize}
 \end{frame}
 
@@ -118,14 +120,14 @@
 \end{frame}
 
 
-\begin{frame}{\insertsubsection}{Implementation idea}
+\begin{frame}{\insertsubsection}{Dirichlet distribution}
 	\begin{itemize}
-		\item Gibbs Sampling
-		\begin{enumerate}
-			\item Randomly assign a topic to each word
-			\item Iteratively, sample each word again until finished 
-		\end{enumerate}
+		\item Dirichlet distribution
 	\end{itemize}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{figures/dirich.png}
+		\let\thefootnote\relax\footnote{\tiny{https://mollermara.com/blog/lda/}}
+	\end{figure}
 \end{frame}
 
 \subsection{Author-Topic Model}
@@ -195,3 +197,8 @@
 	\end{columns}
 \end{frame}
 
+\begin{frame}{\insertsection}{}
+	\begin{itemize}
+		\item How does author and category influence the topics found by the model?
+	\end{itemize}
+\end{frame}
