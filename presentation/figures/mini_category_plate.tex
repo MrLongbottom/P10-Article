@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+	[
+	observed/.style={minimum size=15pt,circle,draw=blue!50,fill=blue!20, node distance=2cm},
+	unobserved/.style={minimum size=15pt,circle,draw, node distance=2cm},
+	post/.style={->,>=stealth',semithick},
+	]
+	
+	\node (z-j) [unobserved] at (0,0) {$Z_{d,n}$};
+	\node (category_obs) [observed, right of= z-j] {$c_d$};
+	\node (category_dist) [unobserved, left of=z-j, node distance=2.5cm] {$\theta_c$};
+	\node (alpha-hyper) [unobserved, label=above:$\alpha$, left of=category_dist] {};
+	
+	\path
+	(alpha-hyper) edge [post] (category_dist)
+	(category_obs) edge [post] (z-j)
+	(category_dist) edge [post] (z-j)
+	;
+	
+	\node [draw,fit=(w-j) (category_obs), inner sep=14pt] (plate-context) {};
+	\node [below left] at (plate-context.north east) {$D$};
+	
+	\node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+	\node [below left] at (plate-token.north east) {$N$};
+	
+	\node [draw,fit=(category_dist) (category_dist), inner sep=17pt] (plate-context) {};
+	\node [above right] at (plate-context.south west) {$C$};
+\end{tikzpicture}

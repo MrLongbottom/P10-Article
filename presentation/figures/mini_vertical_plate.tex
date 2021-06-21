@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+	 [
+	   observed/.style={minimum size=15pt,circle,draw=blue!50,fill=blue!20, node distance=2cm},
+	   unobserved/.style={minimum size=15pt,circle,draw, node distance=2cm},
+	   post/.style={->,>=stealth',semithick},
+	 ]
+	
+	 \node (z-j) [unobserved] at (0,0) {$Z_{d,n}$};
+	 \node (theta) [unobserved, left of = z-j] {$\theta_d$};
+	 \node (alpha-hyper) [unobserved, label=above:$\alpha$,left of=theta] {};
+	 
+	 \path
+	 (alpha-hyper) edge [post] (theta)
+	 (theta) edge [post] (z-j)
+	 ;
+	 
+	 \node [draw,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
+	 \node [below right] at (plate-context.north west) {$D$};
+	 \node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+	 \node [below right] at (plate-token.north west) {$N$};
+\end{tikzpicture}
