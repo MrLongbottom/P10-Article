@@ -1,6 +1,6 @@
-\section{\acrlong{pam}}
+\subsection{\acrlong{pam}}
 
-\begin{frame}{\insertsection}{\gls{dag} structure}
+\begin{frame}{\insertsubsection}{\gls{dag} structure}
     \begin{itemize}
         \item Hieratical topic model, capturing correlation between topics.
     \end{itemize}
@@ -15,7 +15,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsection}{Plate Notation}
+\begin{frame}{\insertsubsection}{Plate Notation}
 	%\input{../figures/pachinko_original}
 	\begin{figure}
 			\centering
@@ -29,9 +29,9 @@
 	\end{itemize}
 \end{frame}
 
-\section{Taxonomy-Topic Model}
+\subsection{Taxonomy-Topic Model}
 
-\begin{frame}{\insertsection}{Problems}
+\begin{frame}{\insertsubsection}{Problems}
 	Features needed:
 	\begin{itemize}
 		\item Hieratical Structure $\checkmark$
@@ -41,7 +41,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsection}{Metadata Incorporation}
+\begin{frame}{\insertsubsection}{Metadata Incorporation}
 	\begin{itemize}
 		\item<1-> 1:1 mapping between some topics and taxonomy entries
 		\only<2>{\newline\input{../figures/dag_structure}}
@@ -51,7 +51,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsection}{Plate Notation}
+\begin{frame}{\insertsubsection}{Plate Notation}
 	\begin{figure}
 		\centering
 		\resizebox{0.5\columnwidth}{!}{%
@@ -65,9 +65,9 @@
 	\end{itemize}
 \end{frame}
 
-\section{Other Notable Models}
+\subsection{Other Notable Models}
 
-\begin{frame}{\insertsection}{\gls{pam} without metadata integration}
+\begin{frame}{\insertsubsection}{\gls{pam} without metadata integration}
 	Topic Coherence comparison of different \gls{dag} structure sizes:
 	\begin{itemize}
 		\item $[4, 32]$ w/ metadata - $0.66$
@@ -76,7 +76,7 @@
 \end{frame}
 
 
-\begin{frame}{\insertsection}{\gls{pam} without metadata integration}
+\begin{frame}{\insertsubsection}{\gls{pam} without metadata integration}
 	New elapsed time comparison of different \gls{dag} structure sizes:
 	\begin{itemize}
 		\item $[ 4, 32 ]$ w/ metadata - 72 hours
@@ -86,7 +86,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsection}{Author-Category Models}
+\begin{frame}{\insertsubsection}{Author-Category Models}
 	\begin{itemize}
 		\item Multiple metadata types can be used in a single model
 		\item Topics are sampled from a combination of two distributions
@@ -104,7 +104,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsection}{Doc-Author \& Doc-Category Models}
+\begin{frame}{\insertsubsection}{Doc-Author \& Doc-Category Models}
 	\begin{table}
 		\centering
 		\begin{tabular}{l|c|c}
@@ -124,7 +124,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsection}{Author-\acrshort{pam} \& Category-\acrshort{pam} Models}
+\begin{frame}{\insertsubsection}{Author-\acrshort{pam} \& Category-\acrshort{pam} Models}
 	Author-\gls{pam} and Category-\gls{pam} \gls{dag} structure:
 	\begin{itemize}
 		\item Single topic layer with locking mechanism
