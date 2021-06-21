@@ -1,167 +1,252 @@
-\section{Introduction}
+\section{\acrlong{pam}}
 
-\begin{frame}{\insertsection}{Motivation}
-	\begin{itemize}
-		\item Query based search of documents
-		\begin{itemize}
-			\item Google Scholar
-		\end{itemize}
-		\item Encourage abstractions of underlying topics
-		\begin{itemize}
-			\item Rather than word frequency
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
-%\begin{frame}{\insertsection}{Dataset}
-%    \begin{itemize}
-%        \item Nordjyske news articles 2017
-%        \item $\approx 63,000$ articles
-%        \item Average length 231 words
-%        \begin{itemize}
-%            \item Spanning from 2 - 3209
-%        \end{itemize}
-%        \item<2-> Find a better way to search / filter these articles
-%        \item<3-> Information Retrieval
-%        \begin{itemize}
-%            \item<4-> Ranking of document based on queries
-%            \item<5-> Encourage abstractions of topics
-%        \end{itemize}
-%    \end{itemize}
-%\end{frame}
-
-%\begin{frame}{Preprocessing}
-%    \begin{itemize}
-%        \item Article Extraction
-%        \only<2>{
-%        \begin{itemize}
-%            \item search .xml documents for text
-%        \end{itemize}
-%        }
-%        \item Initial Document Filtering
-%        \only<3>{
-%        \begin{itemize}
-%            \item Duplicates removed
-%            \item Non-alphabetic symbols removed
-%            \item Short documents removed
-%        \end{itemize}
-%        }
-%        \item Stop Word and Word Frequency Filtering
-%        \only<4>{
-%        \begin{itemize}
-%            \item Stop words
-%            \item Rare words removed
-%            \item Too common words removed
-%        \end{itemize}
-%        }
-%        \item Word Database Filtering
-%        \only<5>{
-%        \begin{itemize}
-%            \item Similar effect to POS-tagging
-%            \item Words not in database are removed
-%        \end{itemize}
-%        }
-%        \item Lemmatization
-%    \end{itemize}
-%\end{frame}
-
-\section{Information Retrieval Methods}
-
-%part
-
-\begin{frame}{\insertsection}
-	\begin{itemize}
-		\item Latent Dirichlet Allocation (LDA)
-		\item PageRank (PR)
-		\item Language Model (LM)
-		\item Term Frequency - Inverse Document Frequency (TF-IDF)
-		\item Best Match 25 (BM25)
-	\end{itemize}
-\end{frame}
-
-\subsection{Latent Dirichlet Allocation}
-\begin{frame}{\insertsubsection}{Motivation}
-	%Produce a generative process with the best possible chance of reconstructing the existing documents, using topics.
-	\begin{itemize}
-		\item Create a generative process to produce documents, based on topics
-		\item Fine-tune to maximize probability of generating the original documents
-		\item Use generated topics for calculating similarity
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\insertsubsection}{Plate Notation}
+\begin{frame}{\insertsection}{\gls{dag} structure}
+    \begin{itemize}
+        \item Hieratical topic model, capturing correlation between topics.
+    \end{itemize}
+	
 	\begin{figure}
 		\centering
-		\includegraphics[width = 1 \textwidth]{figures/lda_model.jpg}
+		\includegraphics[width=0.35 \textwidth]{../figures/pachinko_dag}
 	\end{figure}
+	
 	\begin{itemize}
-		\item $\alpha, \eta$ dirichlet distributions
-		\item $\theta, \beta$ multinomial distributions
-		\item $Z, W$ sampled topics and words
+		\item Topic distributions can include other topics as well as words.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsubsection}{Dirichlet Distributions}
+\begin{frame}{\insertsection}{Plate Notation}
+	%\input{../figures/pachinko_original}
 	\begin{figure}
-		\centering
-		\includegraphics[width = 0.65 \textwidth]{figures/lda_model.jpg}
-	\end{figure}
-	\begin{figure}
-		\centering
-		\includegraphics[width = 0.65 \textwidth]{figures/dirich.png}
-		\footnote{\url{https://mollermara.com/blog/lda/}}
-	\end{figure}
-	\begin{itemize}
-		\item<2> typical sample based on low alpha = $\{1,0,0\}$
-		\item<2> typical sample based on high alpha = $\{0.333, 0.333, 0.333\}$
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\insertsubsection}{Multinomial Distributions}
-	\begin{figure}
-		\centering
-		\includegraphics[width = 0.65 \textwidth]{figures/lda_model.jpg}
-	\end{figure}
-	\begin{itemize}
-		\item Sample $N$ topics ($Z$) based on $\theta$
-		\item Sample $N$ words ($W$) based on $Z$ and $\beta$
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\insertsubsection}{Generation Probability}
-	\begin{align*}
-		& P(W,Z,\theta,\beta;\alpha,\eta) = \\
-		& \prod_{d=1}^{D}P(\theta_d;\alpha)
-		\prod_{k=1}^{K}P(\beta_k;\eta)
-		\prod_{n=1}^{N}P(Z_{d,n}|\theta_d) P(W_{d,n}|\beta, Z_{d,n})
-	\end{align*}
-\end{frame}
-
-% full example?
-% training?
-
-\subsection{PageRank}
-\begin{frame}{\insertsubsection}{Overview}
-	\begin{itemize}
-		\item Used to rank nodes in a graph
-		\item Underlying assumption: important nodes have in-going connections from other important nodes
-		\item Based on the 'random surfer' model
-	\end{itemize}
-	\only<2>{\begin{figure}
 			\centering
-			\includegraphics[width = 0.5 \textwidth]{figures/PageRank.jpg}
-			\footnote{\url{https://en.wikipedia.org/wiki/PageRank}}
-	\end{figure}}
-\end{frame}
-
-
-\begin{frame}{\insertsubsection}{Graph Construction}
+			\resizebox{0.45\columnwidth}{!}{%
+			\input{../figures/pachinko_original}
+			}
+			\caption{Original Four-Level \gls{pam}.}
+	\end{figure}
 	\begin{itemize}
-		\item Used on adjacency matrix
-		\item Similarity between documents based on $\theta$
-		\begin{itemize}
-			\item Calculated using Jensen-Shannon similarity
-		\end{itemize}
-		\item While fully connected each edge has a value which will influence the ranking
+		\item Topic are sampled based on previous topics
 	\end{itemize}
 \end{frame}
+
+\section{Taxonomy-Topic Model}
+
+\begin{frame}{\insertsection}{Problems}
+	Features needed:
+	\begin{itemize}
+		\item Hieratical Structure $\checkmark$
+		\item Metadata Incorporation
+		\item Partially Observed
+		\item Multiple Taxonomies
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsection}{Metadata Incorporation}
+	\begin{itemize}
+		\item<1-> 1:1 mapping between some topics and taxonomy entries
+		\only<2>{\newline\input{../figures/dag_structure}}
+		\item<3-> Known taxonomy sequences can be restricted to only sample topic sequences that correspond to the known taxonomy entries
+		\item<4-> Unobserved taxonomy sequences work like normal, but now have context from observed docuements to be fitted around
+		\item<5-> Documents with multiple sequences, randomly choose one sequence for each word
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsection}{Plate Notation}
+	\begin{figure}
+		\centering
+		\resizebox{0.5\columnwidth}{!}{%
+			\input{../figures/pachinko}
+		}
+		\caption{Five-Level \gls{pam}.}
+	\end{figure}
+
+	\begin{itemize}
+		\item One topic-distribution for each topic in previous layer
+	\end{itemize}
+\end{frame}
+
+\section{Other Notable Models}
+
+\begin{frame}{\insertsection}{\gls{pam} without metadata integration}
+	Topic Coherence comparison of different \gls{dag} structure sizes:
+	\begin{itemize}
+		\item $[4, 32]$ w/ metadata - $0.66$
+		\item $[100]$ - $0.67$
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\insertsection}{\gls{pam} without metadata integration}
+	New elapsed time comparison of different \gls{dag} structure sizes:
+	\begin{itemize}
+		\item $[ 4, 32 ]$ w/ metadata - 72 hours
+		\item $[ 4, 32 ]$ - 83 hours
+		\item $[ 100 ]$ - 128 hours
+		\item $[ 100, 100]$ - 6300 hours (estimated)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsection}{Author-Category Models}
+	\begin{itemize}
+		\item Multiple metadata types can be used in a single model
+		\item Topics are sampled from a combination of two distributions
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\resizebox{0.35\columnwidth}{!}{%
+			\input{../figures/author_category_plate.tex}
+		}
+		\caption{Plate notation for the author-category model.}
+	\end{figure}
+	\begin{itemize}
+		\item<2> This setup makes it possible to view each of the metadata entry's topic distributions seperately
+		\item<3> By having one topic-distribution for each document, one can combine the standard \gls{lda} with these metadata models as well
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsection}{Doc-Author \& Doc-Category Models}
+	\begin{table}
+		\centering
+		\begin{tabular}{l|c|c}
+			Topic Model & \makecell{Topic \\ Coherence} & \makecell{Topic \\ Difference} \\
+			\midrule
+			\Acrlong{lda} & 0.520 & 0.575 \\
+			Author-topic model & 0.335 & 0.615 \\
+			Category-topic model & 0.370 & 0.560 \\
+			\textbf{Author-category model} & \textbf{0.390} & \textbf{0.537} \\
+			\textbf{Author-doc model} & \textbf{0.543} & \textbf{0.574} \\
+			\textbf{Category-doc model} &\textbf{ 0.530} & \textbf{0.575} \\
+		\end{tabular}
+	\end{table}
+	\begin{itemize}
+		\item<2> Combining multiple topic-distributions can improve performance of topic models
+		\item<3> Also having a one topic-distribution for each document, makes the performance similar to or better than the standard \gls{lda}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsection}{Author-\acrshort{pam} \& Category-\acrshort{pam} Models}
+	Author-\gls{pam} and Category-\gls{pam} \gls{dag} structure:
+	\begin{itemize}
+		\item Single topic layer with locking mechanism
+		\item One topic for each author / category
+		\item Single topic layer with no locking mechanism
+	\end{itemize}
+	\only<2>{\begin{table}
+		\centering
+		\begin{tabular}{l|c}
+			Topic Model & \makecell{Topic \\ Coherence} \\
+			\midrule
+			\Acrlong{lda} & 0.520 \\
+			Author-topic model & 0.335 \\
+			Category-topic model & 0.370 \\
+			Taxonomy-topic model & 0.660 \\
+			\textbf{Author \gls{pam}} & \textbf{0.598} \\
+			\textbf{Category \gls{pam}} & \textbf{0.585} \\
+			\textbf{\Acrlong{pam}} & \textbf{0.670} \\
+		\end{tabular}
+	\end{table}}
+	\begin{itemize}
+		\item<3> The \gls{pam} models achieve better performance than \gls{lda} models
+	\end{itemize}
+\end{frame}
+
+%\section{Information Retrieval Methods}
+%
+%%part
+%
+%\begin{frame}{\insertsection}
+%    \begin{itemize}
+%        \item Latent Dirichlet Allocation (LDA)
+%        \item PageRank (PR)
+%        \item Language Model (LM)
+%        \item Term Frequency - Inverse Document Frequency (TF-IDF)
+%        \item Best Match 25 (BM25)
+%    \end{itemize}
+%\end{frame}
+%
+%\subsection{Latent Dirichlet Allocation}
+%\begin{frame}{\insertsubsection}{Motivation}
+%    %Produce a generative process with the best possible chance of reconstructing the existing documents, using topics.
+%    \begin{itemize}
+%        \item Create a generative process to produce documents, based on topics
+%        \item Fine-tune to maximize probability of generating the original documents
+%        \item Use generated topics for calculating similarity
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{\insertsubsection}{Plate Notation}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width = 1 \textwidth]{figures/lda_model.jpg}
+%    \end{figure}
+%    \begin{itemize}
+%        \item $\alpha, \eta$ dirichlet distributions
+%        \item $\theta, \beta$ multinomial distributions
+%        \item $Z, W$ sampled topics and words
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{\insertsubsection}{Dirichlet Distributions}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width = 0.65 \textwidth]{figures/lda_model.jpg}
+%    \end{figure}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width = 0.65 \textwidth]{figures/dirich.png}
+%        \footnote{\url{https://mollermara.com/blog/lda/}}
+%    \end{figure}
+%    \begin{itemize}
+%        \item<2> typical sample based on low alpha = $\{1,0,0\}$
+%        \item<2> typical sample based on high alpha = $\{0.333, 0.333, 0.333\}$
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{\insertsubsection}{Multinomial Distributions}
+%    \begin{figure}
+%        \centering
+%        \includegraphics[width = 0.65 \textwidth]{figures/lda_model.jpg}
+%    \end{figure}
+%    \begin{itemize}
+%        \item Sample $N$ topics ($Z$) based on $\theta$
+%        \item Sample $N$ words ($W$) based on $Z$ and $\beta$
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{\insertsubsection}{Generation Probability}
+%    \begin{align*}
+%        & P(W,Z,\theta,\beta;\alpha,\eta) = \\
+%        & \prod_{d=1}^{D}P(\theta_d;\alpha)
+%        \prod_{k=1}^{K}P(\beta_k;\eta)
+%        \prod_{n=1}^{N}P(Z_{d,n}|\theta_d) P(W_{d,n}|\beta, Z_{d,n})
+%    \end{align*}
+%\end{frame}
+%
+%% full example?
+%% training?
+%
+%\subsection{PageRank}
+%\begin{frame}{\insertsubsection}{Overview}
+%    \begin{itemize}
+%        \item Used to rank nodes in a graph
+%        \item Underlying assumption: important nodes have in-going connections from other important nodes
+%        \item Based on the 'random surfer' model
+%    \end{itemize}
+%    \only<2>{\begin{figure}
+%        \centering
+%        \includegraphics[width = 0.5 \textwidth]{figures/PageRank.jpg}
+%        \footnote{\url{https://en.wikipedia.org/wiki/PageRank}}
+%    \end{figure}}
+%\end{frame}
+%
+%
+%\begin{frame}{\insertsubsection}{Graph Construction}
+%    \begin{itemize}
+%        \item Used on adjacency matrix
+%        \item Similarity between documents based on $\theta$
+%        \begin{itemize}
+%                    \item Calculated using Jensen-Shannon similarity
+%        \end{itemize}
+%        \item While fully connected each edge has a value which will influence the ranking
+%    \end{itemize}
+%\end{frame}
