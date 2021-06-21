@@ -10,9 +10,9 @@
 	\node (author_obs) [observed, above of= z-j, node distance=2.5cm] {${a_d, c_d}$};
 	\node (author_dist) [unobserved, left of=z-j, node distance=2.5cm] {$\theta_a$};
 	\node (category_dist) [unobserved, left of=author_obs, node distance=2.5cm] {$\theta_c$};
-	\node (alpha-hyper) [unobserved, label=above:$\alpha$, above of=eta-hyper, node distance=3.75cm] {};
 	\node (beta-hyper) [unobserved, left of = w-j, node distance=2.5cm] {$\beta_k$};
 	\node (eta-hyper) [unobserved, label=above:$\eta$, left of=beta-hyper, node distance=2cm] {};
+	\node (alpha-hyper) [unobserved, label=above:$\alpha$, above of=eta-hyper, node distance=3.75cm] {};
 	
 	\path
 	(z-j) edge [post] (w-j)
