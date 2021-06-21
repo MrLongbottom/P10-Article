@@ -4,14 +4,86 @@
 	   unobserved/.style={minimum size=26pt,circle,draw},
 	   post/.style={->,>=stealth',semithick},
 	 ]
-	
-	 \node (w-j) [observed] at (0,0) {$W_{d,n}$};
-	 \node (z-j) [unobserved] at (-1.5,0) {$Z_{d,n}$};
-	 \node (theta) [unobserved] at (-3,0) {$\theta_d$};
-	 \node (alpha-hyper) [unobserved, label=above:$\alpha$,left of=theta, node distance=2cm] {};
-	 \node (beta-hyper) [unobserved] at (2.75,0) {$\beta_k$};
-	 \node (eta-hyper) [unobserved, label=above:$\eta$, ,right of=beta-hyper, node distance=2cm] {};
+	\onslide<1>{ 
+		\node (w-j) [observed] at (0,0) {$W_{d,n}$};
+		\node (z-j) [unobserved] at (-1.5,0) {$Z_{d,n}$};
+		\node (theta) [unobserved] at (-3,0) {$\theta_d$};
+		\node (beta-hyper) [unobserved] at (2.75,0) {$\beta_k$};
+		\node (alpha-hyper) [unobserved, label=above:$\alpha$,left of=theta, node distance=2cm] {};
+		\node (eta-hyper) [unobserved, label=above:$\eta$, ,right of=beta-hyper, node distance=2cm] {};
+		
+	    \node [draw,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$D$};
+		\node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+		\node [above right] at (plate-token.south west) {$N$};
+		\node [draw,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$K$};
+	};
+	\onslide<2>{ 
+		\node (w-j) [observed] at (0,0) {$W_{d,n}$};
+		\node (z-j) [unobserved] at (-1.5,0) {$Z_{d,n}$};
+		\node (theta) [unobserved] at (-3,0) {$\theta_d$};
+		\node (beta-hyper) [unobserved] at (2.75,0) {$\beta_k$};
+	 	\node (alpha-hyper) [unobserved, very thick, label=above:$\boldsymbol{\alpha}$,left of=theta, node distance=2cm] {};
+	 	\node (eta-hyper) [unobserved, very thick, label=above:$\boldsymbol{\eta}$, ,right of=beta-hyper, node distance=2cm] {};
+	 	
+        \node [draw,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
+	 	\node [above right] at (plate-context.south west) {$D$};
+	 	\node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+	 	\node [above right] at (plate-token.south west) {$N$};
+	 	\node [draw, fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+	 	\node [draw,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+	 	\node [above right] at (plate-context.south west) {$K$};
+ 	 };
 	 
+	 \onslide<3>{ 
+	 	\node (w-j) [observed] at (0,0) {$W_{d,n}$};
+	 	\node (z-j) [unobserved] at (-1.5,0) {$Z_{d,n}$};
+	 	\node (theta) [unobserved] at (-3,0) {$\theta_d$};
+	 	\node (beta-hyper) [unobserved, very thick] at (2.75,0) {$\beta_k$};
+	 	\node (alpha-hyper) [unobserved, label=above:$\alpha$,left of=theta, node distance=2cm] {};
+	 	\node (eta-hyper) [unobserved, label=above:$\eta$, ,right of=beta-hyper, node distance=2cm] {};
+
+   		\node [draw,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$D$};
+		\node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+		\node [above right] at (plate-token.south west) {$N$};
+		\node [draw, very thick,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+		\node [draw,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$K$};	 
+ 	};
+	\onslide<4>{ 
+		\node (w-j) [observed] at (0,0) {$W_{d,n}$};
+		\node (z-j) [unobserved] at (-1.5,0) {$Z_{d,n}$};
+		\node (theta) [unobserved, very thick] at (-3,0) {$\theta_d$};
+		\node (beta-hyper) [unobserved] at (2.75,0) {$\beta_k$};
+		\node (alpha-hyper) [unobserved, label=above:$\alpha$,left of=theta, node distance=2cm] {};
+		\node (eta-hyper) [unobserved, label=above:$\eta$, ,right of=beta-hyper, node distance=2cm] {};
+		
+		\node [draw, very thick,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$D$};
+		\node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+		\node [above right] at (plate-token.south west) {$N$};
+		\node [draw,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$K$};
+	};
+	
+	\onslide<5>{ 
+		\node (w-j) [observed] at (0,0) {$W_{d,n}$};
+		\node (z-j) [unobserved, very thick] at (-1.5,0) {$Z_{d,n}$};
+		\node (theta) [unobserved] at (-3,0) {$\theta_d$};
+		\node (beta-hyper) [unobserved] at (2.75,0) {$\beta_k$};
+		\node (alpha-hyper) [unobserved, label=above:$\alpha$,left of=theta, node distance=2cm] {};
+		\node (eta-hyper) [unobserved, label=above:$\eta$, ,right of=beta-hyper, node distance=2cm] {};
+		
+		\node [draw,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$D$};
+		\node [draw, very thick,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
+		\node [above right] at (plate-token.south west) {$N$};
+		\node [draw,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
+		\node [above right] at (plate-context.south west) {$K$};
+};
+
 	 \path
 	 (z-j) edge [post] (w-j)
 	 (alpha-hyper) edge [post] (theta)
@@ -19,11 +91,4 @@
 	 (beta-hyper) edge [post] (w-j)
 	 (eta-hyper) edge [post] (beta-hyper)
 	 ;
-	 
-	 \node [draw,fit=(w-j) (theta), inner sep=14pt] (plate-context) {};
-	 \node [above right] at (plate-context.south west) {$D$};
-	 \node [draw,fit=(w-j) (z-j), inner sep=10pt] (plate-token) {};
-	 \node [above right] at (plate-token.south west) {$N$};
-	 \node [draw,fit=(beta-hyper) (beta-hyper), inner sep=17pt] (plate-context) {};
-	 \node [above right] at (plate-context.south west) {$K$};
 \end{tikzpicture}

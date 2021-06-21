@@ -2,7 +2,7 @@
 
 \begin{frame}{\insertsection}{What is topic modeling?}
 	\begin{itemize}
-		\item Imagine categorizing $100.000+$ documents, manually
+		\item Imagine categorizing $100.000+$ documents manually
 	\end{itemize}
 	\begin{figure}
 		\includegraphics[width=\textwidth]{figures/documents.jpg}
@@ -44,7 +44,7 @@
 	\begin{itemize}
 		\item 2017-2019
 		\item News articles
-		\item Multiple \textbf<2>{metadata} fields
+		\item Multiple \textbf<2>{metadata} types
 	\end{itemize}
 \end{frame}
 
@@ -74,7 +74,11 @@
 	\begin{itemize}
 		\item Newspaper or labels
 		\item $34$ unique categories (after preprocessing)
-		\item Example: Aalborg-avis or Kultur
+		\item Examples:
+		\begin{itemize}
+			\item Aalborg-avis
+			\item Kultur
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -85,7 +89,7 @@
 	\begin{itemize}
 		\item A hierarchical structure of topical or geographical information 
 		\item $355$ unique taxonomy entries (after preprocessing)
-		\item Example: 
+		\item Examples: 
 		\begin{itemize}
 			\item PLACES/Danmark/Nordjylland/Aalborg
 			\item TOPICS/Religion/Christianity
@@ -95,7 +99,8 @@
 
 \begin{frame}{\insertsection}{Metadata influence}
 	\begin{itemize}
-		\item What impact does these metadata have on the topics?
+		\item \textit{How can we establish models that incorporate metadata from the Nordjyske dataset?}
+		\item \textit{How does including metadata within such models impact the resulting topics?}
 	\end{itemize}
 \end{frame}
 
@@ -124,7 +129,7 @@
 		\item Dirichlet distribution
 	\end{itemize}
 	\begin{figure}
-		\includegraphics[width=\textwidth]{figures/dirich.png}
+		\includegraphics[width=0.8\textwidth]{figures/dirich.png}
 		\let\thefootnote\relax\footnote{\tiny{https://mollermara.com/blog/lda/}}
 	\end{figure}
 \end{frame}
@@ -152,35 +157,13 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{\insertsubsection}{Plate notation}
-		\begin{columns}
-		\begin{column}{0.38\textwidth}
-			\begin{figure}
-				\resizebox{\textwidth}{!}{%
-					\input{figures/mini_vertical_plate.tex}
-				}
-				\caption*{The LDA model}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.52\textwidth}
-			\begin{figure}
-				\resizebox{\textwidth}{!}{%
-					\input{figures/mini_author_plate.tex}
-				}
-				\caption*{The author-topic model}
-			\end{figure}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
 \subsection{Category-Topic Model}
 \begin{frame}{\insertsubsection}{Plate notation}
 	\begin{columns}
 		\begin{column}{0.45\textwidth}
 			\begin{figure}
 				\resizebox{\textwidth}{!}{%
-					\input{figures/mini_author_plate.tex}
+					\input{figures/author_plate.tex}
 				}
 				\caption*{Author-topic}
 			\end{figure}
@@ -188,7 +171,7 @@
 		\begin{column}{0.45\textwidth}
 			\begin{figure}
 				\resizebox{\textwidth}{!}{%
-					\input{figures/mini_category_plate.tex}
+					\input{figures/category_plate.tex}
 				}
 				\caption*{Category-topic}
 			\end{figure}
