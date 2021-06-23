@@ -26,6 +26,54 @@
 	\end{itemize}
 \end{frame}
 
+\subsection{Taxonomy-Topic Model}
+
+\begin{frame}{\insertsubsection}{Problems}
+	Features needed to support taxonomy metadata:
+	\begin{itemize}
+		\item<1-> Hierarchical Structure
+		\item<2-> Metadata Incorporation
+		\item<3-> Partially Observed
+		\item<4-> Multiple Taxonomies
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsubsection}{Metadata Incorporation}
+	\begin{itemize}
+		\item<1-> 1:1 mapping between topics and taxonomy entries
+		\only<2>{\newline\input{../figures/dag_structure}}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsubsection}{Metadata Incorporation}
+	\begin{itemize}
+		\item<1-> Restrict sampling from documents with known taxonomy
+		\item<2-> Unobserved taxonomy sequences work like normal
+		\item<3-> For documents with multiple sequences, we randomly choose one sequence for each word
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsubsection}{Plate Notation}
+	\begin{columns}
+		\begin{column}{0.45\textwidth}
+			\begin{figure}
+				\resizebox{\textwidth}{!}{%
+					\input{../figures/pachinko_original}
+				}
+				\caption*{Four level \acrlong{pam}}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{figure}
+				\resizebox{\textwidth}{!}{%
+					\input{../figures/pachinko}
+				}
+				\caption*{Five level Taxonomy-topic model}
+			\end{figure}
+		\end{column}
+	\end{columns}
+\end{frame}
+
 \subsection{Results}
 
 \begin{frame}{\insertsection}{Model Results}
@@ -44,84 +92,31 @@
 	\end{table}
 \end{frame}
 
-
-\subsection{Taxonomy-Topic Model}
-
-\begin{frame}{\insertsubsection}{Problems}
-	Features needed to support taxonomy metadata:
-	\begin{itemize}
-		\item<1-> Hierarchical Structure
-		\item<2-> Metadata Incorporation
-		\item<3-> Partially Observed
-		\item<4-> Multiple Taxonomies
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\insertsubsection}{Metadata Incorporation}
-	\begin{itemize}
-		\item<1-> 1:1 mapping between some topics and taxonomy entries
-		\only<2>{\newline\input{../figures/dag_structure}}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\insertsubsection}{Metadata Incorporation}
-	\begin{itemize}
-		\item<1-> 1:1 mapping between topics and taxonomy entires
-		\item<2-> Restrict sampling from documents with known taxonomy
-		\item<3-> Known taxonomies provide context to be fitted around
-		\item<4-> Unobserved taxonomy sequences work like normal
-		\item<5-> For documents with multiple sequences, we randomly choose one sequence for each word
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{\insertsubsection}{Plate Notation}
-	\begin{columns}
-		\begin{column}{0.45\textwidth}
-			\begin{figure}
-				\resizebox{\textwidth}{!}{%
-					\input{../figures/pachinko_original}
-				}
-				\caption*{The LDA model}
-			\end{figure}
-		\end{column}
-		\begin{column}{0.45\textwidth}
-			\begin{figure}
-				\resizebox{\textwidth}{!}{%
-					\input{../figures/pachinko}
-				}
-				\caption*{The author-topic model}
-			\end{figure}
-		\end{column}
-	\end{columns}
-	\begin{itemize}
-		\item One topic-distribution for each topic in previous layer
-	\end{itemize}
-\end{frame}
-
 \subsection{Other Notable Models}
 
-\begin{frame}{\insertsubsection}{\gls{pam} without metadata integration}
+\begin{frame}{\insertsubsection}{Quality comparison of \acrshort{pam} models}
+	\centering
 	\begin{tabular}{c|c|c|c|c|c|c}
 		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\gls{dag} layer sizes} \vline & \makecell{Topic \\ Coherence} \\
 		\hline
 		$\checkmark$ & 1 & 4 & 32 & 90 & V & $0.66$\\
-		- & & 1 & 100 & 90 & V & $0.67$ \\
+		$\xmark$ & & 1 & 100 & 90 & V & $0.67$ \\
 	\end{tabular}
 \end{frame}
 
 
-\begin{frame}{\insertsubsection}{\gls{pam} without metadata integration}
+\begin{frame}{\insertsubsection}{Time comparison of \acrshort{pam} models}
 	\begin{tabular}{c|c|c|c|c|c|c}
-		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\gls{dag} layer sizes} \vline & \makecell{Elapsed Time \\ (hours)} \\
+		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\gls{dag} layer sizes} \vline & \makecell{Elapsed time \\ (hours)} \\
 		\hline
-		$\checkmark$ & 1 & 4 & 32 & 90 & V & 72\\
-		- & 1 & 4 & 32 & 90 & V & 83\\
-		- & & 1 & 100 & 90 & V &  128\\
-		- & 1 & 100 & 100 & 90 & V & $\sim 6300$\\
+		$\checkmark$ & 1 & 4 & 32 & 90 & V & 72 h\\
+		$\xmark$ & 1 & 4 & 32 & 90 & V & 83 h\\
+		$\xmark$ & & 1 & 100 & 90 & V &  128 h\\
+		$\xmark$ & 1 & 100 & 100 & 90 & V & $\sim 6300$ h\\
 	\end{tabular}
 \end{frame}
 
-\begin{frame}{\insertsubsection}{Category-Doc Models}
+\begin{frame}{\insertsubsection}{Author-Category Model}
 	\begin{figure}
 		\centering
 		\resizebox{0.3\columnwidth}{!}{%
@@ -129,14 +124,12 @@
 		}
 	\end{figure}
 	\begin{itemize}
-		\item<1-> Multiple metadata types can be used in a single model
-		\item<2-> Topics are sampled from a combination of two distributions
-		\item<3-> This setup makes it possible to view each of the metadata entry's topic distributions seperately
-		\item<4-> By having one topic-distribution for each document, one can combine the standard \gls{lda} with these metadata models as well
+		\item<1-> Topics are sampled from a combination of two topic proportions
+		\item<2-> This setup makes it possible to view each of the metadata entry's topic distributions seperately
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsubsection}{Author-Category Models}
+\begin{frame}{\insertsubsection}{Category-Doc Model}
 	\begin{figure}
 		\centering
 		\resizebox{0.35\columnwidth}{!}{%
@@ -144,11 +137,11 @@
 		}
 	\end{figure}
 	\begin{itemize}
-		\item<1-> By having one topic-distribution for each document, one can combine the standard \gls{lda} with metadata models
+		\item<1-> By having one topic-proportion for each document, one can combine the standard \gls{lda} with metadata models
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{\insertsubsection}{Doc-Author \& Doc-Category Models}
+\begin{frame}{\insertsubsection}{Combination model results}
 	\begin{table}
 		\centering
 		\begin{tabular}{l|c|c}
@@ -163,8 +156,8 @@
 		\end{tabular}
 	\end{table}
 	\begin{itemize}
-		\item<2-> Combining multiple topic-distributions can improve performance of topic models
-		\item<3-> Also having a one topic-distribution for each document, makes the performance similar to the standard \gls{lda}
+		\item<2-> Combining multiple topic-proportions can improve performance of topic models
+		\item<3-> Having a topic proportion for each document, makes the performance similar to the standard \gls{lda}
 	\end{itemize}
 \end{frame}
 
