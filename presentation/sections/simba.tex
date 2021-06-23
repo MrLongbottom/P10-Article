@@ -63,7 +63,11 @@
 	\begin{itemize}
 		\item The person who has written the article
 		\item $184$ unique authors (after preprocessing)
-		\item Example: Peter Tordrup Larsen
+		\item Examples: 
+		\begin{itemize}
+			\item Ove Nørhave
+			\item Peter Tordrup Larsen
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -117,7 +121,7 @@
 	\end{figure}
 	\begin{itemize}
 		\item $\alpha$ and $\eta$ are topic hyperparameters
-		\item $\theta_d$ and $\beta_k$ are the document-topic and topic-word distribution
+		\item $\beta_k$ and $\theta_d$ are the topic-word and document topic distributions
 		\item $Z_{d,n}$ is the topic assignment 
 	\end{itemize}
 	\let\thefootnote\relax\footnote{\tiny{All pieces are random variables}}
@@ -177,10 +181,4 @@
 			\end{figure}
 		\end{column}
 	\end{columns}
-\end{frame}
-
-\begin{frame}{\insertsection}{}
-	\begin{itemize}
-		\item How does author and category influence the topics found by the model?
-	\end{itemize}
 \end{frame}
