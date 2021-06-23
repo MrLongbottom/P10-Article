@@ -1,4 +1,6 @@
-\documentclass[10pt,usenames,dvipsnames]{beamer}
+\documentclass[10pt,usenames,dvipsnames,xcolor=table]{beamer}
+\renewcommand<>\cellcolor[1]{\only#2{\beameroriginal\cellcolor{#1}}}
+
 \usetheme[
 %%% options passed to the outer theme
     hidetitle,           % hide the (short) title in the sidebar
