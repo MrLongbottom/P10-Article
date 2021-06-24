@@ -21,9 +21,6 @@
 			\input{../figures/pachinko_original}
 			}
 	\end{figure}
-	\begin{itemize}
-		\item Topic are sampled based on previous topics
-	\end{itemize}
 \end{frame}
 
 \subsection{Taxonomy-Topic Model}
@@ -40,8 +37,8 @@
 
 \begin{frame}{\insertsubsection}{Metadata Incorporation}
 	\begin{itemize}
-		\item<1-> 1:1 mapping between topics and taxonomy entries
-		\only<2>{\newline\input{../figures/dag_structure}}
+		\item 1:1 mapping between topics and taxonomy entries
+		\newline\input{../figures/dag_structure}
 	\end{itemize}
 \end{frame}
 
@@ -60,7 +57,7 @@
 				\resizebox{\textwidth}{!}{%
 					\input{../figures/pachinko_original}
 				}
-				\caption*{Four level \acrlong{pam}}
+				\caption*{Four level \acrshort{pam}}
 			\end{figure}
 		\end{column}
 		\begin{column}{0.45\textwidth}
@@ -97,7 +94,7 @@
 \begin{frame}{\insertsubsection}{Quality comparison of \acrshort{pam} models}
 	\centering
 	\begin{tabular}{c|c|c|c|c|c|c}
-		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\gls{dag} layer sizes} \vline & \makecell{Topic \\ Coherence} \\
+		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\acrshort{dag} layer sizes} \vline & \makecell{Topic \\ Coherence} \\
 		\hline
 		$\checkmark$ & 1 & 4 & 32 & 90 & V & $0.66$\\
 		$\times$ & & 1 & 100 & 90 & V & $0.67$ \\
@@ -107,7 +104,7 @@
 
 \begin{frame}{\insertsubsection}{Time comparison of \acrshort{pam} models}
 	\begin{tabular}{c|c|c|c|c|c|c}
-		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\gls{dag} layer sizes} \vline & \makecell{Elapsed time \\ (hours)} \\
+		\makecell{Metadata \\ integration} & \multicolumn{5}{c}{\acrshort{dag} layer sizes} \vline & \makecell{Elapsed time \\ (hours)} \\
 		\hline
 		$\checkmark$ & 1 & 4 & 32 & 90 & V & 72 h\\
 		$\times$ & 1 & 4 & 32 & 90 & V & 83 h\\
@@ -137,7 +134,7 @@
 		}
 	\end{figure}
 	\begin{itemize}
-		\item<1-> By having one topic-proportion for each document, one can combine the standard \gls{lda} with metadata models
+		\item<1-> By having one topic-proportion for each document, one can combine the standard \acrshort{lda} with metadata models
 	\end{itemize}
 \end{frame}
 
@@ -157,7 +154,7 @@
 	\end{table}
 	\begin{itemize}
 		\item<2-> Combining multiple topic-proportions can improve performance of topic models
-		\item<3-> Having a topic proportion for each document, makes the performance similar to the standard \gls{lda}
+		\item<3-> Having a topic proportion for each document, makes the performance similar to the standard \acrshort{lda}
 	\end{itemize}
 \end{frame}
 
